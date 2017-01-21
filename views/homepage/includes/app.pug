@@ -1,0 +1,17 @@
+include ../components/top-nav.pug
+include ../components/copyright.pug
+
+doctype html
+html
+    include ./head.pug
+    body(class=`body-${pageName}`)
+        .page(class=`${pageName}`)
+            header.header-block
+                +top-nav()
+            .main-block
+                .main-content
+                    block main
+            footer.footer-block
+                block footer
+                +copyright()
+        include ./foot.pug

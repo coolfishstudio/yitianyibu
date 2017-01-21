@@ -1,0 +1,41 @@
+extends ../includes/app.pug
+
+include ../components/svg/icon-svg-weibo.pug
+include ../components/svg/icon-svg-email.pug
+include ../components/svg/icon-svg-github.pug
+include ../components/svg/icon-svg-weixin.pug
+include ../components/svg/icon-svg-qq.pug
+
+include ../components/slide-container.pug
+include ../components/list-container.pug
+
+include ../components/author-site.pug
+include ../components/hot-recomm.pug
+include ../components/hot-tag.pug
+include ../components/art-place.pug
+include ../components/side-contact.pug
+
+block title
+    title 一天一步 ｜ 前端，后端，移动端，端端皆为技术 - 酷鱼网。
+    script(type='text/javascript' src=`./dist/js/bundle.js`)
+
+block main
+    .row-index
+        //- 左侧
+        .col-main
+            //- 轮播图
+            +slide-container()
+            //- 帖子列表
+            +list-container()
+        //- 右侧
+        .col-aside
+            //- 我的面板
+            +author-site()
+            //- 热门推荐
+            +hot-recomm()
+            //- 热门标签
+            //- +hot-tag()
+            //- 文章归档
+            //- +art-place()
+            //- 联系我
+            +side-contact()

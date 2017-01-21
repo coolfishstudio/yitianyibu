@@ -1,0 +1,20 @@
+include ../components/svg/icon-svg-yi.pug
+include ../components/svg/icon-svg-tian.pug
+include ../components/svg/icon-svg-bu.pug
+
+mixin top-nav()
+    nav.top-nav
+        .top-nav-container.bm-panel
+            .top-nav-logo
+                +icon-svg-yi(32, 32, '#fff')
+                +icon-svg-tian(32, 32, '#fff')
+                +icon-svg-yi(32, 32, '#fff')
+                +icon-svg-bu(32, 32, '#fff')
+            ul.top-nav-menu
+                li.top-nav-menu-item 
+                    h1.font-title 前端开发
+                li.top-nav-menu-item 
+                    h1.font-title 实验室
+                li.top-nav-menu-item
+                    h1.font-title 关于我
+            .top-nav-user

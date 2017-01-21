@@ -1,0 +1,9 @@
+include ./posts-item.pug
+
+mixin list-container()
+    .bm-panel.list-container
+        each i in [,,,,,,,,,]
+            +posts-item()
+        .page-nav
+            a.link-text.prev « 上一页
+            a.link-text.next 下一页 »

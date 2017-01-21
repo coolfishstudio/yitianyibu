@@ -18,5 +18,11 @@
   "bugs": {
     "url": "https://github.com/coolfishstudio/yitianyibu/issues"
   },
-  "homepage": "https://github.com/coolfishstudio/yitianyibu#readme"
+  "homepage": "https://github.com/coolfishstudio/yitianyibu#readme",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "pug": "^2.0.0-beta6"
+  }
 }
