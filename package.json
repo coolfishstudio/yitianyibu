@@ -1,0 +1,22 @@
+{
+  "name": "yitianyibu",
+  "version": "0.0.1",
+  "description": "Yves homepage",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/coolfishstudio/yitianyibu.git"
+  },
+  "keywords": [
+    "Yves"
+  ],
+  "author": "Yves",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/coolfishstudio/yitianyibu/issues"
+  },
+  "homepage": "https://github.com/coolfishstudio/yitianyibu#readme"
+}
