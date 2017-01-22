@@ -4,10 +4,14 @@
   "description": "Yves homepage",
   "main": "app.js",
   "scripts": {
-    "start" : "NODE_ENV=development npm run dev",
-    "build" : "babel src -d dist",
+    "start": "NODE_ENV=development npm run dev",
+    "dev": "nodemon src/app.js --exec babel-node",
+    "build": "npm run build:server",
+    "build:server": "babel src -d dist",
     "server": "NODE_ENV=production node dist/app.js",
-    "dev"   : "nodemon src/app.js --exec babel-node"
+    "test": "npm run test:lint",
+    "test:lint": "npm run test:srclint",
+    "test:srclint": "eslint src client --ext '.js'"
   },
   "repository": {
     "type": "git",
@@ -17,6 +21,9 @@
     "Yves"
   ],
   "author": "Yves",
+  "precommit": [
+    "test"
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/coolfishstudio/yitianyibu/issues"
@@ -31,8 +38,13 @@
   "devDependencies": {
     "babel-cli": "^6.22.2",
     "babel-core": "^6.22.1",
+    "babel-eslint": "^7.1.1",
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-stage-2": "^6.22.0",
+    "eslint": "^3.14.0",
+    "eslint-config-airbnb-base": "^11.0.1",
+    "eslint-plugin-babel": "^4.0.1",
+    "eslint-plugin-import": "^2.2.0",
     "nodemon": "^1.11.0"
   }
 }
