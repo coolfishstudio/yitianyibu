@@ -73,7 +73,10 @@ h3.font-title { font-size: 12px; }
     position: relative;
     float: left;
     background-color: #fff;
-    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out;
+}
+.top-nav-menu-item .font-title {
+    transition: color 0.2s ease-in-out;
 }
 .top-nav-menu-item:hover {
     background-color: #222;

@@ -1,19 +1,19 @@
-var express = require('express');
+import express from 'express'
+
 var app = express();
-var path = require('path');
 var bodyParser = require('body-parser');
 
-var router = require('./src/router');
-var utilsMiddleware = require('./src/middleware/utils');
+var router = require('./router');
+var utilsMiddleware = require('./middleware/utils');
 
 // 设置模版文件路径
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', `${__dirname}/../views`);
 // 设置模版引擎
 app.set('view engine', 'pug');
 // 中间件
 app.use(utilsMiddleware());
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(`${__dirname}/../public`));
 
 // 挂载路由
 app.use(router);
