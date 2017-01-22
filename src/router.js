@@ -1,8 +1,9 @@
-var express = require('express');
-var router = express.Router();
+import { Router } from 'express'
 
-router.get('/', function (req, res, next) {
-    res.renderPage('index', { title: '一天一步网', message: '模版测试' });
-});
+const router = new Router()
 
-module.exports = router;
+router.get('/', (req, res) => {
+    res.renderPage('index', { title: '一天一步网', message: '模版测试' })
+})
+
+export default router
