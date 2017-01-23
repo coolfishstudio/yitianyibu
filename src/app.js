@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser'
 import router from './router'
 import utilsMiddleware from './middleware/utils'
 import errorMiddleware from './middleware/error'
+import { log } from './middleware/log'
 
 const { PORT } = process.env
 const app = express()
@@ -24,5 +25,5 @@ app.use(errorMiddleware())
 const server = app.listen(port, () => {
     const serverHost = server.address().address
     const serverPort = server.address().port
-    console.log('Express app listening at http://%s:%s', serverHost, serverPort)
+    log.info(`Express app listening at http://${serverHost}${serverPort}`)
 })

@@ -1,4 +1,7 @@
+import { log } from './log'
+
 export default () => (req, res, next) => {
+    log.debug('in: utils')
     // admin
     res.renderAdminPage = (name, data) => {
         if (!data) data = {}
