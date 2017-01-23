@@ -1,5 +1,4 @@
 export default () => (req, res, next) => {
-    console.log('utilsMiddleware: init')
     // admin
     res.renderAdminPage = (name, data) => {
         if (!data) data = {}

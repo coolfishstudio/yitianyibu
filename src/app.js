@@ -3,6 +3,7 @@ import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
 import router from './router'
 import utilsMiddleware from './middleware/utils'
+import errorMiddleware from './middleware/error'
 
 const { PORT } = process.env
 const app = express()
@@ -17,15 +18,8 @@ app.use(utilsMiddleware())
 app.use(bodyParser.json())
 app.use(cookieParser())
 app.use(router)
+app.use(errorMiddleware())
 
-app.use((req, res, next) => {
-    const err = new Error('Not Found')
-    err.status = 404
-    next(err)
-})
-app.use((err, req, res) => {
-    res.status(500).send(err.message)
-})
 // 启动服务
 const server = app.listen(port, () => {
     const serverHost = server.address().address
