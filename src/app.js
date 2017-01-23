@@ -4,24 +4,27 @@ import cookieParser from 'cookie-parser'
 import router from './router'
 import utilsMiddleware from './middleware/utils'
 
+const { PORT } = process.env
 const app = express()
-const port = 9017
+const port = PORT || 8080
 
-// 设置模版文件路径
 app.set('views', `${__dirname}/../views`)
-// 设置模版引擎
 app.set('view engine', 'pug')
-// 中间件
+app.use(express.static(`${__dirname}/../public`))
+app.get('/favicon.ico', (req, res) => { res.status(204).end() })
+
 app.use(utilsMiddleware())
 app.use(bodyParser.json())
 app.use(cookieParser())
-app.use(express.static(`${__dirname}/../public`))
-
-// 挂载路由
 app.use(router)
-// 捕获错误
+
+app.use((req, res, next) => {
+    const err = new Error('Not Found')
+    err.status = 404
+    next(err)
+})
 app.use((err, req, res) => {
-    res.status(500).send('Error')
+    res.status(500).send(err.message)
 })
 // 启动服务
 const server = app.listen(port, () => {

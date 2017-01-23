@@ -2,13 +2,13 @@
   "name": "yitianyibu",
   "version": "0.0.1",
   "description": "Yves homepage",
-  "main": "app.js",
+  "main": "src/index.js",
   "scripts": {
     "start": "NODE_ENV=development npm run dev",
-    "dev": "nodemon src/app.js --exec babel-node",
+    "dev": "nodemon src/index.js --exec babel-node",
     "build": "npm run test && npm run build:server",
     "build:server": "babel src -d dist",
-    "server": "NODE_ENV=production node dist/app.js",
+    "server": "NODE_ENV=production node dist/index.js",
     "test": "npm run test:lint",
     "test:lint": "npm run test:srclint",
     "test:srclint": "eslint src client --ext '.js'"
@@ -32,6 +32,7 @@
   "dependencies": {
     "body-parser": "^1.16.0",
     "cookie-parser": "^1.4.3",
+    "dotenv": "^4.0.0",
     "express": "^4.14.0",
     "pug": "^2.0.0-beta6"
   },
