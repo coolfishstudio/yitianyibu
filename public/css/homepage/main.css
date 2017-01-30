@@ -226,13 +226,11 @@ h3.font-title { font-size: 12px; }
     background-color: #222;
     border-bottom: 2px dashed #fff;
     color: #aaa;
-    /*border-bottom: 2px dashed #efefef;*/
 }
 .bm-panel-bar {
     background-color: #222;
     border-top: 2px dashed #fff;
     color: #aaa;
-    /*border-top: 2px dashed #efefef;*/
 }
 .bm-panel-title:before,
 .bm-panel-title:after,
@@ -285,6 +283,47 @@ h3.font-title { font-size: 12px; }
 }
 .hot-recomm-item-title {
     padding-top: 4px;
+}
+/* 我的应用 */
+.application {
+    display: block;
+    position: relative;
+    margin-bottom: 15px;
+    padding: 0 59px 0 0;
+    background-color: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.application:after,
+.application:before {
+    position: absolute;
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #efefef;
+    right: 50px;
+}
+.application:after {
+    top: -10px;
+}
+.application:before {
+    bottom: -10px;
+}
+.application span {
+    display: block;
+    padding: 15px;
+    text-align: center;
+    line-height: 20px;
+    border-right: 2px dashed #fff;
+    background-color: #222;
+    color: #aaa;
+}
+.application svg {
+    position: absolute;
+    left: -10px;
+    bottom: -10px;
 }
 /* 热门标签 */
 .hot-tag-panel {

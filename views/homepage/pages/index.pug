@@ -1,11 +1,5 @@
 extends ../includes/app.pug
 
-include ../components/svg/icon-svg-weibo.pug
-include ../components/svg/icon-svg-email.pug
-include ../components/svg/icon-svg-github.pug
-include ../components/svg/icon-svg-weixin.pug
-include ../components/svg/icon-svg-qq.pug
-
 include ../components/slide-container.pug
 include ../components/list-container.pug
 
@@ -14,6 +8,7 @@ include ../components/hot-recomm.pug
 include ../components/hot-tag.pug
 include ../components/art-place.pug
 include ../components/side-contact.pug
+include ../components/application.pug
 
 block title
     title 一天一步 ｜ 前端，后端，移动端，端端皆为技术 - 酷鱼网。
@@ -30,6 +25,14 @@ block main
         .col-aside
             //- 我的面板
             +author-site()
+            //- 我的应用
+            - 
+                var applications = [
+                    { name: 'ANIMATE.CSS', icon: 'animate', url: 'http://animate.coolfishstudio.com' }, 
+                    { name: 'SNOW.JS', icon: 'snow', url: 'http://snow.coolfishstudio.com' }
+                ]
+            each item in applications
+                +application(item)
             //- 热门推荐
             +hot-recomm()
             //- 热门标签
