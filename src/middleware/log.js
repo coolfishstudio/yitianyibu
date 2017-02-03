@@ -1,23 +1,23 @@
-import winston from 'winston'
+import log4js from 'log4js'
 
 const {
     LOG_LEVEL,
     NODE_ENV
 } = process.env
 
-const level = LOG_LEVEL || (NODE_ENV !== 'production' ? 'debug' : 'info')
+const level = LOG_LEVEL || (NODE_ENV !== 'production' ? 'DEBUG' : 'INFO')
 
-export const log = new winston.Logger({
-    transports: [
-        new winston.transports.Console({
-            colorize : true,
-            timestamp: true,
-            level
-        })
-    ]
+log4js.configure({
+    appenders: [
+        {
+            type: 'console'
+        }
+    ],
+    levels: {
+        console: level
+    }
 })
 
-export default (req, res, next) => {
-    req.log = log
-    next()
+export default (type) => {
+    return log4js.getLogger(type)
 }

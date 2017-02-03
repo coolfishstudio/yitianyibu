@@ -1,7 +1,7 @@
-import { log } from './log'
+import log from './log'
 
 export default () => (req, res, next) => {
-    log.debug('in: utils')
+    log('utils').info('加载工具方法')
     // admin
     res.renderAdminPage = (name, data) => {
         if (!data) data = {}
