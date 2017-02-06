@@ -9,7 +9,7 @@ export default () => (req, res, next) => {
         res.render(`admin/pages/${name}`, data)
     }
     // homepage
-    res.renderPage = function (name, data) {
+    res.renderPage = (name, data) => {
         if (!data) data = {}
         data.pageName = name
         res.render(`homepage/pages/${name}`, data)

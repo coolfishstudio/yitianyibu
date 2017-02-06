@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+}
+html {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+body {
+    background: #efefef;
+    font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+}
+a {
+    color: #108ee9;
+    background: transparent;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    -webkit-transition: color .3s ease;
+    transition: color .3s ease;
+}
+ul, ol, li {
+    list-style: none;
+}
+img{
+    border: none;
+}
+input, textarea {
+    outline: none;
+    resize: none;
+    border: none;
+}
+
+.show {
+    display: block;
+}
+.hide {
+    display: none;
+}
+/**
+ * font
+ */
+.font-title { font-weight: 500; color: #666; }
+/* 主标题 */
+h1.font-title { font-size: 16px; }
+/* 次标题 */
+h2.font-title { font-size: 14px; }
+/* 小标题 */
+h3.font-title { font-size: 12px; }
+/* 正文、辅助文字、失效文字、链接文字 */
+.font-text, .help-text, .disabled-text, .link-text { font-size: 12px; }
+.font-text { color: #666; }
+.help-text { color: #999; }
+.disabled-text { color: #ccc; }
+.ellipsis-text { text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
+
+.text-custom { color: #5fbeaa!important; }
+.text-info { color: #33b86c!important; }
+.text-create { color: #5fbeaa!important; }
+.text-update { color: #29b6f6!important; }
+.text-remove { color: #dd4b39!important; }
+.text-white { color: #fff!important; }
+.text-red { color: #bf1e4b!important; }
+
+/* form */
+.form-input { margin-bottom: 15px; }
+.form-control {
+    display: block;
+    height: 24px;
+    width: 100%;
+    padding: 7px 12px;
+    background-color: #ffffff;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    color: #565656;
+    font-size: 14px;
+    -webkit-transition: background-color .3s linear;
+    transition: background-color .3s linear;
+}
+.form-control:focus {
+    background-color: #faffbd;
+}
+.btn-submit {
+    background-color: #5fbeaa;
+    border: 1px solid #5fbeaa;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 400;
+    border-radius: 3px;
+    cursor: pointer;
+    -webkit-transition: background-color .3s linear;
+    transition: background-color .3s linear;
+}
+.btn-submit:hover {
+    background-color: #78D2BF; 
+    border: 1px solid #78D2BF;
+}
+
+

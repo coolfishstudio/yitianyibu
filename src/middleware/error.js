@@ -12,7 +12,9 @@ export default () => [ (req, res, next) => {
     const message = err.message || '发生了一个很奇怪的错误...'
     res.status(err.status || 500).format({
         html: () => {
-            res.renderPage('index')
+            res.renderPage('error', {
+                message
+            })
         },
         json: () => {
             res.json({

@@ -1,0 +1,11 @@
+doctype html
+html
+    include ./head.pug
+    body(class=`admin-page-${pageName}`)
+        .page(class=`${pageName}`)
+            .main-block
+                .main-content
+                    block main
+            footer.footer-block
+                block footer
+        include ./foot.pug
