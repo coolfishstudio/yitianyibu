@@ -1,20 +1,18 @@
-mixin side-menu()
+mixin side-menu(type)
     .side-menu
         .sidebar-menu
-            a.active
-                span 基础平台
-            a
-                span 应用管理
-            a
-                span 内容管理
-            a
-                span 留言管理
-            a
-                span 类别管理
-            a
-                span 标签管理
-            a
-                span 统计分析
-            a
-                span 系统管理
+            - 
+                var menus = [
+                    { name: '基础平台', icon: 'icon-dashboard', url: '/admin', menu: 'admin_index' },
+                    { name: '应用管理', icon: 'icon-coffee', url: '/admin/app', menu: 'admin_app' },
+                    { name: '内容管理', icon: 'icon-file', url: '/admin/content', menu: 'admin_content' },
+                    { name: '留言管理', icon: 'icon-comments', url: '/admin/message', menu: 'admin_message' },
+                    { name: '类别管理', icon: 'icon-inbox', url: '/admin/category', menu: 'admin_category' },
+                    { name: '标签管理', icon: 'icon-tags', url: '/admin/tag', menu: 'admin_tag' },
+                    { name: '统计分析', icon: 'icon-bar-chart', url: '/admin/stat', menu: 'admin_stat' },
+                    { name: '系统管理', icon: 'icon-cogs', url: '/admin/system', menu: 'admin_system' }
+                ]
+            each i in menus
+                a(href=i.url class=(i.menu === type ? 'active' : ''))
+                    span= i.name
 

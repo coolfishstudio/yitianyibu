@@ -129,6 +129,9 @@ html, body {
 }
 .sidebar-menu a {
     display: block;
+}
+.sidebar-menu a span {
+    display: block;
     padding: 12px 20px;
     color: #838fa8;
     text-align: center;
@@ -142,8 +145,8 @@ html, body {
                 border-color .3s linear,
                 padding-left .3s linear;
 }
-.sidebar-menu a:hover,
-.sidebar-menu a.active {
+.sidebar-menu a:hover span,
+.sidebar-menu a.active span {
     background-color: #262d33;
     color: #5fbeaa;
     border-color: #5fbeaa;

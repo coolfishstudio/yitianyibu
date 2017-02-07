@@ -1,5 +1,4 @@
 include ../components/top-nav.pug
-include ../components/side-menu.pug
 
 doctype html
 html
@@ -9,7 +8,6 @@ html
             header.header-block
                 +top-nav()
             .main-block
-                +side-menu()
                 .main-content
                     block main
                 include ./foot.pug
