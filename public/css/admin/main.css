@@ -1,4 +1,11 @@
+html, body {
+    min-height: 100%;
+}
 /* 后端登录 */
+.login .main-content {
+    margin: 0;
+    padding: 0;
+}
 .account-pages {
     height:100%;
     width:100%;
@@ -62,5 +69,106 @@
 .account-login-panel-foot p {
     font-size: 12px;
 }
+/* 头部 菜单 */
+.header-block {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+}
+.top-nav {
+    overflow: hidden;
+    height: 100%;
+    background-color: #363d4c;
+    padding-right: 15px;
+}
+.top-nav-logo {
+    float: left;
+    position: relative;
+    width: 240px;
+    height: 100%;
+    line-height: 60px;
+    text-align: center;
+    color: #fff;
+    font-size: 24px;
+}
+.top-nav-menu {
+    float: right;
+    overflow: hidden;
+}
+.top-nav-menu-item {
+    float: left;
+}
+.top-nav-menu-item a {
+    display: block;
+    color: #838fa8;
+    padding: 0 15px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    transition: background-color .3s linear, color .3s linear;
+    -webkit-transition: background-color .3s linear, color .3s linear;
+}
+.top-nav-menu-item a:hover {
+    background-color: #262D33;
+    color: #fff;
+}
+/* 左侧菜单 */
+.side-menu {
+    position: fixed;
+    width: 240px;
+    left: 0;
+    top: 60px;
+    bottom: 0;
+    background-color: #363d4c;
+    box-shadow: 0 2px 2px rgba(0,0,0,.1);
+}
+.sidebar-menu {
+    padding-top: 0;
+}
+.sidebar-menu a {
+    display: block;
+    padding: 12px 20px;
+    color: #838fa8;
+    text-align: center;
+    border-left: 3px solid #363d4c;
+    -webkit-transition: background-color .3s linear,
+                        color .3s linear,
+                        border-color .3s linear,
+                        padding-left .3s linear;
+    transition: background-color .3s linear,
+                color .3s linear,
+                border-color .3s linear,
+                padding-left .3s linear;
+}
+.sidebar-menu a:hover,
+.sidebar-menu a.active {
+    background-color: #262d33;
+    color: #5fbeaa;
+    border-color: #5fbeaa;
+    padding-left: 25px;
+}
+/* 右侧内容 */
+.main-content {
+    margin-left: 240px;
+    overflow: hidden;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    padding: 20px 15px;
+}
+/* 右侧底部 */
+.footer-block {
+    height: 20px;
+    position: absolute;
+    bottom: 0;
+    left: 240px;
+    right: 0;
+    padding: 20px 30px;
+    text-align: right;
+    border-top: 1px solid rgba(0,0,0,.1);
+    color: #58666e;
+}
+
 
 

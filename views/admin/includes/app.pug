@@ -1,11 +1,16 @@
+include ../components/top-nav.pug
+include ../components/side-menu.pug
+
 doctype html
 html
     include ./head.pug
     body(class=`admin-page-${pageName}`)
         .page(class=`${pageName}`)
+            header.header-block
+                +top-nav()
             .main-block
+                +side-menu()
                 .main-content
                     block main
-            footer.footer-block
-                block footer
-        include ./foot.pug
+                include ./foot.pug
+        
