@@ -5,7 +5,7 @@ import router from './router'
 import utilsMiddleware from './middleware/utils'
 import errorMiddleware from './middleware/error'
 import log from './middleware/log'
-import { onReady } from './util/db'
+// import { onReady } from './util/db'
 
 const { PORT, NODE_ENV } = process.env
 const app = express()
@@ -23,11 +23,17 @@ app.use(router)
 app.use(errorMiddleware())
 
 // 启动服务
-onReady(() => {
-    const server = app.listen(port, () => {
-        const serverPort = server.address().port
-        log('app').info(`服务运行环境: ${NODE_ENV}`)
-        log('app').info(`端口号为: ${serverPort}`)
-        log('app').info('服务已启动')
-    })
+const server = app.listen(port, () => {
+    const serverPort = server.address().port
+    log('app').info(`服务运行环境: ${NODE_ENV}`)
+    log('app').info(`端口号为: ${serverPort}`)
+    log('app').info('服务已启动')
 })
+// onReady(() => {
+//     const server = app.listen(port, () => {
+//         const serverPort = server.address().port
+//         log('app').info(`服务运行环境: ${NODE_ENV}`)
+//         log('app').info(`端口号为: ${serverPort}`)
+//         log('app').info('服务已启动')
+//     })
+// })
