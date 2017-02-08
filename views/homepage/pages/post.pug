@@ -1,7 +1,6 @@
 extends ../includes/app.pug
 
-include ../components/slide-container.pug
-include ../components/list-container.pug
+include ../components/post-content.pug
 
 include ../components/author-site.pug
 include ../components/hot-recomm.pug
@@ -11,16 +10,18 @@ include ../components/side-contact.pug
 include ../components/application.pug
 
 block title
-    title 首页 ｜ 前端，后端，移动端，端端皆为技术 - 一天一步网。
+    title 移动 WEB 通用优化策略介绍（一） ｜ 前端，后端，移动端，端端皆为技术 - 一天一步网。
 
 block main
     .row-index.clearfix
         //- 左侧
         .col-main
-            //- 轮播图
-            +slide-container()
-            //- 帖子列表
-            +list-container()
+            //- 帖子详情
+            +post-content()
+            //- 评论列表
+            //- +comment-list()
+            //- 发表评论
+            //- +creat-comment()
         //- 右侧
         .col-aside
             //- 我的面板

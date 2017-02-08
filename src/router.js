@@ -9,7 +9,19 @@ router.get('/ping', (req, res) => {
 
 router.get('/', (req, res) => {
     log('router').info('访问首页')
-    res.renderPage('index', { title: '一天一步网', message: '模版测试' })
+    const applications = [
+        { name: 'ANIMATE.CSS', icon: 'animate', url: 'http://animate.coolfishstudio.com' },
+        { name: 'SNOW.JS', icon: 'snow', url: 'http://snow.coolfishstudio.com' }
+    ]
+    res.renderPage('index', { applications })
+})
+// 帖子详情页
+router.get('/post/:pid', (req, res) => {
+    const applications = [
+        { name: 'ANIMATE.CSS', icon: 'animate', url: 'http://animate.coolfishstudio.com' },
+        { name: 'SNOW.JS', icon: 'snow', url: 'http://snow.coolfishstudio.com' }
+    ]
+    res.renderPage('post', { applications })
 })
 
 router.get('/admin/login', (req, res) => {

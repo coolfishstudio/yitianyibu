@@ -3,7 +3,7 @@ include ./svg/icon-app-snow.pug
 
 
 mixin application(item)
-    a.application(href=item.url target="_blank")
+    a.application.shadow(href=item.url target="_blank")
         span.application-name= item.name
         if item.icon === 'snow'
             +icon-app-snow(48, 48, '#ffffff')
