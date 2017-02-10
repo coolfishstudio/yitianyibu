@@ -1,0 +1,12 @@
+mixin create-comment()
+    .bm-panel.create-comment.shadow
+        .bm-panel-content
+            .create-comment-meta.form-input
+                span 网名：
+                input.form-control.create-comment-username(type='text' placeholder="114.242.5.*")
+                span 邮箱：
+                input.form-control(type='text' placeholder="仅用于接收通知")
+            .form-input
+                textarea.form-control.create-comment-content(placeholder="写下你的评论...")
+            .form-input.create-comment-submit
+                a.btn-submit 提交

@@ -2,6 +2,7 @@ extends ../includes/app.pug
 
 include ../components/post-content.pug
 include ../components/comment-list.pug
+include ../components/create-comment.pug
 
 include ../components/author-site.pug
 include ../components/hot-recomm.pug
@@ -22,7 +23,7 @@ block main
             //- 评论列表
             +comment-list()
             //- 发表评论
-            //- +creat-comment()
+            +create-comment()
         //- 右侧
         .col-aside
             //- 我的面板

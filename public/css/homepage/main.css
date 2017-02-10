@@ -432,4 +432,25 @@
     word-break: break-all;
     color: #666;
 }
+/* create-comment */
+.create-comment .bm-panel-content {
+    padding: 15px;
+}
+.create-comment .create-comment-meta input {
+    display: inline-block;
+    width: 300px;
+}
+.create-comment .create-comment-meta .create-comment-username {
+    margin-right: 10px;
+}
+.create-comment .create-comment-content {
+    width: 732px;
+    height: 120px;
+}
+.create-comment .create-comment-submit {
+    margin-bottom: 0;
+}
+.create-comment .create-comment-submit a {
+    display: inline-block;
+}
 
