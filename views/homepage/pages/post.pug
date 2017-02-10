@@ -1,6 +1,7 @@
 extends ../includes/app.pug
 
 include ../components/post-content.pug
+include ../components/comment-list.pug
 
 include ../components/author-site.pug
 include ../components/hot-recomm.pug
@@ -19,7 +20,7 @@ block main
             //- 帖子详情
             +post-content()
             //- 评论列表
-            //- +comment-list()
+            +comment-list()
             //- 发表评论
             //- +creat-comment()
         //- 右侧

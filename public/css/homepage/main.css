@@ -394,3 +394,42 @@
     margin-right: 8px;
     border-radius: 15px;
 }
+/* commont items */
+.comment-list .bm-panel-content {
+    padding: 15px;
+}
+.comment-list .comment-item {
+    border-top: 1px solid #ccc;
+    padding: 10px 5px;
+}
+.comment-list .comment-item:first-child {
+    border-top: none;
+    padding: 0 5px 10px 5px;
+}
+.comment-list .comment-item-meta {
+    word-wrap: break-word;
+    word-break: break-all;
+    height: 20px;
+    overflow: hidden;
+}
+.comment-list .comment-item-meta-author {
+    float: left;
+    font-size: 12px;
+    line-height: 20px;
+    color: #999;
+}
+.comment-list .comment-item-meta-author:hover {
+    color: #666;
+}
+.comment-list .comment-item-meta time {
+    float: right;
+    font-size: 12px;
+    line-height: 20px;
+    color: #999;
+}
+.comment-list .comment-item-text {
+    word-wrap: break-word;
+    word-break: break-all;
+    color: #666;
+}
+

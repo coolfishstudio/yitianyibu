@@ -32,7 +32,11 @@ input, textarea {
     resize: none;
     border: none;
 }
-
+/* 设置选中的颜色 */
+::selection {
+    background-color: #262a30;
+    color: #fff;
+}
 .show {
     display: block;
 }
