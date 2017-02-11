@@ -26,9 +26,11 @@
     position: relative;
     float: left;
     background-color: #fff;
+    -webkit-transition: background-color 0.2s ease-in-out;
     transition: background-color 0.2s ease-in-out;
 }
 .top-nav-menu-item .font-title {
+    -webkit-transition: color 0.2s ease-in-out;
     transition: color 0.2s ease-in-out;
 }
 .top-nav-menu-item:hover {
@@ -124,6 +126,7 @@
 }
 .site-state-item-count,
 .site-state-item-name {
+    -webkit-transition: color 0.2s ease-in-out;
     transition: color 0.2s ease-in-out;
 }
 .site-state-item:hover .site-state-item-count, 
@@ -270,6 +273,7 @@
     color: #fff;
     margin: 0 5px;
     border-radius: 3px;
+    -webkit-transition: background-color .3s ease-in-out;
     transition: background-color .3s ease-in-out;
 }
 .bc-weibo { background-color: #f46e65; }
@@ -324,6 +328,7 @@
 .page-nav .next {
     color: #aaa;
     padding: 20px;
+    -webkit-transition: color 0.2s ease-in-out;
     transition: color 0.2s ease-in-out;
 }
 .page-nav .prev:hover,
@@ -436,6 +441,9 @@
 .create-comment .bm-panel-content {
     padding: 15px;
 }
+.create-comment .create-comment-meta span {
+    display: inline-block;
+}
 .create-comment .create-comment-meta input {
     display: inline-block;
     width: 300px;
@@ -452,5 +460,13 @@
 }
 .create-comment .create-comment-submit a {
     display: inline-block;
+    background-color: #222222;
+    border: 1px solid #222222;
+    -webkit-transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out;
+}
+.create-comment .create-comment-submit a:hover {
+    background-color: #4a4a4a;
+    border: 1px solid #4a4a4a;
 }
 
