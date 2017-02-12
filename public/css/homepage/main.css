@@ -361,15 +361,16 @@
 /* post */
 .post-content .bm-panel-title {
     background-color: #fff;
-    border-bottom: 2px dashed #efefef;
+    border-bottom: 1px solid #e3e3e3;
     color: #222;
 }
 .post-content .bm-panel-content {
     padding: 15px;
 }
 .post-content .bm-panel-bar {
+    padding: 15px 20px;
     background-color: #fff;
-    border-top: 2px dashed #efefef;
+    border-top: 1px solid #e3e3e3;
     color: #222;
 }
 .post-content .post-title {
@@ -388,9 +389,6 @@
 .post-content .post-meta span {
     font-size: 12px;
 }
-.post-content .post-tags {
-    padding-bottom: 10px;
-}
 .post-content .post-tags span {
     display: inline-block;
     font-size: 12px;
@@ -400,7 +398,60 @@
     padding: 5px 10px;
     margin-right: 8px;
     border-radius: 15px;
+    -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
+.post-content .post-tags span:hover {
+    background-color: #222; 
+    color: #fff;
+}
+.post-content .post-like {
+    position: absolute;
+    display: block;
+    width: 48px;
+    height: 48px;
+    z-index: 1;
+    top: -25px;
+    right: 45px;
+    border: 1px solid #e3e3e3;
+    border-radius: 50%;
+    background-color: #fff;
+}
+.post-content .post-like:hover .heart,
+.post-content .post-like:hover .heart:before,
+.post-content .post-like:hover .heart:after {
+    background-color: #dd4b39;
+}
+.heart {
+    position: absolute;
+    top: 19px;
+    left: 16px;
+    display: block;
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+.heart, .heart:after, .heart:before {
+    width: 16px;
+    height: 16px;
+    background-color: #e3e3e3;
+    -webkit-transition: background-color .3s linear;
+    transition: background-color .3s linear;
+}
+.heart:after, .heart:before {
+    position: absolute;
+    content: '';
+    border-radius: 50%;
+}
+.heart:before {
+    bottom: 0;
+    left: -8px;
+}
+.heart:after {
+    top: -8px;
+    right: 0;
+}
+
+
 /* commont items */
 .comment-list .bm-panel-content {
     padding: 15px;
@@ -448,13 +499,13 @@
 }
 .create-comment .create-comment-meta input {
     display: inline-block;
-    width: 300px;
+    width: 295px;
 }
 .create-comment .create-comment-meta .create-comment-username {
     margin-right: 10px;
 }
 .create-comment .create-comment-content {
-    width: 732px;
+    width: 722px;
     height: 120px;
 }
 .create-comment .create-comment-submit {
