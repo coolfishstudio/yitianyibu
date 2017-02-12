@@ -469,4 +469,11 @@
     background-color: #4a4a4a;
     border: 1px solid #4a4a4a;
 }
-
+/* labs */
+.labs .bm-panel-content {
+    padding: 15px;
+}
+/* about */
+.about .bm-panel-content {
+    padding: 15px;
+}

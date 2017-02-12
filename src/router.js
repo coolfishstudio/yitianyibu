@@ -15,6 +15,14 @@ router.get('/', (req, res) => {
     ]
     res.renderPage('index', { applications })
 })
+// 列表页
+router.get('/posts', (req, res) => {
+    const applications = [
+        { name: 'ANIMATE.CSS', icon: 'animate', url: 'http://animate.coolfishstudio.com' },
+        { name: 'SNOW.JS', icon: 'snow', url: 'http://snow.coolfishstudio.com' }
+    ]
+    res.renderPage('post-list', { applications })
+})
 // 帖子详情页
 router.get('/post/:pid', (req, res) => {
     const applications = [
@@ -22,6 +30,22 @@ router.get('/post/:pid', (req, res) => {
         { name: 'SNOW.JS', icon: 'snow', url: 'http://snow.coolfishstudio.com' }
     ]
     res.renderPage('post', { applications })
+})
+// 实验室
+router.get('/labs', (req, res) => {
+    const applications = [
+        { name: 'ANIMATE.CSS', icon: 'animate', url: 'http://animate.coolfishstudio.com' },
+        { name: 'SNOW.JS', icon: 'snow', url: 'http://snow.coolfishstudio.com' }
+    ]
+    res.renderPage('labs', { applications })
+})
+// 关于
+router.get('/about', (req, res) => {
+    const applications = [
+        { name: 'ANIMATE.CSS', icon: 'animate', url: 'http://animate.coolfishstudio.com' },
+        { name: 'SNOW.JS', icon: 'snow', url: 'http://snow.coolfishstudio.com' }
+    ]
+    res.renderPage('about', { applications })
 })
 
 router.get('/admin/login', (req, res) => {

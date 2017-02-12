@@ -1,0 +1,11 @@
+extends ../includes/app.pug
+
+include ../components/labs.pug
+
+block title
+    title 实验室 ｜ 前端，后端，移动端，端端皆为技术 - 一天一步网。
+
+block main
+    .row-index.clearfix
+        //- 帖子列表
+        +labs()
