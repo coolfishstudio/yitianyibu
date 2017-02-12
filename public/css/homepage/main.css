@@ -1,9 +1,14 @@
+.header-block, .main-block, .footer-block {
+    width: 1140px;
+    margin: 0 auto;
+}
+
 /* 头部 菜单 */
 .header-block {
     height: 64px;
 }
 .top-nav {
-    margin: 15px 0;
+    margin: 15px 20px;
     overflow: hidden;
 }
 .top-nav-logo {
@@ -40,11 +45,8 @@
     color: #fff;
 }
 /* 内容 */
-.header-block, .main-block, .footer-block {
-    width: 1140px;
-    margin: 0 auto;
-}
 .main-content {
+    margin: 0 20px;
     padding-top: 20px;
 }
 .bm-panel {
@@ -56,12 +58,12 @@
 }
 .col-main {
     float: left;
-    width: 790px;
+    width: 780px;
     position: relative;
 }
 .col-aside {
     float: right;
-    width: 330px;
+    width: 300px;
     position: relative;
 }
 /* 右侧个人介绍 */
@@ -70,7 +72,7 @@
     padding-bottom: 20px;
 }
 .author-site-bg {
-    width: 330px;
+    width: 300px;
     height: 140px;
     border-radius: 4px 4px 0 0;
 }
@@ -258,8 +260,8 @@
 }
 /* 联系我 */
 .side-contact-qrcode img {
-    width: 330px;
-    height: 330px;
+    width: 300px;
+    height: 300px;
     display: block;
 }
 .side-contact-items {
@@ -470,8 +472,62 @@
     border: 1px solid #4a4a4a;
 }
 /* labs */
-.labs .bm-panel-content {
-    padding: 15px;
+.labs .lab-item {
+    display: block;
+    position: relative;
+    width: 258px;
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+.labs .lab-item:nth-child(4n) {
+    margin-right: 0;
+}
+.labs .lab-item-cover {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    text-align: center;
+    background-position: center;
+    background-size: cover;
+}
+.labs .lab-item-cover:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    transition: background-color .2s ease-out;
+    -webkit-transition: background-color .2s ease-out;
+}
+.labs .lab-item:hover .lab-item-cover:before {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.labs .lab-item-info {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    bottom: 0;
+    background-color: #fff;
+    transform: translateY(100%);
+    transition: all .2s ease-out;
+    -webkit-transition: all .2s ease-out;
+}
+.labs .lab-item:hover .lab-item-info {
+    transform: translateY(0);
+}
+.labs .lab-item-info .font-title {
+    padding: 15px 10px 0;
+    line-height: 16px;
+    text-align: center;
+}
+.labs .lab-item-info .help-text {
+    padding: 10px 10px 20px;
+    line-height: 16px;
+    text-indent:2em;
 }
 /* about */
 .about .bm-panel-content {

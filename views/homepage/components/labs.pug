@@ -1,4 +1,7 @@
 mixin labs()
-    .bm-panel.list-container.shadow
-        .bm-panel-content
-            p 实验室
+    each i in [,,,,,,,,,]
+        a(href='/').bm-panel.list-container.shadow.lab-item
+            .lab-item-cover(style='background-color: #222')
+            .lab-item-info
+                h1.font-title 响应式用户交互组件库
+                .help-text UI是前端公用的视觉交互（user interface 、 user interaction）类公用组建，用于和用户间的对话及动态界面展示。
