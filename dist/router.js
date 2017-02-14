@@ -20,27 +20,27 @@ router.get('/ping', function (req, res) {
 
 router.get('/', function (req, res) {
     (0, _log2.default)('router').info('访问首页');
-    var applications = [{ name: 'ANIMATE.CSS', icon: 'animate', url: 'http://animate.coolfishstudio.com' }, { name: 'SNOW.JS', icon: 'snow', url: 'http://snow.coolfishstudio.com' }];
+    var applications = [{ name: 'SNOW.JS', title: '下雪效果组件', icon: 'app_00', url: 'http://snow.coolfishstudio.com', desc: '基于canvas绘制的下雪效果的组件，通过引入js，一句js即可实现下雪效果。' }, { name: 'ANIMATE.CSS', title: 'CSS3运动效果库', icon: 'app_01', url: 'http://animate.coolfishstudio.com', desc: '基于CSS3的运动效果库，通过引入css，修改class即可看到效果。' }];
     res.renderPage('index', { applications: applications });
 });
 // 列表页
 router.get('/posts', function (req, res) {
-    var applications = [{ name: 'ANIMATE.CSS', icon: 'animate', url: 'http://animate.coolfishstudio.com' }, { name: 'SNOW.JS', icon: 'snow', url: 'http://snow.coolfishstudio.com' }];
+    var applications = [{ name: 'SNOW.JS', title: '下雪效果组件', icon: 'app_00', url: 'http://snow.coolfishstudio.com', desc: '基于canvas绘制的下雪效果的组件，通过引入js，一句js即可实现下雪效果。' }, { name: 'ANIMATE.CSS', title: 'CSS3运动效果库', icon: 'app_01', url: 'http://animate.coolfishstudio.com', desc: '基于CSS3的运动效果库，通过引入css，修改class即可看到效果。' }];
     res.renderPage('post-list', { applications: applications });
 });
 // 帖子详情页
 router.get('/post/:pid', function (req, res) {
-    var applications = [{ name: 'ANIMATE.CSS', icon: 'animate', url: 'http://animate.coolfishstudio.com' }, { name: 'SNOW.JS', icon: 'snow', url: 'http://snow.coolfishstudio.com' }];
+    var applications = [{ name: 'SNOW.JS', title: '下雪效果组件', icon: 'app_00', url: 'http://snow.coolfishstudio.com', desc: '基于canvas绘制的下雪效果的组件，通过引入js，一句js即可实现下雪效果。' }, { name: 'ANIMATE.CSS', title: 'CSS3运动效果库', icon: 'app_01', url: 'http://animate.coolfishstudio.com', desc: '基于CSS3的运动效果库，通过引入css，修改class即可看到效果。' }];
     res.renderPage('post', { applications: applications });
 });
 // 实验室
 router.get('/labs', function (req, res) {
-    var applications = [{ name: 'ANIMATE.CSS', icon: 'animate', url: 'http://animate.coolfishstudio.com' }, { name: 'SNOW.JS', icon: 'snow', url: 'http://snow.coolfishstudio.com' }];
+    var applications = [{ name: 'SNOW.JS', title: '下雪效果组件', icon: 'app_00', url: 'http://snow.coolfishstudio.com', desc: '基于canvas绘制的下雪效果的组件，通过引入js，一句js即可实现下雪效果。' }, { name: 'ANIMATE.CSS', title: 'CSS3运动效果库', icon: 'app_01', url: 'http://animate.coolfishstudio.com', desc: '基于CSS3的运动效果库，通过引入css，修改class即可看到效果。' }];
     res.renderPage('labs', { applications: applications });
 });
 // 关于
 router.get('/about', function (req, res) {
-    var applications = [{ name: 'ANIMATE.CSS', icon: 'animate', url: 'http://animate.coolfishstudio.com' }, { name: 'SNOW.JS', icon: 'snow', url: 'http://snow.coolfishstudio.com' }];
+    var applications = [{ name: 'SNOW.JS', title: '下雪效果组件', icon: 'app_00', url: 'http://snow.coolfishstudio.com', desc: '基于canvas绘制的下雪效果的组件，通过引入js，一句js即可实现下雪效果。' }, { name: 'ANIMATE.CSS', title: 'CSS3运动效果库', icon: 'app_01', url: 'http://animate.coolfishstudio.com', desc: '基于CSS3的运动效果库，通过引入css，修改class即可看到效果。' }];
     res.renderPage('about', { applications: applications });
 });
 
