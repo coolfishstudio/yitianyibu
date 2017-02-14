@@ -76,7 +76,7 @@
 }
 .author-site-box {
     position: absolute;
-    height: 200px;
+    height: 220px;
     bottom: 0;
     right: 0;
     left: 0;
@@ -104,6 +104,7 @@
     text-indent: 24px;
     margin-top: 5px;
     padding: 0 10px;
+    margin-bottom: 20px;
     color: #aaa;
 }
 .site-state {
