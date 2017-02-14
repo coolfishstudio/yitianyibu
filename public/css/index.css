@@ -109,7 +109,6 @@ h3.font-title { font-size: 12px; }
 /* 面板阴影 */
 .shadow {
     box-shadow: 0px 0px 5px #CCC;
-    border: 1px solid #D4D4D4;
 }
 /* 文字阴影 */
 .text-shadow {
