@@ -1,12 +1,10 @@
 include ./svg/icon-app-animate.pug
 include ./svg/icon-app-snow.pug
 
-
 mixin application(item)
     a.application.shadow(href=item.url target="_blank")
-        span.application-name= item.name
-        if item.icon === 'snow'
+        span.application-name(style=`background-image: url(../images/homepage/apps/${item.icon}.png)`)= item.title
+        if item.icon === 'app_00'
             +icon-app-snow(48, 48, '#ffffff')
-        if item.icon === 'animate'
+        if item.icon === 'app_01'
             +icon-app-animate(48, 48, '#ffffff')
-        span.application-go GO

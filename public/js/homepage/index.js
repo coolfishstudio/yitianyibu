@@ -3,6 +3,9 @@ window.onload = function () {
     // 分块轮播图
     (function () {
         var oBox = document.getElementById('slide-pic')
+        if (!oBox) {
+            return false;
+        }
         // 自定义行列个数
         var R = 6;
         var C = 13;

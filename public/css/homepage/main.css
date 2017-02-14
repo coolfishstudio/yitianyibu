@@ -169,31 +169,24 @@
 }
 .bm-panel-title {
     background-color: #222;
-    border-bottom: 2px dashed #fff;
+    /*border-bottom: 2px dashed #fff;*/
     color: #aaa;
 }
 .bm-panel-bar {
     background-color: #222;
-    border-top: 2px dashed #fff;
+    /*border-top: 2px dashed #fff;*/
     color: #aaa;
 }
 /* 热门推荐 */
 .hot-recomm-item {
     position: relative;
-    padding: 15px;
-    border-bottom: 2px dashed #efefef;
+    padding: 12px 15px 15px 15px;
+    border-bottom: 1px dashed #efefef;
 }
 .hot-recomm-item:last-child {
     border-bottom: none;
 }
-.hot-recomm-item-image {
-    width: 40px;
-    height: 40px;
-    background-size: cover;
-    position: absolute;
-}
 .hot-recomm-item-info {
-    margin-left: 55px;
     height: 40px;
 }
 .hot-recomm-item-title {
@@ -204,35 +197,30 @@
     display: block;
     position: relative;
     margin-bottom: 15px;
-    padding: 0 59px 0 0;
     background-color: #fff;
     border-radius: 4px;
     overflow: hidden;
 }
 .application .application-name {
     display: block;
+    text-align: center;
     padding: 15px;
-    text-align: center;
     line-height: 20px;
-    border-right: 2px dashed #fff;
-    background-color: #222;
-    color: #aaa;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    background-size: cover;
+    background-position: center;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
 }
-.application .application-go {
-    position: absolute;
-    right: 5px;
-    top: 5px;
-    color: #ffffff;
-    background-color: #222222;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
+.application .application-name:hover {
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
 }
 .application svg {
     position: absolute;
-    left: -10px;
+    right: -10px;
     bottom: -10px;
 }
 /* 热门标签 */
@@ -280,7 +268,7 @@
 .posts-item {
     padding: 20px 20px;
     position: relative;
-    border-top: 2px dashed #efefef;
+    border-top: 1px dashed #efefef;
 }
 .posts-item .meta {
     text-align: right;
@@ -310,7 +298,7 @@
     line-height: 20px;
     position: relative;
     background-color: #222;
-    border-top: 2px dashed #fff;
+    /*border-top: 2px dashed #fff;*/
     height: 60px;
 }
 .page-nav .prev,
@@ -348,7 +336,7 @@
 /* post */
 .post-content .bm-panel-title {
     background-color: #fff;
-    border-bottom: 1px solid #e3e3e3;
+    border-bottom: 1px dashed #e3e3e3;
     color: #222;
 }
 .post-content .bm-panel-content {
@@ -357,7 +345,7 @@
 .post-content .bm-panel-bar {
     padding: 15px 20px;
     background-color: #fff;
-    border-top: 1px solid #e3e3e3;
+    border-top: 1px dashed #e3e3e3;
     color: #222;
 }
 .post-content .post-title {
@@ -400,7 +388,7 @@
     z-index: 1;
     top: -25px;
     right: 45px;
-    border: 1px solid #e3e3e3;
+    border: 1px dashed #e3e3e3;
     border-radius: 50%;
     background-color: #fff;
 }
@@ -438,13 +426,12 @@
     right: 0;
 }
 
-
 /* commont items */
 .comment-list .bm-panel-content {
     padding: 15px;
 }
 .comment-list .comment-item {
-    border-top: 1px solid #ccc;
+    border-top: 1px dashed #e3e3e3;
     padding: 10px 5px;
 }
 .comment-list .comment-item:first-child {
@@ -491,9 +478,13 @@
 .create-comment .create-comment-meta .create-comment-username {
     margin-right: 10px;
 }
+.create-comment .create-comment-meta input {
+    border: 1px dashed #e3e3e3;
+}
 .create-comment .create-comment-content {
     width: 722px;
     height: 120px;
+    border: 1px dashed #e3e3e3;
 }
 .create-comment .create-comment-submit {
     margin-bottom: 0;
@@ -513,7 +504,7 @@
 .labs .lab-item {
     display: block;
     position: relative;
-    width: 258px;
+    width: 260px;
     float: left;
     margin-right: 20px;
     margin-bottom: 20px;
@@ -529,10 +520,18 @@
     background-position: center;
     background-size: cover;
 }
+.lab-item-cover span {
+    color: #fff;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 300px;
+}
 .labs .lab-item-cover:before {
     content: '';
     display: block;
     position: absolute;
+    border-radius: 4px;
+    overflow: hidden;
     top: 0;
     left: 0;
     width: 100%;
@@ -565,7 +564,7 @@
 .labs .lab-item-info .help-text {
     padding: 10px 10px 20px;
     line-height: 16px;
-    text-indent:2em;
+    text-indent: 2em;
 }
 /* about */
 .about .bm-panel-content {
