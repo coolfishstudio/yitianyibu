@@ -2,7 +2,7 @@ mixin labs(applications)
     each i,index in applications
         a(href=i.url target='_blank').bm-panel.list-container.shadow.lab-item
             .lab-item-cover(style=`background-image: url(../images/homepage/apps/${i.icon}.png)`)
-                span= i.name
+                span.text-shadow= i.name
             .lab-item-info
                 h1.font-title= i.title
                 .help-text= i.desc
