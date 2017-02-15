@@ -209,14 +209,13 @@
     color: #fff;
     font-size: 20px;
     font-weight: bold;
-    background-size: cover;
+    background-size: 100%;
     background-position: center;
-    -webkit-transition: all .3s ease-in-out;
-    transition: all .3s ease-in-out;
+    -webkit-transition: background-size .3s ease-in-out;
+    transition: background-size .3s ease-in-out;
 }
 .application .application-name:hover {
-    -webkit-transform: scale(1.2);
-    transform: scale(1.2);
+    background-size: 120%;
 }
 .application svg {
     position: absolute;
@@ -519,6 +518,8 @@
     text-align: center;
     background-position: center;
     background-size: cover;
+    -webkit-transition: transform .2s ease-out;
+    transition: transform .2s ease-out;
 }
 .lab-item-cover span {
     color: #fff;
@@ -539,6 +540,9 @@
     background-color: rgba(0, 0, 0, 0);
     transition: background-color .2s ease-out;
     -webkit-transition: background-color .2s ease-out;
+}
+.labs .lab-item:hover .lab-item-cover {
+    transform: scale(1.1);   
 }
 .labs .lab-item:hover .lab-item-cover:before {
     background-color: rgba(0, 0, 0, 0.4);
