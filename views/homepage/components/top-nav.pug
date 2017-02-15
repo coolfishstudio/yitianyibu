@@ -6,19 +6,16 @@ mixin top-nav()
     nav.top-nav
         .top-nav-container.bm-panel.shadow
             a(href='/')
-                .top-nav-logo
+                .top-nav-logo.theme-color
                     +icon-svg-yi(32, 32, '#fff')
                     +icon-svg-tian(32, 32, '#fff')
                     +icon-svg-yi(32, 32, '#fff')
                     +icon-svg-bu(32, 32, '#fff')
-            ul.top-nav-menu
-                li.top-nav-menu-item 
-                    a(href='/posts')
-                        h1.font-title 前端开发
-                li.top-nav-menu-item
-                    a(href='/labs')
-                        h1.font-title 实验室
-                li.top-nav-menu-item
-                    a(href='/about')
-                        h1.font-title 关于我
+            ul.top-nav-menu.theme-reverse-color
+                li
+                    a(href='/posts').top-nav-menu-item 前端开发
+                li
+                    a(href='/labs').top-nav-menu-item 实验室
+                li
+                    a(href='/about').top-nav-menu-item 关于我
             .top-nav-user

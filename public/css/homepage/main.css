@@ -2,14 +2,12 @@
     width: 1140px;
     margin: 0 auto;
 }
-
 /* 头部 菜单 */
 .header-block {
     height: 64px;
 }
 .top-nav {
     margin: 15px 20px;
-    overflow: hidden;
 }
 .top-nav-logo {
     float: left;
@@ -22,7 +20,10 @@
 .top-nav-menu {
     float: left;
     overflow: hidden;
-    line-height: 64px;
+    height: 64px;
+}
+.top-nav-menu li {
+    display: inline-block;
 }
 .top-nav-menu-item {
     display: block;
@@ -31,18 +32,12 @@
     position: relative;
     float: left;
     background-color: #fff;
+    line-height: 64px;
     -webkit-transition: background-color 0.2s ease-in-out;
     transition: background-color 0.2s ease-in-out;
 }
-.top-nav-menu-item .font-title {
-    -webkit-transition: color 0.2s ease-in-out;
-    transition: color 0.2s ease-in-out;
-}
 .top-nav-menu-item:hover {
     background-color: #222;
-}
-.top-nav-menu-item:hover .font-title {
-    color: #fff;
 }
 /* 内容 */
 .main-content {
@@ -91,8 +86,9 @@
     top: -42px;
     left: 50%;
     margin-left: -45px;
-    border: 3px solid #222;
-    background-color: #222;
+    border: 3px solid currentColor;
+    background-color: currentColor;
+    color: #222;
 }
 .author-name {
     color: #fff;
@@ -489,19 +485,17 @@
 .create-comment .create-comment-submit a {
     display: inline-block;
     background-color: #222222;
-    border: 1px solid #222222;
     -webkit-transition: background-color 0.2s ease-in-out;
     transition: background-color 0.2s ease-in-out;
 }
 .create-comment .create-comment-submit a:hover {
     background-color: #4a4a4a;
-    border: 1px solid #4a4a4a;
 }
 /* labs */
 .labs .lab-item {
     display: block;
     position: relative;
-    width: 260px;
+    width: 258px;
     float: left;
     margin-right: 20px;
     margin-bottom: 20px;

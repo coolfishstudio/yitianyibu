@@ -4,5 +4,5 @@ mixin labs(applications)
             .lab-item-cover(style=`background-image: url(../images/homepage/apps/${i.icon}.png)`)
                 span.text-shadow= i.name
             .lab-item-info
-                h1.font-title= i.title
-                .help-text= i.desc
+                h1.font-title.theme-font-title-color= i.title
+                .help-text.theme-help-text-color= i.desc

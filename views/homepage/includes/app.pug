@@ -4,7 +4,7 @@ include ../components/copyright.pug
 doctype html
 html
     include ./head.pug
-    body(class=`body-${pageName}`)
+    body(class=`body-${pageName}`).theme-body-color
         .page(class=`${pageName}`)
             header.header-block
                 +top-nav()
