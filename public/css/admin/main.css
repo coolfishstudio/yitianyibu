@@ -172,6 +172,16 @@ html, body {
     border-top: 1px solid rgba(0,0,0,.1);
     color: #58666e;
 }
-
-
-
+/* 面板 */
+.panel {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+.panel .panel-title {
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+}
+.panel .panel-content {
+    padding: 10px;
+}
