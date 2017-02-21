@@ -2,6 +2,7 @@ import mongoose from 'mongoose'
 import log from '../middleware/log'
 
 const { MONGO_URL } = process.env
+
 // 连接数据库
 mongoose.connect(
     MONGO_URL, // 数据库地址
@@ -41,6 +42,4 @@ export const onReady = (callback) => {
     readyWaitingList.push(callback)
 }
 
-export default () => (req, res, next) => {
-    next()
-}
+export default mongoose
