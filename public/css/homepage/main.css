@@ -115,8 +115,8 @@
     text-align: right;
     border: 0;
     padding: 0 2%;
-    transition: all .3s ease-out;
-    -webkit-transition: all .3s ease-out;
+    transition: all .3s linear;
+    -webkit-transition: all .3s linear;
     transform: translate3d(0, -112px, 0);
 }
 .top-nav-menu.top-nav-menu-show {
