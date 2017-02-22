@@ -16,6 +16,7 @@ var _log2 = _interopRequireDefault(_log);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var MONGO_URL = process.env.MONGO_URL;
+
 // 连接数据库
 
 _mongoose2.default.connect(MONGO_URL, // 数据库地址
@@ -54,8 +55,4 @@ var onReady = exports.onReady = function onReady(callback) {
     readyWaitingList.push(callback);
 };
 
-exports.default = function () {
-    return function (req, res, next) {
-        next();
-    };
-};
+exports.default = _mongoose2.default;
