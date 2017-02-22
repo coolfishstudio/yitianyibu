@@ -3,24 +3,28 @@ include ../components/svg/icon-svg-tian.pug
 include ../components/svg/icon-svg-bu.pug
 
 mixin top-nav()
-    nav.top-nav
-        .top-nav-container.bm-panel.shadow
-            a(href='/')
-                .top-nav-logo.theme-color
-                    +icon-svg-yi(32, 32, '#fff')
-                    +icon-svg-tian(32, 32, '#fff')
-                    +icon-svg-yi(32, 32, '#fff')
-                    +icon-svg-bu(32, 32, '#fff')
-            ul.top-nav-menu.theme-reverse-color
-                li
-                    a(href='/posts').top-nav-menu-item 文章集
-                li
-                    a(href='/labs').top-nav-menu-item 系列册
-                li
-                    a(href='/labs').top-nav-menu-item 实验室
-                li
-                    a(href='/message').top-nav-menu-item 留言板
-                li
-                    a(href='/about').top-nav-menu-item 关于我
+    .top-nav
+        .top-nav-container.bm-panel.clearfix.theme-reverse-color
+            a(href='/').top-nav-logo
+                +icon-svg-yi(32, 32, '#5b6064')
+                +icon-svg-tian(32, 32, '#5b6064')
+                +icon-svg-yi(32, 32, '#5b6064')
+                +icon-svg-bu(32, 32, '#5b6064')
+            .top-nav-buttons
+                .top-nav-menu-toggle
+                    span
+                    span
+                    span
+            .top-nav-slogan.text-shadow
+                span 梦想是什么，梦想是现实的延续
+    ul.top-nav-menu
+        li
+            a(href='/posts').top-nav-menu-item 文章集
+        li
+            a(href='/labs').top-nav-menu-item 实验室
+        li
+            a(href='/message').top-nav-menu-item 留言板
+        li
+            a(href='/about').top-nav-menu-item 关于我
                 
-            .top-nav-user
+            
