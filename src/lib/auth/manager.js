@@ -32,10 +32,7 @@ passport.use('local', new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password'
 }, (email, password, done) => {
-    userManager.getUserByEmail(email, (error, user) => {
-        if (error) {
-            return done(error)
-        }
+    userManager.getUserByEmail(email).then((user) => {
         if (!user) {
             const err = new Error('查无此用户')
             err.status = 400
@@ -59,7 +56,6 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((user, done) => {
     done(null, user)
 })
-
 
 export default {
     login

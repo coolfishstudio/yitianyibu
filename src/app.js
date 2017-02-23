@@ -19,6 +19,11 @@ app.set('view engine', 'pug')
 app.use(express.static(`${__dirname}/../public`))
 app.get('/favicon.ico', (req, res) => { res.status(204).end() })
 
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(cookieParser())
+app.use(utilsMiddleware())
+
 app.use(session({
     secret           : 'coolfishstudio',
     name             : 'yitianyibu',
@@ -30,9 +35,6 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use(utilsMiddleware())
-app.use(bodyParser.json())
-app.use(cookieParser())
 app.use(router)
 app.use(errorMiddleware())
 

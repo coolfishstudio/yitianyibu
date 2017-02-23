@@ -62,10 +62,7 @@ router.get('/admin/login', authMiddleware.auth2Home, (req, res) => {
     res.renderAdminPage('login', { title: '一天一步网', message: '模版测试' })
 })
 /* 后台管理 */
-router.use('/admin', authMiddleware.notAuth2Login, authMiddleware.notAuth2Login, adminRouter)
 router.use('/admin/auth', authRouter)
-
-
 router.get('/admin/', authMiddleware.notAuth2Login, (req, res) => { res.renderAdminPage('index') })// 基础平台
 router.get('/admin/app', authMiddleware.notAuth2Login, (req, res) => { res.renderAdminPage('app') })// 应用管理
 router.get('/admin/content', authMiddleware.notAuth2Login, (req, res) => { res.renderAdminPage('content') })// 内容管理
@@ -73,5 +70,6 @@ router.get('/admin/category', authMiddleware.notAuth2Login, (req, res) => { res.
 router.get('/admin/tag', authMiddleware.notAuth2Login, (req, res) => { res.renderAdminPage('tag') })// 标签管理
 router.get('/admin/stat', authMiddleware.notAuth2Login, (req, res) => { res.renderAdminPage('stat') })// 统计分析
 router.get('/admin/system', authMiddleware.notAuth2Login, (req, res) => { res.renderAdminPage('system') })// 系统管理
+router.use('/admin', authMiddleware.notAuth2Login, authMiddleware.notAuth2Login, adminRouter)
 
 export default router
