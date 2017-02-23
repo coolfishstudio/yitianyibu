@@ -58,7 +58,13 @@ const initUser = async () => {
     return null
 }
 
+const getUserByEmail = async (email) => {
+    const findResult = await UserManager.getUserByEmail(email)
+    return findResult
+}
+
 export default {
     initUser,
-    createUser
+    createUser,
+    getUserByEmail
 }

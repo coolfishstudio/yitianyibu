@@ -7,18 +7,19 @@ block main
     .account-pages
     .account-pages-cover
     .account-login-panel
-        .account-login-panel-head
-            h1.font-title
-                span 登录
-                strong.text-custom 一天一步
-                span 系统
-        .account-login-panel-body
-            form
-                .form-input
-                    input.form-control(type="text")
-                .form-input
-                    input.form-control(type="password")
-                .form-input
-                    button.btn-submit(type="submit") 登录系统
-        .account-login-panel-foot
-            p ©2015-2017 CoolFishStuido
+        form(method="post" action="/admin/auth/signin")
+            .account-login-panel-head
+                h1.font-title
+                    span 登录
+                    strong.text-custom 一天一步
+                    span 系统
+            .account-login-panel-body
+                form
+                    .form-input
+                        input.form-control(type="text")
+                    .form-input
+                        input.form-control(type="password")
+                    .form-input
+                        button.btn-submit(type="submit") 登录系统
+            .account-login-panel-foot
+                p ©2015-2017 CoolFishStuido

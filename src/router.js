@@ -3,6 +3,8 @@ import log from './middleware/log'
 
 import adminRouter from './lib/admin/router'
 import messageRouter from './lib/message/router'
+import authRouter from './lib/auth/router'
+import authMiddleware from './middleware/auth'
 
 
 const router = new Router()
@@ -55,20 +57,21 @@ router.get('/about', (req, res) => {
 // 留言
 router.use('/message', messageRouter)
 
-router.get('/admin/login', (req, res) => {
+router.get('/admin/login', authMiddleware.auth2Home, (req, res) => {
     log('router').info('访问后台登录页')
     res.renderAdminPage('login', { title: '一天一步网', message: '模版测试' })
 })
 /* 后台管理 */
-router.use('/admin', adminRouter)
+router.use('/admin', authMiddleware.notAuth2Login, authMiddleware.notAuth2Login, adminRouter)
+router.use('/admin/auth', authRouter)
 
 
-router.get('/admin/', (req, res) => { res.renderAdminPage('index') })// 基础平台
-router.get('/admin/app', (req, res) => { res.renderAdminPage('app') })// 应用管理
-router.get('/admin/content', (req, res) => { res.renderAdminPage('content') })// 内容管理
-router.get('/admin/category', (req, res) => { res.renderAdminPage('category') })// 类别管理
-router.get('/admin/tag', (req, res) => { res.renderAdminPage('tag') })// 标签管理
-router.get('/admin/stat', (req, res) => { res.renderAdminPage('stat') })// 统计分析
-router.get('/admin/system', (req, res) => { res.renderAdminPage('system') })// 系统管理
+router.get('/admin/', authMiddleware.notAuth2Login, (req, res) => { res.renderAdminPage('index') })// 基础平台
+router.get('/admin/app', authMiddleware.notAuth2Login, (req, res) => { res.renderAdminPage('app') })// 应用管理
+router.get('/admin/content', authMiddleware.notAuth2Login, (req, res) => { res.renderAdminPage('content') })// 内容管理
+router.get('/admin/category', authMiddleware.notAuth2Login, (req, res) => { res.renderAdminPage('category') })// 类别管理
+router.get('/admin/tag', authMiddleware.notAuth2Login, (req, res) => { res.renderAdminPage('tag') })// 标签管理
+router.get('/admin/stat', authMiddleware.notAuth2Login, (req, res) => { res.renderAdminPage('stat') })// 统计分析
+router.get('/admin/system', authMiddleware.notAuth2Login, (req, res) => { res.renderAdminPage('system') })// 系统管理
 
 export default router

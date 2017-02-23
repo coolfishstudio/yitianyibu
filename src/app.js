@@ -1,6 +1,8 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
+import session from 'express-session'
+import passport from 'passport'
 import router from './router'
 import utilsMiddleware from './middleware/utils'
 import errorMiddleware from './middleware/error'
@@ -16,6 +18,17 @@ app.set('views', `${__dirname}/../views`)
 app.set('view engine', 'pug')
 app.use(express.static(`${__dirname}/../public`))
 app.get('/favicon.ico', (req, res) => { res.status(204).end() })
+
+app.use(session({
+    secret           : 'coolfishstudio',
+    name             : 'yitianyibu',
+    cookie           : { maxAge: 80000 },
+    resave           : false,
+    saveUninitialized: true
+}))
+// 登录认证
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.use(utilsMiddleware())
 app.use(bodyParser.json())

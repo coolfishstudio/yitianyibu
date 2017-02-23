@@ -16,7 +16,7 @@ const UserSchema = new Schema({
     username : { type: String, default: '' }, // 用户名
     password : { type: String, default: '' }, // 密码
     createdAt: { type: Date, default: Date.now }, // 创建时间
-    updatedAt: { type: Date, default: null }, // 修改时间
+    updatedAt: { type: Date, default: Date.now }, // 修改时间
 }, {
     collection: 'user'
 })
