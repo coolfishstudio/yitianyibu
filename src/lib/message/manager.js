@@ -1,3 +1,6 @@
+/* eslint-disable */
+import 'babel-polyfill'
+/* eslint-enable */
 import Message from './model'
 
 const addMessage = async (options = {}) => {

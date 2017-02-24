@@ -1,3 +1,6 @@
+/* eslint-disable */
+import 'babel-polyfill'
+/* eslint-enable */
 import Tag from './model'
 
 const addTag = async (options = {}) => {

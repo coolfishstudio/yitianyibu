@@ -6,7 +6,6 @@ import log from '../../middleware/log'
 
 const LocalStrategy = passportLocal.Strategy
 
-
 const login = async (req, res, callback) => {
     passport.authenticate('local', (error, user, info) => {
         if (error) {

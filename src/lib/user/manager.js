@@ -1,3 +1,6 @@
+/* eslint-disable */
+import 'babel-polyfill'
+/* eslint-enable */
 import User from './model'
 
 const getUserByEmail = async (email) => {
