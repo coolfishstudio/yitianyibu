@@ -1,8 +1,8 @@
 import log from '../../middleware/log'
 
 const viewAdminPage = (req, res) => {
-    log('tag_controller').info('标签')
-    res.renderAdminPage('tag')
+    log('comment_controller').info('评论')
+    res.renderAdminPage('comment')
 }
 
 export default {

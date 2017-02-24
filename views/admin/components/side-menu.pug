@@ -10,7 +10,7 @@ mixin side-menu(type)
                     { name: '类别管理', icon: 'icon-inbox', url: '/admin/category', menu: 'admin_category' },
                     { name: '标签管理', icon: 'icon-tags', url: '/admin/tag', menu: 'admin_tag' },
                     { name: '统计分析', icon: 'icon-bar-chart', url: '/admin/stat', menu: 'admin_stat' },
-                    { name: '系统管理', icon: 'icon-cogs', url: '/admin/system', menu: 'admin_system' }
+                    { name: '系统管理', icon: 'icon-cogs', url: '/admin/setting', menu: 'admin_setting' }
                 ]
             each i in menus
                 a(href=i.url class=(i.menu === type ? 'active' : ''))

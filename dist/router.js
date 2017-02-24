@@ -18,6 +18,14 @@ var _router3 = require('./lib/message/router');
 
 var _router4 = _interopRequireDefault(_router3);
 
+var _router5 = require('./lib/auth/router');
+
+var _router6 = _interopRequireDefault(_router5);
+
+var _auth = require('./middleware/auth');
+
+var _auth2 = _interopRequireDefault(_auth);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var router = new _express.Router();
@@ -53,34 +61,9 @@ router.get('/about', function (req, res) {
 
 // 留言
 router.use('/message', _router4.default);
-
-router.get('/admin/login', function (req, res) {
-    (0, _log2.default)('router').info('访问后台登录页');
-    res.renderAdminPage('login', { title: '一天一步网', message: '模版测试' });
-});
 /* 后台管理 */
+router.get('/admin/login', _auth2.default.auth2Home, _router6.default.viewAdminLogin);
+router.use('/admin/auth', _router6.default);
 router.use('/admin', _router2.default);
-
-router.get('/admin/', function (req, res) {
-    res.renderAdminPage('index');
-}); // 基础平台
-router.get('/admin/app', function (req, res) {
-    res.renderAdminPage('app');
-}); // 应用管理
-router.get('/admin/content', function (req, res) {
-    res.renderAdminPage('content');
-}); // 内容管理
-router.get('/admin/category', function (req, res) {
-    res.renderAdminPage('category');
-}); // 类别管理
-router.get('/admin/tag', function (req, res) {
-    res.renderAdminPage('tag');
-}); // 标签管理
-router.get('/admin/stat', function (req, res) {
-    res.renderAdminPage('stat');
-}); // 统计分析
-router.get('/admin/system', function (req, res) {
-    res.renderAdminPage('system');
-}); // 系统管理
 
 exports.default = router;

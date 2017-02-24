@@ -1,4 +1,5 @@
 import authManager from './manager'
+import log from '../../middleware/log'
 
 const signin = async (req, res, next) => {
     const email = req.body.email || ''
@@ -20,7 +21,13 @@ const signout = (req, res) => {
     res.redirect('/')
 }
 
+const viewAdminLogin = (req, res) => {
+    log('auth_controller').info('访问后台登录页')
+    res.renderAdminPage('login')
+}
+
 export default {
     signin,
-    signout
+    signout,
+    viewAdminLogin
 }
