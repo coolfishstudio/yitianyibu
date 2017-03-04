@@ -1,5 +1,6 @@
 include ./svg/icon-app-animate.pug
 include ./svg/icon-app-snow.pug
+include ./svg/icon-app-yuancoding.pug
 
 mixin application(item)
     a.application.shadow(href=item.url target="_blank")
@@ -8,3 +9,5 @@ mixin application(item)
             +icon-app-snow(48, 48, '#ffffff')
         if item.icon === 'app_01'
             +icon-app-animate(48, 48, '#ffffff')
+        if item.icon === 'app_06'
+            +icon-app-yuancoding(48, 48, '#ffffff')

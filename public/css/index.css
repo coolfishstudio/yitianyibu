@@ -102,6 +102,7 @@ h3.font-title { font-size: 12px; }
     font-size: 14px;
     font-weight: 400;
     border-radius: 3px;
+    border: 0px;
     cursor: pointer;
     -webkit-transition: background-color .3s linear;
     transition: background-color .3s linear;
