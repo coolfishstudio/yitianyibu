@@ -38,6 +38,9 @@ export default () => (req, res, next) => {
                 }
             }
             return format;
+        },
+        getNodeEnv: () => {
+            return process.env.NODE_ENV
         }
         /* eslint-enable */
     }

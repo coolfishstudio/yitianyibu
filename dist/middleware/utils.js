@@ -47,6 +47,9 @@ exports.default = function () {
                     }
                 }
                 return format;
+            },
+            getNodeEnv: function getNodeEnv() {
+                return process.env.NODE_ENV;
             }
             /* eslint-enable */
         };

@@ -1,2 +1,12 @@
 mixin baidu-stat()
+    if locals.viewHelper && locals.viewHelper.getNodeEnv && locals.viewHelper.getNodeEnv() !== 'development'
+        script.
+            var _hmt = _hmt || [];
+            (function() {
+                var hm = document.createElement("script");
+                hm.src = "https://hm.baidu.com/hm.js?362807aa3174bef7d10276019cb0d733";
+                var s = document.getElementsByTagName("script")[0]; 
+                s.parentNode.insertBefore(hm, s);
+            })();
+
     
