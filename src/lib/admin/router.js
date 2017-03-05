@@ -22,7 +22,11 @@ router.get('/content', authMiddleware.notAuth2Login, contentController.viewAdmin
 router.get('/message', authMiddleware.notAuth2Login, messageController.viewAdminPage)
 router.get('/setting', authMiddleware.notAuth2Login, settingController.viewAdminPage)
 router.get('/stat', authMiddleware.notAuth2Login, statController.viewAdminPage)
+
 router.get('/tag', authMiddleware.notAuth2Login, tagController.viewAdminPage)
+router.get('/tag/create', authMiddleware.notAuth2Login, tagController.viewAdminCreatePage)
+router.post('/tag/create', authMiddleware.notAuth2Login, tagController.createTag)
+
 router.get('/', authMiddleware.notAuth2Login, adminController.viewAdminPage)
 
 export default router

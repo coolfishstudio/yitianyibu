@@ -5,11 +5,7 @@ import Tag from './model'
 
 const addTag = async (options = {}) => {
     const addResult = await Tag.create(Object.assign({}, options))
-    return Promise.resolve({
-        success: !!addResult,
-        message: '',
-        result : addResult || null
-    })
+    return addResult
 }
 const getTag = async (tagID) => {
     const getResult = await Tag.findById(tagID)
@@ -19,12 +15,12 @@ const getTag = async (tagID) => {
         result : getResult.tags || null
     })
 }
-const findTag = async (options = {}) => {
-    const findResult = await Tag.find(Object.assign({}, options))
+const findTags = async (options = {}) => {
+    const findResult = await Tag.find(Object.assign({}, options)).sort({ weight: -1 })
     return findResult
 }
 export default {
     addTag,
     getTag,
-    findTag
+    findTags
 }

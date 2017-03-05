@@ -1,0 +1,36 @@
+extends ../../includes/app.pug
+include ../../components/side-menu.pug
+
+block title
+    title 标签管理 ｜ 前端，后端，移动端，端端皆为技术 - 一天一步网。
+
+block main
+    +side-menu('admin_tag')
+    .panel
+        .panel-title 
+            h1 标签管理
+            .panel-btns-list
+                a.btn(href="/admin/tag/create") 创建标签
+        .panel-content
+            .content-list
+                if result && result.length > 0
+                    table.table
+                        thead
+                            tr
+                                th 权重
+                                th 名称
+                                th 创建时间
+                                th 管理
+                        tbody
+                            each item in result
+                                tr
+                                    td= item.weight
+                                    td= item.name
+                                    td= locals.viewHelper.dateFormat(item.createdAt, 'yyyy-MM-dd hh:mm')
+                                    td
+                                        a
+                                            span.color-update 修改
+                                        a
+                                            span.color-delete 删除
+                else
+                    .no-data 暂无数据

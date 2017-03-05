@@ -21,6 +21,7 @@ html, body {
 }
 .account-login-panel {
     position: absolute;
+    text-align: center;
     right: 0;
     top: 0;
     bottom: 0;
@@ -69,6 +70,9 @@ html, body {
 .account-login-panel-foot p {
     font-size: 12px;
 }
+.account-login-panel .btn-submit {
+    width: 206px;
+}
 /* 头部 菜单 */
 .header-block {
     position: fixed;
@@ -99,19 +103,26 @@ html, body {
 }
 .top-nav-menu-item {
     float: left;
+    color: #838fa8;
 }
 .top-nav-menu-item a {
     display: block;
-    color: #838fa8;
     padding: 0 15px;
     height: 60px;
     line-height: 60px;
     text-align: center;
-    transition: background-color .3s linear, color .3s linear;
-    -webkit-transition: background-color .3s linear, color .3s linear;
+    transition: background-color .3s linear;
+    -webkit-transition: background-color .3s linear;
 }
 .top-nav-menu-item a:hover {
     background-color: #262D33;
+}
+.top-nav-menu-item a span {
+    color: #838fa8;
+    transition: color .3s linear;
+    -webkit-transition: color .3s linear;
+}
+.top-nav-menu-item a:hover span {
     color: #fff;
 }
 /* 左侧菜单 */
@@ -170,6 +181,7 @@ html, body {
     padding: 20px 30px;
     text-align: right;
     border-top: 1px solid rgba(0,0,0,.1);
+    background-color: #eee;
     color: #58666e;
 }
 /* 面板 */
@@ -177,11 +189,99 @@ html, body {
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 5px;
+    padding: 20px;
 }
 .panel .panel-title {
     border-bottom: 1px solid #ccc;
-    padding: 10px;
+    overflow: hidden;
+    padding-bottom: 10px;
 }
-.panel .panel-content {
-    padding: 10px;
+.panel .panel-title h1 {
+    width: 50%;
+    display: inline-block;
+    color: #797979;
+    font-size: 20px;
+    font-weight: 600;
+    vertical-align: middle;
+}
+.panel .panel-title .panel-btns-list {
+    width: 50%;
+    display: inline-block;
+    text-align: right;
+    vertical-align: middle;
+}
+.panel .panel-content .content-list {
+    padding-top: 10px;
+}
+.table {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+.table th {
+    background-color: #fff;
+    vertical-align: bottom;
+    border-bottom: 2px solid #edeff2;
+    padding: 8px;
+    line-height: 1.5;
+    color: #666;
+    text-align: center;
+    font-size: 14px;
+}
+.table tbody tr:nth-of-type(odd) {
+    background-color: #f4f8fb;
+}
+.table td {
+    color: #797979;
+    border-top: 1px solid #ebeff2;
+    padding: 8px;
+    line-height: 1.5;
+    font-size: 14px;
+    text-align: center;
+}
+.table td a {
+    display: inline-block;
+    margin: 0 5px;
+}
+.form-panel {
+    padding-top: 20px;
+    text-align: center;
+}
+.form-control {
+    width: 60%;
+    display: inline-block;
+}
+.color-update {
+    color: #29b6f6;
+}
+.color-delete {
+    color: #dd4b39;
+}
+.no-data {
+    color: #666;
+    padding: 20px;
+    text-align: center;
+}
+.btn {
+    margin-left: 8px;
+    color: #fff;
+    border-radius: 3px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    border: 0;
+    padding: 6px 12px;
+    display: inline-block;
+    background-color: #5fbeaa;
+    -webkit-transition: background-color .3s linear;
+    -moz-transition: background-color .3s linear;
+    -o-transition: background-color .3s linear;
+    -ms-transition: background-color .3s linear;
+    transition: background-color .3s linear;
+}
+.btn:hover {
+    background-color: #78D2BF;
 }
