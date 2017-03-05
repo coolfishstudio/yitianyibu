@@ -30,11 +30,7 @@ var addTag = function () {
 
                     case 2:
                         addResult = _context.sent;
-                        return _context.abrupt('return', Promise.resolve({
-                            success: !!addResult,
-                            message: '',
-                            result: addResult || null
-                        }));
+                        return _context.abrupt('return', addResult);
 
                     case 4:
                     case 'end':
@@ -78,7 +74,7 @@ var getTag = function () {
         return _ref2.apply(this, arguments);
     };
 }();
-var findTag = function () {
+var findTags = function () {
     var _ref3 = _asyncToGenerator(regeneratorRuntime.mark(function _callee3() {
         var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
         var findResult;
@@ -87,7 +83,7 @@ var findTag = function () {
                 switch (_context3.prev = _context3.next) {
                     case 0:
                         _context3.next = 2;
-                        return _model2.default.find(Object.assign({}, options));
+                        return _model2.default.find(Object.assign({}, options)).sort({ weight: -1 });
 
                     case 2:
                         findResult = _context3.sent;
@@ -101,12 +97,12 @@ var findTag = function () {
         }, _callee3, undefined);
     }));
 
-    return function findTag() {
+    return function findTags() {
         return _ref3.apply(this, arguments);
     };
 }();
 exports.default = {
     addTag: addTag,
     getTag: getTag,
-    findTag: findTag
+    findTags: findTags
 };

@@ -62,7 +62,11 @@ router.get('/content', _auth2.default.notAuth2Login, _controller10.default.viewA
 router.get('/message', _auth2.default.notAuth2Login, _controller12.default.viewAdminPage);
 router.get('/setting', _auth2.default.notAuth2Login, _controller14.default.viewAdminPage);
 router.get('/stat', _auth2.default.notAuth2Login, _controller16.default.viewAdminPage);
+
 router.get('/tag', _auth2.default.notAuth2Login, _controller18.default.viewAdminPage);
+router.get('/tag/create', _auth2.default.notAuth2Login, _controller18.default.viewAdminCreatePage);
+router.post('/tag/create', _auth2.default.notAuth2Login, _controller18.default.createTag);
+
 router.get('/', _auth2.default.notAuth2Login, _controller20.default.viewAdminPage);
 
 exports.default = router;
