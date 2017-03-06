@@ -1,11 +1,24 @@
 import log from './log'
 
-export default () => [ (req, res, next) => {
+export default () => [ (req, res) => {
     // 404
     const err = new Error('Not Found')
     err.status = 404
     log('error-404').error(err)
-    next(err)
+    res.status(err.status || 400).format({
+        html: () => {
+            res.renderPage('error', {
+                errcode: 404,
+                message: 'Not Found'
+            })
+        },
+        json: () => {
+            res.json({
+                errcode: err.status || 404,
+                message: 'Not Found'
+            })
+        }
+    })
 }, (err, req, res, next) => {
     if (!err) return next()
     log('error-500').error(err)
@@ -13,12 +26,13 @@ export default () => [ (req, res, next) => {
     res.status(err.status || 500).format({
         html: () => {
             res.renderPage('error', {
+                errcode: 500,
                 message
             })
         },
         json: () => {
             res.json({
-                code: err.status || 500,
+                errcode: err.status || 500,
                 message
             })
         }

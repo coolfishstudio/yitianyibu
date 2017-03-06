@@ -1,7 +1,22 @@
 extends ../includes/app.pug
+include ../components/svg/icon-svg-icon.pug
 
 block title
     title 抱歉 ｜ 前端，后端，移动端，端端皆为技术 - 一天一步网。
 
 block main
-    div message
+    .bm-panel.error-panel.shadow
+        .bm-panel-content
+            .error-icon
+                +icon-svg-icon(128, 128, '#666')
+            .error-info
+                p 发生这种事，大家都不想的。
+                p
+                    font= errcode
+                    span 的事呢，是不能强求的。
+                p 正所谓，吉人自有天相。
+                p 做人最要紧的就是开心，
+                p= `${errcode === 404 ? '迷路了，没事咱就走两步。' : '有些事也许一开始就是错的。'}`
+            .error-btns
+                .btn.error-btn 返回首页
+                .btn.error-btn 返回上一页
