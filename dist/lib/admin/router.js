@@ -63,9 +63,13 @@ router.get('/message', _auth2.default.notAuth2Login, _controller12.default.viewA
 router.get('/setting', _auth2.default.notAuth2Login, _controller14.default.viewAdminPage);
 router.get('/stat', _auth2.default.notAuth2Login, _controller16.default.viewAdminPage);
 
-router.get('/tag', _auth2.default.notAuth2Login, _controller18.default.viewAdminPage);
-router.get('/tag/create', _auth2.default.notAuth2Login, _controller18.default.viewAdminCreatePage);
+router.get('/tag', _auth2.default.notAuth2Login, _controller18.default.viewAdminTag);
+router.get('/tag/create', _auth2.default.notAuth2Login, _controller18.default.viewAdminCreateTag);
 router.post('/tag/create', _auth2.default.notAuth2Login, _controller18.default.createTag);
+router.get('/tag/:tagId/update', _auth2.default.notAuth2Login, _controller18.default.viewAdminUpdateTag);
+router.post('/tag/:tagId/update', _auth2.default.notAuth2Login, _controller18.default.updateTag);
+router.get('/tag/:tagId/remove', _auth2.default.notAuth2Login, _controller18.default.viewAdminRemoveTag);
+router.post('/tag/:tagId/remove', _auth2.default.notAuth2Login, _controller18.default.removeTag);
 
 router.get('/', _auth2.default.notAuth2Login, _controller20.default.viewAdminPage);
 

@@ -20,7 +20,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 var addTag = function () {
     var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
         var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-        var addResult;
+        var result;
         return regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
                 switch (_context.prev = _context.next) {
@@ -29,8 +29,8 @@ var addTag = function () {
                         return _model2.default.create(Object.assign({}, options));
 
                     case 2:
-                        addResult = _context.sent;
-                        return _context.abrupt('return', addResult);
+                        result = _context.sent;
+                        return _context.abrupt('return', result);
 
                     case 4:
                     case 'end':
@@ -44,23 +44,19 @@ var addTag = function () {
         return _ref.apply(this, arguments);
     };
 }();
-var getTag = function () {
-    var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(tagID) {
-        var getResult;
+var getTagById = function () {
+    var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(tagId) {
+        var result;
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
             while (1) {
                 switch (_context2.prev = _context2.next) {
                     case 0:
                         _context2.next = 2;
-                        return _model2.default.findById(tagID);
+                        return _model2.default.findById(tagId);
 
                     case 2:
-                        getResult = _context2.sent;
-                        return _context2.abrupt('return', Promise.resolve({
-                            success: !!getResult,
-                            message: '',
-                            result: getResult.tags || null
-                        }));
+                        result = _context2.sent;
+                        return _context2.abrupt('return', result);
 
                     case 4:
                     case 'end':
@@ -70,26 +66,27 @@ var getTag = function () {
         }, _callee2, undefined);
     }));
 
-    return function getTag(_x2) {
+    return function getTagById(_x2) {
         return _ref2.apply(this, arguments);
     };
 }();
 var findTags = function () {
     var _ref3 = _asyncToGenerator(regeneratorRuntime.mark(function _callee3() {
         var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-        var findResult;
+        var obj, result;
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
             while (1) {
                 switch (_context3.prev = _context3.next) {
                     case 0:
-                        _context3.next = 2;
-                        return _model2.default.find(Object.assign({}, options)).sort({ weight: -1 });
+                        obj = Object.assign({ removed: false }, options);
+                        _context3.next = 3;
+                        return _model2.default.find(obj).sort({ weight: -1 });
 
-                    case 2:
-                        findResult = _context3.sent;
-                        return _context3.abrupt('return', findResult);
+                    case 3:
+                        result = _context3.sent;
+                        return _context3.abrupt('return', result);
 
-                    case 4:
+                    case 5:
                     case 'end':
                         return _context3.stop();
                 }
@@ -101,8 +98,97 @@ var findTags = function () {
         return _ref3.apply(this, arguments);
     };
 }();
+var updateTagById = function () {
+    var _ref4 = _asyncToGenerator(regeneratorRuntime.mark(function _callee4(tagId) {
+        var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+        var analyse, result;
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+            while (1) {
+                switch (_context4.prev = _context4.next) {
+                    case 0:
+                        _context4.next = 2;
+                        return _model2.default.findById(tagId);
+
+                    case 2:
+                        analyse = _context4.sent;
+
+                        if (analyse) {
+                            _context4.next = 5;
+                            break;
+                        }
+
+                        return _context4.abrupt('return', null);
+
+                    case 5:
+                        analyse.name = options.name;
+                        analyse.weight = options.weight;
+                        analyse.updatedAt = Date.now();
+                        _context4.next = 10;
+                        return analyse.save();
+
+                    case 10:
+                        result = _context4.sent;
+                        return _context4.abrupt('return', result);
+
+                    case 12:
+                    case 'end':
+                        return _context4.stop();
+                }
+            }
+        }, _callee4, undefined);
+    }));
+
+    return function updateTagById(_x4) {
+        return _ref4.apply(this, arguments);
+    };
+}();
+var removeTagById = function () {
+    var _ref5 = _asyncToGenerator(regeneratorRuntime.mark(function _callee5(tagId) {
+        var analyse, result;
+        return regeneratorRuntime.wrap(function _callee5$(_context5) {
+            while (1) {
+                switch (_context5.prev = _context5.next) {
+                    case 0:
+                        _context5.next = 2;
+                        return _model2.default.findById(tagId);
+
+                    case 2:
+                        analyse = _context5.sent;
+
+                        if (analyse) {
+                            _context5.next = 5;
+                            break;
+                        }
+
+                        return _context5.abrupt('return', null);
+
+                    case 5:
+                        analyse.removed = true;
+                        analyse.updatedAt = Date.now();
+                        _context5.next = 9;
+                        return analyse.save();
+
+                    case 9:
+                        result = _context5.sent;
+                        return _context5.abrupt('return', result);
+
+                    case 11:
+                    case 'end':
+                        return _context5.stop();
+                }
+            }
+        }, _callee5, undefined);
+    }));
+
+    return function removeTagById(_x6) {
+        return _ref5.apply(this, arguments);
+    };
+}();
+
 exports.default = {
     addTag: addTag,
-    getTag: getTag,
-    findTags: findTags
+    getTagById: getTagById,
+    findTags: findTags,
+    updateTagById: updateTagById,
+    removeTagById: removeTagById
 };

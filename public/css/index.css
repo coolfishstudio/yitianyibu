@@ -95,6 +95,10 @@ h3.font-title { font-size: 12px; }
 .form-control:focus {
     background-color: #faffbd;
 }
+.form-control.disable {
+    background: #eee;
+    color: #999;   
+}
 .btn-submit {
     background-color: #5fbeaa;
     color: #fff;

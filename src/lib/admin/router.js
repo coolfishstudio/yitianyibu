@@ -23,9 +23,13 @@ router.get('/message', authMiddleware.notAuth2Login, messageController.viewAdmin
 router.get('/setting', authMiddleware.notAuth2Login, settingController.viewAdminPage)
 router.get('/stat', authMiddleware.notAuth2Login, statController.viewAdminPage)
 
-router.get('/tag', authMiddleware.notAuth2Login, tagController.viewAdminPage)
-router.get('/tag/create', authMiddleware.notAuth2Login, tagController.viewAdminCreatePage)
+router.get('/tag', authMiddleware.notAuth2Login, tagController.viewAdminTag)
+router.get('/tag/create', authMiddleware.notAuth2Login, tagController.viewAdminCreateTag)
 router.post('/tag/create', authMiddleware.notAuth2Login, tagController.createTag)
+router.get('/tag/:tagId/update', authMiddleware.notAuth2Login, tagController.viewAdminUpdateTag)
+router.post('/tag/:tagId/update', authMiddleware.notAuth2Login, tagController.updateTag)
+router.get('/tag/:tagId/remove', authMiddleware.notAuth2Login, tagController.viewAdminRemoveTag)
+router.post('/tag/:tagId/remove', authMiddleware.notAuth2Login, tagController.removeTag)
 
 router.get('/', authMiddleware.notAuth2Login, adminController.viewAdminPage)
 

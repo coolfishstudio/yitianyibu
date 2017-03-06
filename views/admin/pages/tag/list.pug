@@ -28,9 +28,9 @@ block main
                                     td= item.name
                                     td= locals.viewHelper.dateFormat(item.createdAt, 'yyyy-MM-dd hh:mm')
                                     td
-                                        a
+                                        a(href=`/admin/tag/${item._id}/update`)
                                             span.color-update 修改
-                                        a
+                                        a(href=`/admin/tag/${item._id}/remove`)
                                             span.color-delete 删除
                 else
                     .no-data 暂无数据
