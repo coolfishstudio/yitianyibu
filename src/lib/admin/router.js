@@ -16,13 +16,21 @@ const router = new Router()
 
 router.get('/login', authMiddleware.auth2Home, authController.viewAdminLogin)
 router.get('/app', authMiddleware.notAuth2Login, appController.viewAdminPage)
-router.get('/category', authMiddleware.notAuth2Login, categoryController.viewAdminPage)
 router.get('/comment', authMiddleware.notAuth2Login, commentController.viewAdminPage)
 router.get('/content', authMiddleware.notAuth2Login, contentController.viewAdminPage)
 router.get('/message', authMiddleware.notAuth2Login, messageController.viewAdminPage)
 router.get('/setting', authMiddleware.notAuth2Login, settingController.viewAdminPage)
 router.get('/stat', authMiddleware.notAuth2Login, statController.viewAdminPage)
 
+/* category */
+router.get('/category', authMiddleware.notAuth2Login, categoryController.viewAdminCategory)
+router.get('/category/create', authMiddleware.notAuth2Login, categoryController.viewAdminCreateCategory)
+router.post('/category/create', authMiddleware.notAuth2Login, categoryController.createCategory)
+router.get('/category/:categoryId/update', authMiddleware.notAuth2Login, categoryController.viewAdminUpdateCategory)
+router.post('/category/:categoryId/update', authMiddleware.notAuth2Login, categoryController.updateCategory)
+router.get('/category/:categoryId/remove', authMiddleware.notAuth2Login, categoryController.viewAdminRemoveCategory)
+router.post('/category/:categoryId/remove', authMiddleware.notAuth2Login, categoryController.removeCategory)
+/* tag */
 router.get('/tag', authMiddleware.notAuth2Login, tagController.viewAdminTag)
 router.get('/tag/create', authMiddleware.notAuth2Login, tagController.viewAdminCreateTag)
 router.post('/tag/create', authMiddleware.notAuth2Login, tagController.createTag)

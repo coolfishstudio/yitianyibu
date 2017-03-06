@@ -79,9 +79,9 @@ const removeTag = async (req, res, next) => {
 export default {
     viewAdminTag,
     viewAdminCreateTag,
-    createTag,
     viewAdminUpdateTag,
-    updateTag,
     viewAdminRemoveTag,
+    createTag,
+    updateTag,
     removeTag
 }
