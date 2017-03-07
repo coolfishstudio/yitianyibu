@@ -43,7 +43,7 @@ exports.default = function () {
                                 result = _context.sent;
 
                                 // 公告
-                                res.locals.slogan = result.slogan;
+                                res.locals.slogan = result.slogan || '';
                                 res.render('homepage/pages/' + name, data);
 
                             case 7:

@@ -16,7 +16,7 @@ export default () => (req, res, next) => {
         // 加载公共内容
         const result = await viewLocalsMiddleware.getViewLocals()
         // 公告
-        res.locals.slogan = result.slogan
+        res.locals.slogan = result.slogan || ''
         res.render(`homepage/pages/${name}`, data)
     }
     res.locals.viewHelper = {

@@ -24,7 +24,7 @@ var getViewLocals = function () {
 
                     case 2:
                         result = _context.sent;
-                        slogan = result.slogan;
+                        slogan = result ? result.slogan : [''];
                         return _context.abrupt('return', {
                             slogan: slogan[Math.floor(Math.random() * slogan.length)]
                         });
