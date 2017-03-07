@@ -56,13 +56,20 @@ var router = new _express.Router();
 
 router.get('/login', _auth2.default.auth2Home, _controller2.default.viewAdminLogin);
 router.get('/app', _auth2.default.notAuth2Login, _controller4.default.viewAdminPage);
-router.get('/category', _auth2.default.notAuth2Login, _controller6.default.viewAdminPage);
 router.get('/comment', _auth2.default.notAuth2Login, _controller8.default.viewAdminPage);
 router.get('/content', _auth2.default.notAuth2Login, _controller10.default.viewAdminPage);
 router.get('/message', _auth2.default.notAuth2Login, _controller12.default.viewAdminPage);
-router.get('/setting', _auth2.default.notAuth2Login, _controller14.default.viewAdminPage);
 router.get('/stat', _auth2.default.notAuth2Login, _controller16.default.viewAdminPage);
 
+/* category */
+router.get('/category', _auth2.default.notAuth2Login, _controller6.default.viewAdminCategory);
+router.get('/category/create', _auth2.default.notAuth2Login, _controller6.default.viewAdminCreateCategory);
+router.post('/category/create', _auth2.default.notAuth2Login, _controller6.default.createCategory);
+router.get('/category/:categoryId/update', _auth2.default.notAuth2Login, _controller6.default.viewAdminUpdateCategory);
+router.post('/category/:categoryId/update', _auth2.default.notAuth2Login, _controller6.default.updateCategory);
+router.get('/category/:categoryId/remove', _auth2.default.notAuth2Login, _controller6.default.viewAdminRemoveCategory);
+router.post('/category/:categoryId/remove', _auth2.default.notAuth2Login, _controller6.default.removeCategory);
+/* tag */
 router.get('/tag', _auth2.default.notAuth2Login, _controller18.default.viewAdminTag);
 router.get('/tag/create', _auth2.default.notAuth2Login, _controller18.default.viewAdminCreateTag);
 router.post('/tag/create', _auth2.default.notAuth2Login, _controller18.default.createTag);
@@ -70,6 +77,11 @@ router.get('/tag/:tagId/update', _auth2.default.notAuth2Login, _controller18.def
 router.post('/tag/:tagId/update', _auth2.default.notAuth2Login, _controller18.default.updateTag);
 router.get('/tag/:tagId/remove', _auth2.default.notAuth2Login, _controller18.default.viewAdminRemoveTag);
 router.post('/tag/:tagId/remove', _auth2.default.notAuth2Login, _controller18.default.removeTag);
+/* setting */
+router.get('/setting', _auth2.default.notAuth2Login, _controller14.default.viewAdminSetting);
+router.get('/setting/update', _auth2.default.notAuth2Login, _controller14.default.viewAdminUpdateSetting);
+router.post('/setting/update', _auth2.default.notAuth2Login, _controller14.default.updateSetting);
+router.get('/setting/create', _auth2.default.notAuth2Login, _controller14.default.createSetting);
 
 router.get('/', _auth2.default.notAuth2Login, _controller20.default.viewAdminPage);
 

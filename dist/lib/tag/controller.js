@@ -265,9 +265,9 @@ var removeTag = function () {
 exports.default = {
     viewAdminTag: viewAdminTag,
     viewAdminCreateTag: viewAdminCreateTag,
-    createTag: createTag,
     viewAdminUpdateTag: viewAdminUpdateTag,
-    updateTag: updateTag,
     viewAdminRemoveTag: viewAdminRemoveTag,
+    createTag: createTag,
+    updateTag: updateTag,
     removeTag: removeTag
 };

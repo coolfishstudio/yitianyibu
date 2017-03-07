@@ -16,6 +16,10 @@ var _log = require('../../middleware/log');
 
 var _log2 = _interopRequireDefault(_log);
 
+var _controller = require('../setting/controller');
+
+var _controller2 = _interopRequireDefault(_controller);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
@@ -141,14 +145,26 @@ var initUser = function () {
                     case 12:
                         initResult = _context2.sent;
 
-                        if (initResult) {
-                            (0, _log2.default)('user_controller').info('创建管理员成功');
-                        } else {
-                            (0, _log2.default)('user_controller').info('创建管理员失败');
+                        if (!initResult) {
+                            _context2.next = 19;
+                            break;
                         }
+
+                        (0, _log2.default)('user_controller').info('创建管理员成功');
+                        _context2.next = 17;
+                        return _controller2.default.initSetting();
+
+                    case 17:
+                        _context2.next = 20;
+                        break;
+
+                    case 19:
+                        (0, _log2.default)('user_controller').info('创建管理员失败');
+
+                    case 20:
                         return _context2.abrupt('return', null);
 
-                    case 15:
+                    case 21:
                     case 'end':
                         return _context2.stop();
                 }
