@@ -251,6 +251,12 @@ html, body {
     width: 60%;
     display: inline-block;
 }
+.form-title {
+    width: 60%;
+    display: inline-block;
+    padding-right: 10px;
+    margin-left: -15px;
+}
 .color-update {
     color: #29b6f6;
 }

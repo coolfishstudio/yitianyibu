@@ -1,6 +1,7 @@
 import UserManager from './manager'
 import helper from '../../util/helper'
 import log from '../../middleware/log'
+import settingController from '../setting/controller'
 
 const { ADMIN_USERNAME, ADMIN_PASSWORD, ADMIN_EMAIL } = process.env
 
@@ -52,6 +53,7 @@ const initUser = async () => {
     const initResult = await UserManager.addUser(options)
     if (initResult) {
         log('user_controller').info('创建管理员成功')
+        await settingController.initSetting()
     } else {
         log('user_controller').info('创建管理员失败')
     }

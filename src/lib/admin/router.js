@@ -19,7 +19,6 @@ router.get('/app', authMiddleware.notAuth2Login, appController.viewAdminPage)
 router.get('/comment', authMiddleware.notAuth2Login, commentController.viewAdminPage)
 router.get('/content', authMiddleware.notAuth2Login, contentController.viewAdminPage)
 router.get('/message', authMiddleware.notAuth2Login, messageController.viewAdminPage)
-router.get('/setting', authMiddleware.notAuth2Login, settingController.viewAdminPage)
 router.get('/stat', authMiddleware.notAuth2Login, statController.viewAdminPage)
 
 /* category */
@@ -38,6 +37,11 @@ router.get('/tag/:tagId/update', authMiddleware.notAuth2Login, tagController.vie
 router.post('/tag/:tagId/update', authMiddleware.notAuth2Login, tagController.updateTag)
 router.get('/tag/:tagId/remove', authMiddleware.notAuth2Login, tagController.viewAdminRemoveTag)
 router.post('/tag/:tagId/remove', authMiddleware.notAuth2Login, tagController.removeTag)
+/* setting */
+router.get('/setting', authMiddleware.notAuth2Login, settingController.viewAdminSetting)
+router.get('/setting/update', authMiddleware.notAuth2Login, settingController.viewAdminUpdateSetting)
+router.post('/setting/update', authMiddleware.notAuth2Login, settingController.updateSetting)
+router.get('/setting/create', authMiddleware.notAuth2Login, settingController.createSetting)
 
 router.get('/', authMiddleware.notAuth2Login, adminController.viewAdminPage)
 

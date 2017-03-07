@@ -1,0 +1,29 @@
+extends ../../includes/app.pug
+include ../../components/side-menu.pug
+
+block title
+    title 设置管理 ｜ 前端，后端，移动端，端端皆为技术 - 一天一步网。
+
+block main
+    +side-menu('admin_setting')
+    .panel
+        .panel-title 
+            h1 设置管理
+            .panel-btns-list
+                if !result
+                    a.btn(href="/admin/setting/create") 初始化设置
+                else
+                    a.btn(href="/admin/setting/update") 修改设置
+        .panel-content
+            .content-list
+                if result && result.slogan && result.slogan.length > 0
+                    table.table
+                        thead
+                            tr
+                                th 公告内容
+                        tbody
+                            each item in result.slogan
+                                tr
+                                    td= item
+                else
+                    .no-data 暂无数据

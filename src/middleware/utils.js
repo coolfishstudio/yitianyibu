@@ -1,4 +1,5 @@
 import log from './log'
+import viewLocalsMiddleware from './viewLocals'
 
 export default () => (req, res, next) => {
     log('utils').info('加载工具方法')
@@ -9,9 +10,13 @@ export default () => (req, res, next) => {
         res.render(`admin/pages/${name}`, data)
     }
     // homepage
-    res.renderPage = (name, data) => {
+    res.renderPage = async (name, data) => {
         if (!data) data = {}
         data.pageName = name
+        // 加载公共内容
+        const result = await viewLocalsMiddleware.getViewLocals()
+        // 公告
+        res.locals.slogan = result.slogan
         res.render(`homepage/pages/${name}`, data)
     }
     res.locals.viewHelper = {
