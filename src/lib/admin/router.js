@@ -15,12 +15,16 @@ import authMiddleware from '../../middleware/auth'
 const router = new Router()
 
 router.get('/login', authMiddleware.auth2Home, authController.viewAdminLogin)
-router.get('/app', authMiddleware.notAuth2Login, appController.viewAdminPage)
+
 router.get('/comment', authMiddleware.notAuth2Login, commentController.viewAdminPage)
 router.get('/content', authMiddleware.notAuth2Login, contentController.viewAdminPage)
 router.get('/message', authMiddleware.notAuth2Login, messageController.viewAdminPage)
 router.get('/stat', authMiddleware.notAuth2Login, statController.viewAdminPage)
 
+/* app */
+router.get('/app', authMiddleware.notAuth2Login, appController.viewAdminApp)
+router.get('/app/create', authMiddleware.notAuth2Login, appController.viewAdminCreateApp)
+router.post('/app/create', authMiddleware.notAuth2Login, appController.createApp)
 /* category */
 router.get('/category', authMiddleware.notAuth2Login, categoryController.viewAdminCategory)
 router.get('/category/create', authMiddleware.notAuth2Login, categoryController.viewAdminCreateCategory)

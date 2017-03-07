@@ -1,0 +1,35 @@
+extends ../../includes/app.pug
+include ../../components/side-menu.pug
+
+block title
+    title 应用管理 ｜ 前端，后端，移动端，端端皆为技术 - 一天一步网。
+
+block main
+    +side-menu('admin_app')
+    .panel
+        .panel-title 
+            h1 类别管理 ｜ 创建
+            .panel-btns-list
+                a.btn(href="/admin/app") 返回列表
+        .panel-content
+            form(method="post" action="/admin/app/create" enctype='multipart/form-data')
+                .form-panel
+                    .form-input
+                        input.form-control(type="text" placeholder="请输入应用名称" name="name")
+                    .form-input
+                        select.form-control(type="text" name="type")
+                            option(value="0") 插件
+                            option(value="1") 应用
+                            option(value="2") 游戏
+                    .form-input
+                        input.form-control(type="text" placeholder="请输入应用标题" name="title")
+                    .form-input
+                        input.form-control(type="file" placeholder="请输入应用图标" name="icon" accept="image/*" required)
+                    .form-input
+                        input.form-control(type="file" placeholder="请输入应用封面" name="cover" accept="image/*" required)
+                    .form-input
+                        input.form-control(type="text" placeholder="请输入应用地址" name="url")
+                    .form-input
+                        input.form-control(type="text" placeholder="请输入应用描述" name="desc")
+                    .form-input
+                        button.btn-submit(type="submit") 确定创建

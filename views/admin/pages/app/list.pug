@@ -1,0 +1,42 @@
+extends ../../includes/app.pug
+include ../../components/side-menu.pug
+
+block title
+    title 应用管理 ｜ 前端，后端，移动端，端端皆为技术 - 一天一步网。
+
+block main
+    +side-menu('admin_app')
+    .panel
+        .panel-title 
+            h1 类别管理
+            .panel-btns-list
+                a.btn(href="/admin/app/create") 创建应用
+        .panel-content
+            .content-list
+                if result && result.length > 0
+                    table.table
+                        thead
+                            tr
+                                th 名字
+                                th 描述
+                                th 点击量
+                                th 类型
+                                th 创建时间
+                                th 管理
+                        tbody
+                            each item in result
+                                tr
+                                    td= item.name
+                                    td= item.desc
+                                    td= item.hits
+                                    td= item.type
+                                    td= locals.viewHelper.dateFormat(item.createdAt, 'yyyy-MM-dd hh:mm')
+                                    td
+                                        a(href=item.url)
+                                            span.color-update 查看
+                                        a(href=`/admin/app/${item._id}/update`)
+                                            span.color-update 修改
+                                        a(href=`/admin/app/${item._id}/remove`)
+                                            span.color-delete 删除
+                else
+                    .no-data 暂无数据

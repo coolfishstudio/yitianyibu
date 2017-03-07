@@ -1,10 +1,25 @@
 import log from '../../middleware/log'
+import appManager from './manager'
+import fileManager from '../file/manager'
 
-const viewAdminPage = (req, res) => {
+const viewAdminApp = async (req, res) => {
     log('app_controller').info('应用')
-    res.renderAdminPage('app')
+    const result = await appManager.findApps()
+    res.renderAdminPage('app/list', { result })
+}
+const viewAdminCreateApp = async (req, res) => {
+    log('app_controller').info('创建应用')
+    res.renderAdminPage('app/create')
+}
+
+const createApp = (req, res) => {
+    fileManager.uploadImage(req, res, (error, fields) => {
+        console.log('>>>>', error, fields)
+    })
 }
 
 export default {
-    viewAdminPage
+    viewAdminApp,
+    viewAdminCreateApp,
+    createApp
 }

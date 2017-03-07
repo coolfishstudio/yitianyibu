@@ -7,8 +7,8 @@ const addCategory = async (options = {}) => {
     const result = await Category.create(Object.assign({}, options))
     return result
 }
-const getCategoryById = async (tagId) => {
-    const result = await Category.findById(tagId)
+const getCategoryById = async (categoryId) => {
+    const result = await Category.findById(categoryId)
     return result
 }
 const findCategorys = async (options = {}) => {
@@ -16,8 +16,8 @@ const findCategorys = async (options = {}) => {
     const result = await Category.find(obj).sort({ weight: -1 })
     return result
 }
-const updateCategoryById = async (tagId, options = {}) => {
-    let analyse = await Category.findById(tagId)
+const updateCategoryById = async (categoryId, options = {}) => {
+    let analyse = await Category.findById(categoryId)
     if (!analyse) {
         return null
     }
@@ -27,8 +27,8 @@ const updateCategoryById = async (tagId, options = {}) => {
     const result = await analyse.save()
     return result
 }
-const removeCategoryById = async (tagId) => {
-    let analyse = await Category.findById(tagId)
+const removeCategoryById = async (categoryId) => {
+    let analyse = await Category.findById(categoryId)
     if (!analyse) {
         return null
     }

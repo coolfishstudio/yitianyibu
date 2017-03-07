@@ -174,7 +174,7 @@ html, body {
 /* 右侧底部 */
 .footer-block {
     height: 20px;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 240px;
     right: 0;
@@ -248,11 +248,15 @@ html, body {
     text-align: center;
 }
 .form-control {
-    width: 60%;
+    width: 95%;
     display: inline-block;
 }
+select.form-control {
+    height: 40px;
+    width: 98%;
+}
 .form-title {
-    width: 60%;
+    width: 95%;
     display: inline-block;
     padding-right: 10px;
     margin-left: -15px;
