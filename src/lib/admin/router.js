@@ -25,6 +25,8 @@ router.get('/stat', authMiddleware.notAuth2Login, statController.viewAdminPage)
 router.get('/app', authMiddleware.notAuth2Login, appController.viewAdminApp)
 router.get('/app/create', authMiddleware.notAuth2Login, appController.viewAdminCreateApp)
 router.post('/app/create', authMiddleware.notAuth2Login, appController.createApp)
+router.get('/app/:appId/top', authMiddleware.notAuth2Login, appController.topApp)
+router.get('/app/:appId/untop', authMiddleware.notAuth2Login, appController.untopApp)
 /* category */
 router.get('/category', authMiddleware.notAuth2Login, categoryController.viewAdminCategory)
 router.get('/category/create', authMiddleware.notAuth2Login, categoryController.viewAdminCreateCategory)

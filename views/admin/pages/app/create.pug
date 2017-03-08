@@ -8,11 +8,12 @@ block main
     +side-menu('admin_app')
     .panel
         .panel-title 
-            h1 类别管理 ｜ 创建
+            h1 应用管理 ｜ 创建
             .panel-btns-list
                 a.btn(href="/admin/app") 返回列表
         .panel-content
             form(method="post" action="/admin/app/create" enctype='multipart/form-data')
+                input(type="hidden" value="apps" name="path")
                 .form-panel
                     .form-input
                         input.form-control(type="text" placeholder="请输入应用名称" name="name")

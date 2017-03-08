@@ -18,7 +18,6 @@ block main
                         thead
                             tr
                                 th 名字
-                                th 描述
                                 th 点击量
                                 th 类型
                                 th 创建时间
@@ -27,13 +26,18 @@ block main
                             each item in result
                                 tr
                                     td= item.name
-                                    td= item.desc
                                     td= item.hits
                                     td= item.type
                                     td= locals.viewHelper.dateFormat(item.createdAt, 'yyyy-MM-dd hh:mm')
                                     td
+                                        if !item.isTop
+                                            a(href=`/admin/app/${item._id}/top`)
+                                                span.color-update 首页置顶
+                                        else
+                                            a(href=`/admin/app/${item._id}/untop`)
+                                                span.color-update 取消置顶
                                         a(href=item.url)
-                                            span.color-update 查看
+                                            span.color-update 访问
                                         a(href=`/admin/app/${item._id}/update`)
                                             span.color-update 修改
                                         a(href=`/admin/app/${item._id}/remove`)
