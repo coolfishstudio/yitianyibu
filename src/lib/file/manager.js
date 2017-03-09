@@ -1,7 +1,10 @@
 import fs from 'fs'
+import path from 'path'
 import formidable from 'formidable'
+import utility from 'utility'
 
 const uploadImagePath = 'images/homepage'
+const uploadContentImagePath = 'images/content'
 
 const uploadImage = async (req) => {
     return new Promise((resolve, reject) => {
@@ -29,6 +32,23 @@ const uploadImage = async (req) => {
     })
 }
 
+const uploadContentImage = (file, options, callback) => {
+    const filename = options.filename
+    const newFilename = utility.md5(filename + String((new Date()).getTime())) +
+    path.extname(filename)
+
+    const filePath = path.join(`./public/${uploadContentImagePath}`, newFilename)
+    const fileUrl = `/${uploadContentImagePath}/${newFilename}`
+
+    file.on('end', () => {
+        callback(null, {
+            url: fileUrl
+        })
+    })
+    file.pipe(fs.createWriteStream(filePath))
+}
+
 export default {
-    uploadImage
+    uploadImage,
+    uploadContentImage
 }

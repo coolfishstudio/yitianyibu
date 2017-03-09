@@ -31,6 +31,8 @@
   "homepage": "https://github.com/coolfishstudio/yitianyibu#readme",
   "dependencies": {
     "body-parser": "^1.16.0",
+    "bytes": "^2.4.0",
+    "connect-busboy": "0.0.2",
     "cookie-parser": "^1.4.3",
     "dotenv": "^4.0.0",
     "express": "^4.14.0",
@@ -40,7 +42,8 @@
     "mongoose": "^4.7.8",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
-    "pug": "^2.0.0-beta6"
+    "pug": "^2.0.0-beta6",
+    "utility": "^1.11.0"
   },
   "devDependencies": {
     "babel-cli": "^6.22.2",

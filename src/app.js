@@ -1,8 +1,10 @@
 import express from 'express'
 import bodyParser from 'body-parser'
+import busboy from 'connect-busboy'
 import cookieParser from 'cookie-parser'
 import session from 'express-session'
 import passport from 'passport'
+import bytes from 'bytes'
 import router from './router'
 import utilsMiddleware from './middleware/utils'
 import errorMiddleware from './middleware/error'
@@ -34,6 +36,12 @@ app.use(session({
 // 登录认证
 app.use(passport.initialize())
 app.use(passport.session())
+
+app.use(busboy({
+    limits: {
+        fileSize: bytes('1MB')
+    }
+}))
 
 app.use(router)
 app.use(errorMiddleware())
