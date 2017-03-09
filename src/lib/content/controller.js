@@ -1,10 +1,20 @@
 import log from '../../middleware/log'
 
-const viewAdminPage = (req, res) => {
+const viewAdminContent = (req, res) => {
     log('content_controller').info('内容')
-    res.renderAdminPage('content')
+    res.renderAdminPage('content/list')
+}
+
+const viewAdminCreateContent = (req, res) => {
+    log('content_controller').info('创建内容')
+    res.renderAdminPage('content/create')
+}
+const uploadImage = (req, res) => {
+    res.json({})
 }
 
 export default {
-    viewAdminPage
+    viewAdminContent,
+    viewAdminCreateContent,
+    uploadImage
 }

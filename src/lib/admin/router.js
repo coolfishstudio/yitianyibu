@@ -17,10 +17,12 @@ const router = new Router()
 router.get('/login', authMiddleware.auth2Home, authController.viewAdminLogin)
 
 router.get('/comment', authMiddleware.notAuth2Login, commentController.viewAdminPage)
-router.get('/content', authMiddleware.notAuth2Login, contentController.viewAdminPage)
 router.get('/message', authMiddleware.notAuth2Login, messageController.viewAdminPage)
 router.get('/stat', authMiddleware.notAuth2Login, statController.viewAdminPage)
-
+/* content */
+router.get('/content', authMiddleware.notAuth2Login, contentController.viewAdminContent)
+router.get('/content/create', authMiddleware.notAuth2Login, contentController.viewAdminCreateContent)
+router.post('/upload', authMiddleware.notAuth2Login, contentController.uploadImage)
 /* app */
 router.get('/app', authMiddleware.notAuth2Login, appController.viewAdminApp)
 router.get('/app/create', authMiddleware.notAuth2Login, appController.viewAdminCreateApp)
