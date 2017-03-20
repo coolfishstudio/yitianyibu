@@ -1,0 +1,57 @@
+extends ../../includes/app.pug
+include ../../components/side-menu.pug
+
+block title
+    title 内容管理 ｜ 前端，后端，移动端，端端皆为技术 - 一天一步网。
+    link(rel="stylesheet" href="/libs/editor/editor.css")
+    link(rel="stylesheet" href="/libs/webuploader/webuploader.css")
+
+    script(src="/libs/jquery-2.1.0.js")
+    script(src="/libs/bootstrap/js/bootstrap.js")
+    script(src="/libs/marked.js")
+block main
+    +side-menu('admin_content')
+    .panel
+        .panel-title
+            h1 内容管理 ｜ 创建
+            .panel-btns-list
+                a.btn(href="/admin/content") 返回列表
+        .panel-content
+            form(method="post" action=`/admin/content/${result.content._id}/update`)
+                .form-panel
+                    .form-input
+                        input.form-control(type="text" placeholder="标题字数 10 字以上" name="title" value=result.content.title)
+                    if result && result.category && result.category.length > 0
+                        .form-input
+                            select.form-control(type="text" name="category")
+                                each item in result.category
+                                    option(value= item._id)= item.name
+                    if result && result.tag && result.tag.length > 0
+                        .form-input
+                            select.form-control(type="text" name="tag")
+                                each item in result.tag
+                                    option(value= item._id)= item.name
+                    .form-input
+                        select.form-control(type="text" name="status")
+                            option(value="published") 公开
+                            option(value="privated") 私密
+                    .form-input
+                        select.form-control(type="text" name="featured")
+                            option(value="1") 允许评论
+                            option(value="0") 不允许评论
+                    .form-input
+                        input.form-control(type="text" placeholder="发表时间为 xxxx-xx-xx xx:xx:xx 格式 可以为空" name="time" value=locals.viewHelper.dateFormat(result.content.createdAt, 'yyyy-MM-dd hh:mm:ss'))
+                    .form-input.text-left
+                        .markdown_editor.in_editor
+                            .markdown_in_editor
+                                textarea.editor(placeholder="文章支持 Markdown 语法, 请注意标记代码" name="content")= result.content.markdown
+                    .form-input
+                        button.btn-submit(type="submit") 确定创建
+    script(src="/libs/editor/editor.js")
+    script(src="/libs/webuploader/webuploader.withoutimage.js")
+    script(src="/libs/editor/ext.js")
+    script.
+        (function () {
+            var editor = new Editor();
+            editor.render($('.editor')[0]);
+        })();

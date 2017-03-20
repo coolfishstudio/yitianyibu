@@ -6,7 +6,7 @@ import tagManager from '../tag/manager'
 import contentManager from '../content/manager'
 
 const viewAdminContent = async (req, res) => {
-    log('content_controller').info('内容')
+    log('content_controller').info('内容列表')
     const result = await contentManager.findContents()
     res.renderAdminPage('content/list', { result })
 }
@@ -101,10 +101,27 @@ const createContent = async (req, res, next) => {
     }
     res.redirect('/admin/content')
 }
+const viewAdminUpdateContent = async (req, res) => {
+    log('content_controller').info('修改内容')
+    const result = {
+        category: await categoryManager.findCategorys(),
+        tag     : await tagManager.findTags(),
+        content : await contentManager.getContentById(req.params.contentId)
+    }
+    res.renderAdminPage('content/update', { result })
+}
+
+const viewAdminRemoveContent = async (req, res) => {
+    log('content_controller').info('删除内容')
+    const result = await contentManager.getContentById(req.params.contentId)
+    res.renderAdminPage('content/remove', { result })
+}
 
 export default {
     viewAdminContent,
     viewAdminCreateContent,
     uploadImage,
-    createContent
+    createContent,
+    viewAdminUpdateContent,
+    viewAdminRemoveContent
 }

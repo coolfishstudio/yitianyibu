@@ -184,6 +184,7 @@ html, body {
     border-top: 1px solid rgba(0,0,0,.1);
     background-color: #eee;
     color: #58666e;
+    z-index: 10;
 }
 /* 面板 */
 .panel {

@@ -24,6 +24,8 @@ router.get('/content', authMiddleware.notAuth2Login, contentController.viewAdmin
 router.get('/content/create', authMiddleware.notAuth2Login, contentController.viewAdminCreateContent)
 router.post('/upload', authMiddleware.notAuth2Login, contentController.uploadImage)
 router.post('/content/create', authMiddleware.notAuth2Login, contentController.createContent)
+router.get('/content/:contentId/update', authMiddleware.notAuth2Login, contentController.viewAdminUpdateContent)
+router.get('/content/:contentId/remove', authMiddleware.notAuth2Login, contentController.viewAdminRemoveContent)
 /* app */
 router.get('/app', authMiddleware.notAuth2Login, appController.viewAdminApp)
 router.get('/app/create', authMiddleware.notAuth2Login, appController.viewAdminCreateApp)

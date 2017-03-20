@@ -18,21 +18,21 @@ block main
                         thead
                             tr
                                 th 标题
-                                th 作者
                                 th 状态
+                                th 浏览数
                                 th 发布时间
                                 th 管理
                         tbody
                             each item in result
                                 tr
                                     td= item.title
-                                    td= item.createdByID
-                                    td= item.status
+                                    td= {'published': '公开', 'privated': '私密'}[item.status]
+                                    td= item.hits
                                     td= locals.viewHelper.dateFormat(item.createdAt, 'yyyy-MM-dd hh:mm')
                                     td
-                                        a(href=`/admin/tag/${item._id}/update`)
+                                        a(href=`/admin/content/${item._id}/update`)
                                             span.color-update 修改
-                                        a(href=`/admin/tag/${item._id}/remove`)
+                                        a(href=`/admin/content/${item._id}/remove`)
                                             span.color-delete 删除
                 else
                     .no-data 暂无数据
