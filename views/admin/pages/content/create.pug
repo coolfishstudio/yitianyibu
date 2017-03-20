@@ -33,12 +33,12 @@ block main
                                     option(value= item._id)= item.name
                     .form-input
                         select.form-control(type="text" name="status")
-                            option(value="published") 公开
-                            option(value="privated") 私密
+                            each item in [{value: "published", text: "公开"}, {value: "privated", text: "私密"}]
+                                option(value=item.value)= item.text
                     .form-input
                         select.form-control(type="text" name="featured")
-                            option(value="1") 允许评论
-                            option(value="0") 不允许评论
+                            each item in [{value: "1", text: "允许评论"}, {value: "0", text: "不允许评论"}]
+                                option(value=item.value)= item.text
                     .form-input
                         input.form-control(type="text" placeholder="发表时间为 xxxx-xx-xx xx:xx:xx 格式 可以为空" name="time")
                     .form-input.text-left

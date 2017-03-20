@@ -13,7 +13,7 @@ block main
     +side-menu('admin_content')
     .panel
         .panel-title
-            h1 内容管理 ｜ 创建
+            h1 内容管理 ｜ 修改
             .panel-btns-list
                 a.btn(href="/admin/content") 返回列表
         .panel-content
@@ -25,20 +25,32 @@ block main
                         .form-input
                             select.form-control(type="text" name="category")
                                 each item in result.category
-                                    option(value= item._id)= item.name
+                                    if (result.content.category.indexOf(item._id) > -1)
+                                        option(value=item._id selected)= item.name
+                                    else
+                                        option(value=item._id)= item.name
                     if result && result.tag && result.tag.length > 0
                         .form-input
                             select.form-control(type="text" name="tag")
                                 each item in result.tag
-                                    option(value= item._id)= item.name
+                                    if (result.content.tag.indexOf(item._id) > -1)
+                                        option(value=item._id selected)= item.name
+                                    else
+                                        option(value=item._id)= item.name
                     .form-input
                         select.form-control(type="text" name="status")
-                            option(value="published") 公开
-                            option(value="privated") 私密
+                            each item in [{value: "published", text: "公开"}, {value: "privated", text: "私密"}]
+                                if (result.content.status === item.value)
+                                    option(value=item.value selected)= item.text
+                                else
+                                    option(value=item.value)= item.text
                     .form-input
                         select.form-control(type="text" name="featured")
-                            option(value="1") 允许评论
-                            option(value="0") 不允许评论
+                            each item in [{value: "1", text: "允许评论"}, {value: "0", text: "不允许评论"}]
+                                if (result.content.featured === !!Number(item.value))
+                                    option(value=item.value selected)= item.text
+                                else
+                                    option(value=item.value)= item.text
                     .form-input
                         input.form-control(type="text" placeholder="发表时间为 xxxx-xx-xx xx:xx:xx 格式 可以为空" name="time" value=locals.viewHelper.dateFormat(result.content.createdAt, 'yyyy-MM-dd hh:mm:ss'))
                     .form-input.text-left
@@ -46,7 +58,7 @@ block main
                             .markdown_in_editor
                                 textarea.editor(placeholder="文章支持 Markdown 语法, 请注意标记代码" name="content")= result.content.markdown
                     .form-input
-                        button.btn-submit(type="submit") 确定创建
+                        button.btn-submit(type="submit") 确定修改
     script(src="/libs/editor/editor.js")
     script(src="/libs/webuploader/webuploader.withoutimage.js")
     script(src="/libs/editor/ext.js")

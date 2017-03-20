@@ -113,7 +113,11 @@ const viewAdminUpdateContent = async (req, res) => {
 
 const viewAdminRemoveContent = async (req, res) => {
     log('content_controller').info('删除内容')
-    const result = await contentManager.getContentById(req.params.contentId)
+    const result = {
+        category: await categoryManager.findCategorys(),
+        tag     : await tagManager.findTags(),
+        content : await contentManager.getContentById(req.params.contentId)
+    }
     res.renderAdminPage('content/remove', { result })
 }
 
