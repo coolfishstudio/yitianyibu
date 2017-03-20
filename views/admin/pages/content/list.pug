@@ -5,7 +5,7 @@ block title
     title 内容管理 ｜ 前端，后端，移动端，端端皆为技术 - 一天一步网。
 
 block main
-    +side-menu('admin_tag')
+    +side-menu('admin_content')
     .panel
         .panel-title 
             h1 内容管理
@@ -17,15 +17,17 @@ block main
                     table.table
                         thead
                             tr
-                                th 权重
-                                th 名称
-                                th 创建时间
+                                th 标题
+                                th 作者
+                                th 状态
+                                th 发布时间
                                 th 管理
                         tbody
                             each item in result
                                 tr
-                                    td= item.weight
-                                    td= item.name
+                                    td= item.title
+                                    td= item.createdByID
+                                    td= item.status
                                     td= locals.viewHelper.dateFormat(item.createdAt, 'yyyy-MM-dd hh:mm')
                                     td
                                         a(href=`/admin/tag/${item._id}/update`)

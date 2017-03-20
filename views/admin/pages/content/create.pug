@@ -10,7 +10,7 @@ block title
     script(src="/libs/bootstrap/js/bootstrap.js")
     script(src="/libs/marked.js")
 block main
-    +side-menu('admin_tag')
+    +side-menu('admin_content')
     .panel
         .panel-title
             h1 内容管理 ｜ 创建
@@ -21,6 +21,26 @@ block main
                 .form-panel
                     .form-input
                         input.form-control(type="text" placeholder="标题字数 10 字以上" name="title")
+                    if result && result.category && result.category.length > 0
+                        .form-input
+                            select.form-control(type="text" name="category")
+                                each item in result.category
+                                    option(value= item._id)= item.name
+                    if result && result.tag && result.tag.length > 0
+                        .form-input
+                            select.form-control(type="text" name="tag")
+                                each item in result.tag
+                                    option(value= item._id)= item.name
+                    .form-input
+                        select.form-control(type="text" name="status")
+                            option(value="published") 公开
+                            option(value="privated") 私密
+                    .form-input
+                        select.form-control(type="text" name="featured")
+                            option(value="1") 允许评论
+                            option(value="0") 不允许评论
+                    .form-input
+                        input.form-control(type="text" placeholder="发表时间为 xxxx-xx-xx xx:xx:xx 格式 可以为空" name="time")
                     .form-input.text-left
                         .markdown_editor.in_editor
                             .markdown_in_editor

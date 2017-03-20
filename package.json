@@ -39,11 +39,13 @@
     "express-session": "^1.15.1",
     "formidable": "^1.1.1",
     "log4js": "^1.1.0",
+    "markdown-it": "^8.3.1",
     "mongoose": "^4.7.8",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "pug": "^2.0.0-beta6",
-    "utility": "^1.11.0"
+    "utility": "^1.11.0",
+    "xss": "^0.3.3"
   },
   "devDependencies": {
     "babel-cli": "^6.22.2",

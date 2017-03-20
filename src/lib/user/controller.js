@@ -1,5 +1,5 @@
 import UserManager from './manager'
-import helper from '../../util/helper'
+import { getMD5 } from '../../util/helper'
 import log from '../../middleware/log'
 import settingController from '../setting/controller'
 
@@ -31,7 +31,7 @@ const createUser = async (options = {}) => {
             message: '邮箱已注册'
         })
     }
-    options.password = helper.getMD5(options.password)
+    options.password = getMD5(options.password)
     const addResult = await UserManager.addUser(options)
     return addResult
 }
@@ -49,7 +49,7 @@ const initUser = async () => {
         return null
     }
     log('user_controller').info('管理员账户不存在, 开始创建管理员')
-    options.password = helper.getMD5(options.password)
+    options.password = getMD5(options.password)
     const initResult = await UserManager.addUser(options)
     if (initResult) {
         log('user_controller').info('创建管理员成功')

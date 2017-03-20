@@ -4,9 +4,13 @@ const Schema = mongoose.Schema
 
 const ContentSchema = new Schema({
     title      : { type: String, default: '' },
-    content    : { type: String, default: '' },
-    tag        : { type: Schema.Types.ObjectId, required: true },
-    category   : { type: Schema.Types.ObjectId, required: true },
+    html       : { type: String, default: '' },
+    markdown   : { type: String, default: '' },
+    images     : { type: Array, default: null },
+    tag        : { type: Array, default: null },
+    category   : { type: Array, default: null },
+    status     : { type: String, default: 'published' },
+    featured   : { type: Boolean, default: false },
     hits       : { type: Number, default: 0 },
     removed    : { type: Boolean, default: false },
     createdByID: { type: Schema.Types.ObjectId, required: true },

@@ -1,14 +1,23 @@
 import log from '../../middleware/log'
+import { md, xss } from '../../util/helper'
 import fileManager from '../file/manager'
+import categoryManager from '../category/manager'
+import tagManager from '../tag/manager'
+import contentManager from '../content/manager'
 
-const viewAdminContent = (req, res) => {
+const viewAdminContent = async (req, res) => {
     log('content_controller').info('内容')
-    res.renderAdminPage('content/list')
+    const result = await contentManager.findContents()
+    res.renderAdminPage('content/list', { result })
 }
 
-const viewAdminCreateContent = (req, res) => {
+const viewAdminCreateContent = async (req, res) => {
     log('content_controller').info('创建内容')
-    res.renderAdminPage('content/create')
+    const result = {
+        category: await categoryManager.findCategorys(),
+        tag     : await tagManager.findTags()
+    }
+    res.renderAdminPage('content/create', { result })
 }
 const uploadImage = (req, res, next) => {
     let isFileLimit = false
@@ -35,9 +44,67 @@ const uploadImage = (req, res, next) => {
     })
     req.pipe(req.busboy)
 }
+const createContent = async (req, res, next) => {
+    const title = (req.body.title || '').trim()
+    const content = (req.body.content || '').trim()
+    const category = (req.body.category || '').trim()
+    const tag = (req.body.tag || '').trim()
+    const status = (req.body.status || 'published').trim()
+    const featured = !!Number((req.body.featured || '1').trim())
+    const time = req.body.time || ''
+    // 校验
+    let createError = ''
+    if (title === '') {
+        createError = '标题不能为空'
+    } else if (content === '') {
+        createError = '内容不能为空'
+    }
+    // 校验结果
+    if (createError) {
+        const err = new Error(createError)
+        err.status = 400
+        return next(err)
+    }
+    const html = `<div class="markdown-text">${xss.process(md.render(content || ''))}</div>`
+    const reg = new RegExp('!\\[.*?\\]\\((.*?)\\)', 'g')
+    let images = []
+    content.replace(reg, () => {
+        images.push(RegExp.$1)
+        return RegExp.$1
+    })
+    const option = {
+        title,
+        html,
+        images,
+        markdown: content,
+        status,
+        featured
+    }
+    if (tag) {
+        option.tag = [ tag ]
+    }
+    if (category) {
+        option.category = [ category ]
+    }
+    if (time) {
+        option.createdAt = (new Date(time)).getTime()
+    }
+    /* eslint-disable */
+    let createdByID = req.user._id
+    /* eslint-enable */
+    option.createdByID = createdByID
+    const result = await contentManager.addContent(option)
+    if (!result) {
+        const err = new Error('创建失败')
+        err.status = 400
+        return next(err)
+    }
+    res.redirect('/admin/content')
+}
 
 export default {
     viewAdminContent,
     viewAdminCreateContent,
-    uploadImage
+    uploadImage,
+    createContent
 }

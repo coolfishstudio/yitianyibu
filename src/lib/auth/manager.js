@@ -1,7 +1,7 @@
 import passport from 'passport'
 import passportLocal from 'passport-local'
 import userManager from '../user/manager'
-import helper from '../../util/helper'
+import { getMD5 } from '../../util/helper'
 import log from '../../middleware/log'
 
 const LocalStrategy = passportLocal.Strategy
@@ -37,7 +37,7 @@ passport.use('local', new LocalStrategy({
             err.status = 400
             return done(err)
         }
-        if (helper.getMD5(password) !== user.password) {
+        if (getMD5(password) !== user.password) {
             const err = new Error('密码错误')
             err.status = 400
             return done(err)

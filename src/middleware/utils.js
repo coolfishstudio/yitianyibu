@@ -1,7 +1,7 @@
 import log from './log'
 import viewLocalsMiddleware from './viewLocals'
 
-export default () => (req, res, next) => {
+export default () => async (req, res, next) => {
     log('utils').info('加载工具方法')
     // admin
     res.renderAdminPage = (name, data) => {

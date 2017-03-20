@@ -80,6 +80,7 @@ html, body {
     left: 0;
     right: 0;
     height: 60px;
+    z-index: 10;
 }
 .top-nav {
     overflow: hidden;
