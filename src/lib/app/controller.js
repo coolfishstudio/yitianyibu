@@ -21,7 +21,7 @@ const createApp = async (req, res, next) => {
         await appManager.addApp(imageResult)
         res.redirect('/admin/app')
     } catch (err) {
-        console.error(err)
+        log('app_controller').error(err)
         return next(err)
     }
 }

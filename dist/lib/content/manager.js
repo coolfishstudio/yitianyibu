@@ -17,7 +17,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 /* eslint-enable */
 
 
-var addApp = function () {
+var addContent = function () {
     var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
         var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
         var result;
@@ -40,19 +40,19 @@ var addApp = function () {
         }, _callee, undefined);
     }));
 
-    return function addApp() {
+    return function addContent() {
         return _ref.apply(this, arguments);
     };
 }();
-var getAppById = function () {
-    var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(appId) {
+var getContentById = function () {
+    var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(contentId) {
         var result;
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
             while (1) {
                 switch (_context2.prev = _context2.next) {
                     case 0:
                         _context2.next = 2;
-                        return _model2.default.findById(appId);
+                        return _model2.default.findById(contentId);
 
                     case 2:
                         result = _context2.sent;
@@ -66,11 +66,11 @@ var getAppById = function () {
         }, _callee2, undefined);
     }));
 
-    return function getAppById(_x2) {
+    return function getContentById(_x2) {
         return _ref2.apply(this, arguments);
     };
 }();
-var findApps = function () {
+var findContents = function () {
     var _ref3 = _asyncToGenerator(regeneratorRuntime.mark(function _callee3() {
         var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
         var obj, result;
@@ -80,7 +80,7 @@ var findApps = function () {
                     case 0:
                         obj = Object.assign({ removed: false }, options);
                         _context3.next = 3;
-                        return _model2.default.find(obj).sort({ createdAt: -1 });
+                        return _model2.default.find(obj).sort({ updatedAt: -1 });
 
                     case 3:
                         result = _context3.sent;
@@ -94,12 +94,12 @@ var findApps = function () {
         }, _callee3, undefined);
     }));
 
-    return function findApps() {
+    return function findContents() {
         return _ref3.apply(this, arguments);
     };
 }();
-var updateAppById = function () {
-    var _ref4 = _asyncToGenerator(regeneratorRuntime.mark(function _callee4(appId) {
+var updateContentById = function () {
+    var _ref4 = _asyncToGenerator(regeneratorRuntime.mark(function _callee4(contentId) {
         var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
         var analyse, result;
         return regeneratorRuntime.wrap(function _callee4$(_context4) {
@@ -107,7 +107,7 @@ var updateAppById = function () {
                 switch (_context4.prev = _context4.next) {
                     case 0:
                         _context4.next = 2;
-                        return _model2.default.findById(appId);
+                        return _model2.default.findById(contentId);
 
                     case 2:
                         analyse = _context4.sent;
@@ -120,15 +120,23 @@ var updateAppById = function () {
                         return _context4.abrupt('return', null);
 
                     case 5:
-                        analyse.name = options.name || analyse.name;
-                        analyse.title = options.title || analyse.title;
-                        analyse.icon = options.icon || analyse.icon;
-                        analyse.cover = options.cover || analyse.cover;
-                        analyse.url = options.url || analyse.url;
-                        analyse.desc = options.desc || analyse.desc;
-                        analyse.type = options.type || analyse.type;
-                        analyse.ms = options.ms || analyse.ms;
-                        analyse.isTop = options.isTop || analyse.isTop;
+
+                        analyse.title = options.title;
+                        analyse.html = options.html;
+                        analyse.images = options.images;
+                        analyse.markdown = options.markdown;
+                        analyse.status = options.status;
+                        analyse.featured = options.featured;
+
+                        if (options.tag) {
+                            analyse.tag = [options.tag];
+                        }
+                        if (options.category) {
+                            analyse.category = [options.category];
+                        }
+                        if (options.createdAt) {
+                            analyse.createdAt = new Date(options.createdAt).getTime();
+                        }
                         analyse.updatedAt = Date.now();
                         _context4.next = 17;
                         return analyse.save();
@@ -145,19 +153,19 @@ var updateAppById = function () {
         }, _callee4, undefined);
     }));
 
-    return function updateAppById(_x4) {
+    return function updateContentById(_x4) {
         return _ref4.apply(this, arguments);
     };
 }();
-var hitAppById = function () {
-    var _ref5 = _asyncToGenerator(regeneratorRuntime.mark(function _callee5(appId) {
-        var analyse, hits, result;
+var removeContentById = function () {
+    var _ref5 = _asyncToGenerator(regeneratorRuntime.mark(function _callee5(contentId) {
+        var analyse, result;
         return regeneratorRuntime.wrap(function _callee5$(_context5) {
             while (1) {
                 switch (_context5.prev = _context5.next) {
                     case 0:
                         _context5.next = 2;
-                        return _model2.default.findById(appId);
+                        return _model2.default.findById(contentId);
 
                     case 2:
                         analyse = _context5.sent;
@@ -170,9 +178,8 @@ var hitAppById = function () {
                         return _context5.abrupt('return', null);
 
                     case 5:
-                        hits = analyse.hits;
-
-                        analyse.hits = hits + 1;
+                        analyse.removed = true;
+                        analyse.updatedAt = Date.now();
                         _context5.next = 9;
                         return analyse.save();
 
@@ -188,58 +195,15 @@ var hitAppById = function () {
         }, _callee5, undefined);
     }));
 
-    return function hitAppById(_x6) {
+    return function removeContentById(_x6) {
         return _ref5.apply(this, arguments);
-    };
-}();
-var removeAppById = function () {
-    var _ref6 = _asyncToGenerator(regeneratorRuntime.mark(function _callee6(appId) {
-        var analyse, result;
-        return regeneratorRuntime.wrap(function _callee6$(_context6) {
-            while (1) {
-                switch (_context6.prev = _context6.next) {
-                    case 0:
-                        _context6.next = 2;
-                        return _model2.default.findById(appId);
-
-                    case 2:
-                        analyse = _context6.sent;
-
-                        if (analyse) {
-                            _context6.next = 5;
-                            break;
-                        }
-
-                        return _context6.abrupt('return', null);
-
-                    case 5:
-                        analyse.removed = true;
-                        analyse.updatedAt = Date.now();
-                        _context6.next = 9;
-                        return analyse.save();
-
-                    case 9:
-                        result = _context6.sent;
-                        return _context6.abrupt('return', result);
-
-                    case 11:
-                    case 'end':
-                        return _context6.stop();
-                }
-            }
-        }, _callee6, undefined);
-    }));
-
-    return function removeAppById(_x7) {
-        return _ref6.apply(this, arguments);
     };
 }();
 
 exports.default = {
-    addApp: addApp,
-    getAppById: getAppById,
-    findApps: findApps,
-    updateAppById: updateAppById,
-    removeAppById: removeAppById,
-    hitAppById: hitAppById
+    addContent: addContent,
+    getContentById: getContentById,
+    findContents: findContents,
+    updateContentById: updateContentById,
+    removeContentById: removeContentById
 };

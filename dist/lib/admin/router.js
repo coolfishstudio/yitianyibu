@@ -55,12 +55,25 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var router = new _express.Router();
 
 router.get('/login', _auth2.default.auth2Home, _controller2.default.viewAdminLogin);
-router.get('/app', _auth2.default.notAuth2Login, _controller4.default.viewAdminPage);
+
 router.get('/comment', _auth2.default.notAuth2Login, _controller8.default.viewAdminPage);
-router.get('/content', _auth2.default.notAuth2Login, _controller10.default.viewAdminPage);
 router.get('/message', _auth2.default.notAuth2Login, _controller12.default.viewAdminPage);
 router.get('/stat', _auth2.default.notAuth2Login, _controller16.default.viewAdminPage);
-
+/* content */
+router.get('/content', _auth2.default.notAuth2Login, _controller10.default.viewAdminContent);
+router.get('/content/create', _auth2.default.notAuth2Login, _controller10.default.viewAdminCreateContent);
+router.post('/upload', _auth2.default.notAuth2Login, _controller10.default.uploadImage);
+router.post('/content/create', _auth2.default.notAuth2Login, _controller10.default.createContent);
+router.get('/content/:contentId/update', _auth2.default.notAuth2Login, _controller10.default.viewAdminUpdateContent);
+router.post('/content/:contentId/update', _auth2.default.notAuth2Login, _controller10.default.updateContent);
+router.get('/content/:contentId/remove', _auth2.default.notAuth2Login, _controller10.default.viewAdminRemoveContent);
+router.post('/content/:contentId/remove', _auth2.default.notAuth2Login, _controller10.default.removeContent);
+/* app */
+router.get('/app', _auth2.default.notAuth2Login, _controller4.default.viewAdminApp);
+router.get('/app/create', _auth2.default.notAuth2Login, _controller4.default.viewAdminCreateApp);
+router.post('/app/create', _auth2.default.notAuth2Login, _controller4.default.createApp);
+router.get('/app/:appId/top', _auth2.default.notAuth2Login, _controller4.default.topApp);
+router.get('/app/:appId/untop', _auth2.default.notAuth2Login, _controller4.default.untopApp);
 /* category */
 router.get('/category', _auth2.default.notAuth2Login, _controller6.default.viewAdminCategory);
 router.get('/category/create', _auth2.default.notAuth2Login, _controller6.default.viewAdminCreateCategory);

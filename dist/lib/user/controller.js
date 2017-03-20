@@ -10,8 +10,6 @@ var _manager2 = _interopRequireDefault(_manager);
 
 var _helper = require('../../util/helper');
 
-var _helper2 = _interopRequireDefault(_helper);
-
 var _log = require('../../middleware/log');
 
 var _log2 = _interopRequireDefault(_log);
@@ -88,7 +86,7 @@ var createUser = function () {
                         }));
 
                     case 11:
-                        options.password = _helper2.default.getMD5(options.password);
+                        options.password = (0, _helper.getMD5)(options.password);
                         _context.next = 14;
                         return _manager2.default.addUser(options);
 
@@ -138,7 +136,7 @@ var initUser = function () {
 
                     case 8:
                         (0, _log2.default)('user_controller').info('管理员账户不存在, 开始创建管理员');
-                        options.password = _helper2.default.getMD5(options.password);
+                        options.password = (0, _helper.getMD5)(options.password);
                         _context2.next = 12;
                         return _manager2.default.addUser(options);
 

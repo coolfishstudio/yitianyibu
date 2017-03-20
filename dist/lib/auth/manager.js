@@ -18,8 +18,6 @@ var _manager2 = _interopRequireDefault(_manager);
 
 var _helper = require('../../util/helper');
 
-var _helper2 = _interopRequireDefault(_helper);
-
 var _log = require('../../middleware/log');
 
 var _log2 = _interopRequireDefault(_log);
@@ -78,7 +76,7 @@ _passport2.default.use('local', new LocalStrategy({
             err.status = 400;
             return done(err);
         }
-        if (_helper2.default.getMD5(password) !== user.password) {
+        if ((0, _helper.getMD5)(password) !== user.password) {
             var _err = new Error('密码错误');
             _err.status = 400;
             return done(_err);

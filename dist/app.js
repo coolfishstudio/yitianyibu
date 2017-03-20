@@ -8,6 +8,10 @@ var _bodyParser = require('body-parser');
 
 var _bodyParser2 = _interopRequireDefault(_bodyParser);
 
+var _connectBusboy = require('connect-busboy');
+
+var _connectBusboy2 = _interopRequireDefault(_connectBusboy);
+
 var _cookieParser = require('cookie-parser');
 
 var _cookieParser2 = _interopRequireDefault(_cookieParser);
@@ -19,6 +23,10 @@ var _expressSession2 = _interopRequireDefault(_expressSession);
 var _passport = require('passport');
 
 var _passport2 = _interopRequireDefault(_passport);
+
+var _bytes = require('bytes');
+
+var _bytes2 = _interopRequireDefault(_bytes);
 
 var _router = require('./router');
 
@@ -73,6 +81,12 @@ app.use((0, _expressSession2.default)({
 // 登录认证
 app.use(_passport2.default.initialize());
 app.use(_passport2.default.session());
+
+app.use((0, _connectBusboy2.default)({
+    limits: {
+        fileSize: (0, _bytes2.default)('1MB')
+    }
+}));
 
 app.use(_router2.default);
 app.use((0, _error2.default)());
