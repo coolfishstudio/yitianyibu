@@ -25,7 +25,7 @@ block main
                         .form-input
                             select.form-control(type="text" name="category")
                                 each item in result.category
-                                    if (result.content.category.indexOf(item._id) > -1)
+                                    if (result.content.category === item._id)
                                         option(value=item._id selected)= item.name
                                     else
                                         option(value=item._id)= item.name

@@ -84,7 +84,7 @@ const createContent = async (req, res, next) => {
         option.tag = [ tag ]
     }
     if (category) {
-        option.category = [ category ]
+        option.category = category
     }
     if (time) {
         option.createdAt = (new Date(time)).getTime()
@@ -161,7 +161,7 @@ const updateContent = async (req, res, next) => {
         option.tag = [ tag ]
     }
     if (category) {
-        option.category = [ category ]
+        option.category = category
     }
     if (time) {
         option.createdAt = (new Date(time)).getTime()

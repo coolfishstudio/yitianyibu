@@ -8,7 +8,7 @@ const ContentSchema = new Schema({
     markdown   : { type: String, default: '' },
     images     : { type: Array, default: null },
     tag        : { type: Array, default: null },
-    category   : { type: Array, default: null },
+    category   : { type: String, default: null },
     status     : { type: String, default: 'published' },
     featured   : { type: Boolean, default: false },
     hits       : { type: Number, default: 0 },

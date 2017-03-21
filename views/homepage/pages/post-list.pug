@@ -16,8 +16,9 @@ block main
     .row-index.clearfix
         //- 左侧
         .col-main
-            //- 帖子列表
-            +list-container()
+            if (posts.length !== 0)
+                //- 帖子列表
+                +list-container(posts)
         //- 右侧
         .col-aside
             //- 我的面板
@@ -26,7 +27,7 @@ block main
             each item in applications
                 +application(item)
             //- 热门推荐
-            +hot-recomm()
+            //- +hot-recomm()
             //- 热门标签
             //- +hot-tag()
             //- 文章归档

@@ -1,9 +1,9 @@
 include ./posts-item.pug
 
-mixin list-container()
+mixin list-container(posts)
     .bm-panel.list-container.shadow
-        each i in [,,,,,,,,,]
-            +posts-item()
-        .page-nav.theme-bg-color.theme-panel-title-color
-            a.link-text.prev « 上一页
-            a.link-text.next 下一页 »
+        each item in posts
+            +posts-item(item)
+        //- .page-nav.theme-bg-color.theme-panel-title-color
+        //-     a.link-text.prev « 上一页
+        //-     a.link-text.next 下一页 »

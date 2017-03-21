@@ -24,7 +24,7 @@ block main
                     if result && result.category && result.category.length > 0
                         .form-input
                             each item in result.category
-                                if (result.content.category.indexOf(item._id) > -1)
+                                if (result.content.category === item._id)
                                     input.form-control(type="text" name="category" value=item.name disabled)
  
                     if result && result.tag && result.tag.length > 0

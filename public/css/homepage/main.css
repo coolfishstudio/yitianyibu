@@ -1,5 +1,6 @@
 .main-block, .footer-block {
     margin: 0 auto;
+    max-width: 1150px;
 }
 /* 头部 菜单 */
 .top-nav {
