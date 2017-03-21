@@ -2,7 +2,7 @@ mixin posts-item(item)
     .posts-item.text-shadow
         .meta.help-text.theme-help-text-color
             .date
-                time Apr 16, 2016
+                time= locals.viewHelper.dateFormat(item.createdAt, 'yyyy/MM/dd')
             //- .comment 22 Comments
         a(href=`/post/${item._id}`)
             h1.font-title.theme-font-title-color.title= item.title
