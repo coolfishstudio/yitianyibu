@@ -179,7 +179,7 @@ var createContent = function () {
                             option.tag = [tag];
                         }
                         if (category) {
-                            option.category = [category];
+                            option.category = category;
                         }
                         if (time) {
                             option.createdAt = new Date(time).getTime();
@@ -366,7 +366,7 @@ var updateContent = function () {
                             option.tag = [tag];
                         }
                         if (category) {
-                            option.category = [category];
+                            option.category = category;
                         }
                         if (time) {
                             option.createdAt = new Date(time).getTime();
