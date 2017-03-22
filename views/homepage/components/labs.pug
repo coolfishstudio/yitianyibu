@@ -1,8 +1,9 @@
 mixin labs(applications)
     each i,index in applications
-        a(href=i.url target='_blank').bm-panel.list-container.shadow.lab-item
-            .lab-item-cover(style=`background-image: url(../images/homepage/apps/${i.icon}.png)`)
-                span.text-shadow= i.name
-            .lab-item-info
-                h1.font-title.theme-font-title-color= i.title
-                .help-text.theme-help-text-color= i.desc
+        .lab-item
+            a(href=i.url target='_blank').bm-panel.list-container.shadow
+                .lab-item-cover(style=`background-image: url(../images/homepage/apps/${i.icon}.png)`)
+                    span.text-shadow= i.name
+                .lab-item-info
+                    h1.font-title= i.title
+                    p= i.desc
