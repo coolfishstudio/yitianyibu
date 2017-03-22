@@ -393,35 +393,92 @@
 .post-list .main-block {
     max-width: 1200px;
 }
-.posts-item {
-    padding: 20px 20px;
+.post-list .list-container {
+    width: 940px;
+    height: auto;
+    margin: 0px auto;
     position: relative;
-    border-top: 1px dashed #efefef;
 }
-.posts-item .meta {
+.post-list .posts-item {
+    display: block;
+    width: 450px;
+    float: left;
+    height: auto;
+    background-color: #fff;
+    margin: 0 10px 20px 10px;
+    box-shadow: 1px 2px 3px #ddd;
+    -webkit-box-shadow: 1px 2px 3px #ddd;
+}
+.post-list .posts-item .post-pic {
+    display: block;
+    width: 100%;
+    height: 212px;
+    margin: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.post-list .posts-item .post-header {
+    padding: 20px 20px 15px 20px;
+}
+.post-list .posts-item .post-title {
+    display: block;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: center;
+    font-size: 18px;
+    color: #000;
+}
+.post-list .posts-item .post-date {
     text-align: right;
 }
-.posts-item .date {
-    display: inline-block;
-    margin-right: 20px;
+.post-list .posts-item .post-content {
+    padding: 0 20px 10px 20px;
+    min-height: 58px;
 }
-.posts-item .comment {
-    display: inline-block;
-    margin-right: 5px;
+.post-list .posts-item .post-meta {
+    padding: 15px 20px 15px 15px;
+    overflow: hidden;
 }
-.posts-item .title {
-    margin-bottom: 15px;
+.post-list .posts-item .post-meta .post-button {
+    display: block;
+    float: left;
+    border: 1px solid #d9d9d9;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 8px;
+    margin-right: 10px;
+    border-radius: 3px; 
+    font-size: 12px;
+    color: #777;
+    -webkit-transition: all .24s;
+    transition: all .24s;
 }
-.posts-item .entry-content p {
-    margin-top: 15px;
+.post-list .posts-item .post-meta .post-button:hover {
+    color: #26272b;
+    border: 1px solid #26272b;
 }
-.posts-item:first-child {
-    border-top: none;
+.post-list .posts-item .post-meta .post-tag {
+    cursor: pointer;
+    height: 30px;
+    float: right;
+    display: block;
+    font-size: 12px;
+    color: #777;
+    padding: 0 10px;
+    line-height: 30px;
+    max-width: 100px;
+    text-align: center;
+    background-color: #efefef;
+    -webkit-transition: color .24s, background-color .24s;
+    transition: color .24s, background-color .24s;
 }
-.posts-item:first-child:after,
-.posts-item:first-child:before {
-    display: none;
+.post-list .posts-item .post-meta .post-tag:hover {
+    color: #fff;
+    background-color: #26272b;
 }
+
+/* page-nav */
 .page-nav {
     line-height: 20px;
     position: relative;

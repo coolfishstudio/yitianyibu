@@ -1,7 +1,7 @@
 include ./posts-item.pug
 
 mixin list-container(posts)
-    .bm-panel.list-container.shadow
+    .list-container.clearfix
         each item in posts
             +posts-item(item)
         //- .page-nav.theme-bg-color.theme-panel-title-color

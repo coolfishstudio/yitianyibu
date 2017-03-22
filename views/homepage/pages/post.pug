@@ -15,24 +15,24 @@ block title
     title 移动 WEB 通用优化策略介绍（一） ｜ 前端，后端，移动端，端端皆为技术 - 一天一步网。
 
 block main
-    .row-index.clearfix
-        //- 左侧
-        .col-main
-            //- 帖子详情
-            +post-content(post)
+    //- 帖子详情
+    +post-content(post)
+    //- .row-index.clearfix
+    //-     //- 左侧
+    //-     .col-main
             //- 发表评论
             //- +create-comment()
             //- 评论列表
             //- +comment-list()
-        //- 右侧
-        .col-aside
-            //- 我的面板
-            +author-site()
-            //- 我的应用
-            each item in applications
-                +application(item)
-            //- 热门推荐
-            +hot-recomm()
+        //- //- 右侧
+        //- .col-aside
+        //-     //- 我的面板
+        //-     +author-site()
+        //-     //- 我的应用
+        //-     each item in applications
+        //-         +application(item)
+        //-     //- 热门推荐
+        //-     +hot-recomm()
             //- 热门标签
             //- +hot-tag()
             //- 文章归档

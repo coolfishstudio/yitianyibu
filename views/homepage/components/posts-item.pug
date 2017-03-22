@@ -1,12 +1,14 @@
 mixin posts-item(item)
     .posts-item.text-shadow
-        .meta.help-text.theme-help-text-color
-            .date
+        .post-header
+            .post-date.help-text.theme-help-text-color
                 time= locals.viewHelper.dateFormat(item.createdAt, 'yyyy/MM/dd')
-            //- .comment 22 Comments
-        a(href=`/post/${item._id}`)
-            h1.font-title.theme-font-title-color.title= item.title
-        .entry-content
-            p.font-text.theme-font-text-color!= item.html
-            p.more-link
-                a.link-text.theme-link-text-color(href=`/post/${item._id}`) 继续阅读 »
+            a(href=`/post/${item._id}`).post-title= item.title
+        .post-content
+            p.font-text.theme-font-text-color= item.html
+        a(href=`/post/${item._id}`).post-pic(style=`background-image:url(${item.images[0] || 'http://7xi480.com1.z0.glb.clouddn.com/6W8NZET5PS6V.jpg?imageView2/1/w/720/h/400'})`)
+        .post-meta
+            a(href=`/post/${item._id}`).post-button Read more
+            //- a(href=`/post/${item._id}`).post-button 2 comments
+            //- .post-tag 前端
+        
