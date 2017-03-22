@@ -14,23 +14,6 @@ block title
 
 block main
     .row-index.clearfix
-        //- 左侧
-        .col-main
-            if (posts.length !== 0)
-                //- 帖子列表
-                +list-container(posts)
-        //- 右侧
-        .col-aside
-            //- 我的面板
-            +author-site()
-            //- 我的应用
-            each item in applications
-                +application(item)
-            //- 热门推荐
-            //- +hot-recomm()
-            //- 热门标签
-            //- +hot-tag()
-            //- 文章归档
-            //- +art-place()
-            //- 联系我
-            //- +side-contact()
+        if (posts.length !== 0)
+            //- 帖子列表
+            +list-container(posts)
