@@ -18,5 +18,4 @@ block main
                 p 做人最要紧的就是开心，
                 p= `${errcode === 404 ? '迷路了，没事咱就走两步。' : '有些事也许一开始就是错的。'}`
             .error-btns
-                .btn.error-btn 返回首页
-                .btn.error-btn 返回上一页
+                a.btn.error-btn(href='/') 返回首页

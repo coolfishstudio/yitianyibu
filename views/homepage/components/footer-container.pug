@@ -13,47 +13,47 @@ mixin footer-container()
             .author
                 .author-desc 一天一步，一步一景，不会做菜的起夜家，不是一个好程序猿。
                 .site-state
-                    .site-state-item
+                    a.site-state-item(href='/post')
                         .site-state-item-count= locals.count.content
                         .site-state-item-name 文章
-                    .site-state-item
+                    a.site-state-item(href='/labs')
                         .site-state-item-count= locals.count.app
                         .site-state-item-name 作品
-                    .site-state-item
+                    a.site-state-item(href='/unfinished')
                         .site-state-item-count= locals.count.category
                         .site-state-item-name 分类
         .footer-block-contact
             h2
                 span 联系
             .menus
-                a.menu-item
+                a.menu-item(href='/unfinished')
                     +icon-svg-qq(16, 16, '#a1a1a1')
                     span 聊天
-                a.menu-item
+                a.menu-item(href='/unfinished')
                     +icon-svg-weixin(16, 16, '#a1a1a1')
                     span 微信
-                a.menu-item
+                a.menu-item(href='/unfinished')
                     +icon-svg-github(16, 16, '#a1a1a1')
                     span 仓库
-                a.menu-item
+                a.menu-item(href='/unfinished')
                     +icon-svg-weibo(16, 16, '#a1a1a1')
                     span 微博
-                a.menu-item
+                a.menu-item(href='/unfinished')
                     +icon-svg-email(16, 16, '#a1a1a1')
                     span 邮箱
         .footer-block-menus
             h2
                 span 链接
             .menus
-                a.menu-item
+                a.menu-item(href='/post')
                     span 文章集
-                a.menu-item
+                a.menu-item(href='/labs')
                     span 实验室
-                a.menu-item
+                a.menu-item(href='/labs')
                     span 工具箱
-                a.menu-item
+                a.menu-item(href='/unfinished')
                     span 留言薄
-                a.menu-item
+                a.menu-item(href='/unfinished')
                     span 关于我
         .footer-block-qrcode
             h2

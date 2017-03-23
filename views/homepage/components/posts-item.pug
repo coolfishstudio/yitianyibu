@@ -3,12 +3,12 @@ mixin posts-item(item)
         .post-header
             .post-date.help-text.theme-help-text-color
                 time= locals.viewHelper.dateFormat(item.createdAt, 'yyyy/MM/dd')
-            a(href=`/post/${item._id}`).post-title= item.title
+            a.post-title(href=`/post/${item._id}`)= item.title
         .post-content
             p.font-text.theme-font-text-color= item.html
-        a(href=`/post/${item._id}`).post-pic(style=`background-image:url(${item.images[0] || 'http://7xi480.com1.z0.glb.clouddn.com/6W8NZET5PS6V.jpg?imageView2/1/w/720/h/400'})`)
+        a.post-pic(href=`/post/${item._id}` style=`background-image:url(${item.images[0] || 'http://7xi480.com1.z0.glb.clouddn.com/6W8NZET5PS6V.jpg?imageView2/1/w/720/h/400'})`)
         .post-meta
-            a(href=`/post/${item._id}`).post-button Read more
+            a.post-button(href=`/post/${item._id}`) Read more
             //- a(href=`/post/${item._id}`).post-button 2 comments
             //- .post-tag 前端
         

@@ -82,21 +82,24 @@
     margin-top: 5px;
     background-color: #5b6064;
     opacity: 1;
+    transform: rotateZ(0deg);
 }
-.top-nav-menu-toggle:not(.active):hover {
-    transform: rotateZ(-90deg);
-}
-.top-nav-menu-toggle:not(.active):hover span:first-child {
-    transform: rotateZ(-45deg);
-    width: 50%;
-    top: 3px;
-    left: -2px;
-}
-.top-nav-menu-toggle:not(.active):hover span:last-child {
-    transform: rotateZ(45deg);
-    width: 50%;
-    top: -3px;
-    left: -2px;
+@media(min-width:416px) {
+    .top-nav-menu-toggle:not(.active):hover {
+        transform: rotateZ(-90deg);
+    }
+    .top-nav-menu-toggle:not(.active):hover span:first-child {
+        transform: rotateZ(-45deg);
+        width: 50%;
+        top: 3px;
+        left: -2px;
+    }
+    .top-nav-menu-toggle:not(.active):hover span:last-child {
+        transform: rotateZ(45deg);
+        width: 50%;
+        top: -3px;
+        left: -2px;
+    }
 }
 .top-nav-menu-toggle.active span {
     opacity: 0;
@@ -175,6 +178,7 @@
 .main-content {
     margin: 0 20px;
     padding-top: 20px;
+    min-height: 280px;
 }
 .bm-panel {
     overflow: hidden;
@@ -315,8 +319,8 @@
     border-radius: 3px; 
     font-size: 12px;
     color: #777;
-    -webkit-transition: all .24s;
-    transition: all .24s;
+    -webkit-transition: all .24s linear;
+    transition: all .24s linear;
 }
 .post-list .posts-item .post-meta .post-button:hover {
     color: #26272b;
@@ -334,8 +338,8 @@
     max-width: 100px;
     text-align: center;
     background-color: #efefef;
-    -webkit-transition: color .24s, background-color .24s;
-    transition: color .24s, background-color .24s;
+    -webkit-transition: color .24s linear, background-color .24s linear;
+    transition: color .24s linear, background-color .24s linear;
 }
 .post-list .posts-item .post-meta .post-tag:hover {
     color: #fff;
@@ -436,10 +440,19 @@
     color: #fff;
     text-transform: uppercase;
     text-align: center;
+    -webkit-transition: color .3s linear;
+    transition: color .3s linear;
 }
 .footer-block .site-state-item .site-state-item-name {
     font-size: .8rem;
     font-weight: 300;
+    color: #a1a1a1;
+    -webkit-transition: color .3s linear;
+    transition: color .3s linear;
+}
+.footer-block .site-state-item:hover .site-state-item-count,
+.footer-block .site-state-item:hover .site-state-item-name {
+    color: #2ecc40;
 }
 .footer-block .container .menus {
     font-size: .7rem;
@@ -448,17 +461,25 @@
     display: block;
     padding: .15rem 0 .15rem .25rem;
     line-height: 1rem;
+    color: #a1a1a1;
+    -webkit-transition: all .3s linear;
+    transition: all .3s linear;
 }
 .footer-block .container .menus .menu-item:hover {
     background-color: #000;
+    color: #2ecc40;
 }
 .footer-block .container .menus .menu-item span {
     vertical-align: middle;
-    color: #a1a1a1;
 }
 .footer-block .container .menus .menu-item svg {
     vertical-align: middle;
     margin-right: .5rem;
+    -webkit-transition: all .3s linear;
+    transition: all .3s linear;
+}
+.footer-block .container .menus .menu-item:hover svg {
+    fill: #2ecc40;
 }
 .footer-block .container .footer-block-qrcode p {
     margin-bottom: 1rem;
@@ -782,7 +803,7 @@
     margin: auto;
 }
 .labs .main-content {
-    margin: 0 10px;
+    margin: 0;
 }
 .labs .lab-item {
     display: block;
@@ -796,7 +817,6 @@
     position: relative;
     display: block;
     background-color: #fff;
-    max-width: 340px;
     margin: 0 auto 20px;
 }
 .labs .lab-item .lab-item-cover {
@@ -868,14 +888,11 @@
     padding: 15px;
 }
 /* error */
-.error .main-content {
-    max-width: 550px;
-    margin: 0 auto;
-}
 .error-panel {
     padding: 35px;
     text-align: center;
-    margin: 0 20px;
+    max-width: 550px;
+    margin: 0 auto;
 }
 .error-icon {
     display: inline-block;
@@ -913,6 +930,9 @@
     }
     .post-list .posts-item {
         width: 370px;
+    }
+    .post-list .posts-item .post-content {
+        min-height: 68px;
     }
 }
 @media (max-width: 840px) {
