@@ -46,17 +46,10 @@ const createSetting = async (req, res) => {
     res.redirect('/admin/setting')
 }
 
-const getSetting = async () => {
-    log('setting_controller').info('获取设置')
-    const result = await settingManager.getSetting()
-    return result
-}
-
 export default {
     viewAdminSetting,
     viewAdminUpdateSetting,
     updateSetting,
     initSetting,
-    createSetting,
-    getSetting
+    createSetting
 }

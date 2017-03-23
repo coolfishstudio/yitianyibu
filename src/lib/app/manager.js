@@ -54,6 +54,10 @@ const removeAppById = async (appId) => {
     const result = await analyse.save()
     return result
 }
+const countApp = async () => {
+    const result = await App.count()
+    return result
+}
 
 export default {
     addApp,
@@ -61,5 +65,6 @@ export default {
     findApps,
     updateAppById,
     removeAppById,
-    hitAppById
+    hitAppById,
+    countApp
 }

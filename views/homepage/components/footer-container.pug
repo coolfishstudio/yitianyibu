@@ -1,0 +1,63 @@
+include ./copyright.pug
+include ./svg/icon-svg-weibo.pug
+include ./svg/icon-svg-email.pug
+include ./svg/icon-svg-github.pug
+include ./svg/icon-svg-weixin.pug
+include ./svg/icon-svg-qq.pug
+
+mixin footer-container()
+    .container
+        .footer-block-author
+            h2
+                span 关于
+            .author
+                .author-desc 一天一步，一步一景，不会做菜的起夜家，不是一个好程序猿。
+                .site-state
+                    .site-state-item
+                        .site-state-item-count= locals.count.content
+                        .site-state-item-name 文章
+                    .site-state-item
+                        .site-state-item-count= locals.count.app
+                        .site-state-item-name 作品
+                    .site-state-item
+                        .site-state-item-count= locals.count.category
+                        .site-state-item-name 分类
+        .footer-block-contact
+            h2
+                span 联系
+            .menus
+                a.menu-item
+                    +icon-svg-weixin(16, 16, '#a1a1a1')
+                    span 微信
+                a.menu-item
+                    +icon-svg-qq(16, 16, '#a1a1a1')
+                    span QQ
+                a.menu-item
+                    +icon-svg-github(16, 16, '#a1a1a1')
+                    span Github
+                a.menu-item
+                    +icon-svg-weibo(16, 16, '#a1a1a1')
+                    span 微博
+                a.menu-item
+                    +icon-svg-email(16, 16, '#a1a1a1')
+                    span 邮箱
+        .footer-block-menus
+            h2
+                span 链接
+            .menus
+                a.menu-item
+                    span 文章集
+                a.menu-item
+                    span 实验室
+                a.menu-item
+                    span 工具箱
+                a.menu-item
+                    span 留言薄
+                a.menu-item
+                    span 关于我
+        .footer-block-qrcode
+            h2
+                span 微信订阅号
+            p
+                img(src="../images/homepage/qrcode.jpg")
+    +copyright()

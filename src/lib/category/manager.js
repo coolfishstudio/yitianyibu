@@ -37,11 +37,16 @@ const removeCategoryById = async (categoryId) => {
     const result = await analyse.save()
     return result
 }
+const countCategory = async () => {
+    const result = await Category.count()
+    return result
+}
 
 export default {
     addCategory,
     getCategoryById,
     findCategorys,
     updateCategoryById,
-    removeCategoryById
+    removeCategoryById,
+    countCategory
 }

@@ -52,11 +52,15 @@ const removeContentById = async (contentId) => {
     const result = await analyse.save()
     return result
 }
-
+const countContent = async () => {
+    const result = await Content.count()
+    return result
+}
 export default {
     addContent,
     getContentById,
     findContents,
     updateContentById,
-    removeContentById
+    removeContentById,
+    countContent
 }
