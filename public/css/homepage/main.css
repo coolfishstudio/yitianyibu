@@ -182,78 +182,7 @@
     margin-bottom: 15px;
     position: relative;
 }
-/* 右侧个人介绍 */
-/*.author-site {
-    height: 360px;
-}
-.author-site-bg {
-    width: 300px;
-    height: 140px;
-}
-.author-site-box {
-    position: absolute;
-    height: 220px;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    background-color: #222;
-}
-.author-avatar {
-    display: block;
-    width: 84px;
-    height: 84px;
-    border-radius: 50%;
-    margin: 0 auto;
-    position: absolute;
-    top: -42px;
-    left: 50%;
-    margin-left: -45px;
-    border: 3px solid currentColor;
-    background-color: currentColor;
-    color: #222;
-}
-.author-name {
-    color: #fff;
-    text-align: center;
-    margin-top: 50px;
-}
-.author-desc {
-    text-indent: 24px;
-    margin-top: 5px;
-    padding: 0 10px;
-    margin-bottom: 20px;
-    color: #aaa;
-}
-.site-state {
-    margin-top: 9px;
-    text-align: center;
-}
-.site-state-item {
-    display: inline-block;
-    padding: 0 15px;
-    border-left: 1px dashed #666;
-}
-.site-state-item:first-child {
-    border-left: none;
-}
-.site-state-item-count {
-    display: block;
-    text-align: center;
-    font-size: 18px;
-    color: #999;
-}
-.site-state-item-count,
-.site-state-item-name {
-    -webkit-transition: color 0.2s ease-in-out;
-    transition: color 0.2s ease-in-out;
-}
-.site-state-item:hover .site-state-item-count, 
-.site-state-item:hover .site-state-item-name {
-    color: #fff;
-}
-.site-state-item .site-state-item-name {
-    color: #999;
-}*/
+
 /* 右侧 热门推荐 热门标签 文章归档 */
 .bm-panel-title,
 .bm-panel-bar {
@@ -323,37 +252,6 @@
 .art-place-panel {
     padding: 15px;
     height: 40px;
-}
-/* 联系我 */
-.side-contact-qrcode img {
-    width: 300px;
-    height: 300px;
-    display: block;
-}
-.side-contact-items {
-    text-align: center;
-}
-.side-contact-item {
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-    color: #fff;
-    margin: 0 5px;
-    border-radius: 3px;
-    -webkit-transition: background-color .3s ease-in-out;
-    transition: background-color .3s ease-in-out;
-}
-.bc-weibo { background-color: #f46e65; }
-.bc-email { background-color: #ffce3d; }
-.bc-github { background-color: #3db8c1; }
-.bc-weixin { background-color: #3dbd7d; }
-.bc-qq { background-color: #49a9ee; }
-.side-contact-item:hover {
-    background-color: #4a4a4a;
-}
-.side-contact-item svg {
-    vertical-align: text-top;
 }
 /* 文章列表 */
 .post-list .main-block {
