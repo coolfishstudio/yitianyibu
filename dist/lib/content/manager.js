@@ -199,11 +199,37 @@ var removeContentById = function () {
         return _ref5.apply(this, arguments);
     };
 }();
+var countContent = function () {
+    var _ref6 = _asyncToGenerator(regeneratorRuntime.mark(function _callee6() {
+        var result;
+        return regeneratorRuntime.wrap(function _callee6$(_context6) {
+            while (1) {
+                switch (_context6.prev = _context6.next) {
+                    case 0:
+                        _context6.next = 2;
+                        return _model2.default.count();
 
+                    case 2:
+                        result = _context6.sent;
+                        return _context6.abrupt('return', result);
+
+                    case 4:
+                    case 'end':
+                        return _context6.stop();
+                }
+            }
+        }, _callee6, undefined);
+    }));
+
+    return function countContent() {
+        return _ref6.apply(this, arguments);
+    };
+}();
 exports.default = {
     addContent: addContent,
     getContentById: getContentById,
     findContents: findContents,
     updateContentById: updateContentById,
-    removeContentById: removeContentById
+    removeContentById: removeContentById,
+    countContent: countContent
 };

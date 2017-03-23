@@ -48,10 +48,12 @@ exports.default = function () {
                                                     result = _context.sent;
 
                                                     // 公告
-                                                    res.locals.slogan = result.slogan || '';
+                                                    res.locals.slogan = result.slogan;
+                                                    // 统计
+                                                    res.locals.count = result.count;
                                                     res.render('homepage/pages/' + name, data);
 
-                                                case 7:
+                                                case 8:
                                                 case 'end':
                                                     return _context.stop();
                                             }

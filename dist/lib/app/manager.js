@@ -234,6 +234,32 @@ var removeAppById = function () {
         return _ref6.apply(this, arguments);
     };
 }();
+var countApp = function () {
+    var _ref7 = _asyncToGenerator(regeneratorRuntime.mark(function _callee7() {
+        var result;
+        return regeneratorRuntime.wrap(function _callee7$(_context7) {
+            while (1) {
+                switch (_context7.prev = _context7.next) {
+                    case 0:
+                        _context7.next = 2;
+                        return _model2.default.count();
+
+                    case 2:
+                        result = _context7.sent;
+                        return _context7.abrupt('return', result);
+
+                    case 4:
+                    case 'end':
+                        return _context7.stop();
+                }
+            }
+        }, _callee7, undefined);
+    }));
+
+    return function countApp() {
+        return _ref7.apply(this, arguments);
+    };
+}();
 
 exports.default = {
     addApp: addApp,
@@ -241,5 +267,6 @@ exports.default = {
     findApps: findApps,
     updateAppById: updateAppById,
     removeAppById: removeAppById,
-    hitAppById: hitAppById
+    hitAppById: hitAppById,
+    countApp: countApp
 };

@@ -189,39 +189,10 @@ var createSetting = function () {
     };
 }();
 
-var getSetting = function () {
-    var _ref6 = _asyncToGenerator(regeneratorRuntime.mark(function _callee6() {
-        var result;
-        return regeneratorRuntime.wrap(function _callee6$(_context6) {
-            while (1) {
-                switch (_context6.prev = _context6.next) {
-                    case 0:
-                        (0, _log2.default)('setting_controller').info('获取设置');
-                        _context6.next = 3;
-                        return _manager2.default.getSetting();
-
-                    case 3:
-                        result = _context6.sent;
-                        return _context6.abrupt('return', result);
-
-                    case 5:
-                    case 'end':
-                        return _context6.stop();
-                }
-            }
-        }, _callee6, undefined);
-    }));
-
-    return function getSetting() {
-        return _ref6.apply(this, arguments);
-    };
-}();
-
 exports.default = {
     viewAdminSetting: viewAdminSetting,
     viewAdminUpdateSetting: viewAdminUpdateSetting,
     updateSetting: updateSetting,
     initSetting: initSetting,
-    createSetting: createSetting,
-    getSetting: getSetting
+    createSetting: createSetting
 };

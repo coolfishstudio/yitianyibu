@@ -4,9 +4,21 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _controller = require('../lib/setting/controller');
+var _manager = require('../lib/setting/manager');
 
-var _controller2 = _interopRequireDefault(_controller);
+var _manager2 = _interopRequireDefault(_manager);
+
+var _manager3 = require('../lib/content/manager');
+
+var _manager4 = _interopRequireDefault(_manager3);
+
+var _manager5 = require('../lib/app/manager');
+
+var _manager6 = _interopRequireDefault(_manager5);
+
+var _manager7 = require('../lib/category/manager');
+
+var _manager8 = _interopRequireDefault(_manager7);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -14,22 +26,44 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 var getViewLocals = function () {
     var _ref = _asyncToGenerator(regeneratorRuntime.mark(function _callee() {
-        var result, slogan;
+        var resultSetting, slogan;
         return regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
                 switch (_context.prev = _context.next) {
                     case 0:
                         _context.next = 2;
-                        return _controller2.default.getSetting();
+                        return _manager2.default.getSetting();
 
                     case 2:
-                        result = _context.sent;
-                        slogan = result ? result.slogan : [''];
+                        resultSetting = _context.sent;
+                        slogan = resultSetting ? resultSetting.slogan : [''];
+                        _context.t0 = slogan[Math.floor(Math.random() * slogan.length)];
+                        _context.next = 7;
+                        return _manager4.default.countContent();
+
+                    case 7:
+                        _context.t1 = _context.sent;
+                        _context.next = 10;
+                        return _manager6.default.countApp();
+
+                    case 10:
+                        _context.t2 = _context.sent;
+                        _context.next = 13;
+                        return _manager8.default.countCategory();
+
+                    case 13:
+                        _context.t3 = _context.sent;
+                        _context.t4 = {
+                            content: _context.t1,
+                            app: _context.t2,
+                            category: _context.t3
+                        };
                         return _context.abrupt('return', {
-                            slogan: slogan[Math.floor(Math.random() * slogan.length)]
+                            slogan: _context.t0,
+                            count: _context.t4
                         });
 
-                    case 5:
+                    case 16:
                     case 'end':
                         return _context.stop();
                 }
