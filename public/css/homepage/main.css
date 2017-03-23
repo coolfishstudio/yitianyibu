@@ -519,23 +519,33 @@
     margin-left: 5px;
 }
 /* post */
+.post-content {
+    max-width: 1000px;
+    margin: 0 auto;
+}
 .post-content .bm-panel-title {
     background-color: #fff;
+    padding: 3% 4% 2%;
     border-bottom: 1px dashed #e3e3e3;
     color: #222;
+    text-align: center;
 }
 .post-content .bm-panel-content {
-    padding: 15px;
+    padding: 1% 4%;
 }
 .post-content .bm-panel-bar {
-    padding: 15px 20px;
+    padding: 2% 4%;
     background-color: #fff;
     border-top: 1px dashed #e3e3e3;
     color: #222;
 }
 .post-content .post-title {
-    font-size: 18px;
-    line-height: 1.75;
+    font-size: 1.4rem;
+}
+.post-content .post-meta {
+    display: block;
+    font-size: .65rem;
+    margin-top: .5rem;
 }
 .post-content .post-body {
     font-size: 14px;
@@ -547,10 +557,11 @@
     width: 100%;
 }
 .post-content .post-body img {
-    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
 }
 .post-content .post-body blockquote {
-    margin: 10px 0 0;
     padding: 15px 20px;
     border-left: 5px solid #ccc;
     background-color: #f8f8f8;
@@ -571,6 +582,38 @@
     white-space: pre-wrap;
     position: relative;
     overflow: hidden;
+}
+.post-content .post-body p,
+.post-content .post-body blockquote,
+.post-content .post-body pre,
+.post-content .post-body ul,
+.post-content .post-body ol,
+.post-content .post-body dl,
+.post-content .post-body table {
+    margin: .5rem 0;
+}
+.post-content .post-body h1,
+.post-content .post-body h2,
+.post-content .post-body h3,
+.post-content .post-body h4,
+.post-content .post-body h5,
+.post-content .post-body h6 {
+    margin: .75rem 0 .5rem;
+}
+.post-content .post-body ul,
+.post-content .post-body ol,
+.post-content .post-body dl {
+    margin-left: 1.8rem;
+    list-style: inherit;
+}
+.post-content .post-body ol {
+    list-style-type: decimal;
+}
+.post-content .post-body ul {
+    list-style-type: disc;   
+}
+.post-content .post-body li {
+    list-style: inherit;
 }
 .post-content .post-meta span {
     font-size: 12px;
