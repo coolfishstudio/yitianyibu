@@ -30,6 +30,10 @@ var _router11 = require('./lib/post/router');
 
 var _router12 = _interopRequireDefault(_router11);
 
+var _router13 = require('./lib/homepage/router');
+
+var _router14 = _interopRequireDefault(_router13);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var router = new _express.Router();
@@ -38,11 +42,13 @@ router.get('/ping', function (req, res) {
     res.end('OK');
 });
 
+router.use(_router14.default); // 未完成
 router.get('/', _router12.default);
 router.use('/post', _router12.default); // 帖子详情页、帖子列表页
 router.use('/labs', _router10.default); // 实验室
 router.use('/about', _router8.default); // 关于
 router.use('/message', _router6.default); // 留言
+
 /* 后台管理 */
 router.use('/admin/auth', _router4.default);
 router.use('/admin', _router2.default);
