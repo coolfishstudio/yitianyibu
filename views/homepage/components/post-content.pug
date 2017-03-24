@@ -4,7 +4,10 @@ mixin post-content(data)
             .post-header
                 h1.post-title.theme-font-title-color= data.title
                 .post-meta.theme-help-text-color
-                    span.post-time= `发表于 ${locals.viewHelper.dateFormat(data.createdAt, 'yyyy-MM-dd')}  |  `
+                    span.post-time= `发表于 ${locals.viewHelper.dateFormat(data.createdAt, 'yyyy-MM-dd')}`
+                    span.baffle |
+                    span= `${data.hits} 次浏览`
+                    span.baffle |
                     span.post-category= `分类于 ${data.category}`
                     //- span.post-comments-count 0条评论
         .bm-panel-content

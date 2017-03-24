@@ -56,11 +56,22 @@ const countContent = async () => {
     const result = await Content.count()
     return result
 }
+const hitContentById = async (contentId) => {
+    let analyse = await Content.findById(contentId)
+    if (!analyse) {
+        return null
+    }
+    const hits = analyse.hits
+    analyse.hits = hits + 1
+    const result = await analyse.save()
+    return result
+}
 export default {
     addContent,
     getContentById,
     findContents,
     updateContentById,
     removeContentById,
-    countContent
+    countContent,
+    hitContentById
 }

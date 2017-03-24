@@ -18,6 +18,7 @@ const viewListPage = async (req, res) => {
 }
 const viewPostPage = async (req, res) => {
     log('post_controller').info('详情页')
+    await contentManager.hitContentById(req.params.pid)
     let post = await contentManager.getContentById(req.params.pid)
     let tags = []
     let category = null

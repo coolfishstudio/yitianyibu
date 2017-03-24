@@ -9,6 +9,6 @@ mixin posts-item(item)
         a.post-pic(href=`/post/${item._id}` style=`background-image:url(${item.images[0] || 'http://7xi480.com1.z0.glb.clouddn.com/6W8NZET5PS6V.jpg?imageView2/1/w/720/h/400'})`)
         .post-meta
             a.post-button(href=`/post/${item._id}`) Read more
-            //- a(href=`/post/${item._id}`).post-button 2 comments
+            a.post-button(href=`/post/${item._id}`)= `${item.hits} hits`
             //- .post-tag 前端
         

@@ -587,6 +587,10 @@
     font-size: .65rem;
     margin-top: .5rem;
 }
+.post-content .post-meta span.baffle {
+    padding-right: .3rem;
+    padding-left: .3rem;
+}
 .post-content .post-body {
     font-size: 14px;
     color: #333;

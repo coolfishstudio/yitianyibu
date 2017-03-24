@@ -21,6 +21,10 @@ block main
                 .form-panel
                     .form-input
                         input.form-control(type="text" placeholder="标题字数 10 字以上" name="title" value=result.content.title disabled)
+                    .form-input.text-left
+                        .markdown_editor.in_editor
+                            .markdown_in_editor
+                                textarea.editor(placeholder="文章支持 Markdown 语法, 请注意标记代码" name="content" disabled)= result.content.markdown
                     if result && result.category && result.category.length > 0
                         .form-input
                             each item in result.category
@@ -38,10 +42,6 @@ block main
                         input.form-control(type="text" name="featured" value=`${result.content.featured ? '允许评论' : '不允许评论'}` disabled)
                     .form-input
                         input.form-control(type="text" placeholder="发表时间为 xxxx-xx-xx xx:xx:xx 格式 可以为空" name="time" value=locals.viewHelper.dateFormat(result.content.createdAt, 'yyyy-MM-dd hh:mm:ss') disabled)
-                    .form-input.text-left
-                        .markdown_editor.in_editor
-                            .markdown_in_editor
-                                textarea.editor(placeholder="文章支持 Markdown 语法, 请注意标记代码" name="content" disabled)= result.content.markdown
                     .form-input
                         button.btn-submit(type="submit") 确定删除
     script(src="/libs/editor/editor.js")

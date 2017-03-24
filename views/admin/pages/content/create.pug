@@ -21,6 +21,10 @@ block main
                 .form-panel
                     .form-input
                         input.form-control(type="text" placeholder="标题字数 10 字以上" name="title")
+                    .form-input.text-left
+                        .markdown_editor.in_editor
+                            .markdown_in_editor
+                                textarea.editor(placeholder="文章支持 Markdown 语法, 请注意标记代码" name="content")
                     if result && result.category && result.category.length > 0
                         .form-input
                             select.form-control(type="text" name="category")
@@ -41,10 +45,8 @@ block main
                                 option(value=item.value)= item.text
                     .form-input
                         input.form-control(type="text" placeholder="发表时间为 xxxx-xx-xx xx:xx:xx 格式 可以为空" name="time")
-                    .form-input.text-left
-                        .markdown_editor.in_editor
-                            .markdown_in_editor
-                                textarea.editor(placeholder="文章支持 Markdown 语法, 请注意标记代码" name="content")
+                    .form-input
+                        input.form-control(type="text" placeholder="阅读数" name="hits")
                     .form-input
                         button.btn-submit(type="submit") 确定创建
     script(src="/libs/editor/editor.js")
