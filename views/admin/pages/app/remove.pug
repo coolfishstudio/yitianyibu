@@ -13,6 +13,7 @@ block main
                 a.btn(href="/admin/app") 返回列表
         .panel-content
             form(method="post" action=`/admin/app/${result._id}/remove`)
+                input(type="hidden" value="apps" name="path")
                 .form-panel
                     .form-input
                         input.form-control(type="text" placeholder="请输入应用名称" name="name" value=result.name disabled)
