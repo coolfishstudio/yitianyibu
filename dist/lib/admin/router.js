@@ -74,6 +74,10 @@ router.get('/app/create', _auth2.default.notAuth2Login, _controller4.default.vie
 router.post('/app/create', _auth2.default.notAuth2Login, _controller4.default.createApp);
 router.get('/app/:appId/top', _auth2.default.notAuth2Login, _controller4.default.topApp);
 router.get('/app/:appId/untop', _auth2.default.notAuth2Login, _controller4.default.untopApp);
+router.get('/app/:appId/update', _auth2.default.notAuth2Login, _controller4.default.viewAdminUpdateApp);
+router.post('/app/:appId/update', _auth2.default.notAuth2Login, _controller4.default.updateApp);
+router.get('/app/:appId/remove', _auth2.default.notAuth2Login, _controller4.default.viewAdminRemoveApp);
+router.post('/app/:appId/remove', _auth2.default.notAuth2Login, _controller4.default.removeApp);
 /* category */
 router.get('/category', _auth2.default.notAuth2Login, _controller6.default.viewAdminCategory);
 router.get('/category/create', _auth2.default.notAuth2Login, _controller6.default.viewAdminCreateCategory);

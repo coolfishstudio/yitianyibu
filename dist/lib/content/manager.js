@@ -225,11 +225,55 @@ var countContent = function () {
         return _ref6.apply(this, arguments);
     };
 }();
+var hitContentById = function () {
+    var _ref7 = _asyncToGenerator(regeneratorRuntime.mark(function _callee7(contentId) {
+        var analyse, hits, result;
+        return regeneratorRuntime.wrap(function _callee7$(_context7) {
+            while (1) {
+                switch (_context7.prev = _context7.next) {
+                    case 0:
+                        _context7.next = 2;
+                        return _model2.default.findById(contentId);
+
+                    case 2:
+                        analyse = _context7.sent;
+
+                        if (analyse) {
+                            _context7.next = 5;
+                            break;
+                        }
+
+                        return _context7.abrupt('return', null);
+
+                    case 5:
+                        hits = analyse.hits;
+
+                        analyse.hits = hits + 1;
+                        _context7.next = 9;
+                        return analyse.save();
+
+                    case 9:
+                        result = _context7.sent;
+                        return _context7.abrupt('return', result);
+
+                    case 11:
+                    case 'end':
+                        return _context7.stop();
+                }
+            }
+        }, _callee7, undefined);
+    }));
+
+    return function hitContentById(_x7) {
+        return _ref7.apply(this, arguments);
+    };
+}();
 exports.default = {
     addContent: addContent,
     getContentById: getContentById,
     findContents: findContents,
     updateContentById: updateContentById,
     removeContentById: removeContentById,
-    countContent: countContent
+    countContent: countContent,
+    hitContentById: hitContentById
 };

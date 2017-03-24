@@ -21,7 +21,7 @@ var ContentSchema = new Schema({
     category: { type: String, default: null },
     status: { type: String, default: 'published' },
     featured: { type: Boolean, default: false },
-    hits: { type: Number, default: 0 },
+    hits: { type: Number, default: 1 },
     removed: { type: Boolean, default: false },
     createdByID: { type: Schema.Types.ObjectId, required: true },
     createdAt: { type: Date, default: Date.now },

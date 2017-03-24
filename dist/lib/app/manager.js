@@ -128,7 +128,7 @@ var updateAppById = function () {
                         analyse.desc = options.desc || analyse.desc;
                         analyse.type = options.type || analyse.type;
                         analyse.ms = options.ms || analyse.ms;
-                        analyse.isTop = options.isTop || analyse.isTop;
+                        analyse.isTop = options.isTop !== undefined ? options.isTop : analyse.isTop;
                         analyse.updatedAt = Date.now();
                         _context4.next = 17;
                         return analyse.save();

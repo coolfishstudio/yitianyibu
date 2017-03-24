@@ -69,45 +69,49 @@ var viewPostPage = function () {
                     case 0:
                         (0, _log2.default)('post_controller').info('详情页');
                         _context2.next = 3;
-                        return _manager2.default.getContentById(req.params.pid);
+                        return _manager2.default.hitContentById(req.params.pid);
 
                     case 3:
+                        _context2.next = 5;
+                        return _manager2.default.getContentById(req.params.pid);
+
+                    case 5:
                         post = _context2.sent;
                         tags = [];
                         category = null;
 
                         if (!post.tag[0]) {
-                            _context2.next = 12;
+                            _context2.next = 14;
                             break;
                         }
 
                         _context2.t0 = tags;
-                        _context2.next = 10;
+                        _context2.next = 12;
                         return _manager6.default.getTagById(post.tag[0]);
 
-                    case 10:
+                    case 12:
                         _context2.t1 = _context2.sent;
 
                         _context2.t0.push.call(_context2.t0, _context2.t1);
 
-                    case 12:
+                    case 14:
                         if (!post.category) {
-                            _context2.next = 16;
+                            _context2.next = 18;
                             break;
                         }
 
-                        _context2.next = 15;
+                        _context2.next = 17;
                         return _manager4.default.getCategoryById(post.category);
 
-                    case 15:
+                    case 17:
                         category = _context2.sent;
 
-                    case 16:
+                    case 18:
                         post.category = category.name;
                         post.tag = tags;
                         res.renderPage('post', { post: post });
 
-                    case 19:
+                    case 21:
                     case 'end':
                         return _context2.stop();
                 }
