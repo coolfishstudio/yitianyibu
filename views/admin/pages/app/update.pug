@@ -1,0 +1,37 @@
+extends ../../includes/app.pug
+include ../../components/side-menu.pug
+
+block title
+    title 应用管理 ｜ 前端，后端，移动端，端端皆为技术 - 一天一步网。
+
+block main
+    +side-menu('admin_app')
+    .panel
+        .panel-title 
+            h1 应用管理 ｜ 修改
+            .panel-btns-list
+                a.btn(href="/admin/app") 返回列表
+        .panel-content
+            form(method="post" action=`/admin/app/${result._id}/update`)
+                .form-panel
+                    .form-input
+                        input.form-control(type="text" placeholder="请输入应用名称" name="name" value=result.name)
+                    .form-input
+                        select.form-control(type="text" name="type")
+                            each item in [{value: 0, text: '插件'}, {value: 1, text: '应用'}, {value: 2, text: '游戏'}]
+                                if (result.type === item.value)
+                                    option(value=item.value selected)= item.text
+                                else
+                                    option(value=item.value)= item.text
+                    .form-input
+                        input.form-control(type="text" placeholder="请输入应用标题" name="title" value=result.title)
+                    .form-input
+                        input.form-control(type="text" placeholder="请输入应用图标" name="icon" value="应用图标不可修改" disabled)
+                    .form-input
+                        input.form-control(type="text" placeholder="请输入应用封面" name="cover" value="应用封面不可修改" disabled)
+                    .form-input
+                        input.form-control(type="text" placeholder="请输入应用地址" name="url" value=result.url)
+                    .form-input
+                        input.form-control(type="text" placeholder="请输入应用描述" name="desc"  value=result.desc)
+                    .form-input
+                        button.btn-submit(type="submit") 确定修改

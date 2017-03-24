@@ -25,9 +25,12 @@ block main
                         tbody
                             each item in result
                                 tr
-                                    td= item.name
+                                    td
+                                        span= `${item.name}［`
+                                        a.color-update(href=item.url) 链接
+                                        span= `］`
                                     td= item.hits
-                                    td= item.type
+                                    td= {0: '插件', 1: '应用', 2: '游戏'}[item.type]
                                     td= locals.viewHelper.dateFormat(item.createdAt, 'yyyy-MM-dd hh:mm')
                                     td
                                         if !item.isTop
@@ -36,8 +39,6 @@ block main
                                         else
                                             a(href=`/admin/app/${item._id}/untop`)
                                                 span.color-update 取消置顶
-                                        a(href=item.url)
-                                            span.color-update 访问
                                         a(href=`/admin/app/${item._id}/update`)
                                             span.color-update 修改
                                         a(href=`/admin/app/${item._id}/remove`)

@@ -1,5 +1,6 @@
 html, body {
     min-height: 100%;
+    font-size: 16px;
 }
 /* 后端登录 */
 .login .main-content {

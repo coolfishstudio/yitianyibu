@@ -29,7 +29,7 @@ const updateAppById = async (appId, options = {}) => {
     analyse.desc = options.desc || analyse.desc
     analyse.type = options.type || analyse.type
     analyse.ms = options.ms || analyse.ms
-    analyse.isTop = options.isTop || analyse.isTop
+    analyse.isTop = options.isTop !== undefined ? options.isTop : analyse.isTop
     analyse.updatedAt = Date.now()
     const result = await analyse.save()
     return result
