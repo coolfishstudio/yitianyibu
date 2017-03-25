@@ -55,7 +55,7 @@ const removeAppById = async (appId) => {
     return result
 }
 const countApp = async () => {
-    const result = await App.count()
+    const result = await App.count({ removed: false })
     return result
 }
 

@@ -1,0 +1,30 @@
+mixin page-nav(currentPage, countPage)
+    .page-nav
+        .pages= `当前第 ${currentPage} 页，共 ${countPage} 页`
+        if currentPage !== 1
+            a.page-number.prev(href='/post?p=1') «
+        -
+            let startNum = 1
+            let endNum = 1
+            if (countPage <= 5) {
+                startNum = 1
+                endNum = countPage
+            } else {
+                if (currentPage <= 3) {
+                    startNum = 1;
+                    endNum = 5;
+                } else if (currentPage <= countPage - 3) {
+                    startNum = currentPage - 2
+                    endNum = currentPage + 2
+                } else {
+                    startNum = countPage - 4
+                    endNum = countPage
+                }
+            }
+        - for (let i = startNum; i <= endNum; i++)
+            if currentPage === i
+                span.page-number.current= i
+            else
+                a.page-number(href=`/post?p=${i}`)= i
+        if currentPage !== countPage
+            a.page-number.next(href=`/post?p=${countPage}`) »

@@ -348,28 +348,33 @@
 
 /* page-nav */
 .page-nav {
-    line-height: 20px;
-    position: relative;
-    background-color: #222;
-    /*border-top: 2px dashed #fff;*/
-    height: 60px;
-}
-.page-nav .prev,
-.page-nav .next {
+    width: 100%;
+    text-align: center;
+    font-size: .7rem;
     color: #aaa;
-    padding: 20px;
-    -webkit-transition: color 0.2s ease-in-out;
-    transition: color 0.2s ease-in-out;
+    margin: 1.5rem 0;
 }
-.page-nav .prev:hover,
-.page-nav .next:hover {
-    color: #fff;
+.page-nav .pages {
+    width: 100%;
+    padding-bottom: .25rem;
+    margin-bottom: .5rem;
 }
-.page-nav .prev {
-    float: left;
+.page-nav .page-number {
+    display: inline-block;
+    color: #aaa;
+    font-size: .8rem;
+    padding: .35rem .4rem;
+    margin: 0 .1rem;
+    font-weight: bold;
+    border-top: 1px solid #ddd;
+    border-bottom: 3px solid #ddd;
+    -webkit-transition: all .24s linear;
+    transition: all .24s linear;
 }
-.page-nav .next {
-    float: right;
+.page-nav .current,
+.page-nav .page-number:hover {
+    color: #26272b;
+    border-bottom: 3px solid #2ecc40;
 }
 /* footer */
 .footer-block {

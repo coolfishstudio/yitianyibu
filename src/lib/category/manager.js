@@ -38,7 +38,7 @@ const removeCategoryById = async (categoryId) => {
     return result
 }
 const countCategory = async () => {
-    const result = await Category.count()
+    const result = await Category.count({ removed: false })
     return result
 }
 

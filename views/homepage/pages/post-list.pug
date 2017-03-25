@@ -1,6 +1,7 @@
 extends ../includes/app.pug
 
 include ../components/list-container.pug
+include ../components/page-nav.pug
 
 block title
     title 文章集 ｜ 前端，后端，移动端，端端皆为技术 - 一天一步网。
@@ -10,3 +11,5 @@ block main
         if (posts.length !== 0)
             //- 帖子列表
             +list-container(posts)
+            if (countPage > 1)
+                +page-nav(currentPage, countPage)

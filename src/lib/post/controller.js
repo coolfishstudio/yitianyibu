@@ -3,9 +3,17 @@ import contentManager from '../content/manager'
 import categoryManager from '../category/manager'
 import tagManager from '../tag/manager'
 
+const limit = 10
+
 const viewListPage = async (req, res) => {
     log('post_controller').info('贴子列表页')
-    let posts = await contentManager.findContents()
+    let currentPage = 1
+    try {
+        currentPage = parseInt(Number(req.query.p), 10) || 1
+    } catch (err) {
+        currentPage = 1
+    }
+    let posts = await contentManager.findContents({}, { limit, skip: currentPage })
     posts = posts.map((item) => {
         item.html = item.html.replace(/<\/?.+?>/g, '').replace(/\r\n/g, ' ').replace(/\n/g, ' ')
         if (item.html.length > 100) {
@@ -14,7 +22,8 @@ const viewListPage = async (req, res) => {
         }
         return item
     })
-    res.renderPage('post-list', { posts })
+    const countPage = Math.ceil(await contentManager.countContent() / limit)
+    res.renderPage('post-list', { posts, countPage, currentPage })
 }
 const viewPostPage = async (req, res) => {
     log('post_controller').info('详情页')
