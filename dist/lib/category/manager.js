@@ -192,7 +192,7 @@ var countCategory = function () {
                 switch (_context6.prev = _context6.next) {
                     case 0:
                         _context6.next = 2;
-                        return _model2.default.count();
+                        return _model2.default.count({ removed: false });
 
                     case 2:
                         result = _context6.sent;

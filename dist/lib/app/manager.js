@@ -242,7 +242,7 @@ var countApp = function () {
                 switch (_context7.prev = _context7.next) {
                     case 0:
                         _context7.next = 2;
-                        return _model2.default.count();
+                        return _model2.default.count({ removed: false });
 
                     case 2:
                         result = _context7.sent;

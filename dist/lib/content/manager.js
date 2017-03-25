@@ -73,20 +73,24 @@ var getContentById = function () {
 var findContents = function () {
     var _ref3 = _asyncToGenerator(regeneratorRuntime.mark(function _callee3() {
         var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+        var query = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : { limit: 10, skip: 1 };
         var obj, result;
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
             while (1) {
                 switch (_context3.prev = _context3.next) {
                     case 0:
+                        if (query.skip === 0) {
+                            query.skip = 1;
+                        }
                         obj = Object.assign({ removed: false }, options);
-                        _context3.next = 3;
-                        return _model2.default.find(obj).sort({ updatedAt: -1 });
+                        _context3.next = 4;
+                        return _model2.default.find(obj).sort({ createdAt: -1 }).limit(query.limit).skip((query.skip - 1) * query.limit);
 
-                    case 3:
+                    case 4:
                         result = _context3.sent;
                         return _context3.abrupt('return', result);
 
-                    case 5:
+                    case 6:
                     case 'end':
                         return _context3.stop();
                 }
@@ -153,7 +157,7 @@ var updateContentById = function () {
         }, _callee4, undefined);
     }));
 
-    return function updateContentById(_x4) {
+    return function updateContentById(_x5) {
         return _ref4.apply(this, arguments);
     };
 }();
@@ -195,7 +199,7 @@ var removeContentById = function () {
         }, _callee5, undefined);
     }));
 
-    return function removeContentById(_x6) {
+    return function removeContentById(_x7) {
         return _ref5.apply(this, arguments);
     };
 }();
@@ -207,7 +211,7 @@ var countContent = function () {
                 switch (_context6.prev = _context6.next) {
                     case 0:
                         _context6.next = 2;
-                        return _model2.default.count();
+                        return _model2.default.count({ removed: false });
 
                     case 2:
                         result = _context6.sent;
@@ -264,7 +268,7 @@ var hitContentById = function () {
         }, _callee7, undefined);
     }));
 
-    return function hitContentById(_x7) {
+    return function hitContentById(_x8) {
         return _ref7.apply(this, arguments);
     };
 }();
