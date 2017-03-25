@@ -850,7 +850,7 @@
     color: #fff;
     font-size: 30px;
     font-weight: bold;
-    line-height: 300px;
+    line-height: 220px;
     opacity: 0;
     transform: scale(1.6);
     -webkit-transform: scale(1.6);
@@ -860,6 +860,7 @@
     -webkit-transition-delay: .06s;
 }
 .labs .lab-item .lab-item-info {
+    position: relative;
     height: auto;
     bottom: 0;
     background-color: #fff;
@@ -886,6 +887,15 @@
     line-height: 16px;
     text-indent: 2em;
     text-align: justify;
+}
+.labs .lab-item .lab-item-info .lab-item-icon {
+    width: 4rem;
+    height: 4rem;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: -3rem;
+    right: -1rem;
 }
 /* about */
 .about .bm-panel-content {
