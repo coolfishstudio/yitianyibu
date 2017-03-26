@@ -771,38 +771,63 @@
     color: #666;
 }
 /* create-comment */
+.create-comment {
+    max-width: 1000px;
+    margin: 1rem auto 0 auto;
+}
 .create-comment .bm-panel-content {
-    padding: 15px;
+    background-color: #fff;
+    padding: 3% 4%;
+    color: #222;
+    text-align: center;
 }
-.create-comment .create-comment-meta span {
-    display: inline-block;
+.create-comment .create-comment-meta {
+    overflow: hidden;
 }
-.create-comment .create-comment-meta input {
-    display: inline-block;
-    width: 295px;
+.create-comment .create-comment-meta .create-comment-name,
+.create-comment .create-comment-meta .create-comment-email {
+    width: 48%;
+    display: block;
+    float: left;
+    overflow: hidden;
 }
-.create-comment .create-comment-meta .create-comment-username {
-    margin-right: 10px;
+.create-comment .create-comment-meta .create-comment-name {
+    margin-right: 4%;
+}
+.create-comment .create-comment-meta .comment-input {
+    width: 100%;
 }
 .create-comment .create-comment-meta input {
     border: 1px dashed #e3e3e3;
 }
 .create-comment .create-comment-content {
-    width: 722px;
     height: 120px;
     border: 1px dashed #e3e3e3;
 }
 .create-comment .create-comment-submit {
     margin-bottom: 0;
+    padding-right: 2rem;
 }
 .create-comment .create-comment-submit a {
     display: inline-block;
-    background-color: #222222;
-    -webkit-transition: background-color 0.2s ease-in-out;
-    transition: background-color 0.2s ease-in-out;
+    border: 1px dashed #e3e3e3;
+    color: #222;
+    background-color: #fff;
+    width: 100%;
+    -webkit-transition: border-color 0.2s linear, color 0.2s linear, background-color 0.2s linear;
+    transition: border-color 0.2s linear, color 0.2s linear, background-color 0.2s linear;
 }
 .create-comment .create-comment-submit a:hover {
-    background-color: #4a4a4a;
+    color: #e3e3e3;
+    border: 1px solid #222;
+    background-color: #222222;
+}
+@media screen and (max-width: 767px) {
+    .create-comment .create-comment-meta .create-comment-name,
+    .create-comment .create-comment-meta .create-comment-email {
+        margin: 0;
+        width: 100%;
+    }
 }
 /* labs */
 .labs .main-block {

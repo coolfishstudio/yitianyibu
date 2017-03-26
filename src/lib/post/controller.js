@@ -2,6 +2,7 @@ import log from '../../middleware/log'
 import contentManager from '../content/manager'
 import categoryManager from '../category/manager'
 import tagManager from '../tag/manager'
+import { getClientIp } from '../../util/helper'
 
 const limit = 10
 
@@ -39,6 +40,9 @@ const viewPostPage = async (req, res) => {
     }
     post.category = category.name
     post.tag = tags
+
+    console.log('>>>', getClientIp(req))
+
     res.renderPage('post', { post })
 }
 

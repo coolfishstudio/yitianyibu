@@ -82,7 +82,7 @@ h3.font-title { font-size: 12px; }
 .text-red { color: #bf1e4b !important; }
 
 /* form */
-.form-input { margin-bottom: 15px; }
+.form-input { margin-bottom: 15px;padding-right: 26px; }
 .form-control {
     display: block;
     height: 24px;
