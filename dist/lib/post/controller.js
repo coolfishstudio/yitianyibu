@@ -12,13 +12,19 @@ var _manager = require('../content/manager');
 
 var _manager2 = _interopRequireDefault(_manager);
 
-var _manager3 = require('../category/manager');
+var _manager3 = require('../comment/manager');
 
 var _manager4 = _interopRequireDefault(_manager3);
 
-var _manager5 = require('../tag/manager');
+var _manager5 = require('../category/manager');
 
 var _manager6 = _interopRequireDefault(_manager5);
+
+var _manager7 = require('../tag/manager');
+
+var _manager8 = _interopRequireDefault(_manager7);
+
+var _helper = require('../../util/helper');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -81,7 +87,7 @@ var viewListPage = function () {
 }();
 var viewPostPage = function () {
     var _ref2 = _asyncToGenerator(regeneratorRuntime.mark(function _callee2(req, res) {
-        var post, tags, category;
+        var post, tags, category, ip;
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
             while (1) {
                 switch (_context2.prev = _context2.next) {
@@ -106,7 +112,7 @@ var viewPostPage = function () {
 
                         _context2.t0 = tags;
                         _context2.next = 12;
-                        return _manager6.default.getTagById(post.tag[0]);
+                        return _manager8.default.getTagById(post.tag[0]);
 
                     case 12:
                         _context2.t1 = _context2.sent;
@@ -120,7 +126,7 @@ var viewPostPage = function () {
                         }
 
                         _context2.next = 17;
-                        return _manager4.default.getCategoryById(post.category);
+                        return _manager6.default.getCategoryById(post.category);
 
                     case 17:
                         category = _context2.sent;
@@ -128,9 +134,23 @@ var viewPostPage = function () {
                     case 18:
                         post.category = category.name;
                         post.tag = tags;
+                        ip = (0, _helper.getClientIp)(req);
+
+                        post.clientIp = ip;
+                        _context2.next = 24;
+                        return _manager4.default.findCommentsByContentId(req.params.pid);
+
+                    case 24:
+                        post.comments = _context2.sent;
+                        _context2.next = 27;
+                        return _manager4.default.countCommentByContentId(req.params.pid);
+
+                    case 27:
+                        post.commentsCount = _context2.sent;
+
                         res.renderPage('post', { post: post });
 
-                    case 21:
+                    case 29:
                     case 'end':
                         return _context2.stop();
                 }

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.xss = exports.md = exports.getMD5 = undefined;
+exports.getClientIp = exports.xss = exports.md = exports.getMD5 = undefined;
 
 var _crypto = require('crypto');
 
@@ -42,7 +42,10 @@ var xss = new _xss2.default.FilterXSS({
         }
     }
 });
-
+var getClientIp = function getClientIp(req) {
+    return req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress;
+};
 exports.getMD5 = getMD5;
 exports.md = md;
 exports.xss = xss;
+exports.getClientIp = getClientIp;

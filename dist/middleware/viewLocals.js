@@ -16,7 +16,7 @@ var _manager5 = require('../lib/app/manager');
 
 var _manager6 = _interopRequireDefault(_manager5);
 
-var _manager7 = require('../lib/category/manager');
+var _manager7 = require('../lib/comment/manager');
 
 var _manager8 = _interopRequireDefault(_manager7);
 
@@ -49,14 +49,14 @@ var getViewLocals = function () {
                     case 10:
                         _context.t2 = _context.sent;
                         _context.next = 13;
-                        return _manager8.default.countCategory();
+                        return _manager8.default.countCommentByContentId('message');
 
                     case 13:
                         _context.t3 = _context.sent;
                         _context.t4 = {
                             content: _context.t1,
                             app: _context.t2,
-                            category: _context.t3
+                            message: _context.t3
                         };
                         return _context.abrupt('return', {
                             slogan: _context.t0,
