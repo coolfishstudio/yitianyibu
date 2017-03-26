@@ -1,11 +1,11 @@
-mixin comment-list()
+mixin comment-list(data)
     .bm-panel.comment-list.shadow
         .bm-panel-content
-            each i in [,,,,,,]
+            each item in data
                 .comment-item
                     .comment-item-meta
-                        a.comment-item-meta-author 113.116.60.*
-                        time(itemprop='dateCreated' data-value='1484960497' title='2017-01-21 09:01:37') 01-21
+                        .comment-item-meta-author= item.name
+                        time(itemprop='dateCreated' data-value=item.createdAt title= locals.viewHelper.dateFormat(item.createdAt, 'yyyy-MM-dd hh:mm:ss'))= locals.viewHelper.dateFormat(item.createdAt, 'yyyy-MM-dd')
                     .comment-item-text
-                        span 123123123123
+                        span= item.content
                     

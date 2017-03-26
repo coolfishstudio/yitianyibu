@@ -1,5 +1,6 @@
 import log from '../../middleware/log'
 import contentManager from '../content/manager'
+import commentManager from '../comment/manager'
 import categoryManager from '../category/manager'
 import tagManager from '../tag/manager'
 import { getClientIp } from '../../util/helper'
@@ -40,9 +41,10 @@ const viewPostPage = async (req, res) => {
     }
     post.category = category.name
     post.tag = tags
-
-    console.log('>>>', getClientIp(req))
-
+    const ip = getClientIp(req)
+    post.clientIp = ip
+    post.comments = await commentManager.findCommentsByContentId(req.params.pid)
+    post.commentsCount = await commentManager.countCommentByContentId(req.params.pid)
     res.renderPage('post', { post })
 }
 

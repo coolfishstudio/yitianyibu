@@ -1,10 +1,12 @@
 extends ../includes/app.pug
 
 include ../components/create-comment.pug
+include ../components/comment-list.pug
 
 block title
     title 留言板 ｜ 前端，后端，移动端，端端皆为技术 - 一天一步网。
 
 block main
-    .row-index.clearfix
-        +create-comment()
+    if data.messages.length > 0
+        +comment-list(data.messages)    
+    +create-comment(data)

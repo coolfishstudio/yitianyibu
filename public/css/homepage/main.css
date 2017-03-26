@@ -585,7 +585,7 @@
     color: #222;
 }
 .post-content .post-title {
-    font-size: 1.4rem;
+    font-size: .9rem;
 }
 .post-content .post-meta {
     display: block;
@@ -733,6 +733,10 @@
 }
 
 /* commont items */
+.comment-list {
+    max-width: 1000px;
+    margin: 1rem auto 0 auto;
+}
 .comment-list .bm-panel-content {
     padding: 15px;
 }
@@ -752,7 +756,7 @@
 }
 .comment-list .comment-item-meta-author {
     float: left;
-    font-size: 12px;
+    font-size: .6rem;
     line-height: 20px;
     color: #999;
 }
@@ -761,7 +765,7 @@
 }
 .comment-list .comment-item-meta time {
     float: right;
-    font-size: 12px;
+    font-size: .6rem;
     line-height: 20px;
     color: #999;
 }
@@ -769,6 +773,7 @@
     word-wrap: break-word;
     word-break: break-all;
     color: #666;
+    font-size: .7rem;
 }
 /* create-comment */
 .create-comment {
@@ -806,9 +811,8 @@
 }
 .create-comment .create-comment-submit {
     margin-bottom: 0;
-    padding-right: 2rem;
 }
-.create-comment .create-comment-submit a {
+.create-comment .create-comment-submit .btn-submit {
     display: inline-block;
     border: 1px dashed #e3e3e3;
     color: #222;
@@ -817,7 +821,7 @@
     -webkit-transition: border-color 0.2s linear, color 0.2s linear, background-color 0.2s linear;
     transition: border-color 0.2s linear, color 0.2s linear, background-color 0.2s linear;
 }
-.create-comment .create-comment-submit a:hover {
+.create-comment .create-comment-submit .btn-submit:hover {
     color: #e3e3e3;
     border: 1px solid #222;
     background-color: #222222;
