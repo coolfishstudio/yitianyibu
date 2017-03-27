@@ -15,15 +15,38 @@ const viewListPage = async (req, res) => {
     } catch (err) {
         currentPage = 1
     }
-    let posts = await contentManager.findContents({}, { limit, skip: currentPage })
-    posts = posts.map((item) => {
+    let results = await contentManager.findContents({}, { limit, skip: currentPage })
+    let promises = results.map(async (item) => {
         item.html = item.html.replace(/<\/?.+?>/g, '').replace(/\r\n/g, ' ').replace(/\n/g, ' ')
         if (item.html.length > 100) {
             item.html = item.html.substr(0, 100)
             item.html += '...'
         }
-        return item
+        /* eslint-disable */
+        item.commentsCount = await commentManager.countCommentByContentId(item._id)
+        let category = ''
+        if (item.category) {
+            try {
+                category = (await categoryManager.getCategoryById(item.category)).name
+            } catch (e) {
+                category = '' 
+            }   
+        }
+        /* eslint-enable */
+        return {
+            /* eslint-disable */
+            _id      : item._id,
+            /* eslint-enable */
+            createdAt: item.createdAt,
+            hits     : item.hits,
+            images   : item.images,
+            html     : item.html,
+            title    : item.title,
+            comments : item.commentsCount,
+            category
+        }
     })
+    let posts = await Promise.all(promises)
     const countPage = Math.ceil(await contentManager.countContent() / limit)
     res.renderPage('post-list', { posts, countPage, currentPage })
 }

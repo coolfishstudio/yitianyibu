@@ -328,14 +328,15 @@
 }
 .post-list .posts-item .post-meta .post-tag {
     cursor: pointer;
-    height: 30px;
+    height: 32px;
     float: right;
     display: block;
     font-size: 12px;
     color: #777;
     padding: 0 10px;
-    line-height: 30px;
+    line-height: 32px;
     max-width: 100px;
+    border-radius: 3px; 
     text-align: center;
     background-color: #efefef;
     -webkit-transition: color .24s linear, background-color .24s linear;
