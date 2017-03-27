@@ -123,7 +123,7 @@ var uploadImage = function uploadImage(req, res, next) {
 };
 var createContent = function () {
     var _ref3 = _asyncToGenerator(regeneratorRuntime.mark(function _callee3(req, res, next) {
-        var title, content, category, tag, status, featured, time, createError, err, html, reg, images, option, createdByID, result, _err;
+        var title, content, category, tag, status, featured, time, hits, createError, err, html, reg, images, option, createdByID, result, _err;
 
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
             while (1) {
@@ -136,6 +136,7 @@ var createContent = function () {
                         status = (req.body.status || 'published').trim();
                         featured = !!Number((req.body.featured || '1').trim());
                         time = req.body.time || '';
+                        hits = req.body.hits || 1;
                         // 校验
 
                         createError = '';
@@ -148,7 +149,7 @@ var createContent = function () {
                         // 校验结果
 
                         if (!createError) {
-                            _context3.next = 13;
+                            _context3.next = 14;
                             break;
                         }
 
@@ -157,7 +158,7 @@ var createContent = function () {
                         err.status = 400;
                         return _context3.abrupt('return', next(err));
 
-                    case 13:
+                    case 14:
                         html = '<div class="markdown-text">' + _helper.xss.process(_helper.md.render(content || '')) + '</div>';
                         reg = new RegExp('!\\[.*?\\]\\((.*?)\\)', 'g');
                         images = [];
@@ -172,7 +173,8 @@ var createContent = function () {
                             images: images,
                             markdown: content,
                             status: status,
-                            featured: featured
+                            featured: featured,
+                            hits: hits
                         };
 
                         if (tag) {
@@ -189,14 +191,14 @@ var createContent = function () {
                         /* eslint-enable */
 
                         option.createdByID = createdByID;
-                        _context3.next = 25;
+                        _context3.next = 26;
                         return _manager8.default.addContent(option);
 
-                    case 25:
+                    case 26:
                         result = _context3.sent;
 
                         if (result) {
-                            _context3.next = 30;
+                            _context3.next = 31;
                             break;
                         }
 
@@ -205,10 +207,10 @@ var createContent = function () {
                         _err.status = 400;
                         return _context3.abrupt('return', next(_err));
 
-                    case 30:
+                    case 31:
                         res.redirect('/admin/content');
 
-                    case 31:
+                    case 32:
                     case 'end':
                         return _context3.stop();
                 }

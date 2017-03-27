@@ -52,6 +52,7 @@ const createContent = async (req, res, next) => {
     const status = (req.body.status || 'published').trim()
     const featured = !!Number((req.body.featured || '1').trim())
     const time = req.body.time || ''
+    const hits = req.body.hits || 1
     // 校验
     let createError = ''
     if (title === '') {
@@ -78,7 +79,8 @@ const createContent = async (req, res, next) => {
         images,
         markdown: content,
         status,
-        featured
+        featured,
+        hits
     }
     if (tag) {
         option.tag = [ tag ]
