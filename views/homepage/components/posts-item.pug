@@ -6,7 +6,7 @@ mixin posts-item(item)
             a.post-title(href=`/post/${item._id}`)= item.title
         .post-content
             p.font-text.theme-font-text-color= item.html
-        a.post-pic(href=`/post/${item._id}` style=`background-image:url(${item.images[0] || 'http://7xi480.com1.z0.glb.clouddn.com/6W8NZET5PS6V.jpg?imageView2/1/w/720/h/400'})`)
+        a.post-pic(href=`/post/${item._id}` style=`background-image:url(${item.images[0] || ('/images/homepage/default/cover/' + String(item._id)[23] + '.jpg')})`)
         .post-meta
             a.post-button(href=`/post/${item._id}`) Read more
             a.post-button(href=`/post/${item._id}`)= `${item.hits} Hits`
