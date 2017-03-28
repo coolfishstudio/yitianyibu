@@ -598,7 +598,7 @@
     padding-left: .3rem;
 }
 .post-content .post-body {
-    font-size: 14px;
+    font-size: .7rem;
     color: #333;
     line-height: 2;
     word-break: break-all; 
@@ -668,17 +668,21 @@
 .post-content .post-body blockquote p {
     margin: 0;
 }
+.post-content .post-body pre code {
+    display: block;
+    font-size: .65rem;
+}
 .post-content .post-meta span {
-    font-size: 12px;
+    font-size: .6rem;
 }
 .post-content .post-tags span {
     display: inline-block;
-    font-size: 12px;
-    height: 14px;
-    line-height: 14px;
+    font-size: .6rem;
+    height: .7rem;
+    line-height: .7rem;
     background-color: #ebebeb;
     padding: 5px 10px;
-    margin-right: 8px;
+    margin-right: .4rem;
     border-radius: 15px;
     -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
