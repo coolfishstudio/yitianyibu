@@ -1132,10 +1132,35 @@
     animation: blink 5s infinite linear;
 }
 .elf-chat {
-
+    position: absolute;
+    left: -225px;
+    top: 0;
+    width: 220px;
+    border: 1px solid #ff5a77;
+    background-color: #ffe;
+    font-size: .6rem;
+    border-radius: 4px;
+}
+.elf-chat:after,
+.elf-chat:before {
+    display: block;
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    right: 3px;
+    border-bottom: 5px solid transparent;
+    border-right: 14px solid #ffe;
+}
+.elf-chat:before {
+    bottom: -5px;
+    right: 2px;
+    border-right: 16px solid #ff5a77;
 }
 .elf-word {
-
+    padding: .5rem;
+    color: #666;
+    min-height: 15px;
+    word-wrap: break-word;
 }
 .elf-menu {
 
