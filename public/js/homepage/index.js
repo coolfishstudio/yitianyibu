@@ -47,6 +47,24 @@
         }
     }
     window.drag = drag;
+    var addEvent = function (obj, sEv, fn) {
+        if (obj.addEventListener) {
+            obj.addEventListener(sEv, function (ev) {
+                if(false == fn.call(obj,ev)) {
+                    ev.cancelBubble = true;
+                    ev.preventDefault();
+                }
+            },false);
+        } else {
+            obj.attachEvent('on' + sEv, function () {
+                if (false == fn.call(obj, event)) {
+                    event.cancelBubble = true;
+                    return false;
+                }
+            });
+        }
+    };
+    window.addEvent = addEvent;
 })(window, document);
 /**
  * 精灵
@@ -61,6 +79,9 @@
                     '欢迎光临'
                 ];   
             }
+            if (!this.options.menus) {
+                this.options.menus = {};
+            }
             this.init();
         }
         ELF.prototype = {
@@ -69,8 +90,8 @@
                 this.create();
                 // 增加拖拽
                 this.drag();
-                // 显示精灵
-                this.show();
+                // 绑定菜单
+                this.bindMenus();
             },
             create: function () {
                 var btn = document.createElement('a');
@@ -89,15 +110,17 @@
                     '</div>',
                     '<div class="elf-chat">',
                     '<div class="elf-word" id="elf-word"></div>',
-                    '<div class="elf-menu"></div>',
-                    '<div class="elf-menu-btn"></div>',
+                    '<div class="elf-menus" id="elf-menus"></div>',
+                    '<div class="elf-menu-btn" id="elf-menu-btn">menu</div>',
                     '</div>'
                 ].join('');
                 document.body.appendChild(content);
                 this.element = document.getElementById('elf');
                 this.btn = document.getElementById('elf-btn');
                 this.facePanel = document.getElementById('elf-face');
-                this.wordPanel = document.getElementById('elf-word')
+                this.wordPanel = document.getElementById('elf-word');
+                this.menusPanel = document.getElementById('elf-menus');
+                this.menusBtnPanel = document.getElementById('elf-menu-btn');       
             },
             drag: function () {
                 window.drag && window.drag(this.element);
@@ -105,7 +128,16 @@
             show: function () {
                 this.emptyWord();
                 this.say();
+                this.element.style.display = 'block';
                 this.btn.style.display = 'none';
+            },
+            hide: function () {
+                this.dynamicSay('记得叫我出来哟～');
+                var self = this;
+                setTimeout(function () {
+                    self.element.style.display = 'none';
+                    self.btn.style.display = 'block';
+                }, 2000);
             },
             say: function () {
                 var self = this;
@@ -129,8 +161,9 @@
                 var words = word.split('');
                 var result = '';
                 function output() {
+                    clearTimeout(this.outputTimer);
                     if(words.length) {
-                        setTimeout(function() {
+                        this.outputTimer = setTimeout(function() {
                             result += words.shift();
                             self.wordPanel.innerHTML = result;
                             output();
@@ -138,14 +171,108 @@
                     }
                 }
                 output();
+            },
+            bindMenus: function () {
+                var self = this;
+                self.fillMenu(this.options.menus);
+                window.addEvent(self.menusBtnPanel, 'click', function () {
+                    self.menusPanel.style.display = 'block';
+                    self.fillMenu(self.options.menus);
+                });
+                window.addEvent(self.btn, 'click', function () {
+                    self.show();
+                });
+            },
+            closeMenu: function () {
+                this.menusPanel.style.display = 'none';
+                this.say();
+            },
+            fillMenu: function (obj) {
+                var self = this;
+                // 停止说话
+                clearInterval(self.sayTimer);
+                // 停止统计闲置时间
+                clearTimeout(this.menuTimer);
+
+                this.menuTimer = setTimeout(function () {
+                    self.closeMenu();
+                }, 10000);
+
+                self.menusPanel.innerHTML = '';
+                if (obj.say) {
+                    this.dynamicSay(obj.say);
+                }
+                if (obj.menus) {
+                    for (var j = 0; j < obj.menus.length; j++) {
+                        (function (j) {
+                            var menu = obj.menus[j];
+                            var menuBtn = document.createElement('a');
+                            menuBtn.href = 'javascript:;';
+                            menuBtn.innerHTML = menu.name;
+                            self.menusPanel.appendChild(menuBtn);
+                            window.addEvent(menuBtn, 'click', function () {
+                                self.fillMenu(menu.child); 
+                            });
+                        })(j);
+                    }
+                }
+                if (obj.hide) {
+                    this.hide();   
+                }
+                obj.fn && obj.fn();
             }
         };
         var defaults = {
             words: [
-                "为了我们和大家的持续发展，请不要对本站进行任何和谐行为(灬ºωº灬)",
-                "白日依山尽，黄河入海流，欲穷千里目，更上 .. .. 一层楼?",
-                "咦你想做什么 oAo"
-            ]
+                '为了我们和大家的持续发展，请不要对本站进行任何和谐行为(灬ºωº灬)',
+                '白日依山尽，黄河入海流，欲穷千里目，更上 .. .. 一层楼?',
+                '咦你想做什么 oAo'
+            ],
+            menus: {
+                say: '你想要些做什么呢？',
+                menus: [{
+                    name: '显示公告',
+                    child: {
+                        say: '为了我们和大家的持续发展，请不要对本站进行任何和谐行为(灬ºωº灬)'
+                    }
+                }, {
+                    name: '拍打喂食',
+                    child: {
+                        say: '要来点什么呢？',
+                        menus: [{
+                            name: '小饼干',
+                            child: {
+                                say: '嗷呜~ 多谢款待  >ω<'
+                            }
+                        }, {
+                            name: '胡萝卜',
+                            child: {
+                                say: '人家又不是小兔子 QwQ'
+                            }
+                        }, {
+                            name: '秋刀鱼',
+                            child: {
+                                say: '大哥哥这是什么？呀！好长！诶？！好滑哦(๑• . •๑)！阿呜～'
+                            }
+                        }, {
+                            name: '胖次',
+                            child: {
+                                say: '哇~ 好可爱的胖次~~~'
+                            }
+                        }, {
+                            name: '淡定红茶',
+                            child: {
+                                say: '喝完了，ˊ_>ˋ和我签订契约成为淡定少女吧！'
+                            }
+                        }]
+                    }
+                }, {
+                    name: '隐藏精灵',
+                    child: {
+                        hide: true
+                    }
+                }]
+            }
         };
         new ELF(defaults); 
     };

@@ -1157,16 +1157,24 @@
     border-right: 16px solid #ff5a77;
 }
 .elf-word {
-    padding: .5rem;
+    padding: .3rem .5rem;
     color: #666;
     min-height: 15px;
     word-wrap: break-word;
 }
-.elf-menu {
-
+.elf-menus a {
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+    color: #d2322d;
+    padding: .1rem 0;
 }
 .elf-menu-btn {
-    
+    text-align: right;
+    margin-top: .25rem;
+    padding: 0 .5rem .15rem;
+    color: #d2322d;
+    cursor: pointer;
 }
 /* 眨眼 */
 @-webkit-keyframes blink {
