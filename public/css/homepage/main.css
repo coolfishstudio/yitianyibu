@@ -1107,19 +1107,20 @@
     width: 100%;
     height: 100%;
     background-repeat: no-repeat;
+    background-image: url(../../images/homepage/default/elf/face.png);
 }
 .elf-face:active {
     cursor: grabbing;
     cursor: -webkit-grabbing;
 }
 .elf-face-00 {
-    background-image: url(../../images/homepage/default/elf/face00.png);
+    background-position: 0 0;
 }
 .elf-face-01 {
-    background-image: url(../../images/homepage/default/elf/face01.png);
+    background-position: -85px 0;
 }
 .elf-face-02 {
-    background-image: url(../../images/homepage/default/elf/face02.png);
+    background-position: -170px 0;
 }
 .elf-face-eye {
     background-image: url(../../images/homepage/default/elf/face-eyes.png);

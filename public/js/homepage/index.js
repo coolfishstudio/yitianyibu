@@ -23,7 +23,9 @@
  * 拖拽/事件绑定
  */
 (function (window, document) {
-    var drag = function (obj) {
+    var drag = function (obj, options) {
+        var clientWidth = document.documentElement.clientWidth;
+        var clientHeight = document.documentElement.clientHeight;
         obj.onmousedown = function (ev) {
             var oEvent = ev || event;
             // 计算鼠标点击的相对位置
@@ -35,6 +37,18 @@
                 var x = oEvent.clientX - disX;
                 var y = oEvent.clientY - disY;
 
+                if (options.l && x <= 10 + options.l) {
+                    x = 10 + options.l;
+                }
+                if (options.w && x >= clientWidth - options.w - 10) {
+                    x = clientWidth - options.w - 10;
+                }
+                if (options.h && y <= 10) {
+                    y = 10;
+                }
+                if (options.h && y >= clientHeight - options.h - 10) {
+                    y = clientHeight - options.h - 10;
+                }
                 obj.style.left = x + 'px';
                 obj.style.top = y + 'px';
             };
@@ -131,7 +145,7 @@
             this.menusBtnPanel = document.getElementById('elf-menu-btn');       
         },
         drag: function () {
-            window.drag && window.drag(this.element);
+            window.drag && window.drag(this.element, {l: 227, w: 85, h: 152});
         },
         show: function () {
             this.emptyWord();
