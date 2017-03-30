@@ -276,7 +276,7 @@
                 }, {
                     name: '存活时间',
                     child: {
-                        say: '咱已经和主人共同度过了' + Math.ceil((Date.now() - createTimestamp) / (1000 * 60 * 60 * 24)) + '天的人生了哦~   我是不是很棒呢~'
+                        say: '咱已经和主人共同度过了' + Math.ceil(((new Date()).getTime() - createTimestamp) / (1000 * 60 * 60 * 24)) + '天的人生了哦~   我是不是很棒呢~'
                     }
                 }, {
                     name: '拍打喂食',
