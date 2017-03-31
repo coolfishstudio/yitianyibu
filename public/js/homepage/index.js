@@ -23,7 +23,8 @@
  * 拖拽/事件绑定
  */
 (function (window, document) {
-    var drag = function (obj, options) {
+    /* 拖拽 */
+    var drag = function (obj, options, callback) {
         var clientWidth = document.documentElement.clientWidth;
         var clientHeight = document.documentElement.clientHeight;
         obj.onmousedown = function (ev) {
@@ -51,6 +52,7 @@
                 }
                 obj.style.left = x + 'px';
                 obj.style.top = y + 'px';
+                callback && callback(x, y);
             };
             document.onmouseup = function (ev) {
                 document.onmousemove = null;
@@ -61,7 +63,7 @@
             return false;
         }
     }
-    window.drag = drag;
+    /* 事件绑定 */
     var addEvent = function (obj, sEv, fn) {
         if (obj.addEventListener) {
             obj.addEventListener(sEv, function (ev) {
@@ -79,7 +81,21 @@
             });
         }
     };
+    /* 数据存储 */
+    var store = {
+        set: function (key, value) {
+            localStorage.setItem(key, value);
+        },
+        get: function (key) {
+            return localStorage.getItem(key);
+        },
+        remove: function (key) {
+            localStorage.removeItem(key);
+        }
+    };
+    window.drag = drag;
     window.addEvent = addEvent;
+    window.store = store;
 })(window, document);
 /**
  * 精灵
@@ -114,6 +130,8 @@
             this.drag();
             // 绑定菜单
             this.bindMenus();
+            // 显示精灵
+            this.show();
         },
         create: function () {
             var btn = document.createElement('a');
@@ -145,13 +163,25 @@
             this.menusBtnPanel = document.getElementById('elf-menu-btn');       
         },
         drag: function () {
-            window.drag && window.drag(this.element, {l: 227, w: 85, h: 152});
+            window.drag && window.drag(this.element, {l: 227, w: 85, h: 152}, this.savePos);
         },
         show: function () {
-            this.emptyWord();
-            this.say();
-            this.element.style.display = 'block';
-            this.btn.style.display = 'none';
+            if (window.store.get('elf_pos')) {
+                var pos = JSON.parse(window.store.get('elf_pos'));
+                this.element.style.left = pos.x + 'px';
+                this.element.style.top = pos.y + 'px';
+            }
+            if (this.menusPanel.style.display === 'none') {
+                this.emptyWord();
+                this.say();
+            }
+            if (window.store.get('elf_status') === 'hide') {
+                this.element.style.display = 'none';
+                this.btn.style.display = 'block';
+            } else {
+                this.element.style.display = 'block';
+                this.btn.style.display = 'none';
+            }
         },
         hide: function () {
             this.dynamicSay('记得叫我出来哟～');
@@ -163,6 +193,7 @@
                 clearTimeout(this.menuTimer);
                 self.element.style.display = 'none';
                 self.btn.style.display = 'block';
+                window.store.set('elf_status', 'hide');
             }, 2000);
         },
         say: function () {
@@ -206,6 +237,7 @@
                 self.fillMenu(self.options.menus);
             });
             window.addEvent(self.btn, 'click', function () {
+                window.store.set('elf_status', 'show');
                 self.show();
             });
         },
@@ -246,6 +278,12 @@
                 this.hide();   
             }
             obj.fn && obj.fn();
+        },
+        savePos: function (x, y) {
+            clearTimeout(this.saveTimer);
+            this.saveTimer = setTimeout(function () {
+                window.store.set('elf_pos', JSON.stringify({x: x, y: y}));
+            }, 500);
         }
     };
     window.ELF = ELF;
