@@ -3,10 +3,13 @@ extends ../includes/app.pug
 include ../components/create-comment.pug
 include ../components/comment-list.pug
 
+
 block title
     title 留言板 ｜ 前端，后端，移动端，端端皆为技术 - 一天一步网。
 
 block main
+    .message-notice-panel.shadow
+        .message-notice 留下你的话语，带走我的问候，欢迎大家没事踩踩。
     if data.messages.length > 0
         +comment-list(data.messages)    
     +create-comment(data)
