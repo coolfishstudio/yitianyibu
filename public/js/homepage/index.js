@@ -171,16 +171,14 @@
                 this.element.style.left = pos.x + 'px';
                 this.element.style.top = pos.y + 'px';
             }
-            if (this.menusPanel.style.display === 'none') {
-                this.emptyWord();
-                this.say();
-            }
             if (window.store.get('elf_status') === 'hide') {
                 this.element.style.display = 'none';
                 this.btn.style.display = 'block';
             } else {
-                this.emptyWord();
-                this.say();
+                if (this.menusPanel.style.display === 'none') {
+                    this.emptyWord();
+                    this.say();
+                }
                 this.element.style.display = 'block';
                 this.btn.style.display = 'none';
             }
