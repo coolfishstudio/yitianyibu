@@ -179,6 +179,8 @@
                 this.element.style.display = 'none';
                 this.btn.style.display = 'block';
             } else {
+                this.emptyWord();
+                this.say();
                 this.element.style.display = 'block';
                 this.btn.style.display = 'none';
             }
