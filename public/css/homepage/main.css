@@ -617,7 +617,7 @@
     background-color: #f8f8f8;
     margin: 1rem 0;
 }
-.post-content .post-body pre {
+.post-content .post-body code {
     display: block;
     line-height: 1.6;
     color: #333;
@@ -633,6 +633,7 @@
     white-space: pre-wrap;
     position: relative;
     overflow: hidden;
+    margin-bottom: .5rem;
 }
 .post-content .post-body p,
 .post-content .post-body pre,
