@@ -296,6 +296,9 @@
     text-align: center;
     font-size: 18px;
     color: #000;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
 }
 .post-list .posts-item .post-date {
     text-align: right;
