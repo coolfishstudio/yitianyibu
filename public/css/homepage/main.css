@@ -621,22 +621,25 @@
     margin: 1rem 0;
 }
 .post-content .post-body code {
-    display: block;
-    line-height: 1.6;
     color: #333;
-    padding: 5px;
     text-shadow: none;
     white-space: pre-wrap;
     background: #fafafa;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #ccc;
     word-break: break-all;
     word-wrap: break-word;
     white-space: pre-wrap;
     position: relative;
     overflow: hidden;
-    margin-bottom: .5rem;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #ccc;
+    padding: 2px 6px;
+    font-size: .65rem;
+}
+.post-content .post-body pre code {
+    display: block;
+    line-height: 1.6;
+    padding: 5px;
 }
 .post-content .post-body p,
 .post-content .post-body pre,
@@ -672,9 +675,14 @@
 .post-content .post-body blockquote p {
     margin: 0;
 }
-.post-content .post-body pre code {
-    display: block;
-    font-size: .65rem;
+.post-content .post-body a, 
+.post-content .post-body a:focus,
+.post-content .post-body a:hover {
+    color: #08c;
+}
+.post-content .post-body a:focus,
+.post-content .post-body a:hover {
+    text-decoration: underline;
 }
 .post-content .post-meta span {
     font-size: .6rem;
@@ -817,6 +825,10 @@
 .create-comment .create-comment-content {
     height: 120px;
     border: 1px dashed #e3e3e3;
+    background-image: url(../../images/homepage/text_cover.png);
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    background-size: 100px;
 }
 .create-comment .create-comment-submit {
     margin-bottom: 0;
