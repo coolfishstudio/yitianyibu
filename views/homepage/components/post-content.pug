@@ -8,9 +8,12 @@ mixin post-content(data)
                     span.baffle |
                     span= `${data.hits} 次浏览`
                     span.baffle |
-                    span= `${data.commentsCount} 次评论`
-                    span.baffle |
-                    span.post-category= `分类于 ${data.category}`
+                    if (data.commentsCount)
+                        span= `${data.commentsCount} 条评论`
+                        span.baffle |
+                    span.post-category
+                        | 分类于 
+                        a(href=`/category/${data.categoryId}`)= data.category
         .bm-panel-content
             .post-body.theme-font-text-color!= data.html
                 

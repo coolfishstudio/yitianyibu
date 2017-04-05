@@ -2,6 +2,8 @@ import log from '../../middleware/log'
 import categoryManager from './manager'
 import contentManager from '../content/manager'
 
+const limit = 10
+
 const viewAdminCategory = async (req, res) => {
     log('category_controller').info('类别')
     const result = await categoryManager.findCategorys()
@@ -89,8 +91,29 @@ const viewListPage = async (req, res) => {
 }
 const viewCategoryPage = async (req, res) => {
     log('category_controller').info('类别列表')
-    const result = await categoryManager.findCategorys()
-    res.renderPage('categorys', { result })
+    let result = {}
+    let currentPage = 1
+    try {
+        currentPage = parseInt(Number(req.query.p), 10) || 1
+    } catch (err) {
+        currentPage = 1
+    }
+    result.info = await categoryManager.getCategoryById(req.params.categoryId)
+    let results = await contentManager.findContents({ category: req.params.categoryId }, { limit, skip: currentPage })
+    let promises = results.map(async (item) => {
+        return {
+            /* eslint-disable */
+            _id       : item._id,
+            wordsCount: item.markdown.length,
+            createdAt : item.createdAt,
+            title     : item.title
+            /* eslint-enable */
+        }
+    })
+    result.list = await Promise.all(promises)
+    result.currentPage = currentPage
+    result.countPage = Math.ceil(await contentManager.countContentByCategory(req.params.categoryId) / limit)
+    res.renderPage('category-list', { result })
 }
 
 export default {

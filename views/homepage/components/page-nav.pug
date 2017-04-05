@@ -2,7 +2,7 @@ mixin page-nav(currentPage, countPage)
     .page-nav
         .pages= `当前第 ${currentPage} 页，共 ${countPage} 页`
         if currentPage !== 1
-            a.page-number.prev(href='/post?p=1') «
+            a.page-number.prev(href='?p=1') «
         -
             let startNum = 1
             let endNum = 1
@@ -25,6 +25,6 @@ mixin page-nav(currentPage, countPage)
             if currentPage === i
                 span.page-number.current= i
             else
-                a.page-number(href=`/post?p=${i}`)= i
+                a.page-number(href=`?p=${i}`)= i
         if currentPage !== countPage
-            a.page-number.next(href=`/post?p=${countPage}`) »
+            a.page-number.next(href=`?p=${countPage}`) »

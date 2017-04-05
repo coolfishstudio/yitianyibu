@@ -62,6 +62,7 @@ const viewPostPage = async (req, res) => {
     if (post.category) {
         category = await categoryManager.getCategoryById(post.category)
     }
+    post.categoryId = post.category
     post.category = category.name
     post.tag = tags
     const ip = getClientIp(req)

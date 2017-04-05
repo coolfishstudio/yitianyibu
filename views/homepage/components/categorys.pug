@@ -1,8 +1,8 @@
 mixin categorys(data)
     each item,index in data
         .category-item
-            a(href).bm-panel.shadow
-                .category-item-cover(style=`background-image: url(${'/images/homepage/default/cover/' + String(item._id)[23] + '.jpg'})`)
+            a(href=`/category/${item._id}`).bm-panel.shadow
+                .category-item-cover(style=`background-image: url(${'/images/homepage/default/poster/small/' + String(item._id)[23] + '.jpg'})`)
                     .category-item-header
                         .category-item-header-box
                             span= item.name
