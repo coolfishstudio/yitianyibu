@@ -952,10 +952,6 @@
     top: -3rem;
     right: -1rem;
 }
-/* about */
-.about .bm-panel-content {
-    padding: 15px;
-}
 /* message */
 .message .message-notice-panel {
     position: relative;

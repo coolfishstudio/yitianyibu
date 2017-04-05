@@ -9,7 +9,7 @@ block title
 
 block main
     .message-notice-panel.shadow
-        .message-notice 留下你的话语，带走我的问候，欢迎大家没事踩踩。
+        .message-notice.text-shadow 留下你的话语，带走我的问候，欢迎大家没事踩踩。
     if data.messages.length > 0
         +comment-list(data.messages)    
     +create-comment(data)
