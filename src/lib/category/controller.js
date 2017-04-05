@@ -99,7 +99,7 @@ const viewCategoryPage = async (req, res) => {
         currentPage = 1
     }
     result.info = await categoryManager.getCategoryById(req.params.categoryId)
-    let results = await contentManager.findContents({ category: req.params.categoryId }, { limit, skip: currentPage })
+    let results = await contentManager.findContents({ category: req.params.categoryId }, { limit, skip: currentPage, createdAt: 1 })
     let promises = results.map(async (item) => {
         return {
             /* eslint-disable */

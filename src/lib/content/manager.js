@@ -11,12 +11,12 @@ const getContentById = async (contentId) => {
     const result = await Content.findById(contentId)
     return result
 }
-const findContents = async (options = {}, query = { limit: 10, skip: 1 }) => {
+const findContents = async (options = {}, query = { limit: 10, skip: 1, createdAt: -1 }) => {
     if (query.skip === 0) {
         query.skip = 1
     }
     let obj = Object.assign({ removed: false }, options)
-    const result = await Content.find(obj).sort({ createdAt: -1 }).limit(query.limit).skip((query.skip - 1) * query.limit)
+    const result = await Content.find(obj).sort(query.createdAt).limit(query.limit).skip((query.skip - 1) * query.limit)
     return result
 }
 const updateContentById = async (contentId, options = {}) => {
