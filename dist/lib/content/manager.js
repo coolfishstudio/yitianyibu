@@ -84,7 +84,7 @@ var findContents = function () {
                         }
                         obj = Object.assign({ removed: false }, options);
                         _context3.next = 4;
-                        return _model2.default.find(obj).sort(query.createdAt).limit(query.limit).skip((query.skip - 1) * query.limit);
+                        return _model2.default.find(obj).sort({ createdAt: query.createdAt }).limit(query.limit).skip((query.skip - 1) * query.limit);
 
                     case 4:
                         result = _context3.sent;
