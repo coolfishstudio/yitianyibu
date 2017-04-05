@@ -73,7 +73,7 @@ var getContentById = function () {
 var findContents = function () {
     var _ref3 = _asyncToGenerator(regeneratorRuntime.mark(function _callee3() {
         var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-        var query = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : { limit: 10, skip: 1 };
+        var query = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : { limit: 10, skip: 1, createdAt: -1 };
         var obj, result;
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
             while (1) {
@@ -84,7 +84,7 @@ var findContents = function () {
                         }
                         obj = Object.assign({ removed: false }, options);
                         _context3.next = 4;
-                        return _model2.default.find(obj).sort({ createdAt: -1 }).limit(query.limit).skip((query.skip - 1) * query.limit);
+                        return _model2.default.find(obj).sort(query.createdAt).limit(query.limit).skip((query.skip - 1) * query.limit);
 
                     case 4:
                         result = _context3.sent;

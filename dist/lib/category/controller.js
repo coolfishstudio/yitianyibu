@@ -345,7 +345,7 @@ var viewCategoryPage = function () {
                     case 6:
                         result.info = _context10.sent;
                         _context10.next = 9;
-                        return _manager4.default.findContents({ category: req.params.categoryId }, { limit: limit, skip: currentPage });
+                        return _manager4.default.findContents({ category: req.params.categoryId }, { limit: limit, skip: currentPage, createdAt: 1 });
 
                     case 9:
                         results = _context10.sent;
