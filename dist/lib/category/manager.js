@@ -121,16 +121,17 @@ var updateCategoryById = function () {
 
                     case 5:
                         analyse.name = options.name;
+                        analyse.desc = options.desc;
                         analyse.weight = options.weight;
                         analyse.updatedAt = Date.now();
-                        _context4.next = 10;
+                        _context4.next = 11;
                         return analyse.save();
 
-                    case 10:
+                    case 11:
                         result = _context4.sent;
                         return _context4.abrupt('return', result);
 
-                    case 12:
+                    case 13:
                     case 'end':
                         return _context4.stop();
                 }

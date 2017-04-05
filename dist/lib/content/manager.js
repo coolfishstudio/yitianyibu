@@ -272,6 +272,32 @@ var hitContentById = function () {
         return _ref7.apply(this, arguments);
     };
 }();
+var countContentByCategory = function () {
+    var _ref8 = _asyncToGenerator(regeneratorRuntime.mark(function _callee8(categoryId) {
+        var result;
+        return regeneratorRuntime.wrap(function _callee8$(_context8) {
+            while (1) {
+                switch (_context8.prev = _context8.next) {
+                    case 0:
+                        _context8.next = 2;
+                        return _model2.default.count({ category: categoryId, removed: false });
+
+                    case 2:
+                        result = _context8.sent;
+                        return _context8.abrupt('return', result);
+
+                    case 4:
+                    case 'end':
+                        return _context8.stop();
+                }
+            }
+        }, _callee8, undefined);
+    }));
+
+    return function countContentByCategory(_x9) {
+        return _ref8.apply(this, arguments);
+    };
+}();
 exports.default = {
     addContent: addContent,
     getContentById: getContentById,
@@ -279,5 +305,6 @@ exports.default = {
     updateContentById: updateContentById,
     removeContentById: removeContentById,
     countContent: countContent,
-    hitContentById: hitContentById
+    hitContentById: hitContentById,
+    countContentByCategory: countContentByCategory
 };
