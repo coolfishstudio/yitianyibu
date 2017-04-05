@@ -69,6 +69,10 @@ const hitContentById = async (contentId) => {
     const result = await analyse.save()
     return result
 }
+const countContentByCategory = async (categoryId) => {
+    const result = await Content.count({ category: categoryId, removed: false })
+    return result
+}
 export default {
     addContent,
     getContentById,
@@ -76,5 +80,6 @@ export default {
     updateContentById,
     removeContentById,
     countContent,
-    hitContentById
+    hitContentById,
+    countContentByCategory
 }

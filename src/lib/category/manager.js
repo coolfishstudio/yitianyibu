@@ -22,6 +22,7 @@ const updateCategoryById = async (categoryId, options = {}) => {
         return null
     }
     analyse.name = options.name
+    analyse.desc = options.desc
     analyse.weight = options.weight
     analyse.updatedAt = Date.now()
     const result = await analyse.save()

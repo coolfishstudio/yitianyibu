@@ -1,0 +1,12 @@
+mixin categorys(data)
+    each item,index in data
+        .category-item
+            a(href).bm-panel.shadow
+                .category-item-cover(style=`background-image: url(${'/images/homepage/default/cover/' + String(item._id)[23] + '.jpg'})`)
+                    .category-item-header
+                        .category-item-header-box
+                            span= item.name
+                .category-item-info.text-shadow
+                    time= locals.viewHelper.dateFormat(item.createdAt, 'yyyy-MM-dd')
+                    if item.postsCount !== 0
+                        span.pull-right= `${item.postsCount}篇`

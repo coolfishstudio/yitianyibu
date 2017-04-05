@@ -51,6 +51,12 @@ input, textarea {
 }
 .clearfix { zoom:1; }
 .clearfix:after { content: ""; display: block; height: 0; visibility: hidden; clear: both; }
+.pull-right {
+    float: right;
+}
+.pull-left {
+    float: left;
+}
 /**
  * font
  */

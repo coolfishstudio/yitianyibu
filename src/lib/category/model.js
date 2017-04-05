@@ -4,6 +4,7 @@ const Schema = mongoose.Schema
 
 const CategorySchema = new Schema({
     name       : { type: String, required: true },
+    desc       : { type: String, default: '' },
     weight     : { type: Number, default: 0 },
     removed    : { type: Boolean, default: false },
     createdByID: { type: Schema.Types.ObjectId, required: true },
