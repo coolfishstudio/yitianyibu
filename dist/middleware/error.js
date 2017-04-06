@@ -37,7 +37,7 @@ exports.default = function () {
         res.status(err.status || 500).format({
             html: function html() {
                 res.renderPage('error', {
-                    errcode: 500,
+                    errcode: err.status || 500,
                     message: message
                 });
             },

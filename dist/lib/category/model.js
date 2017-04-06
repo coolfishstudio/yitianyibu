@@ -14,6 +14,7 @@ var Schema = _db2.default.Schema;
 
 var CategorySchema = new Schema({
     name: { type: String, required: true },
+    pathname: { type: String, default: '' },
     desc: { type: String, default: '' },
     weight: { type: Number, default: 0 },
     removed: { type: Boolean, default: false },

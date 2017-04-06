@@ -113,7 +113,7 @@ var viewAdminRemoveCategory = function () {
 }();
 var createCategory = function () {
     var _ref4 = _asyncToGenerator(regeneratorRuntime.mark(function _callee4(req, res, next) {
-        var name, weight, desc, err, createdByID, result, _err;
+        var name, weight, desc, pathname, err, createdByID, result, _err;
 
         return regeneratorRuntime.wrap(function _callee4$(_context4) {
             while (1) {
@@ -123,9 +123,10 @@ var createCategory = function () {
                         name = req.body.name || '';
                         weight = req.body.weight || '';
                         desc = req.body.desc || '';
+                        pathname = (req.body.pathname || '').toLowerCase();
 
                         if (!(!name || !weight)) {
-                            _context4.next = 8;
+                            _context4.next = 9;
                             break;
                         }
 
@@ -134,19 +135,19 @@ var createCategory = function () {
                         err.status = 400;
                         return _context4.abrupt('return', next(err));
 
-                    case 8:
+                    case 9:
                         /* eslint-disable */
                         createdByID = req.user._id;
                         /* eslint-enable */
 
-                        _context4.next = 11;
-                        return _manager2.default.addCategory({ name: name, weight: weight, createdByID: createdByID, desc: desc });
+                        _context4.next = 12;
+                        return _manager2.default.addCategory({ name: name, weight: weight, createdByID: createdByID, desc: desc, pathname: pathname });
 
-                    case 11:
+                    case 12:
                         result = _context4.sent;
 
                         if (result) {
-                            _context4.next = 16;
+                            _context4.next = 17;
                             break;
                         }
 
@@ -155,10 +156,10 @@ var createCategory = function () {
                         _err.status = 400;
                         return _context4.abrupt('return', next(_err));
 
-                    case 16:
+                    case 17:
                         res.redirect('/admin/category');
 
-                    case 17:
+                    case 18:
                     case 'end':
                         return _context4.stop();
                 }
@@ -172,7 +173,7 @@ var createCategory = function () {
 }();
 var updateCategory = function () {
     var _ref5 = _asyncToGenerator(regeneratorRuntime.mark(function _callee5(req, res, next) {
-        var name, weight, desc, err, result, _err2;
+        var name, weight, desc, pathname, err, result, _err2;
 
         return regeneratorRuntime.wrap(function _callee5$(_context5) {
             while (1) {
@@ -182,9 +183,10 @@ var updateCategory = function () {
                         name = req.body.name || '';
                         weight = req.body.weight || '';
                         desc = req.body.desc || '';
+                        pathname = (req.body.pathname || '').toLowerCase();
 
                         if (!(!name || !weight)) {
-                            _context5.next = 8;
+                            _context5.next = 9;
                             break;
                         }
 
@@ -193,15 +195,15 @@ var updateCategory = function () {
                         err.status = 400;
                         return _context5.abrupt('return', next(err));
 
-                    case 8:
-                        _context5.next = 10;
-                        return _manager2.default.updateCategoryById(req.params.categoryId, { name: name, weight: weight, desc: desc });
+                    case 9:
+                        _context5.next = 11;
+                        return _manager2.default.updateCategoryById(req.params.categoryId, { name: name, weight: weight, desc: desc, pathname: pathname });
 
-                    case 10:
+                    case 11:
                         result = _context5.sent;
 
                         if (result) {
-                            _context5.next = 15;
+                            _context5.next = 16;
                             break;
                         }
 
@@ -210,10 +212,10 @@ var updateCategory = function () {
                         _err2.status = 400;
                         return _context5.abrupt('return', next(_err2));
 
-                    case 15:
+                    case 16:
                         res.redirect('/admin/category');
 
-                    case 16:
+                    case 17:
                     case 'end':
                         return _context5.stop();
                 }
@@ -324,8 +326,8 @@ var viewListPage = function () {
     };
 }();
 var viewCategoryPage = function () {
-    var _ref9 = _asyncToGenerator(regeneratorRuntime.mark(function _callee10(req, res) {
-        var result, currentPage, results, promises;
+    var _ref9 = _asyncToGenerator(regeneratorRuntime.mark(function _callee10(req, res, next) {
+        var result, currentPage, pathname, err, results, promises;
         return regeneratorRuntime.wrap(function _callee10$(_context10) {
             while (1) {
                 switch (_context10.prev = _context10.next) {
@@ -339,15 +341,44 @@ var viewCategoryPage = function () {
                         } catch (err) {
                             currentPage = 1;
                         }
-                        _context10.next = 6;
+
+                        if (!/^[0-9a-f]{24}/.test(req.params.categoryId)) {
+                            _context10.next = 10;
+                            break;
+                        }
+
+                        _context10.next = 7;
                         return _manager2.default.getCategoryById(req.params.categoryId);
 
-                    case 6:
+                    case 7:
                         result.info = _context10.sent;
-                        _context10.next = 9;
+                        _context10.next = 14;
+                        break;
+
+                    case 10:
+                        pathname = (req.params.categoryId || '').toLowerCase();
+                        _context10.next = 13;
+                        return _manager2.default.getCategoryByOptions({ pathname: pathname });
+
+                    case 13:
+                        result.info = _context10.sent;
+
+                    case 14:
+                        if (result.info) {
+                            _context10.next = 18;
+                            break;
+                        }
+
+                        err = new Error('Not Found');
+
+                        err.status = 404;
+                        return _context10.abrupt('return', next(err));
+
+                    case 18:
+                        _context10.next = 20;
                         return _manager4.default.findContents({ category: req.params.categoryId }, { limit: limit, skip: currentPage, createdAt: 1 });
 
-                    case 9:
+                    case 20:
                         results = _context10.sent;
                         promises = results.map(function () {
                             var _ref10 = _asyncToGenerator(regeneratorRuntime.mark(function _callee9(item) {
@@ -372,22 +403,22 @@ var viewCategoryPage = function () {
                                 }, _callee9, undefined);
                             }));
 
-                            return function (_x21) {
+                            return function (_x22) {
                                 return _ref10.apply(this, arguments);
                             };
                         }());
-                        _context10.next = 13;
+                        _context10.next = 24;
                         return Promise.all(promises);
 
-                    case 13:
+                    case 24:
                         result.list = _context10.sent;
 
                         result.currentPage = currentPage;
                         _context10.t0 = Math;
-                        _context10.next = 18;
+                        _context10.next = 29;
                         return _manager4.default.countContentByCategory(req.params.categoryId);
 
-                    case 18:
+                    case 29:
                         _context10.t1 = _context10.sent;
                         _context10.t2 = limit;
                         _context10.t3 = _context10.t1 / _context10.t2;
@@ -395,7 +426,7 @@ var viewCategoryPage = function () {
 
                         res.renderPage('category-list', { result: result });
 
-                    case 23:
+                    case 34:
                     case 'end':
                         return _context10.stop();
                 }
@@ -403,7 +434,7 @@ var viewCategoryPage = function () {
         }, _callee10, undefined);
     }));
 
-    return function viewCategoryPage(_x19, _x20) {
+    return function viewCategoryPage(_x19, _x20, _x21) {
         return _ref9.apply(this, arguments);
     };
 }();

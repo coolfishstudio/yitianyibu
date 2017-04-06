@@ -121,17 +121,18 @@ var updateCategoryById = function () {
 
                     case 5:
                         analyse.name = options.name;
+                        analyse.pathname = options.pathname;
                         analyse.desc = options.desc;
                         analyse.weight = options.weight;
                         analyse.updatedAt = Date.now();
-                        _context4.next = 11;
+                        _context4.next = 12;
                         return analyse.save();
 
-                    case 11:
+                    case 12:
                         result = _context4.sent;
                         return _context4.abrupt('return', result);
 
-                    case 13:
+                    case 14:
                     case 'end':
                         return _context4.stop();
                 }
@@ -211,6 +212,33 @@ var countCategory = function () {
         return _ref6.apply(this, arguments);
     };
 }();
+var getCategoryByOptions = function () {
+    var _ref7 = _asyncToGenerator(regeneratorRuntime.mark(function _callee7() {
+        var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+        var result;
+        return regeneratorRuntime.wrap(function _callee7$(_context7) {
+            while (1) {
+                switch (_context7.prev = _context7.next) {
+                    case 0:
+                        _context7.next = 2;
+                        return _model2.default.findOne(options);
+
+                    case 2:
+                        result = _context7.sent;
+                        return _context7.abrupt('return', result);
+
+                    case 4:
+                    case 'end':
+                        return _context7.stop();
+                }
+            }
+        }, _callee7, undefined);
+    }));
+
+    return function getCategoryByOptions() {
+        return _ref7.apply(this, arguments);
+    };
+}();
 
 exports.default = {
     addCategory: addCategory,
@@ -218,5 +246,6 @@ exports.default = {
     findCategorys: findCategorys,
     updateCategoryById: updateCategoryById,
     removeCategoryById: removeCategoryById,
-    countCategory: countCategory
+    countCategory: countCategory,
+    getCategoryByOptions: getCategoryByOptions
 };
