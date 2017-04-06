@@ -100,6 +100,7 @@ const viewCategoryPage = async (req, res, next) => {
     } catch (err) {
         currentPage = 1
     }
+    result.info = {}
     if (/^[0-9a-f]{24}/.test(req.params.categoryId)) {
         result.info = await categoryManager.getCategoryById(req.params.categoryId)
     } else {
@@ -112,7 +113,12 @@ const viewCategoryPage = async (req, res, next) => {
         return next(err)
     }
 
-    let results = await contentManager.findContents({ category: req.params.categoryId }, { limit, skip: currentPage, createdAt: 1 })
+    let results = await contentManager
+        .findContents({
+            /* eslint-disable */
+            category: result.info._id
+            /* eslint-enable */
+        }, { limit, skip: currentPage, createdAt: 1 })
     let promises = results.map(async (item) => {
         return {
             /* eslint-disable */
@@ -125,7 +131,9 @@ const viewCategoryPage = async (req, res, next) => {
     })
     result.list = await Promise.all(promises)
     result.currentPage = currentPage
-    result.countPage = Math.ceil(await contentManager.countContentByCategory(req.params.categoryId) / limit)
+    /* eslint-disable */
+    result.countPage = Math.ceil(await contentManager.countContentByCategory(result.info._id) / limit)
+    /* eslint-enable */
     res.renderPage('category-list', { result })
 }
 
