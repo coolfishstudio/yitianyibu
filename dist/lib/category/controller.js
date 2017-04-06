@@ -341,31 +341,32 @@ var viewCategoryPage = function () {
                         } catch (err) {
                             currentPage = 1;
                         }
+                        result.info = {};
 
                         if (!/^[0-9a-f]{24}/.test(req.params.categoryId)) {
-                            _context10.next = 10;
+                            _context10.next = 11;
                             break;
                         }
 
-                        _context10.next = 7;
+                        _context10.next = 8;
                         return _manager2.default.getCategoryById(req.params.categoryId);
 
-                    case 7:
+                    case 8:
                         result.info = _context10.sent;
-                        _context10.next = 14;
+                        _context10.next = 15;
                         break;
 
-                    case 10:
+                    case 11:
                         pathname = (req.params.categoryId || '').toLowerCase();
-                        _context10.next = 13;
+                        _context10.next = 14;
                         return _manager2.default.getCategoryByOptions({ pathname: pathname });
 
-                    case 13:
+                    case 14:
                         result.info = _context10.sent;
 
-                    case 14:
+                    case 15:
                         if (result.info) {
-                            _context10.next = 18;
+                            _context10.next = 19;
                             break;
                         }
 
@@ -374,11 +375,15 @@ var viewCategoryPage = function () {
                         err.status = 404;
                         return _context10.abrupt('return', next(err));
 
-                    case 18:
-                        _context10.next = 20;
-                        return _manager4.default.findContents({ category: req.params.categoryId }, { limit: limit, skip: currentPage, createdAt: 1 });
+                    case 19:
+                        _context10.next = 21;
+                        return _manager4.default.findContents({
+                            /* eslint-disable */
+                            category: result.info._id
+                            /* eslint-enable */
+                        }, { limit: limit, skip: currentPage, createdAt: 1 });
 
-                    case 20:
+                    case 21:
                         results = _context10.sent;
                         promises = results.map(function () {
                             var _ref10 = _asyncToGenerator(regeneratorRuntime.mark(function _callee9(item) {
@@ -407,26 +412,28 @@ var viewCategoryPage = function () {
                                 return _ref10.apply(this, arguments);
                             };
                         }());
-                        _context10.next = 24;
+                        _context10.next = 25;
                         return Promise.all(promises);
 
-                    case 24:
+                    case 25:
                         result.list = _context10.sent;
 
                         result.currentPage = currentPage;
+                        /* eslint-disable */
                         _context10.t0 = Math;
-                        _context10.next = 29;
-                        return _manager4.default.countContentByCategory(req.params.categoryId);
+                        _context10.next = 30;
+                        return _manager4.default.countContentByCategory(result.info._id);
 
-                    case 29:
+                    case 30:
                         _context10.t1 = _context10.sent;
                         _context10.t2 = limit;
                         _context10.t3 = _context10.t1 / _context10.t2;
                         result.countPage = _context10.t0.ceil.call(_context10.t0, _context10.t3);
 
+                        /* eslint-enable */
                         res.renderPage('category-list', { result: result });
 
-                    case 34:
+                    case 35:
                     case 'end':
                         return _context10.stop();
                 }
