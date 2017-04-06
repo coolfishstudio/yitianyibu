@@ -4,6 +4,7 @@ include ./svg/icon-svg-email.pug
 include ./svg/icon-svg-github.pug
 include ./svg/icon-svg-weixin.pug
 include ./svg/icon-svg-qq.pug
+include ./gotop.pug
 
 mixin footer-container()
     .container
@@ -45,19 +46,20 @@ mixin footer-container()
             h2
                 span 链接
             .menus
-                a.menu-item(href='/post')
+                a.menu-item(href='/category')
                     span 文章集
                 a.menu-item(href='/labs')
                     span 实验室
-                a.menu-item(href='/labs')
-                    span 工具箱
                 a.menu-item(href='/message')
                     span 留言薄
                 a.menu-item(href='/about')
                     span 关于我
+                a.menu-item(href='/unfinished')
+                    span 统计表
         .footer-block-qrcode
             h2
                 span 微信订阅号
             p
                 img(src="../images/homepage/qrcode.jpg")
     +copyright()
+    +gotop()

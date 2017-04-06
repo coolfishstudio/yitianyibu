@@ -1,23 +1,36 @@
 /* eslint-disable */
 /**
- * 菜单
+ * 网站相关
  */
-(function () {
-    $(function () {
-        // 导航菜单
-        (function () {
-            $('.top-nav-menu-toggle').on('click', function () {
-                if ($('.top-nav-menu-toggle').hasClass('active')) {
-                    $('.top-nav-menu-toggle').removeClass('active');
-                    $('.top-nav-menu').removeClass('top-nav-menu-show');
-                } else {
-                    $('.top-nav-menu-toggle').addClass('active');
-                    $('.top-nav-menu').addClass('top-nav-menu-show');
-                }
-            });
-        })();
-    });
-})($);
+$(document).ready(function () {
+    // 导航菜单
+    (function () {
+        $('.top-nav-menu-toggle').on('click', function () {
+            if ($('.top-nav-menu-toggle').hasClass('active')) {
+                $('.top-nav-menu-toggle').removeClass('active');
+                $('.top-nav-menu').removeClass('top-nav-menu-show');
+            } else {
+                $('.top-nav-menu-toggle').addClass('active');
+                $('.top-nav-menu').addClass('top-nav-menu-show');
+            }
+        });
+    })();
+    // 返回顶部
+    (function () {
+        $(window).on('scroll', function () {
+            if ($(window).scrollTop() > 100) {
+                $('.gotop').css('transform', 'translateY(0)');
+            } else {
+                $('.gotop').css('transform', 'translateY(2.5rem)');
+            }
+        });
+        $('.gotop').on('click', function () {
+            $('body').stop().animate({
+                scrollTop: 0
+            }, 500);
+        });
+    })();
+});
 /**
  * 工具类
  * 拖拽/事件绑定
