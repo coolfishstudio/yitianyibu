@@ -79,18 +79,24 @@ var findContents = function () {
             while (1) {
                 switch (_context3.prev = _context3.next) {
                     case 0:
-                        if (query.skip === 0) {
+                        if (!query.skip) {
                             query.skip = 1;
                         }
+                        if (!query.limit) {
+                            query.limit = 10;
+                        }
+                        if (!query.createdAt) {
+                            query.createdAt = -1;
+                        }
                         obj = Object.assign({ removed: false }, options);
-                        _context3.next = 4;
+                        _context3.next = 6;
                         return _model2.default.find(obj).sort({ createdAt: query.createdAt }).limit(query.limit).skip((query.skip - 1) * query.limit);
 
-                    case 4:
+                    case 6:
                         result = _context3.sent;
                         return _context3.abrupt('return', result);
 
-                    case 6:
+                    case 8:
                     case 'end':
                         return _context3.stop();
                 }
