@@ -1444,6 +1444,9 @@
         line-height: 2rem;
         font-size: 1.1rem;
     }
+    .category-content .category-post-words {
+        display: none;
+    }
 }
 .category-content .bm-panel-content {
     padding: 1% 4% 3%;
