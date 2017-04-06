@@ -26,7 +26,7 @@ export default () => [ (req, res) => {
     res.status(err.status || 500).format({
         html: () => {
             res.renderPage('error', {
-                errcode: 500,
+                errcode: err.status || 500,
                 message
             })
         },

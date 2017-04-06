@@ -687,9 +687,10 @@
 .post-content .post-meta span {
     font-size: .6rem;
 }
-.post-content .post-tags span {
+.post-content .post-tags .post-tag {
     display: inline-block;
     font-size: .6rem;
+    color: #222;
     height: .7rem;
     line-height: .7rem;
     background-color: #ebebeb;
@@ -699,7 +700,7 @@
     -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
-.post-content .post-tags span:hover {
+.post-content .post-tags .post-tag:hover {
     background-color: #222; 
     color: #fff;
 }
@@ -1278,12 +1279,12 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.3);
     transition: background-color .15s linear;
     -webkit-transition: background-color .15s linear;
 }
 .categorys .category-item a:hover .category-item-header {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.15);
 }
 .categorys .category-item-header-box {
     position: absolute;
@@ -1300,21 +1301,25 @@
 }
 .categorys .category-item-header-box span {
     color: #fff;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.7);
     line-height: 2.2rem;
     display: block;
     margin: 3px;
+    transition: background-color .15s linear;
+    -webkit-transition: background-color .15s linear;
 }
 .categorys .category-item-header-box:before,
 .categorys .category-item-header-box:after {
     content: '';
     display: block;
     color: #fff;
-    border: 3px solid rgba(0, 0, 0, 0.8);
+    border: 3px solid rgba(0, 0, 0, 0.7);
     z-index: 1;
     position: absolute;
     width: 75%;
     height: 50%;
+    transition: border-color .15s linear;
+    -webkit-transition: border-color .15s linear;
 }
 .categorys .category-item-header-box:before {
     top: -3px;
@@ -1327,6 +1332,17 @@
     right: -3px;
     border-left: 3px solid transparent;
     border-top: 3px solid transparent;
+}
+.categorys .category-item a:hover .category-item-header-box span {
+    background-color: rgba(0, 0, 0, 1);
+}
+.categorys .category-item a:hover .category-item-header-box:before {
+    border-left: 3px solid rgba(0, 0, 0, 1);
+    border-top: 3px solid rgba(0, 0, 0, 1);
+}
+.categorys .category-item a:hover .category-item-header-box:after {
+    border-right: 3px solid rgba(0, 0, 0, 1);
+    border-bottom: 3px solid rgba(0, 0, 0, 1);
 }
 .categorys .category-item .category-item-info {
     font-size: .7rem;
@@ -1392,6 +1408,14 @@
     height: 0;
     position: relative;
 }
+.category-content .category-cover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.25);
+}
 .category-content .category-header {
     position: absolute;
     top: 0;
@@ -1406,7 +1430,7 @@
 }
 .category-content .category-header span {
     color: #fff;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.8);
     line-height: 4.2rem;
     display: block;
     margin: 3px;
@@ -1418,7 +1442,7 @@
     content: '';
     display: block;
     color: #fff;
-    border: 3px solid rgba(0, 0, 0, 0.7);
+    border: 3px solid rgba(0, 0, 0, 0.8);
     z-index: 1;
     position: absolute;
     width: 75%;

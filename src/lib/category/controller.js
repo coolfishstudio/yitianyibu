@@ -29,6 +29,7 @@ const createCategory = async (req, res, next) => {
     let name = req.body.name || ''
     let weight = req.body.weight || ''
     let desc = req.body.desc || ''
+    let pathname = (req.body.pathname || '').toLowerCase()
 
     if (!name || !weight) {
         const err = new Error('参数不足')
@@ -38,7 +39,7 @@ const createCategory = async (req, res, next) => {
     /* eslint-disable */
     let createdByID = req.user._id
     /* eslint-enable */
-    const result = await categoryManager.addCategory({ name, weight, createdByID, desc })
+    const result = await categoryManager.addCategory({ name, weight, createdByID, desc, pathname })
     if (!result) {
         const err = new Error('创建失败')
         err.status = 400
@@ -51,13 +52,14 @@ const updateCategory = async (req, res, next) => {
     let name = req.body.name || ''
     let weight = req.body.weight || ''
     let desc = req.body.desc || ''
+    let pathname = (req.body.pathname || '').toLowerCase()
 
     if (!name || !weight) {
         const err = new Error('参数不足')
         err.status = 400
         return next(err)
     }
-    const result = await categoryManager.updateCategoryById(req.params.categoryId, { name, weight, desc })
+    const result = await categoryManager.updateCategoryById(req.params.categoryId, { name, weight, desc, pathname })
     if (!result) {
         const err = new Error('修改失败')
         err.status = 400
@@ -89,7 +91,7 @@ const viewListPage = async (req, res) => {
 
     res.renderPage('categorys', { result })
 }
-const viewCategoryPage = async (req, res) => {
+const viewCategoryPage = async (req, res, next) => {
     log('category_controller').info('类别列表')
     let result = {}
     let currentPage = 1
@@ -98,7 +100,18 @@ const viewCategoryPage = async (req, res) => {
     } catch (err) {
         currentPage = 1
     }
-    result.info = await categoryManager.getCategoryById(req.params.categoryId)
+    if (/^[0-9a-f]{24}/.test(req.params.categoryId)) {
+        result.info = await categoryManager.getCategoryById(req.params.categoryId)
+    } else {
+        let pathname = (req.params.categoryId || '').toLowerCase()
+        result.info = await categoryManager.getCategoryByOptions({ pathname })
+    }
+    if (!result.info) {
+        const err = new Error('Not Found')
+        err.status = 404
+        return next(err)
+    }
+
     let results = await contentManager.findContents({ category: req.params.categoryId }, { limit, skip: currentPage, createdAt: 1 })
     let promises = results.map(async (item) => {
         return {

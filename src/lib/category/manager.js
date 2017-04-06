@@ -22,6 +22,7 @@ const updateCategoryById = async (categoryId, options = {}) => {
         return null
     }
     analyse.name = options.name
+    analyse.pathname = options.pathname
     analyse.desc = options.desc
     analyse.weight = options.weight
     analyse.updatedAt = Date.now()
@@ -42,6 +43,10 @@ const countCategory = async () => {
     const result = await Category.count({ removed: false })
     return result
 }
+const getCategoryByOptions = async (options = {}) => {
+    const result = await Category.findOne(options)
+    return result
+}
 
 export default {
     addCategory,
@@ -49,5 +54,6 @@ export default {
     findCategorys,
     updateCategoryById,
     removeCategoryById,
-    countCategory
+    countCategory,
+    getCategoryByOptions
 }

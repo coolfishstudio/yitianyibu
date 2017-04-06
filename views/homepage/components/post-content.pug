@@ -11,16 +11,17 @@ mixin post-content(data)
                     if (data.commentsCount)
                         span= `${data.commentsCount} 条评论`
                         span.baffle |
-                    span.post-category
-                        | 分类于 
-                        a(href=`/category/${data.categoryId}`)= data.category
+                    if data.tag.length > 0
+                        span.post-category
+                            | 所属于 
+                            each item in data.tag
+                                span= item.name
         .bm-panel-content
             .post-body.theme-font-text-color!= data.html
                 
         .bm-panel-bar
             .post-tags
-                each item in data.tag
-                    span.post-tag= item.name
+                a.post-tag(href=`/category/${data.pathname || data.categoryId}`)= data.category
             .post-like
                 span.heart
 

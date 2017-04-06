@@ -17,8 +17,10 @@ block main
                     .form-input
                         input.form-control(type="text" placeholder="请输入类别名称" name="name" value=result.name)
                     .form-input
+                        input.form-control(type="text" placeholder="请输入类别描述" name="desc" value=result.desc)
+                    .form-input
                         input.form-control(type="text" placeholder="请输入类别权重" name="weight" value=result.weight)
                     .form-input
-                        input.form-control(type="text" placeholder="请输入类别描述" name="desc" value=result.desc)
+                        input.form-control(type="text" placeholder="请输入路由网址" name="pathname" value=result.pathname)
                     .form-input
                         button.btn-submit(type="submit") 确定修改
