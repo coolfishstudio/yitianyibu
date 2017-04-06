@@ -12,8 +12,14 @@ const getContentById = async (contentId) => {
     return result
 }
 const findContents = async (options = {}, query = { limit: 10, skip: 1, createdAt: -1 }) => {
-    if (query.skip === 0) {
+    if (!query.skip) {
         query.skip = 1
+    }
+    if (!query.limit) {
+        query.limit = 10
+    }
+    if (!query.createdAt) {
+        query.createdAt = -1
     }
     let obj = Object.assign({ removed: false }, options)
     const result = await Content.find(obj).sort({ createdAt: query.createdAt }).limit(query.limit).skip((query.skip - 1) * query.limit)
