@@ -348,12 +348,11 @@ var updateContent = function () {
 
                     case 13:
                         html = '<div class="markdown-text">' + _helper.xss.process(_helper.md.render(content || '')) + '</div>';
-                        reg = new RegExp('!\\[.*?\\]\\((.*?)\\)', 'g');
-                        images = [];
+                        reg = new RegExp('!\\[.*?\\]\\((.*?)\\)', 'img');
+                        images = content.match(reg) || [];
 
-                        content.replace(reg, function () {
-                            images.push(RegExp.$1);
-                            return RegExp.$1;
+                        images = images.map(function (item) {
+                            return item.replace(/!\[.*\]\(/, '').replace(/\)/, '');
                         });
                         option = {
                             title: title,
