@@ -145,11 +145,10 @@ const updateContent = async (req, res, next) => {
         return next(err)
     }
     const html = `<div class="markdown-text">${xss.process(md.render(content || ''))}</div>`
-    const reg = new RegExp('!\\[.*?\\]\\((.*?)\\)', 'g')
-    let images = []
-    content.replace(reg, () => {
-        images.push(RegExp.$1)
-        return RegExp.$1
+    const reg = new RegExp('!\\[.*?\\]\\((.*?)\\)', 'img')
+    let images = content.match(reg) || []
+    images = images.map((item) => {
+        return item.replace(/!\[.*\]\(/, '').replace(/\)/, '')
     })
     const option = {
         title,
