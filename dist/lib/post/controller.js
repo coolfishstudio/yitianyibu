@@ -196,24 +196,25 @@ var viewPostPage = function () {
                     case 18:
                         post.categoryId = post.category;
                         post.category = category.name;
+                        post.categoryPathname = category.pathname || '';
                         post.tag = tags;
                         ip = (0, _helper.getClientIp)(req);
 
                         post.clientIp = ip;
-                        _context3.next = 25;
+                        _context3.next = 26;
                         return _manager4.default.findCommentsByContentId(req.params.pid);
 
-                    case 25:
+                    case 26:
                         post.comments = _context3.sent;
-                        _context3.next = 28;
+                        _context3.next = 29;
                         return _manager4.default.countCommentByContentId(req.params.pid);
 
-                    case 28:
+                    case 29:
                         post.commentsCount = _context3.sent;
 
                         res.renderPage('post', { post: post });
 
-                    case 30:
+                    case 31:
                     case 'end':
                         return _context3.stop();
                 }
