@@ -21,7 +21,7 @@ mixin post-content(data)
                 
         .bm-panel-bar
             .post-tags
-                a.post-tag(href=`/category/${data.pathname || data.categoryId}`)= data.category
+                a.post-tag(href=`/category/${data.categoryPathname || data.categoryId}`)= data.category
             .post-like
                 span.heart
 

@@ -64,6 +64,7 @@ const viewPostPage = async (req, res) => {
     }
     post.categoryId = post.category
     post.category = category.name
+    post.categoryPathname = category.pathname || ''
     post.tag = tags
     const ip = getClientIp(req)
     post.clientIp = ip
