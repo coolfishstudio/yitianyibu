@@ -4,6 +4,8 @@ include ../components/post-content.pug
 include ../components/comment-list.pug
 include ../components/create-comment.pug
 
+include ../components/share.pug
+
 block title
     title= `${post.title} ｜ 前端，后端，移动端，端端皆为技术 - 一天一步网。`
 
@@ -13,3 +15,6 @@ block main
     if (post.comments.length > 0)
         +comment-list(post.comments)
     +create-comment(post)
+
+block footer
+    +share()
