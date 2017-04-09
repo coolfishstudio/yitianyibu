@@ -72,8 +72,19 @@ const viewPostPage = async (req, res) => {
     post.commentsCount = await commentManager.countCommentByContentId(req.params.pid)
     res.renderPage('post', { post })
 }
+const viewPostSharePage = async (req, res) => {
+    let post = await contentManager.getContentById(req.params.pid)
+    post.html = post.html.replace(/<\/?.+?>/g, '').replace(/\r\n/g, ' ').replace(/\n/g, ' ')
+    if (post.html.length > 100) {
+        post.html = post.html.substr(0, 100)
+        post.html += '...'
+    }
+    post.categoryName = (await categoryManager.getCategoryById(post.category)).name || '其他'
+    res.renderPage('share', { post })
+}
 
 export default {
     viewListPage,
-    viewPostPage
+    viewPostPage,
+    viewPostSharePage
 }

@@ -7,5 +7,6 @@ const router = new Router()
 router.get('/', postController.viewListPage)
 router.get('/:pid', postController.viewPostPage)
 router.post('/:pid/comment', commentController.createComment)
+router.get('/:pid/share-card', postController.viewPostSharePage)
 
 export default router

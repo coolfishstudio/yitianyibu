@@ -23,6 +23,6 @@ mixin post-content(data)
             .post-tags
                 a.post-tag(href=`/category/${data.categoryPathname || data.categoryId}`)= data.category
             .post-like
-                span.heart
+                span.heart#heart
 
 

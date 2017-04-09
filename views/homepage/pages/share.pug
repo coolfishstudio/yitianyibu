@@ -1,0 +1,127 @@
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        title 分享卡
+        meta(name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no")
+        meta(name="apple-mobile-web-app-capable" content="yes")
+        meta(name="mobile-web-app-capable" content="yes")
+        meta(name="apple-mobile-web-app-status-bar-style" content="black-translucent")
+        meta(name="format-detection" content="telephone=no")
+        style.
+            html, body, .page-screen {
+                height: 100%;
+                font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "\5FAE\8F6F\96C5\9ED1", Arial, sans-serif;
+            }
+            html, body {background: #fff;}
+            * {margin: 0; padding: 0;}
+            img{vertical-align: middle; border: none;}
+            .page {
+                width: 750px;
+                height: 830px;
+                background-repeat: no-repeat;
+                text-align: center;
+                box-sizing: border-box;
+                position: relative;
+            }
+            .page-content {
+                height: 460px;
+                padding: 50px 50px 36px 50px;
+                background-color: #222023;
+            }
+            .page-footer {
+                position: relative;
+                height: 194px;
+                background-color: #fff;
+                padding: 20px 40px;
+                border: 50px solid #222023;
+                border-top: 0;
+            }
+            .page-content-panel {
+                border: 8px solid #2ecc40;
+                height: 364px;
+                position: relative;
+                padding: 60px 0px 20px 0px;
+                text-align: center;
+            }
+            .page-name {
+                position: absolute;
+                font-size: 40px;
+                padding: 20px 40px;
+                background-color: #222023;
+                color: #fff;
+                top: -48px;
+                left: 197px;
+            }
+            .page-post-title {
+                color: #fff;
+                font-size: 36px;
+                font-weight: lighter;
+            }
+            .page-post-content {
+                color: #999;
+                margin-top: 35px;
+                margin-left: 120px;
+                margin-right: 120px;
+                font-size: 28px;
+                font-weight: lighter;
+            }
+            .page-post-desc {
+                position: absolute;
+                font-size: 28px;
+                padding: 20px 40px;
+                background-color: #222023;
+                color: #2ecc40;
+                bottom: -44px;
+                left: 165px;
+                font-weight: lighter;
+            }
+            .qr {
+                width: 194px;
+                float: left;
+            }
+            .qr-desc {
+                text-align: left;
+                padding: 10px;
+            }
+            .qr-desc .font-text {
+                padding-left: 204px;
+                color: #222;
+                font-size: 28px;
+                font-weight: bold;
+                padding-bottom: 20px;
+            }
+            .qr-desc .help-text {
+                padding-left: 214px;
+                color: #a8a8a8;
+                font-weight: lighter;
+                font-size: 16px;
+                line-height: 36px;
+            }
+            .triangle-down {
+                position: absolute;
+                width: 0;
+                height: 0;
+                border-left: 40px solid transparent;
+                border-right: 40px solid transparent;
+                border-top: 40px solid #222023;
+                top: -20px;
+                left: 285px;
+            }
+
+    body
+        .page#shareCard
+            .page-content
+                .page-content-panel
+                    .page-name 一天一步
+                    .page-post-title= post.title
+                    .page-post-content= post.html
+                    .page-post-desc 更多内容尽在这里
+            .page-footer
+                .triangle-down
+                img.qr(src='/images/homepage/qrcode.jpg')
+                .qr-desc
+                    .font-text 长按二维码立即查看
+                    .help-text= post.title
+                    .help-text= `发表于 ${locals.viewHelper.dateFormat(post.createdAt, 'yyyy／MM／dd')}`
+                    .help-text= `所属 ${post.categoryName} 系列的文章`
