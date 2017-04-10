@@ -124,7 +124,7 @@ html
                     .page-post-desc 更多内容尽在这里
             .page-footer
                 .triangle-down
-                img.qr(src=`/post/${post._id}/qr?url=${post.shareUrl}`)
+                img.qr(src=`/post/${post._id}/qr?url=http://${post.shareUrl}`)
                 .qr-desc
                     .font-text 长按二维码立即查看
                     .help-text= post.title
