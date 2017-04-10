@@ -21,5 +21,7 @@ var router = new _express.Router();
 router.get('/', _controller2.default.viewListPage);
 router.get('/:pid', _controller2.default.viewPostPage);
 router.post('/:pid/comment', _controller4.default.createComment);
+router.get('/:pid/share', _controller2.default.viewPostSharePage);
+router.get('/:pid/qr', _controller2.default.getQrImage);
 
 exports.default = router;

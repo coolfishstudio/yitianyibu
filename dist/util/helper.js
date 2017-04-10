@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.getClientIp = exports.xss = exports.md = exports.getMD5 = undefined;
+exports.qrHelper = exports.getClientIp = exports.xss = exports.md = exports.getMD5 = undefined;
 
 var _crypto = require('crypto');
 
@@ -16,6 +16,10 @@ var _markdownIt2 = _interopRequireDefault(_markdownIt);
 var _xss = require('xss');
 
 var _xss2 = _interopRequireDefault(_xss);
+
+var _qrImage = require('qr-image');
+
+var _qrImage2 = _interopRequireDefault(_qrImage);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -45,7 +49,16 @@ var xss = new _xss2.default.FilterXSS({
 var getClientIp = function getClientIp(req) {
     return req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress || req.connection.socket.remoteAddress;
 };
+/**
+ * 生成二维码
+ */
+var qrHelper = function qrHelper(url, callback) {
+    var qrImg = _qrImage2.default.image(url, { type: 'png', parse_url: true, margin: 1, size: 6 });
+    callback(null, qrImg);
+};
+
 exports.getMD5 = getMD5;
 exports.md = md;
 exports.xss = xss;
 exports.getClientIp = getClientIp;
+exports.qrHelper = qrHelper;

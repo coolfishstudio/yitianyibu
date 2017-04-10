@@ -70,7 +70,7 @@ var viewListPage = function () {
 
                                             case 4:
                                                 item.commentsCount = _context.sent;
-                                                category = '';
+                                                category = {};
 
                                                 if (!item.category) {
                                                     _context.next = 16;
@@ -82,7 +82,7 @@ var viewListPage = function () {
                                                 return _manager6.default.getCategoryById(item.category);
 
                                             case 10:
-                                                category = _context.sent.name;
+                                                category = _context.sent;
                                                 _context.next = 16;
                                                 break;
 
@@ -90,7 +90,7 @@ var viewListPage = function () {
                                                 _context.prev = 13;
                                                 _context.t0 = _context['catch'](7);
 
-                                                category = '';
+                                                category = {};
 
                                             case 16:
                                                 return _context.abrupt('return', {
@@ -103,7 +103,9 @@ var viewListPage = function () {
                                                     html: item.html,
                                                     title: item.title,
                                                     comments: item.commentsCount,
-                                                    category: category
+                                                    categoryId: item.category,
+                                                    category: category.name || '',
+                                                    categoryPathname: category.pathname || ''
                                                 });
 
                                             case 17:
@@ -226,8 +228,86 @@ var viewPostPage = function () {
         return _ref3.apply(this, arguments);
     };
 }();
+var viewPostSharePage = function () {
+    var _ref4 = _asyncToGenerator(regeneratorRuntime.mark(function _callee4(req, res) {
+        var post;
+        return regeneratorRuntime.wrap(function _callee4$(_context4) {
+            while (1) {
+                switch (_context4.prev = _context4.next) {
+                    case 0:
+                        _context4.next = 2;
+                        return _manager2.default.getContentById(req.params.pid);
+
+                    case 2:
+                        post = _context4.sent;
+
+                        post.html = post.html.replace(/<\/?.+?>/g, '').replace(/\r\n/g, ' ').replace(/\n/g, ' ');
+                        if (post.html.length > 100) {
+                            post.html = post.html.substr(0, 100);
+                            post.html += '...';
+                        }
+                        _context4.next = 7;
+                        return _manager6.default.getCategoryById(post.category);
+
+                    case 7:
+                        _context4.t0 = _context4.sent.name;
+
+                        if (_context4.t0) {
+                            _context4.next = 10;
+                            break;
+                        }
+
+                        _context4.t0 = '其他';
+
+                    case 10:
+                        post.categoryName = _context4.t0;
+
+                        /* eslint-disable */
+                        post.shareUrl = req.get('host') + '/post/' + post._id;
+                        /* eslint-enable */
+                        res.renderPage('share', { post: post });
+
+                    case 13:
+                    case 'end':
+                        return _context4.stop();
+                }
+            }
+        }, _callee4, undefined);
+    }));
+
+    return function viewPostSharePage(_x6, _x7) {
+        return _ref4.apply(this, arguments);
+    };
+}();
+var getQrImage = function () {
+    var _ref5 = _asyncToGenerator(regeneratorRuntime.mark(function _callee5(req, res) {
+        var url;
+        return regeneratorRuntime.wrap(function _callee5$(_context5) {
+            while (1) {
+                switch (_context5.prev = _context5.next) {
+                    case 0:
+                        url = req.query.url ? req.query.url : req.get('referrer');
+
+                        (0, _helper.qrHelper)(url, function (error, qrImg) {
+                            qrImg.pipe(res);
+                        });
+
+                    case 2:
+                    case 'end':
+                        return _context5.stop();
+                }
+            }
+        }, _callee5, undefined);
+    }));
+
+    return function getQrImage(_x8, _x9) {
+        return _ref5.apply(this, arguments);
+    };
+}();
 
 exports.default = {
     viewListPage: viewListPage,
-    viewPostPage: viewPostPage
+    viewPostPage: viewPostPage,
+    viewPostSharePage: viewPostSharePage,
+    getQrImage: getQrImage
 };
