@@ -151,7 +151,7 @@ var viewListPage = function () {
 }();
 var viewPostPage = function () {
     var _ref3 = _asyncToGenerator(regeneratorRuntime.mark(function _callee3(req, res) {
-        var post, tags, category, ip;
+        var post, tags, category, ip, contentNear;
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
             while (1) {
                 switch (_context3.prev = _context3.next) {
@@ -213,10 +213,33 @@ var viewPostPage = function () {
 
                     case 29:
                         post.commentsCount = _context3.sent;
+                        _context3.next = 32;
+                        return _manager2.default.getContentNear(post.createdAt);
 
+                    case 32:
+                        contentNear = _context3.sent;
+
+                        post.prev = null;
+                        post.next = null;
+                        if (contentNear.prev) {
+                            post.prev = {
+                                /* eslint-disable */
+                                _id: contentNear.prev._id,
+                                /* eslint-enable */
+                                title: contentNear.prev.title
+                            };
+                        }
+                        if (contentNear.next) {
+                            post.next = {
+                                /* eslint-disable */
+                                _id: contentNear.next._id,
+                                /* eslint-enable */
+                                title: contentNear.next.title
+                            };
+                        }
                         res.renderPage('post', { post: post });
 
-                    case 31:
+                    case 38:
                     case 'end':
                         return _context3.stop();
                 }

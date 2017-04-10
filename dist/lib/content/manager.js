@@ -304,6 +304,40 @@ var countContentByCategory = function () {
         return _ref8.apply(this, arguments);
     };
 }();
+var getContentNear = function () {
+    var _ref9 = _asyncToGenerator(regeneratorRuntime.mark(function _callee9(createdAt) {
+        var prev, next;
+        return regeneratorRuntime.wrap(function _callee9$(_context9) {
+            while (1) {
+                switch (_context9.prev = _context9.next) {
+                    case 0:
+                        _context9.next = 2;
+                        return _model2.default.findOne({ removed: false, createdAt: { $lt: createdAt } }).sort({ _id: -1 });
+
+                    case 2:
+                        prev = _context9.sent;
+                        _context9.next = 5;
+                        return _model2.default.findOne({ removed: false, createdAt: { $gt: createdAt } }).sort({ _id: 1 });
+
+                    case 5:
+                        next = _context9.sent;
+                        return _context9.abrupt('return', {
+                            prev: prev,
+                            next: next
+                        });
+
+                    case 7:
+                    case 'end':
+                        return _context9.stop();
+                }
+            }
+        }, _callee9, undefined);
+    }));
+
+    return function getContentNear(_x10) {
+        return _ref9.apply(this, arguments);
+    };
+}();
 exports.default = {
     addContent: addContent,
     getContentById: getContentById,
@@ -312,5 +346,6 @@ exports.default = {
     removeContentById: removeContentById,
     countContent: countContent,
     hitContentById: hitContentById,
-    countContentByCategory: countContentByCategory
+    countContentByCategory: countContentByCategory,
+    getContentNear: getContentNear
 };
