@@ -72,6 +72,25 @@ const viewPostPage = async (req, res) => {
     post.clientIp = ip
     post.comments = await commentManager.findCommentsByContentId(req.params.pid)
     post.commentsCount = await commentManager.countCommentByContentId(req.params.pid)
+    let contentNear = await contentManager.getContentNear(post.createdAt)
+    post.prev = null
+    post.next = null
+    if (contentNear.prev) {
+        post.prev = {
+            /* eslint-disable */
+            _id  : contentNear.prev._id,
+            /* eslint-enable */
+            title: contentNear.prev.title
+        }
+    }
+    if (contentNear.next) {
+        post.next = {
+            /* eslint-disable */
+            _id  : contentNear.next._id,
+            /* eslint-enable */
+            title: contentNear.next.title
+        }
+    }
     res.renderPage('post', { post })
 }
 const viewPostSharePage = async (req, res) => {

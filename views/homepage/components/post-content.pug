@@ -18,11 +18,17 @@ mixin post-content(data)
                                 span= item.name
         .bm-panel-content
             .post-body.theme-font-text-color!= data.html
-                
         .bm-panel-bar
             .post-tags
                 a.post-tag(href=`/category/${data.categoryPathname || data.categoryId}`)= data.category
             .post-like
                 span.heart#heart
+        .post-near
+            if post.prev
+                .post-near-prev
+                    a(href=`/post/${post.prev._id}`)= post.prev.title
+            if post.next
+                .post-near-next
+                    a(href=`/post/${post.next._id}`)= post.next.title
 
 

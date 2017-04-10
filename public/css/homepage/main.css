@@ -604,10 +604,10 @@
     font-size: .7rem;
     color: #333;
     line-height: 2;
-    word-break: break-all; 
-    padding-bottom: 16px;
+    word-break: break-all;
     overflow: hidden;
     width: 100%;
+    padding-bottom: .8rem;
 }
 .post-content .post-body img {
     max-width: 100%;
@@ -775,7 +775,53 @@
     top: -8px;
     right: 0;
 }
-
+.post-near {
+    background-color: #e3e3e3;
+    padding: 0 .25rem;
+}
+.post-near-prev, .post-near-next {
+    display: inline-block;
+    width: 50%;
+    font-size: .65rem;
+    vertical-align: middle;
+}
+.post-near-next {
+    text-align: right;
+}
+.post-near-prev a, .post-near-next a {
+    display: block;
+    padding: .4rem;
+    color: #666;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: relative;
+}
+.post-near-prev a {
+    padding-left: 1rem;
+}
+.post-near-next a {
+    padding-right: 1rem;
+}
+.post-near-prev a:before {
+    content: '«';
+    left: 7px;
+    top: 9px;
+}
+.post-near-next a:after {
+    content: '»';
+    right: 7px;
+    top: 7px;
+}
+.post-near-next a:after,
+.post-near-prev a:before {
+    position: absolute;
+    display: block;
+}
+.post-near-prev a:hover,
+.post-near-next a:hover {
+    color: #2ecc40;
+}
 /* commont items */
 .comment-list {
     max-width: 1000px;
