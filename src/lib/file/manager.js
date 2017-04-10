@@ -3,6 +3,7 @@ import path from 'path'
 import formidable from 'formidable'
 import utility from 'utility'
 
+
 const uploadImagePath = 'images/homepage'
 const uploadContentImagePath = 'images/content'
 

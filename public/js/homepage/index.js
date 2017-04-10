@@ -30,6 +30,46 @@ $(document).ready(function () {
             }, 500);
         });
     })();
+    // 分享
+    (function () {
+        $(function() {
+            if (!$('.post-share-data-temp').length > 0) { return false; }
+            var shareId = $('.post-share-data-temp').attr('data-id');
+            var shareType = $('.post-share-data-temp').attr('data-type');
+            var shareOid = $('.post-share-data-temp').attr('data-oid');
+            var ua = navigator.userAgent.toLowerCase();
+            var isPc = !((ua.indexOf('Android') !== -1)
+                        || (ua.indexOf('iPhone') !== -1)
+                        || (ua.indexOf('iPad') !== -1)
+                        || (ua.indexOf('iPod') !== -1));
+            $('#' + shareId).click(function () {
+                if (isPc) {
+                    $('.post-share-text-save').html('右键保存图片，分享给好友即可；');
+                } else {
+                    $('.post-share-text-save').html('长按保存图片，分享给好友即可；');
+                }
+                $('.post-share-card-box').show();
+                initCardTheme();
+            });
+            $('#shareCancelBtn').click(function () {
+                $('.post-share-card-box').hide();
+            });
+            $('.post-share-card-box').click(function () {
+                if (parseInt($('.post-share-card-panel').width()) > 400 ) {
+                    $('.post-share-card-box').hide();
+                }
+            });
+            // TODO 更换主题
+            var initCardTheme = function () {
+                $('#inviteCard').removeAttr('src').hide();
+                setTimeout(function() {
+                    $('#inviteCard').show();
+                    $('.post-share-card').attr('src', '/' + shareType + '/' + shareOid + '/share');
+                }, 0);
+            };
+        });
+
+    })();
 });
 /**
  * 工具类

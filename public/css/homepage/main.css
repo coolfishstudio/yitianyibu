@@ -1574,19 +1574,17 @@
     z-index: 59;
 }
 .post-share-card-box .post-share-card-panel {
-    width: 16rem;
-    height: 28.4rem;
+    width: 20rem;
     background-color: #fff;
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-top: -14.2rem;
+    margin-top: -12.325rem;
     margin-left: -8rem;
 }
 .post-share-card-box .post-share-card {
-    width: 69.34%;
-    padding-bottom: 122.66666666666666%;
-    margin: .75rem auto;
+    width: 100%;
+    padding-bottom: 100%;
     position: relative;
     background-color: #f2f2f2;
 }
@@ -1637,6 +1635,7 @@
     font-size: .6rem;
     margin: 0 auto;
     width: 69.34%;
+    text-align: center;
 }
 .post-share-card-box .post-share-btns {
     text-align: center;
@@ -1645,13 +1644,20 @@
     background-color: #48abff;
     color: #fff;
     font-size: .7rem;
-    width: 5rem;
+    width: 100%;
     display: inline-block;
-    height: 1.45rem;
-    line-height: 1.45rem;
+    height: 2rem;
+    line-height: 2rem;
     text-align: center;
-    border-radius: 1.45rem;
-    margin: 0 .25rem;
+}
+.post-share-card img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    vertical-align: inherit;
 }
 @keyframes jump {
     from {
@@ -1729,7 +1735,16 @@ span:nth-child(2) {
 span:nth-child(1) {
     -webkit-animation-delay: .1s;
 }
-
+@media screen and (max-width: 400px) {
+    .post-share-card-box {
+        background-color: #fff;
+    }
+    .post-share-card-box .post-share-card-panel {
+        width: 90%;
+        margin-left: 5%;
+        left: 0;
+    }
+}
 
 
 

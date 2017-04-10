@@ -3,7 +3,7 @@ import contentManager from '../content/manager'
 import commentManager from '../comment/manager'
 import categoryManager from '../category/manager'
 import tagManager from '../tag/manager'
-import { getClientIp } from '../../util/helper'
+import { getClientIp, qrHelper } from '../../util/helper'
 
 const limit = 10
 
@@ -24,26 +24,28 @@ const viewListPage = async (req, res) => {
         }
         /* eslint-disable */
         item.commentsCount = await commentManager.countCommentByContentId(item._id)
-        let category = ''
+        let category = {}
         if (item.category) {
             try {
-                category = (await categoryManager.getCategoryById(item.category)).name
+                category = (await categoryManager.getCategoryById(item.category))
             } catch (e) {
-                category = '' 
+                category = {}
             }   
         }
         /* eslint-enable */
         return {
             /* eslint-disable */
-            _id      : item._id,
+            _id             : item._id,
             /* eslint-enable */
-            createdAt: item.createdAt,
-            hits     : item.hits,
-            images   : item.images,
-            html     : item.html,
-            title    : item.title,
-            comments : item.commentsCount,
-            category
+            createdAt       : item.createdAt,
+            hits            : item.hits,
+            images          : item.images,
+            html            : item.html,
+            title           : item.title,
+            comments        : item.commentsCount,
+            categoryId      : item.category,
+            category        : category.name || '',
+            categoryPathname: category.pathname || ''
         }
     })
     let posts = await Promise.all(promises)
@@ -80,11 +82,21 @@ const viewPostSharePage = async (req, res) => {
         post.html += '...'
     }
     post.categoryName = (await categoryManager.getCategoryById(post.category)).name || '其他'
+    /* eslint-disable */
+    post.shareUrl = req.get('host') + '/post/' + post._id
+    /* eslint-enable */
     res.renderPage('share', { post })
+}
+const getQrImage = async (req, res) => {
+    const url = req.query.url ? req.query.url : req.get('referrer')
+    qrHelper(url, (error, qrImg) => {
+        qrImg.pipe(res)
+    })
 }
 
 export default {
     viewListPage,
     viewPostPage,
-    viewPostSharePage
+    viewPostSharePage,
+    getQrImage
 }

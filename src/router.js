@@ -23,7 +23,6 @@ router.use('/labs', labsRouter) // 实验室
 router.use('/about', aboutRouter) // 关于
 router.use('/message', messageRouter) // 留言
 router.use('/category', categoryRouter) // 分类
-
 /* 后台管理 */
 router.use('/admin/auth', authRouter)
 router.use('/admin', adminRouter)

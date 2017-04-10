@@ -1,6 +1,7 @@
 import crypto from 'crypto'
 import MarkdownIt from 'markdown-it'
 import jsxss from 'xss'
+import qr from 'qr-image'
 
 const getMD5 = (str) => {
     let result = ''
@@ -32,9 +33,18 @@ const getClientIp = (req) => {
         req.socket.remoteAddress ||
         req.connection.socket.remoteAddress
 }
+/**
+ * 生成二维码
+ */
+const qrHelper = (url, callback) => {
+    const qrImg = qr.image(url, { type: 'png', parse_url: true, margin: 1, size: 6 })
+    callback(null, qrImg)
+}
+
 export {
     getMD5,
     md,
     xss,
-    getClientIp
+    getClientIp,
+    qrHelper
 }

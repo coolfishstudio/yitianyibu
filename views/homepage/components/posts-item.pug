@@ -12,5 +12,5 @@ mixin posts-item(item)
             a.post-button(href=`/post/${item._id}`)= `${item.hits} Hits`
             if (item.comments > 0)
                 a.post-button(href=`/post/${item._id}`)= `${item.comments} Comments`
-            .post-tag= item.category
+            a.post-tag(href=`/category/${item.categoryPathname || item.categoryId}`)= item.category
         
