@@ -714,6 +714,7 @@
 }
 .post-content .post-tags .post-tag {
     display: inline-block;
+    vertical-align: bottom;
     font-size: .6rem;
     color: #222;
     height: .7rem;
@@ -790,7 +791,7 @@
 }
 .post-near-prev a, .post-near-next a {
     display: block;
-    padding: .4rem;
+    padding: .6rem .4rem;
     color: #666;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -806,17 +807,17 @@
 .post-near-prev a:before {
     content: '«';
     left: 7px;
-    top: 9px;
 }
 .post-near-next a:after {
     content: '»';
     right: 7px;
-    top: 7px;
 }
 .post-near-next a:after,
 .post-near-prev a:before {
     position: absolute;
     display: block;
+    top: 50%;
+    margin-top: -8px;
 }
 .post-near-prev a:hover,
 .post-near-next a:hover {
