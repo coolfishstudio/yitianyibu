@@ -1102,16 +1102,6 @@
     }
 }
 @media (min-width: 1024px) {
-    .labs .lab-item .lab-item-info {
-        position: absolute;
-        opacity: 0;
-        bottom: -30px;
-    }
-    .labs .lab-item .lab-item-cover {
-        height: 300px;
-        line-height: 240px;
-        text-align: center;
-    }
     .labs .lab-item a:hover .lab-item-cover:before {
         opacity: 0.4;
     }
@@ -1119,10 +1109,6 @@
         opacity: 1;
         transform: scale(1);
         -webkit-transform: scale(1);
-    }
-    .labs .lab-item a:hover .lab-item-info {
-        bottom: 0;
-        opacity: 1;
     }
 }
 
