@@ -23,12 +23,15 @@ mixin post-content(data)
                 a.post-tag(href=`/category/${data.categoryPathname || data.categoryId}`)= data.category
             .post-like
                 span.heart#heart
-        .post-near
-            if post.prev
-                .post-near-prev
+    if post.prev || post.next
+        .post-near.text-shadow.clearfix
+            .post-near-prev.shadow
+                if post.prev
                     a(href=`/post/${post.prev._id}`)= post.prev.title
-            if post.next
-                .post-near-next
+                else
+                    span 没有上一页了
+            .post-near-next.shadow
+                if post.next
                     a(href=`/post/${post.next._id}`)= post.next.title
-
-
+                else
+                    span 没有下一页了

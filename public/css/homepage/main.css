@@ -777,26 +777,41 @@
     right: 0;
 }
 .post-near {
-    background-color: #e3e3e3;
-    padding: 0 .25rem;
+    max-width: 1000px;
+    margin: 1rem auto 0 auto;
 }
 .post-near-prev, .post-near-next {
     display: inline-block;
-    width: 50%;
-    font-size: .65rem;
+    width: 48%;
+    font-size: .75rem;
     vertical-align: middle;
+    background-color: #fff;
+    position: relative;
+}
+.post-near-prev {
+    float: left;
 }
 .post-near-next {
     text-align: right;
+    float: right;
 }
-.post-near-prev a, .post-near-next a {
+.post-near-prev a,
+.post-near-next a,
+.post-near-prev span,
+.post-near-next span {
     display: block;
-    padding: .6rem .4rem;
+    padding: 1rem;
     color: #666;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     position: relative;
+    height: 1rem;
+    line-height: 1rem;
+}
+.post-near-prev span,
+.post-near-next span {
+    color: #aaa;
 }
 .post-near-prev a {
     padding-left: 1rem;
@@ -804,24 +819,63 @@
 .post-near-next a {
     padding-right: 1rem;
 }
-.post-near-prev a:before {
-    content: '«';
-    left: 7px;
-}
-.post-near-next a:after {
-    content: '»';
-    right: 7px;
-}
-.post-near-next a:after,
-.post-near-prev a:before {
-    position: absolute;
-    display: block;
-    top: 50%;
-    margin-top: -8px;
-}
 .post-near-prev a:hover,
 .post-near-next a:hover {
     color: #2ecc40;
+}
+.post-near-prev a:after,
+.post-near-next a:after,
+.post-near-prev span:after,
+.post-near-next span:after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    border-bottom: .5rem solid currentColor;
+    border-top: .5rem solid transparent;
+}
+.post-near-prev a:after,
+.post-near-prev span:after {
+    left: 0;
+    border-left: .5rem solid currentColor;
+    border-right: .5rem solid transparent;
+}
+.post-near-next a:after,
+.post-near-next span:after {
+    right: 0;
+    border-right: .5rem solid currentColor;
+    border-left: .5rem solid transparent;
+}
+.post-near-prev a:before,
+.post-near-prev span:before,
+.post-near-next a:before,
+.post-near-next span:before {
+    color: currentColor;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    font-size: .6rem;
+}
+.post-near-prev a:before,
+.post-near-prev span:before {
+    content: 'Prev';
+    right: .25rem;
+}
+.post-near-next a:before,
+.post-near-next span:before {
+    content: 'Next';
+    left: .25rem;
+}
+@media screen and (max-width: 767px) {
+    .post-near-prev,
+    .post-near-next {
+        width: 100%;
+        float: inherit;
+        text-align: center;
+    }
+    .post-near-next {
+        margin-top: 1rem;
+    }
 }
 /* commont items */
 .comment-list {
