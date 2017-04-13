@@ -87,6 +87,17 @@ const getContentNear = async (createdAt) => {
         next
     }
 }
+const findByKeywords = async (keywords) => {
+    const regExp = new RegExp(keywords, 'i')
+    const result = await Content.find({ $or: [ {
+        title: { $regex: regExp }
+    }, {
+        content: { $regex: regExp }
+    } ] }, {
+        removed: false
+    })
+    return result
+}
 export default {
     addContent,
     getContentById,
@@ -96,5 +107,6 @@ export default {
     countContent,
     hitContentById,
     countContentByCategory,
-    getContentNear
+    getContentNear,
+    findByKeywords
 }
