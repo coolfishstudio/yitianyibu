@@ -7,15 +7,8 @@ import { getClientIp, qrHelper } from '../../util/helper'
 
 const limit = 10
 
-const viewListPage = async (req, res) => {
-    log('post_controller').info('贴子列表页')
-    let currentPage = 1
-    try {
-        currentPage = parseInt(Number(req.query.p), 10) || 1
-    } catch (err) {
-        currentPage = 1
-    }
-    let results = await contentManager.findContents({}, { limit, skip: currentPage })
+// 树立数据
+const formatPosts = async function (results) {
     let promises = results.map(async (item) => {
         item.html = item.html.replace(/<\/?.+?>/g, '').replace(/\r\n/g, ' ').replace(/\n/g, ' ')
         if (item.html.length > 100) {
@@ -49,6 +42,20 @@ const viewListPage = async (req, res) => {
         }
     })
     let posts = await Promise.all(promises)
+    return posts
+}
+
+
+const viewListPage = async (req, res) => {
+    log('post_controller').info('贴子列表页')
+    let currentPage = 1
+    try {
+        currentPage = parseInt(Number(req.query.p), 10) || 1
+    } catch (err) {
+        currentPage = 1
+    }
+    let results = await contentManager.findContents({}, { limit, skip: currentPage })
+    let posts = await formatPosts(results)
     const countPage = Math.ceil(await contentManager.countContent() / limit)
     res.renderPage('post-list', { posts, countPage, currentPage })
 }
@@ -112,10 +119,25 @@ const getQrImage = async (req, res) => {
         qrImg.pipe(res)
     })
 }
+const searchKeywords = async (req, res) => {
+    let currentPage = 1
+    try {
+        currentPage = parseInt(Number(req.query.p), 10) || 1
+    } catch (err) {
+        currentPage = 1
+    }
+    const keywords = req.query.keywords || req.query.q || ''
+
+    let results = await contentManager.findByKeywords(keywords, { limit, skip: currentPage })
+    let posts = await formatPosts(results)
+    const countPage = Math.ceil(await contentManager.countContentByKeywords(keywords) / limit)
+    res.renderPage('post-list', { posts, countPage, currentPage, keywords })
+}
 
 export default {
     viewListPage,
     viewPostPage,
     viewPostSharePage,
-    getQrImage
+    getQrImage,
+    searchKeywords
 }

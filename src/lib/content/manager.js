@@ -87,13 +87,35 @@ const getContentNear = async (createdAt) => {
         next
     }
 }
-const findByKeywords = async (keywords) => {
+const findByKeywords = async (keywords, query = { limit: 10, skip: 1, createdAt: -1 }) => {
     const regExp = new RegExp(keywords, 'i')
-    const result = await Content.find({ $or: [ {
-        title: { $regex: regExp }
-    }, {
-        content: { $regex: regExp }
-    } ] }, {
+    if (!query.skip) {
+        query.skip = 1
+    }
+    if (!query.limit) {
+        query.limit = 10
+    }
+    if (!query.createdAt) {
+        query.createdAt = -1
+    }
+    const result = await Content.find({
+        $or: [ {
+            title: { $regex: regExp }
+        }, {
+            content: { $regex: regExp }
+        } ],
+        removed: false
+    }).sort({ createdAt: query.createdAt }).limit(query.limit).skip((query.skip - 1) * query.limit)
+    return result
+}
+const countContentByKeywords = async (keywords) => {
+    const regExp = new RegExp(keywords, 'i')
+    const result = await Content.count({
+        $or: [ {
+            title: { $regex: regExp }
+        }, {
+            content: { $regex: regExp }
+        } ],
         removed: false
     })
     return result
@@ -108,5 +130,6 @@ export default {
     hitContentById,
     countContentByCategory,
     getContentNear,
-    findByKeywords
+    findByKeywords,
+    countContentByKeywords
 }

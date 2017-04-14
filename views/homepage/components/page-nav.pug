@@ -1,8 +1,9 @@
 mixin page-nav(currentPage, countPage)
+    - let search = keywords ? `&q=${keywords}` : ''
     .page-nav
         .pages= `当前第 ${currentPage} 页，共 ${countPage} 页`
         if currentPage !== 1
-            a.page-number.prev(href='?p=1') «
+            a.page-number.prev(href=`?p=1${search}`) «
         -
             let startNum = 1
             let endNum = 1
@@ -25,6 +26,6 @@ mixin page-nav(currentPage, countPage)
             if currentPage === i
                 span.page-number.current= i
             else
-                a.page-number(href=`?p=${i}`)= i
+                a.page-number(href=`?p=${i}${search}`)= i
         if currentPage !== countPage
-            a.page-number.next(href=`?p=${countPage}`) »
+            a.page-number.next(href=`?p=${countPage}${search}`) »

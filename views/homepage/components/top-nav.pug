@@ -1,6 +1,7 @@
 include ../components/svg/icon-svg-yi.pug
 include ../components/svg/icon-svg-tian.pug
 include ../components/svg/icon-svg-bu.pug
+include ../components/svg/icon-svg-search.pug
 
 mixin top-nav()
     .top-nav
@@ -11,6 +12,8 @@ mixin top-nav()
                 +icon-svg-yi(32, 32, '#5b6064')
                 +icon-svg-bu(32, 32, '#5b6064')
             .top-nav-buttons
+                .top-nav-menu-search
+                    +icon-svg-search(24, 24, '#5b6064')
                 .top-nav-menu-toggle
                     span
                     span

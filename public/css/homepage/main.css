@@ -58,15 +58,16 @@
     float: right;
     padding-right: 2%;
 }
-.top-nav-menu-toggle {
-    display: block;
+.top-nav-menu-toggle,
+.top-nav-menu-search {
+    display: inline-block;
+    vertical-align: middle;
     overflow: hidden;
     width: 24px;
     height: 24px;
-    padding: 20px;
+    padding: 20px 8px;
     line-height: 0;
     cursor: pointer;
-    background-color: #fff;
 }
 .top-nav-menu-toggle,
 .top-nav-menu-toggle span {
@@ -77,11 +78,12 @@
     position: relative;
     display: inline-block;
     vertical-align: top;
-    height: 2px;
+    height: 3px;
     width: 100%;
-    margin-top: 5px;
+    margin-top: 4px;
     background-color: #5b6064;
     opacity: 1;
+    border-radius: 5px;
     transform: rotateZ(0deg);
 }
 @media(min-width:416px) {
