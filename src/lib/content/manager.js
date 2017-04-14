@@ -102,7 +102,7 @@ const findByKeywords = async (keywords, query = { limit: 10, skip: 1, createdAt:
         $or: [ {
             title: { $regex: regExp }
         }, {
-            content: { $regex: regExp }
+            markdown: { $regex: regExp }
         } ],
         removed: false
     }).sort({ createdAt: query.createdAt }).limit(query.limit).skip((query.skip - 1) * query.limit)
@@ -114,7 +114,7 @@ const countContentByKeywords = async (keywords) => {
         $or: [ {
             title: { $regex: regExp }
         }, {
-            content: { $regex: regExp }
+            markdown: { $regex: regExp }
         } ],
         removed: false
     })

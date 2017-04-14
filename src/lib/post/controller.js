@@ -127,7 +127,6 @@ const searchKeywords = async (req, res) => {
         currentPage = 1
     }
     const keywords = req.query.keywords || req.query.q || ''
-
     let results = await contentManager.findByKeywords(keywords, { limit, skip: currentPage })
     let posts = await formatPosts(results)
     const countPage = Math.ceil(await contentManager.countContentByKeywords(keywords) / limit)

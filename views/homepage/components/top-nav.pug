@@ -28,4 +28,7 @@ mixin top-nav()
         li
             a(href='/message').top-nav-menu-item 留言板
         li
-            a(href='/about').top-nav-menu-item 关于我            
+            a(href='/about').top-nav-menu-item 关于我
+    form(id="search" method="get" action='/search').top-nav-share
+        input(type='text' placeholder='...搜索' name='q' value=`${keywords || ''}`)
+        input(type='submit' style='display:none;')

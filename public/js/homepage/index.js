@@ -6,12 +6,25 @@ $(document).ready(function () {
     // 导航菜单
     (function () {
         $('.top-nav-menu-toggle').on('click', function () {
+            $('.top-nav-share').removeClass('top-nav-share-show');
+            $('.top-nav-menu-search').removeClass('active');
             if ($('.top-nav-menu-toggle').hasClass('active')) {
                 $('.top-nav-menu-toggle').removeClass('active');
                 $('.top-nav-menu').removeClass('top-nav-menu-show');
             } else {
                 $('.top-nav-menu-toggle').addClass('active');
                 $('.top-nav-menu').addClass('top-nav-menu-show');
+            }
+        });
+        $('.top-nav-menu-search').on('click', function () {
+            $('.top-nav-menu').removeClass('top-nav-menu-show');
+            $('.top-nav-menu-toggle').removeClass('active');
+            if ($('.top-nav-menu-search').hasClass('active')) {
+                $('.top-nav-menu-search').removeClass('active');
+                $('.top-nav-share').removeClass('top-nav-share-show');
+            } else {
+                $('.top-nav-menu-search').addClass('active');
+                $('.top-nav-share').addClass('top-nav-share-show');
             }
         });
     })();

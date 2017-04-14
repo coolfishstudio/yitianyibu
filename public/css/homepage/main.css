@@ -172,7 +172,37 @@
         height: auto;
     }
 }
-
+.top-nav-share {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    padding: 0 1rem;
+    height: 0;
+    right: 0;
+    z-index: 5;
+    overflow: hidden;
+    background-color: #faffbd;
+    text-align: right;
+    border: 0;
+    transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    transform: translate3d(0, -112px, 0);
+}
+.top-nav-share input {
+    font-size: 1rem;
+    width: 100%;
+    color: #5d5d5d;
+    height: 48px;
+    border: 0;
+    background-color: #faffbd;
+    border-radius: 0;
+    outline-style: none;
+    text-align: right;
+}
+.top-nav-share.top-nav-share-show {
+    height: 48px;
+    transform: translate3d(0, 0, 0);
+}
 /* 内容 */
 .main-block {
     margin-top: 80px;
