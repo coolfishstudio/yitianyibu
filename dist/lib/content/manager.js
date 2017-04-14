@@ -338,6 +338,85 @@ var getContentNear = function () {
         return _ref9.apply(this, arguments);
     };
 }();
+var findByKeywords = function () {
+    var _ref10 = _asyncToGenerator(regeneratorRuntime.mark(function _callee10(keywords) {
+        var query = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : { limit: 10, skip: 1, createdAt: -1 };
+        var regExp, result;
+        return regeneratorRuntime.wrap(function _callee10$(_context10) {
+            while (1) {
+                switch (_context10.prev = _context10.next) {
+                    case 0:
+                        regExp = new RegExp(keywords, 'i');
+
+                        if (!query.skip) {
+                            query.skip = 1;
+                        }
+                        if (!query.limit) {
+                            query.limit = 10;
+                        }
+                        if (!query.createdAt) {
+                            query.createdAt = -1;
+                        }
+                        _context10.next = 6;
+                        return _model2.default.find({
+                            $or: [{
+                                title: { $regex: regExp }
+                            }, {
+                                markdown: { $regex: regExp }
+                            }],
+                            removed: false
+                        }).sort({ createdAt: query.createdAt }).limit(query.limit).skip((query.skip - 1) * query.limit);
+
+                    case 6:
+                        result = _context10.sent;
+                        return _context10.abrupt('return', result);
+
+                    case 8:
+                    case 'end':
+                        return _context10.stop();
+                }
+            }
+        }, _callee10, undefined);
+    }));
+
+    return function findByKeywords(_x11) {
+        return _ref10.apply(this, arguments);
+    };
+}();
+var countContentByKeywords = function () {
+    var _ref11 = _asyncToGenerator(regeneratorRuntime.mark(function _callee11(keywords) {
+        var regExp, result;
+        return regeneratorRuntime.wrap(function _callee11$(_context11) {
+            while (1) {
+                switch (_context11.prev = _context11.next) {
+                    case 0:
+                        regExp = new RegExp(keywords, 'i');
+                        _context11.next = 3;
+                        return _model2.default.count({
+                            $or: [{
+                                title: { $regex: regExp }
+                            }, {
+                                markdown: { $regex: regExp }
+                            }],
+                            removed: false
+                        });
+
+                    case 3:
+                        result = _context11.sent;
+                        return _context11.abrupt('return', result);
+
+                    case 5:
+                    case 'end':
+                        return _context11.stop();
+                }
+            }
+        }, _callee11, undefined);
+    }));
+
+    return function countContentByKeywords(_x13) {
+        return _ref11.apply(this, arguments);
+    };
+}();
 exports.default = {
     addContent: addContent,
     getContentById: getContentById,
@@ -347,5 +426,7 @@ exports.default = {
     countContent: countContent,
     hitContentById: hitContentById,
     countContentByCategory: countContentByCategory,
-    getContentNear: getContentNear
+    getContentNear: getContentNear,
+    findByKeywords: findByKeywords,
+    countContentByKeywords: countContentByKeywords
 };
