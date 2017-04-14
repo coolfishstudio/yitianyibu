@@ -12,7 +12,7 @@ mixin top-nav()
                 +icon-svg-yi(32, 32, '#5b6064')
                 +icon-svg-bu(32, 32, '#5b6064')
             .top-nav-buttons
-                .top-nav-menu-search
+                .top-nav-menu-search(class=`${keywords ? 'active' : ''}`)
                     +icon-svg-search(24, 24, '#5b6064')
                 .top-nav-menu-toggle
                     span
@@ -29,6 +29,6 @@ mixin top-nav()
             a(href='/message').top-nav-menu-item 留言板
         li
             a(href='/about').top-nav-menu-item 关于我
-    form(id="search" method="get" action='/search').top-nav-share
+    form(id="search" method="get" action='/search').top-nav-share(class=`${keywords ? 'top-nav-share-show' : ''}`)
         input(type='text' placeholder='...搜索' name='q' value=`${keywords || ''}`)
         input(type='submit' style='display:none;')

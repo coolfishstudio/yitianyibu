@@ -8,12 +8,17 @@ import { getClientIp, qrHelper } from '../../util/helper'
 const limit = 10
 
 // 树立数据
-const formatPosts = async function (results) {
+const formatPosts = async function (results, keywords) {
     let promises = results.map(async (item) => {
         item.html = item.html.replace(/<\/?.+?>/g, '').replace(/\r\n/g, ' ').replace(/\n/g, ' ')
         if (item.html.length > 100) {
             item.html = item.html.substr(0, 100)
             item.html += '...'
+        }
+        if (keywords) {
+            const regExp = new RegExp(keywords, 'img')
+            item.title = item.title.split(regExp).join(`<span style="color:#ef4d58;">${keywords}</span>`)
+            item.html = item.html.split(regExp).join(`<span style="color:#ef4d58;">${keywords}</span>`)
         }
         /* eslint-disable */
         item.commentsCount = await commentManager.countCommentByContentId(item._id)
@@ -128,7 +133,7 @@ const searchKeywords = async (req, res) => {
     }
     const keywords = req.query.keywords || req.query.q || ''
     let results = await contentManager.findByKeywords(keywords, { limit, skip: currentPage })
-    let posts = await formatPosts(results)
+    let posts = await formatPosts(results, keywords)
     const countPage = Math.ceil(await contentManager.countContentByKeywords(keywords) / limit)
     res.renderPage('post-list', { posts, countPage, currentPage, keywords })
 }

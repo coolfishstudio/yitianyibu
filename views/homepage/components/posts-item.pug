@@ -3,9 +3,9 @@ mixin posts-item(item)
         .post-header
             .post-date.help-text.theme-help-text-color
                 time= locals.viewHelper.dateFormat(item.createdAt, 'yyyy/MM/dd')
-            a.post-title(href=`/post/${item._id}`)= item.title
+            a.post-title(href=`/post/${item._id}`)!= item.title
         .post-content
-            p.font-text.theme-font-text-color= item.html
+            p.font-text.theme-font-text-color!= item.html
         a.post-pic(href=`/post/${item._id}` style=`background-image:url(${item.images[0] || ('/images/homepage/default/cover/' + String(item._id)[23] + '.jpg')})`)
         .post-meta
             a.post-button(href=`/post/${item._id}`) Read more
