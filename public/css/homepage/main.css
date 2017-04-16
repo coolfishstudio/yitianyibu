@@ -69,10 +69,17 @@
     line-height: 0;
     cursor: pointer;
 }
+.top-nav-menu-search svg,
 .top-nav-menu-toggle,
 .top-nav-menu-toggle span {
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
+}
+.top-nav-menu-search:hover svg {
+    fill: #222;
+}
+.top-nav-menu-toggle:hover span  {
+    background-color: #222;
 }
 .top-nav-menu-toggle span {
     position: relative;
