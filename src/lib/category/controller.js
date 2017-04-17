@@ -118,13 +118,12 @@ const viewCategoryPage = async (req, res, next) => {
             /* eslint-disable */
             category: result.info._id
             /* eslint-enable */
-        }, { limit, skip: currentPage, createdAt: 1 })
+        }, { limit, skip: currentPage })
     let promises = results.map(async (item) => {
         return {
             /* eslint-disable */
             _id       : item._id,
             wordsCount: item.markdown.length,
-            createdAt : item.createdAt,
             title     : item.title
             /* eslint-enable */
         }
