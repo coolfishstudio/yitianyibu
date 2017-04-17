@@ -381,7 +381,7 @@ var viewCategoryPage = function () {
                             /* eslint-disable */
                             category: result.info._id
                             /* eslint-enable */
-                        }, { limit: limit, skip: currentPage, createdAt: 1 });
+                        }, { limit: limit, skip: currentPage });
 
                     case 21:
                         results = _context10.sent;
@@ -395,7 +395,6 @@ var viewCategoryPage = function () {
                                                     /* eslint-disable */
                                                     _id: item._id,
                                                     wordsCount: item.markdown.length,
-                                                    createdAt: item.createdAt,
                                                     title: item.title
                                                     /* eslint-enable */
                                                 });
