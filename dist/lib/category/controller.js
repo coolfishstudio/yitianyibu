@@ -394,7 +394,7 @@ var viewCategoryPage = function () {
                                                 return _context9.abrupt('return', {
                                                     /* eslint-disable */
                                                     _id: item._id,
-                                                    wordsCount: item.markdown.length,
+                                                    createdAt: item.createdAt,
                                                     title: item.title
                                                     /* eslint-enable */
                                                 });
