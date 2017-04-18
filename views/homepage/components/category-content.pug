@@ -15,7 +15,7 @@ mixin category-content(data)
                     a.category-post-item(href=`/post/${item._id}`)
                         .category-post-title= item.title
                         .category-post-time
-                            time= locals.viewHelper.dateFormat(item.createdAt, 'yyyy/MM/dd hh:mm:ss')
+                            time= locals.viewHelper.dateFormat(item.createdAt, 'yyyy-MM-dd hh:mm')
 
             if (data.countPage > 1)
                 +page-nav(data.currentPage, data.countPage)
