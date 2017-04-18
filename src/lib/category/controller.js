@@ -122,9 +122,9 @@ const viewCategoryPage = async (req, res, next) => {
     let promises = results.map(async (item) => {
         return {
             /* eslint-disable */
-            _id       : item._id,
-            wordsCount: item.markdown.length,
-            title     : item.title
+            _id      : item._id,
+            createdAt: item.createdAt,
+            title    : item.title
             /* eslint-enable */
         }
     })

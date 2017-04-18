@@ -14,9 +14,8 @@ mixin category-content(data)
                 each item in data.list
                     a.category-post-item(href=`/post/${item._id}`)
                         .category-post-title= item.title
-                        .category-post-words
-                            span= item.wordsCount
-                            span words
+                        .category-post-time
+                            time= locals.viewHelper.dateFormat(item.createdAt, 'yyyy/MM/dd hh:mm:ss')
 
             if (data.countPage > 1)
                 +page-nav(data.currentPage, data.countPage)

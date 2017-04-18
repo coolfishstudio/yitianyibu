@@ -1605,7 +1605,7 @@
         line-height: 2rem;
         font-size: 1.1rem;
     }
-    .category-content .category-post-words {
+    .category-content .category-post-time {
         display: none;
     }
 }
@@ -1632,13 +1632,13 @@
     border-left: 3px solid #2ecc40;
     color: #26272b;
 }
-.category-content .category-post-words {
+.category-content .category-post-time {
     float: right;
 }
-.category-content .category-post-words span {
+.category-content .category-post-time time {
     margin-right: .25rem;
 }
-.category-content .category-post-item:hover .category-post-words span {
+.category-content .category-post-item:hover .category-post-time time {
     color: #2ecc40;
 }
 .category-content .bm-panel-content blockquote {
