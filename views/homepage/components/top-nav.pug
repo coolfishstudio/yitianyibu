@@ -30,5 +30,5 @@ mixin top-nav()
         li
             a(href='/about').top-nav-menu-item 关于我
     form.top-nav-share(id="search" method="get" action='/search' class=`${keywords ? 'top-nav-share-show' : ''}`)
-        input(type='text' placeholder='...搜索' name='q' value=`${keywords || ''}`)
+        input(type='text' placeholder='搜索...' name='q' value=`${keywords || ''}`)
         input(type='submit' style='display:none;')
