@@ -19,6 +19,7 @@ export default () => async (req, res, next) => {
         res.locals.slogan = result.slogan
         // 统计
         res.locals.count = result.count
+        res.locals.stat = result.stat
         // 链接
         res.locals.url = result.url
         res.render(`homepage/pages/${name}`, data)

@@ -8,10 +8,10 @@ const viewAdminPage = (req, res) => {
 }
 
 // 记录数据
-const recordStat = (req, res) => {
+const recordStat = async (req, res) => {
     const ip = getClientIp(req)
     const url = req.query.u
-    statManager.addStat({ ip, url })
+    await statManager.addStat({ ip, url })
     res.send('ok')
 }
 

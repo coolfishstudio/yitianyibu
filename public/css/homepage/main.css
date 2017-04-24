@@ -541,7 +541,7 @@
 .copyright {
     position: relative;
     margin-top: 1.5rem;
-    padding: .75rem 0 3rem 0;
+    padding: 1.5rem 0 3rem 0;
     text-align: center;
     color: #fff;
     background-color: #111213;
@@ -549,6 +549,10 @@
 .copyright a {
     color: #fff;
     margin-left: 5px;
+}
+.copyright p {
+    color: #bbb;
+    margin-top: 15px;
 }
 @media screen and (max-width:1200px) {
     .footer-block .container {

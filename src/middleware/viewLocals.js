@@ -16,7 +16,7 @@ const getViewLocals = async (req) => {
             message: await commentManager.countCommentByContentId('message')
         },
         stat: {
-            uv: statManager.countStatInToday()
+            uv: await statManager.countStatInToday()
         },
         url
     }
