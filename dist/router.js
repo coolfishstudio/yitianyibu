@@ -38,6 +38,10 @@ var _router15 = require('./lib/category/router');
 
 var _router16 = _interopRequireDefault(_router15);
 
+var _router17 = require('./lib/stat/router');
+
+var _router18 = _interopRequireDefault(_router17);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var router = new _express.Router();
@@ -53,6 +57,7 @@ router.use('/labs', _router10.default); // 实验室
 router.use('/about', _router8.default); // 关于
 router.use('/message', _router6.default); // 留言
 router.use('/category', _router16.default); // 分类
+router.use('/stat', _router18.default); // 分类
 /* 后台管理 */
 router.use('/admin/auth', _router4.default);
 router.use('/admin', _router2.default);

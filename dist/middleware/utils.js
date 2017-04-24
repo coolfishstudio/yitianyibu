@@ -42,7 +42,7 @@ exports.default = function () {
                                                     data.pageName = name;
                                                     // 加载公共内容
                                                     _context.next = 4;
-                                                    return _viewLocals2.default.getViewLocals();
+                                                    return _viewLocals2.default.getViewLocals(req);
 
                                                 case 4:
                                                     result = _context.sent;
@@ -51,9 +51,12 @@ exports.default = function () {
                                                     res.locals.slogan = result.slogan;
                                                     // 统计
                                                     res.locals.count = result.count;
+                                                    res.locals.stat = result.stat;
+                                                    // 链接
+                                                    res.locals.url = result.url;
                                                     res.render('homepage/pages/' + name, data);
 
-                                                case 8:
+                                                case 10:
                                                 case 'end':
                                                     return _context.stop();
                                             }
