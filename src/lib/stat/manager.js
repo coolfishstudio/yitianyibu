@@ -15,9 +15,18 @@ const countStatByOptions = async (options) => {
     const result = await Stat.count({ options })
     return result
 }
+// 获取今天的pv
+const countStatInToday = async () => {
+    let day = new Date()
+    const time = new Date([ day.getFullYear(), day.getMonth() + 1, day.getDate() ].join('-')).getTime()
+    const result = await Stat.count({ createdAt: { $gte: time, $lte: time + 86400000 } })
+    return result
+}
+
 
 export default {
     addStat,
     findStatsByOptions,
-    countStatByOptions
+    countStatByOptions,
+    countStatInToday
 }

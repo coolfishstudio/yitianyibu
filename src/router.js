@@ -9,6 +9,7 @@ import labsRouter from './lib/labs/router'
 import postRouter from './lib/post/router'
 import homepageRouter from './lib/homepage/router'
 import categoryRouter from './lib/category/router'
+import statRouter from './lib/stat/router'
 
 const router = new Router()
 
@@ -23,6 +24,7 @@ router.use('/labs', labsRouter) // 实验室
 router.use('/about', aboutRouter) // 关于
 router.use('/message', messageRouter) // 留言
 router.use('/category', categoryRouter) // 分类
+router.use('/stat', statRouter) // 分类
 /* 后台管理 */
 router.use('/admin/auth', authRouter)
 router.use('/admin', adminRouter)

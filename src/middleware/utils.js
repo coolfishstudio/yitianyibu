@@ -14,11 +14,13 @@ export default () => async (req, res, next) => {
         if (!data) data = {}
         data.pageName = name
         // 加载公共内容
-        const result = await viewLocalsMiddleware.getViewLocals()
+        const result = await viewLocalsMiddleware.getViewLocals(req)
         // 公告
         res.locals.slogan = result.slogan
         // 统计
         res.locals.count = result.count
+        // 链接
+        res.locals.url = result.url
         res.render(`homepage/pages/${name}`, data)
     }
     res.locals.viewHelper = {
