@@ -2,7 +2,7 @@ mixin posts-item(item)
     .posts-item.text-shadow
         .post-header
             .post-date.help-text.theme-help-text-color
-                time= locals.viewHelper.dateFormat(item.createdAt, 'yyyy/MM/dd')
+                time= locals.viewHelper.dateFormat(item.createdAt, 'yyyy / MM / dd')
             a.post-title(href=`/post/${item._id}`)!= item.title
         .post-content
             p.font-text.theme-font-text-color!= item.html
