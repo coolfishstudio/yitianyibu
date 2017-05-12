@@ -1113,6 +1113,7 @@
     line-height: 16px;
     text-indent: 2em;
     text-align: justify;
+    min-height: 32px;
 }
 .labs .lab-item .lab-item-info .lab-item-icon {
     width: 4rem;
