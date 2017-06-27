@@ -57,7 +57,6 @@ var router = new _express.Router();
 router.get('/login', _auth2.default.auth2Home, _controller2.default.viewAdminLogin);
 
 router.get('/comment', _auth2.default.notAuth2Login, _controller8.default.viewAdminPage);
-router.get('/message', _auth2.default.notAuth2Login, _controller12.default.viewAdminPage);
 router.get('/stat', _auth2.default.notAuth2Login, _controller16.default.viewAdminPage);
 /* content */
 router.get('/content', _auth2.default.notAuth2Login, _controller10.default.viewAdminContent);
@@ -99,6 +98,10 @@ router.get('/setting', _auth2.default.notAuth2Login, _controller14.default.viewA
 router.get('/setting/update', _auth2.default.notAuth2Login, _controller14.default.viewAdminUpdateSetting);
 router.post('/setting/update', _auth2.default.notAuth2Login, _controller14.default.updateSetting);
 router.get('/setting/create', _auth2.default.notAuth2Login, _controller14.default.createSetting);
+/* message */
+router.get('/message', _auth2.default.notAuth2Login, _controller12.default.viewAdminPage);
+router.get('/message/:messageId/remove', _auth2.default.notAuth2Login, _controller12.default.viewAdminRemoveMessage);
+router.post('/message/:messageId/remove', _auth2.default.notAuth2Login, _controller12.default.removeMessage);
 
 router.get('/', _auth2.default.notAuth2Login, _controller20.default.viewAdminPage);
 

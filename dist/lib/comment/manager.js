@@ -112,6 +112,7 @@ var removeCommentById = function () {
         return _ref3.apply(this, arguments);
     };
 }();
+
 var countCommentByContentId = function () {
     var _ref4 = _asyncToGenerator(regeneratorRuntime.mark(function _callee4(contentId) {
         var result;
@@ -138,10 +139,36 @@ var countCommentByContentId = function () {
         return _ref4.apply(this, arguments);
     };
 }();
+var getCommentById = function () {
+    var _ref5 = _asyncToGenerator(regeneratorRuntime.mark(function _callee5(commentId) {
+        var result;
+        return regeneratorRuntime.wrap(function _callee5$(_context5) {
+            while (1) {
+                switch (_context5.prev = _context5.next) {
+                    case 0:
+                        _context5.next = 2;
+                        return _model2.default.findById(commentId);
 
+                    case 2:
+                        result = _context5.sent;
+                        return _context5.abrupt('return', result);
+
+                    case 4:
+                    case 'end':
+                        return _context5.stop();
+                }
+            }
+        }, _callee5, undefined);
+    }));
+
+    return function getCommentById(_x5) {
+        return _ref5.apply(this, arguments);
+    };
+}();
 exports.default = {
     addComment: addComment,
     findCommentsByContentId: findCommentsByContentId,
+    getCommentById: getCommentById,
     removeCommentById: removeCommentById,
     countCommentByContentId: countCommentByContentId
 };
