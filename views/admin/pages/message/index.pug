@@ -27,7 +27,7 @@ block main
                                     td= item.name
                                     td= item.email || '无'
                                     td= item.ip
-                                    td= item.content
+                                    td= (item.content || '').substr(0, 30)
                                     td= locals.viewHelper.dateFormat(item.createdAt, 'yyyy-MM-dd hh:mm')
                                     td
                                         a(href=`/admin/message/${item._id}/remove`)
