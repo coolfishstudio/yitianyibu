@@ -17,7 +17,6 @@ const router = new Router()
 router.get('/login', authMiddleware.auth2Home, authController.viewAdminLogin)
 
 router.get('/comment', authMiddleware.notAuth2Login, commentController.viewAdminPage)
-router.get('/message', authMiddleware.notAuth2Login, messageController.viewAdminPage)
 router.get('/stat', authMiddleware.notAuth2Login, statController.viewAdminPage)
 /* content */
 router.get('/content', authMiddleware.notAuth2Login, contentController.viewAdminContent)
@@ -59,6 +58,10 @@ router.get('/setting', authMiddleware.notAuth2Login, settingController.viewAdmin
 router.get('/setting/update', authMiddleware.notAuth2Login, settingController.viewAdminUpdateSetting)
 router.post('/setting/update', authMiddleware.notAuth2Login, settingController.updateSetting)
 router.get('/setting/create', authMiddleware.notAuth2Login, settingController.createSetting)
+/* message */
+router.get('/message', authMiddleware.notAuth2Login, messageController.viewAdminPage)
+router.get('/message/:messageId/remove', authMiddleware.notAuth2Login, messageController.viewAdminRemoveMessage)
+router.post('/message/:messageId/remove', authMiddleware.notAuth2Login, messageController.removeMessage)
 
 router.get('/', authMiddleware.notAuth2Login, adminController.viewAdminPage)
 

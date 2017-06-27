@@ -22,14 +22,19 @@ const removeCommentById = async (commentId) => {
     const result = await analyse.save()
     return result
 }
+
 const countCommentByContentId = async (contentId) => {
     const result = await Comment.count({ removed: false, contentId })
     return result
 }
-
+const getCommentById = async (commentId) => {
+    const result = await Comment.findById(commentId)
+    return result
+}
 export default {
     addComment,
     findCommentsByContentId,
+    getCommentById,
     removeCommentById,
     countCommentByContentId
 }
