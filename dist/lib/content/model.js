@@ -22,6 +22,7 @@ var ContentSchema = new Schema({
     status: { type: String, default: 'published' },
     featured: { type: Boolean, default: false },
     hits: { type: Number, default: 1 },
+    isTop: { type: Number, default: 0 },
     removed: { type: Boolean, default: false },
     createdByID: { type: Schema.Types.ObjectId, required: true },
     createdAt: { type: Date, default: Date.now },

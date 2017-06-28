@@ -123,7 +123,7 @@ var uploadImage = function uploadImage(req, res, next) {
 };
 var createContent = function () {
     var _ref3 = _asyncToGenerator(regeneratorRuntime.mark(function _callee3(req, res, next) {
-        var title, content, category, tag, status, featured, time, hits, createError, err, html, reg, images, option, createdByID, result, _err;
+        var title, content, category, tag, status, featured, time, hits, isTop, createError, err, html, reg, images, option, createdByID, result, _err;
 
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
             while (1) {
@@ -134,9 +134,10 @@ var createContent = function () {
                         category = (req.body.category || '').trim();
                         tag = (req.body.tag || '').trim();
                         status = (req.body.status || 'published').trim();
-                        featured = !!Number((req.body.featured || '1').trim());
+                        featured = !!Number(req.body.featured || '1');
                         time = req.body.time || '';
                         hits = req.body.hits || 1;
+                        isTop = Number(req.body.isTop) || 0;
                         // 校验
 
                         createError = '';
@@ -149,7 +150,7 @@ var createContent = function () {
                         // 校验结果
 
                         if (!createError) {
-                            _context3.next = 14;
+                            _context3.next = 15;
                             break;
                         }
 
@@ -158,7 +159,7 @@ var createContent = function () {
                         err.status = 400;
                         return _context3.abrupt('return', next(err));
 
-                    case 14:
+                    case 15:
                         html = '<div class="markdown-text">' + _helper.xss.process(_helper.md.render(content || '')) + '</div>';
                         reg = new RegExp('!\\[.*?\\]\\((.*?)\\)', 'g');
                         images = content.match(reg) || [];
@@ -173,7 +174,8 @@ var createContent = function () {
                             markdown: content,
                             status: status,
                             featured: featured,
-                            hits: hits
+                            hits: hits,
+                            isTop: isTop
                         };
 
                         if (tag) {
@@ -190,14 +192,14 @@ var createContent = function () {
                         /* eslint-enable */
 
                         option.createdByID = createdByID;
-                        _context3.next = 26;
+                        _context3.next = 27;
                         return _manager8.default.addContent(option);
 
-                    case 26:
+                    case 27:
                         result = _context3.sent;
 
                         if (result) {
-                            _context3.next = 31;
+                            _context3.next = 32;
                             break;
                         }
 
@@ -206,10 +208,10 @@ var createContent = function () {
                         _err.status = 400;
                         return _context3.abrupt('return', next(_err));
 
-                    case 31:
+                    case 32:
                         res.redirect('/admin/content');
 
-                    case 32:
+                    case 33:
                     case 'end':
                         return _context3.stop();
                 }
@@ -311,7 +313,7 @@ var viewAdminRemoveContent = function () {
 
 var updateContent = function () {
     var _ref6 = _asyncToGenerator(regeneratorRuntime.mark(function _callee6(req, res, next) {
-        var title, content, category, tag, status, featured, time, createError, err, html, reg, images, option, result, _err2;
+        var title, content, category, tag, status, featured, time, isTop, createError, err, html, reg, images, option, result, _err2;
 
         return regeneratorRuntime.wrap(function _callee6$(_context6) {
             while (1) {
@@ -322,8 +324,9 @@ var updateContent = function () {
                         category = (req.body.category || '').trim();
                         tag = (req.body.tag || '').trim();
                         status = (req.body.status || 'published').trim();
-                        featured = !!Number((req.body.featured || '1').trim());
+                        featured = !!Number(req.body.featured || '1');
                         time = req.body.time || '';
+                        isTop = Number(req.body.isTop) || 0;
                         // 校验
 
                         createError = '';
@@ -336,7 +339,7 @@ var updateContent = function () {
                         // 校验结果
 
                         if (!createError) {
-                            _context6.next = 13;
+                            _context6.next = 14;
                             break;
                         }
 
@@ -345,7 +348,7 @@ var updateContent = function () {
                         err.status = 400;
                         return _context6.abrupt('return', next(err));
 
-                    case 13:
+                    case 14:
                         html = '<div class="markdown-text">' + _helper.xss.process(_helper.md.render(content || '')) + '</div>';
                         reg = new RegExp('!\\[.*?\\]\\((.*?)\\)', 'img');
                         images = content.match(reg) || [];
@@ -359,7 +362,8 @@ var updateContent = function () {
                             images: images,
                             markdown: content,
                             status: status,
-                            featured: featured
+                            featured: featured,
+                            isTop: isTop
                         };
 
                         if (tag) {
@@ -371,14 +375,14 @@ var updateContent = function () {
                         if (time) {
                             option.createdAt = new Date(time).getTime();
                         }
-                        _context6.next = 23;
+                        _context6.next = 24;
                         return _manager8.default.updateContentById(req.params.contentId, option);
 
-                    case 23:
+                    case 24:
                         result = _context6.sent;
 
                         if (result) {
-                            _context6.next = 28;
+                            _context6.next = 29;
                             break;
                         }
 
@@ -387,10 +391,10 @@ var updateContent = function () {
                         _err2.status = 400;
                         return _context6.abrupt('return', next(_err2));
 
-                    case 28:
+                    case 29:
                         res.redirect('/admin/content');
 
-                    case 29:
+                    case 30:
                     case 'end':
                         return _context6.stop();
                 }

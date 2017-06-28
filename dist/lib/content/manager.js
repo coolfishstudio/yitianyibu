@@ -73,7 +73,7 @@ var getContentById = function () {
 var findContents = function () {
     var _ref3 = _asyncToGenerator(regeneratorRuntime.mark(function _callee3() {
         var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-        var query = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : { limit: 10, skip: 1, createdAt: -1 };
+        var query = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : { limit: 10, skip: 1, createdAt: -1, isTop: -1 };
         var obj, result;
         return regeneratorRuntime.wrap(function _callee3$(_context3) {
             while (1) {
@@ -88,15 +88,18 @@ var findContents = function () {
                         if (!query.createdAt) {
                             query.createdAt = -1;
                         }
+                        if (!query.isTop) {
+                            query.isTop = -1;
+                        }
                         obj = Object.assign({ removed: false }, options);
-                        _context3.next = 6;
-                        return _model2.default.find(obj).sort({ createdAt: query.createdAt }).limit(query.limit).skip((query.skip - 1) * query.limit);
+                        _context3.next = 7;
+                        return _model2.default.find(obj).sort({ isTop: query.isTop, createdAt: query.createdAt }).limit(query.limit).skip((query.skip - 1) * query.limit);
 
-                    case 6:
+                    case 7:
                         result = _context3.sent;
                         return _context3.abrupt('return', result);
 
-                    case 8:
+                    case 9:
                     case 'end':
                         return _context3.stop();
                 }
@@ -137,6 +140,7 @@ var updateContentById = function () {
                         analyse.markdown = options.markdown;
                         analyse.status = options.status;
                         analyse.featured = options.featured;
+                        analyse.isTop = options.isTop;
 
                         if (options.tag) {
                             analyse.tag = [options.tag];
@@ -148,14 +152,14 @@ var updateContentById = function () {
                             analyse.createdAt = new Date(options.createdAt).getTime();
                         }
                         analyse.updatedAt = Date.now();
-                        _context4.next = 17;
+                        _context4.next = 18;
                         return analyse.save();
 
-                    case 17:
+                    case 18:
                         result = _context4.sent;
                         return _context4.abrupt('return', result);
 
-                    case 19:
+                    case 20:
                     case 'end':
                         return _context4.stop();
                 }

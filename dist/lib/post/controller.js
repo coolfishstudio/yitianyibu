@@ -101,7 +101,8 @@ var formatPosts = function () {
                                                     comments: item.commentsCount,
                                                     categoryId: item.category,
                                                     category: category.name || '',
-                                                    categoryPathname: category.pathname || ''
+                                                    categoryPathname: category.pathname || '',
+                                                    isTop: item.isTop || 0
                                                 });
 
                                             case 18:
