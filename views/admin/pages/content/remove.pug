@@ -39,6 +39,8 @@ block main
                     .form-input
                         input.form-control(type="text" name="status" value=`${({"published": "公开", "privated": "私密"})[result.content.status]}` disabled)
                     .form-input
+                        input.form-control(type="text" name="isTop" value=`${({0: "不置顶", 1: "置顶"})[result.content.isTop]}` disabled)
+                    .form-input
                         input.form-control(type="text" name="featured" value=`${result.content.featured ? '允许评论' : '不允许评论'}` disabled)
                     .form-input
                         input.form-control(type="text" placeholder="发表时间为 xxxx-xx-xx xx:xx:xx 格式 可以为空" name="time" value=locals.viewHelper.dateFormat(result.content.createdAt, 'yyyy-MM-dd hh:mm:ss') disabled)

@@ -49,6 +49,13 @@ block main
                                 else
                                     option(value=item.value)= item.text
                     .form-input
+                        select.form-control(type="text" name="isTop")
+                            each item in [{value: 0, text: "不置顶"}, {value: 1, text: "置顶"}]
+                                if (result.content.isTop === !!Number(item.value))
+                                    option(value=item.value selected)= item.text
+                                else
+                                    option(value=item.value)= item.text
+                    .form-input
                         select.form-control(type="text" name="featured")
                             each item in [{value: "1", text: "允许评论"}, {value: "0", text: "不允许评论"}]
                                 if (result.content.featured === !!Number(item.value))

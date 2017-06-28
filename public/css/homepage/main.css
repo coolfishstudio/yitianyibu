@@ -315,6 +315,23 @@
     margin: 0 10px 20px 10px;
     box-shadow: 1px 2px 3px #ddd;
     -webkit-box-shadow: 1px 2px 3px #ddd;
+    position: relative;
+    overflow: hidden;
+}
+.is-top {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+    border: 3px solid #dd3b44;
+    top: 5px;
+    left: 5px;
+    text-align: center;
+    line-height: 60px;
+    color: #dd3b44;
+    font-weight: bolder;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
 }
 .post-list .posts-item .post-pic {
     display: block;

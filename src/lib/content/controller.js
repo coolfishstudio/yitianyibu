@@ -50,9 +50,10 @@ const createContent = async (req, res, next) => {
     const category = (req.body.category || '').trim()
     const tag = (req.body.tag || '').trim()
     const status = (req.body.status || 'published').trim()
-    const featured = !!Number((req.body.featured || '1').trim())
+    const featured = !!Number(req.body.featured || '1')
     const time = req.body.time || ''
     const hits = req.body.hits || 1
+    const isTop = Number(req.body.isTop) || 0
     // 校验
     let createError = ''
     if (title === '') {
@@ -79,7 +80,8 @@ const createContent = async (req, res, next) => {
         markdown: content,
         status,
         featured,
-        hits
+        hits,
+        isTop
     }
     if (tag) {
         option.tag = [ tag ]
@@ -128,8 +130,9 @@ const updateContent = async (req, res, next) => {
     const category = (req.body.category || '').trim()
     const tag = (req.body.tag || '').trim()
     const status = (req.body.status || 'published').trim()
-    const featured = !!Number((req.body.featured || '1').trim())
+    const featured = !!Number(req.body.featured || '1')
     const time = req.body.time || ''
+    const isTop = Number(req.body.isTop) || 0
     // 校验
     let createError = ''
     if (title === '') {
@@ -155,7 +158,8 @@ const updateContent = async (req, res, next) => {
         images,
         markdown: content,
         status,
-        featured
+        featured,
+        isTop
     }
     if (tag) {
         option.tag = [ tag ]

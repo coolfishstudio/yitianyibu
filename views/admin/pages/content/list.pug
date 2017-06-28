@@ -26,7 +26,7 @@ block main
                             each item in result
                                 tr
                                     td= item.title
-                                    td= {'published': '公开', 'privated': '私密'}[item.status]
+                                    td= `${{'published': '公开', 'privated': '私密'}[item.status]}${{0: '', 1: ' | 置顶'}[item.isTop]}`
                                     td= item.hits
                                     td= locals.viewHelper.dateFormat(item.createdAt, 'yyyy-MM-dd hh:mm')
                                     td

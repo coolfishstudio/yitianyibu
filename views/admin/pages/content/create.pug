@@ -40,6 +40,10 @@ block main
                             each item in [{value: "published", text: "公开"}, {value: "privated", text: "私密"}]
                                 option(value=item.value)= item.text
                     .form-input
+                        select.form-control(type="text" name="isTop")
+                            each item in [{value: 0, text: "不置顶"}, {value: 1, text: "置顶"}]
+                                option(value=item.value)= item.text
+                    .form-input
                         select.form-control(type="text" name="featured")
                             each item in [{value: "1", text: "允许评论"}, {value: "0", text: "不允许评论"}]
                                 option(value=item.value)= item.text

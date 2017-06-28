@@ -11,7 +11,7 @@ const getContentById = async (contentId) => {
     const result = await Content.findById(contentId)
     return result
 }
-const findContents = async (options = {}, query = { limit: 10, skip: 1, createdAt: -1 }) => {
+const findContents = async (options = {}, query = { limit: 10, skip: 1, createdAt: -1, isTop: -1 }) => {
     if (!query.skip) {
         query.skip = 1
     }
@@ -21,8 +21,11 @@ const findContents = async (options = {}, query = { limit: 10, skip: 1, createdA
     if (!query.createdAt) {
         query.createdAt = -1
     }
+    if (!query.isTop) {
+        query.isTop = -1
+    }
     let obj = Object.assign({ removed: false }, options)
-    const result = await Content.find(obj).sort({ createdAt: query.createdAt }).limit(query.limit).skip((query.skip - 1) * query.limit)
+    const result = await Content.find(obj).sort({ isTop: query.isTop, createdAt: query.createdAt }).limit(query.limit).skip((query.skip - 1) * query.limit)
     return result
 }
 const updateContentById = async (contentId, options = {}) => {
@@ -37,6 +40,7 @@ const updateContentById = async (contentId, options = {}) => {
     analyse.markdown = options.markdown
     analyse.status = options.status
     analyse.featured = options.featured
+    analyse.isTop = options.isTop
 
     if (options.tag) {
         analyse.tag = [ options.tag ]

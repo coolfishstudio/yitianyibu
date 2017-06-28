@@ -1,5 +1,7 @@
 mixin posts-item(item)
     .posts-item.text-shadow
+        if (item.isTop === 1) 
+            span.is-top 置顶
         .post-header
             .post-date.help-text.theme-help-text-color
                 time= locals.viewHelper.dateFormat(item.createdAt, 'yyyy / MM / dd')
@@ -13,4 +15,3 @@ mixin posts-item(item)
             if (item.comments > 0)
                 a.post-button(href=`/post/${item._id}`)= `${item.comments} Comments`
             a.post-tag(href=`/category/${item.categoryPathname || item.categoryId}`)= item.category
-        
