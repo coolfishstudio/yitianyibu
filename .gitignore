@@ -1,7 +1,21 @@
 .DS_Store
-npm-debug.log
 node_modules/
-.env
-public/images/homepage/apps/
-public/images/content/*.png
-public/images/content/*.jpg
+/dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+server/build/
+server/node_modules/
+server/config.js
+
+client/build/
+client/node_modules/
