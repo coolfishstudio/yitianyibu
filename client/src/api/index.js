@@ -3,7 +3,7 @@ import axios from 'axios'
 const NODE_ENV = process.env.NODE_ENV || 'development'
 
 const host = {
-  'production': 'http://localhost:3006',
+  'production': 'http://api.yitianyibu.com',
   'development': 'http://localhost:3006'
 }[NODE_ENV]
 
