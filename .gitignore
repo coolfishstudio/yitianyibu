@@ -18,5 +18,5 @@ server/node_modules/
 server/src/config.js
 server/config.js
 
-client/build/
+client/dist/
 client/node_modules/
