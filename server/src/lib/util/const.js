@@ -1,0 +1,2 @@
+export const APP_LIMIT_DEFAULT = 100
+export const MESSAGE_LIMIT_DEFAULT = 100

@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../src/lib/util/const.js"],"names":["APP_LIMIT_DEFAULT","MESSAGE_LIMIT_DEFAULT"],"mappings":";;;;;AAAO,IAAMA,gDAAoB,GAA1B;AACA,IAAMC,wDAAwB,GAA9B","file":"const.js","sourcesContent":["export const APP_LIMIT_DEFAULT = 100\nexport const MESSAGE_LIMIT_DEFAULT = 100\n"]}
