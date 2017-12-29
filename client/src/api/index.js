@@ -52,7 +52,7 @@ const API = {
     const url = `${host}/api/user/login`
     return this._post(url, options)
   },
-  // labs
+  // 实验室
   getLabsList (options = {}) {
     const url = `${host}/api/app`
     return this._get(url, options)
@@ -60,6 +60,11 @@ const API = {
   recordHit (id) {
     const url = `${host}/api/app/${id}/record`
     return this._get(url)
+  },
+  // 手帐
+  getCategoryList (options = {}) {
+    const url = `${host}/api/category`
+    return this._get(url, options)
   }
 }
 

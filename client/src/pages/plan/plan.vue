@@ -8,17 +8,17 @@
     </p>
     <hr class="content-wrapper-line right"/>
     <div class="bm-panel content-plan-list clearfix">
-      <router-link tag="a" class="content-plan-list-item shadow" v-for="(item, index) in 9" :key="index" to="/plan/n-crawler">
-        <div class="content-plan-list-item-cover" style="background-image: url(http://yitianyibu.com/images/homepage/default/poster/small/9.jpg);">
+      <router-link tag="a" class="content-plan-list-item shadow" v-for="(item, index) in list" :key="index" to="">
+        <div class="content-plan-list-item-cover" :style="'background-image: url(' + item.coverUrl + ');'">
           <div class="content-plan-list-item-header">
             <div class="content-plan-list-item-header-box">
-              <span>Node: 爬虫</span>
+              <span>{{ item.name }}</span>
             </div>
           </div>
         </div>
         <div class="content-plan-list-item-info text-shadow">
-          <time>2017-04-06</time>
-          <span class="right">8篇</span>
+          <time>{{ item.time }}</time>
+          <!-- <span class="right">8篇</span> -->
         </div>
       </router-link>
     </div>
@@ -27,11 +27,57 @@
 
 <script>
 import YLayout from 'components/layout/layout'
+import api from 'api'
+import { dateFormat } from 'common/js/util'
+
+const tempImageUrl = 'http://yitianyibu.com/images/homepage/default/poster/small/*.jpg'
+
 export default {
   components: {
     YLayout
   },
+  data () {
+    return {
+      list: [],
+      offset: 0,
+      limit: 20
+    }
+  },
+  mounted () {
+    this.initData()
+  },
   methods: {
+    initData () {
+      this.getCategoryList()
+    },
+    getCategoryList () {
+      this._getCategoryList((error, data) => {
+        if (error) {
+          return this.errorTip(error)
+        }
+        if (data.status.code === 0) {
+          this.list = data.result.list.map(item => {
+            item.time = dateFormat(item.createdAt, 'yyyy-MM-dd')
+            item.coverUrl = item.coverUrl ? item.coverUrl : tempImageUrl.replace('*', String(item._id)[23])
+            return item
+          })
+          this.offset = data.result.meta.offset + this.limit
+        }
+      })
+    },
+    _getCategoryList (callback) {
+      api.getCategoryList({
+        offset: this.offset,
+        limit: this.limit
+      }).then(data => {
+        callback(null, data)
+      }).catch(error => {
+        callback(error.status.message)
+      })
+    },
+    errorTip (msg) {
+      this.$notify({ type: 'error', title: '错误', text: msg })
+    }
   }
 }
 </script>
