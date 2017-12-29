@@ -76,23 +76,28 @@ var recordById = function () {
           case 2:
             analyse = _context2.sent;
 
+            console.log(analyse);
+
             if (analyse) {
-              _context2.next = 5;
+              _context2.next = 6;
               break;
             }
 
             return _context2.abrupt('return', null);
 
-          case 5:
+          case 6:
             ++analyse.hits;
-            _context2.next = 8;
+            console.log(analyse);
+            _context2.next = 10;
             return analyse.save();
 
-          case 8:
+          case 10:
             result = _context2.sent;
+
+            console.log(result);
             return _context2.abrupt('return', result);
 
-          case 10:
+          case 13:
           case 'end':
             return _context2.stop();
         }

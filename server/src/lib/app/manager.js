@@ -13,11 +13,14 @@ const findAll = async (queryOptions = {}, options = {}) => {
 
 const recordById = async (appId) => {
   let analyse = await Model.findById(appId)
+  console.log(analyse)
   if (!analyse) {
       return null
   }
   ++analyse.hits
+  console.log(analyse)
   const result = await analyse.save()
+  console.log(result)
   return result
 }
 
