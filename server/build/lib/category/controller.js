@@ -33,7 +33,7 @@ var findAll = function () {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return _manager2.default.findAll((0, _pagination.getFromReq)(req.query, APP_LIMIT_DEFAULT));
+            return _manager2.default.findAll((0, _pagination.getFromReq)(req.query, _const.CATEGORY_LIMIT_DEFAULT));
 
           case 3:
             result = _context.sent;
