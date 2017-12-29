@@ -11,6 +11,17 @@ const findAll = async (queryOptions = {}, options = {}) => {
   }
 }
 
+const recordById = async (appId) => {
+  let analyse = await Model.findById(appId)
+  if (!analyse) {
+      return null
+  }
+  ++analyse.hits
+  const result = await analyse.save()
+  return result
+}
+
 export default {
-  findAll
+  findAll,
+  recordById
 }

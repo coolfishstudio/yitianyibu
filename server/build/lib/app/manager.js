@@ -63,7 +63,50 @@ var findAll = function () {
   };
 }();
 
+var recordById = function () {
+  var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(appId) {
+    var analyse, result;
+    return _regenerator2.default.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.next = 2;
+            return _model2.default.findById(appId);
+
+          case 2:
+            analyse = _context2.sent;
+
+            if (analyse) {
+              _context2.next = 5;
+              break;
+            }
+
+            return _context2.abrupt('return', null);
+
+          case 5:
+            ++analyse.hits;
+            _context2.next = 8;
+            return analyse.save();
+
+          case 8:
+            result = _context2.sent;
+            return _context2.abrupt('return', result);
+
+          case 10:
+          case 'end':
+            return _context2.stop();
+        }
+      }
+    }, _callee2, undefined);
+  }));
+
+  return function recordById(_x3) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
 exports.default = {
-  findAll: findAll
+  findAll: findAll,
+  recordById: recordById
 };
 //# sourceMappingURL=manager.js.map

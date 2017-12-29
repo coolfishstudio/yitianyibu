@@ -16,6 +16,7 @@ var router = new _express.Router();
 
 // router.post('/', appController.insert)
 router.get('/', _controller2.default.findAll);
+router.get('/:id([0-9a-f]{24})/record', _controller2.default.recordById);
 // router.get('/:id([0-9a-f]{24})', appController.getById)
 // router.put('/:id([0-9a-f]{24})', appController.updateById)
 // router.delete('/:id([0-9a-f]{24})', appController.removeById)

@@ -31,20 +31,29 @@ var findAll = function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.next = 2;
+            _context.prev = 0;
+            _context.next = 3;
             return _manager2.default.findAll((0, _pagination.getFromReq)(req.query, APP_LIMIT_DEFAULT));
 
-          case 2:
+          case 3:
             result = _context.sent;
 
             res.json((0, _format.formatResult)(result));
+            _context.next = 10;
+            break;
 
-          case 4:
+          case 7:
+            _context.prev = 7;
+            _context.t0 = _context['catch'](0);
+
+            next((0, _format.handlerCustomError)(107003, '查询失败'));
+
+          case 10:
           case 'end':
             return _context.stop();
         }
       }
-    }, _callee, undefined);
+    }, _callee, undefined, [[0, 7]]);
   }));
 
   return function findAll(_x, _x2, _x3) {

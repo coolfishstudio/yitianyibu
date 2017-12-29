@@ -41,7 +41,7 @@ var findAll = function () {
 
             options = (0, _assign2.default)(options, { removed: false });
             _context.next = 6;
-            return _model2.default.find(options).limit(queryOptions.limit).skip(queryOptions.offset).sort({ weight: -1, createdAt: -1 });
+            return _model2.default.find(options).limit(queryOptions.limit).skip(queryOptions.offset).sort({ weight: -1 });
 
           case 6:
             list = _context.sent;
