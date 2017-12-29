@@ -7,7 +7,7 @@ Object.defineProperty(exports, "__esModule", {
 var NODE_ENV = exports.NODE_ENV = 'development';
 
 // 端口号
-var PORT = exports.PORT = 3006;
+var PORT = exports.PORT = 9550;
 
 // MONGO 数据库
 var MONGO_URL = exports.MONGO_URL = 'mongodb://127.0.0.1:27017/';
