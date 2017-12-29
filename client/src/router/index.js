@@ -6,7 +6,7 @@ import Index from 'pages/index/index'
 import Plan from 'pages/plan/plan'
 import PlanList from 'pages/plan/list'
 import Archive from 'pages/archive/archive'
-import Lab from 'pages/lab/lab'
+import Labs from 'pages/labs/labs'
 import Message from 'pages/message/message'
 import Post from 'pages/writer/post'
 import Login from 'pages/login/login'
@@ -19,7 +19,7 @@ let routes = [{ path: '/', component: Index },
   { path: '/plan/:id', component: PlanList },
   { path: '/p', component: Archive },
   { path: '/p/:id', component: Post },
-  { path: '/lab', component: Lab },
+  { path: '/labs', component: Labs },
   { path: '/message', component: Message },
   { path: '/login', component: Login }]
 

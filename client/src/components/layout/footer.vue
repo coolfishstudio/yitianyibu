@@ -37,7 +37,6 @@ export default {
   height: 0.50rem
   line-height: 0.50rem
   text-align: center
-  max-width: 14.4rem
   min-width: 9rem
   .copyright
     font-size: 0
