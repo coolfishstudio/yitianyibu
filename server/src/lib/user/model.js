@@ -14,8 +14,8 @@ const UserSchema = new Schema({
   username: { type: String, default: '' }, // 用户名
   password: { type: String, default: '' } // 密码
 }, {
-    collection: 'user',
-    timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' }
+  collection: 'user',
+  timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' }
 })
 
 export default mongoose.model('User', UserSchema)

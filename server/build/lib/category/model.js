@@ -1,8 +1,14 @@
-import { mongoose } from '../../middleware/db'
+'use strict';
 
-const Schema = mongoose.Schema
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-const CategorySchema = new Schema({
+var _db = require('../../middleware/db');
+
+var Schema = _db.mongoose.Schema;
+
+var CategorySchema = new Schema({
   name: { type: String, required: true }, // 名称
   pathname: { type: String, default: '' }, // 自定义链接
   introduce: { type: String, default: '' }, // 介绍
@@ -14,6 +20,7 @@ const CategorySchema = new Schema({
 }, {
   collection: 'category',
   timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' }
-})
+});
 
-export default mongoose.model('Category', CategorySchema)
+exports.default = _db.mongoose.model('Category', CategorySchema);
+//# sourceMappingURL=model.js.map

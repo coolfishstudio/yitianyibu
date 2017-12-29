@@ -1,8 +1,14 @@
-import { mongoose } from '../../middleware/db'
+'use strict';
 
-const Schema = mongoose.Schema
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
-const MessageSchema = new Schema({
+var _db = require('../../middleware/db');
+
+var Schema = _db.mongoose.Schema;
+
+var MessageSchema = new Schema({
   ip: { type: String, required: true },
   name: { type: String, default: '' },
   email: { type: String, default: '' },
@@ -11,6 +17,7 @@ const MessageSchema = new Schema({
 }, {
   collection: 'message',
   timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' }
-})
+});
 
-export default mongoose.model('Message', MessageSchema)
+exports.default = _db.mongoose.model('Message', MessageSchema);
+//# sourceMappingURL=model.js.map
