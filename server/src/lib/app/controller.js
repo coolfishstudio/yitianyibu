@@ -12,17 +12,14 @@ const findAll = async (req, res, next) => {
   }
 }
 
-
 const recordById = async (req, res, next) => {
   try {
     const result = await appManager.recordById(req.params.id)
     res.json(formatResult({}))
   } catch (e) {
-    console.log(e)
     next(handlerCustomError(107002, '记录失败'))
   }
 }
-
 
 export default {
   findAll,

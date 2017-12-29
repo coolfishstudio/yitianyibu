@@ -19,7 +19,7 @@ var AppSchema = new Schema({
   type: { type: Number, default: 0 },
   hits: { type: Number, default: 0 },
   removed: { type: Boolean, default: false },
-  createdById: { type: Schema.Types.ObjectId, required: true }
+  createdByID: { type: Schema.Types.ObjectId, required: true }
 }, {
   collection: 'app',
   timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' }
