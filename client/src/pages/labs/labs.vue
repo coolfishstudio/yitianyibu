@@ -8,18 +8,12 @@
     </p>
     <hr class="content-wrapper-line right"/>
     <div class="bm-panel content-labs-list">
-      <a href="http://coolfishstudio.github.io/game-xmlk/" class="content-labs-list-item shadow" v-for="(item, index) in 6" :key="index">
-        <div style="background-image: url(http://yitianyibu.com/images/homepage/apps/1495596878623_cover.png)" class="content-labs-list-item-img"></div>
+      <a @click="gotoUrl(item.url, item._id)" class="content-labs-list-item shadow" v-for="(item, index) in list" :key="index">
+        <div :style="'background-image: url(' + item.cover + ')'" class="content-labs-list-item-img"></div>
         <div class="content-labs-list-item-text">
-          <p class="content-labs-list-item-title">
-            消灭蓝块
-          </p>
-          <p class="content-labs-list-item-time">
-            2016
-          </p>
-          <p class="content-labs-list-item-desc">
-            无意间翻出2015年写的一个小游戏，请用手机模式，点击蓝块，最后满屏红块即为赢。
-          </p>
+          <p class="content-labs-list-item-title">{{ item.name }}</p>
+          <p class="content-labs-list-item-time">{{ item.time }}</p>
+          <p class="content-labs-list-item-desc">{{ item.desc }}</p>
         </div>
       </a>
     </div>
@@ -28,11 +22,67 @@
 
 <script>
 import YLayout from 'components/layout/layout'
+import api from 'api'
+import { dateFormat } from 'common/js/util'
+
+const tempImageHost = 'http://yitianyibu.com/images/homepage/'
+
 export default {
   components: {
     YLayout
   },
+  data () {
+    return {
+      list: [],
+      offset: 0,
+      limit: 20
+    }
+  },
+  mounted () {
+    this.initData()
+  },
   methods: {
+    initData () {
+      this.getLabsList()
+    },
+    getLabsList () {
+      this._getLabsList((error, data) => {
+        if (error) {
+          return this.errorTip(error)
+        }
+        if (data.status.code === 0) {
+          this.list = data.result.list.map(item => {
+            item.time = dateFormat(item.createdAt, 'yyyy.MM.dd')
+            item.cover = item.cover.replace(/.*\/images\/homepage/, tempImageHost)
+            return item
+          })
+          this.offset = data.result.meta.offset + this.limit
+        }
+      })
+    },
+    gotoUrl (url, id) {
+      try {
+        window.location.href = url
+      } finally {
+        this._recordHit(id)
+      }
+    },
+    _getLabsList (callback) {
+      api.getLabsList({
+        offset: this.offset,
+        limit: this.limit
+      }).then(data => {
+        callback(null, data)
+      }).catch(error => {
+        callback(error.status.message)
+      })
+    },
+    _recordHit (id) {
+      api.recordHit(id)
+    },
+    errorTip (msg) {
+      this.$notify({ type: 'error', title: '错误', text: msg })
+    }
   }
 }
 </script>
@@ -76,8 +126,9 @@ export default {
         text-align: center
         font-size: 0.12rem
       .content-labs-list-item-desc
-        padding: 0.2rem 0.4rem 0 0.4rem
+        padding: 0.15rem 0.3rem 0 0.3rem
         color: $color-text-body
         font-size: 0.13rem
-        word-break: break-all
+        word-break: break-word
+        line-height: 0.18rem
 </style>

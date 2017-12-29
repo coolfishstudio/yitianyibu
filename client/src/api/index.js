@@ -4,7 +4,7 @@ const NODE_ENV = process.env.NODE_ENV || 'development'
 
 const host = {
   'production': 'http://api.yitianyibu.com',
-  'development': 'http://localhost:3006'
+  'development': 'http://localhost:9951'
 }[NODE_ENV]
 
 const API = {
@@ -51,6 +51,15 @@ const API = {
   login (options = {}) {
     const url = `${host}/api/user/login`
     return this._post(url, options)
+  },
+  // labs
+  getLabsList (options = {}) {
+    const url = `${host}/api/app`
+    return this._get(url, options)
+  },
+  recordHit (id) {
+    const url = `${host}/api/app/${id}/record`
+    return this._get(url)
   }
 }
 

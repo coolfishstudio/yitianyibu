@@ -67,7 +67,7 @@
       </div>
     </div>
     <y-post-near></y-post-near>
-    <y-comment-list></y-comment-list>
+    <y-comment-list v-if="false"></y-comment-list>
     <y-comment-create></y-comment-create>
   </y-layout>
 </template>
