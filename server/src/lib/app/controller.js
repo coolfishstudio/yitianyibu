@@ -18,6 +18,7 @@ const recordById = async (req, res, next) => {
     const result = await appManager.recordById(req.params.id)
     res.json(formatResult({}))
   } catch (e) {
+    console.log(e)
     next(handlerCustomError(107002, '记录失败'))
   }
 }

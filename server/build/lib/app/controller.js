@@ -76,16 +76,17 @@ var recordById = function () {
             result = _context2.sent;
 
             res.json((0, _format.formatResult)({}));
-            _context2.next = 10;
+            _context2.next = 11;
             break;
 
           case 7:
             _context2.prev = 7;
             _context2.t0 = _context2['catch'](0);
 
+            console.log(_context2.t0);
             next((0, _format.handlerCustomError)(107002, '记录失败'));
 
-          case 10:
+          case 11:
           case 'end':
             return _context2.stop();
         }
