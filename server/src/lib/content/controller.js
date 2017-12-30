@@ -6,17 +6,13 @@ import { CONTENT_LIMIT_DEFAULT } from '../util/const'
 const findAll = async (req, res, next) => {
   try {
     const result = await contentManager.findAll(getFromReq(req.query, CONTENT_LIMIT_DEFAULT ))
-    console.log(result.list)
-    result.list.map(item => {
-      delete item.html
-      delete item.markdown
-      delete item.images
-      delete item.tag
-      delete item.status
-      delete item.featured
-      delete item.removed
-      delete item.createdByID
-      return item
+    result.list = result.list.map(item => {
+      return {
+        _id: item._id,
+        createdAt: item.createdAt,
+        hits: item.hits,
+        title: item.title
+      }
     })
     res.json(formatResult(result))
   } catch (e) {
@@ -30,16 +26,13 @@ const findAllByCategory = async (req, res, next) => {
     const result = await contentManager.findAll(getFromReq(req.query, CONTENT_LIMIT_DEFAULT ), {
       category: req.params.id
     })
-    result.list.map(item => {
-      delete item.html
-      delete item.markdown
-      delete item.images
-      delete item.tag
-      delete item.status
-      delete item.featured
-      delete item.removed
-      delete item.createdByID
-      return item
+    result.list = result.list.map(item => {
+      return {
+        _id: item._id,
+        createdAt: item.createdAt,
+        hits: item.hits,
+        title: item.title
+      }
     })
     res.json(formatResult(result))
   } catch (e) {

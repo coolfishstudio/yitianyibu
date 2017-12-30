@@ -38,35 +38,31 @@ var findAll = function () {
           case 3:
             result = _context.sent;
 
-            console.log(result.list);
-            result.list.map(function (item) {
-              delete item.html;
-              delete item.markdown;
-              delete item.images;
-              delete item.tag;
-              delete item.status;
-              delete item.featured;
-              delete item.removed;
-              delete item.createdByID;
-              return item;
+            result.list = result.list.map(function (item) {
+              return {
+                _id: item._id,
+                createdAt: item.createdAt,
+                hits: item.hits,
+                title: item.title
+              };
             });
             res.json((0, _format.formatResult)(result));
-            _context.next = 13;
+            _context.next = 12;
             break;
 
-          case 9:
-            _context.prev = 9;
+          case 8:
+            _context.prev = 8;
             _context.t0 = _context['catch'](0);
 
             console.log(_context.t0);
             next((0, _format.handlerCustomError)(104001, '查询失败'));
 
-          case 13:
+          case 12:
           case 'end':
             return _context.stop();
         }
       }
-    }, _callee, undefined, [[0, 9]]);
+    }, _callee, undefined, [[0, 8]]);
   }));
 
   return function findAll(_x, _x2, _x3) {
@@ -90,16 +86,13 @@ var findAllByCategory = function () {
           case 3:
             result = _context2.sent;
 
-            result.list.map(function (item) {
-              delete item.html;
-              delete item.markdown;
-              delete item.images;
-              delete item.tag;
-              delete item.status;
-              delete item.featured;
-              delete item.removed;
-              delete item.createdByID;
-              return item;
+            result.list = result.list.map(function (item) {
+              return {
+                _id: item._id,
+                createdAt: item.createdAt,
+                hits: item.hits,
+                title: item.title
+              };
             });
             res.json((0, _format.formatResult)(result));
             _context2.next = 12;
