@@ -1,4 +1,5 @@
 import contentManager from './manager'
+import categoryManager from '../category/manager'
 import { getFromReq } from '../util/pagination'
 import { formatResult, handlerCustomError } from '../util/format'
 import { CONTENT_LIMIT_DEFAULT } from '../util/const'
@@ -16,7 +17,6 @@ const findAll = async (req, res, next) => {
     })
     res.json(formatResult(result))
   } catch (e) {
-    console.log(e)
     next(handlerCustomError(104001, '查询失败'))
   }
 }
@@ -34,9 +34,10 @@ const findAllByCategory = async (req, res, next) => {
         title: item.title
       }
     })
+    const categoryInfo = await categoryManager.getById(req.params.id)
+    result.info = categoryInfo
     res.json(formatResult(result))
   } catch (e) {
-    console.log(e)
     next(handlerCustomError(104002, '查询失败'))
   }
 }

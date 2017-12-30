@@ -16,6 +16,10 @@ var _manager = require('./manager');
 
 var _manager2 = _interopRequireDefault(_manager);
 
+var _manager3 = require('../category/manager');
+
+var _manager4 = _interopRequireDefault(_manager3);
+
 var _pagination = require('../util/pagination');
 
 var _format = require('../util/format');
@@ -47,17 +51,16 @@ var findAll = function () {
               };
             });
             res.json((0, _format.formatResult)(result));
-            _context.next = 12;
+            _context.next = 11;
             break;
 
           case 8:
             _context.prev = 8;
             _context.t0 = _context['catch'](0);
 
-            console.log(_context.t0);
             next((0, _format.handlerCustomError)(104001, '查询失败'));
 
-          case 12:
+          case 11:
           case 'end':
             return _context.stop();
         }
@@ -72,7 +75,7 @@ var findAll = function () {
 
 var findAllByCategory = function () {
   var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(req, res, next) {
-    var result;
+    var result, categoryInfo;
     return _regenerator2.default.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
@@ -94,23 +97,29 @@ var findAllByCategory = function () {
                 title: item.title
               };
             });
+            _context2.next = 7;
+            return _manager4.default.getById(req.params.id);
+
+          case 7:
+            categoryInfo = _context2.sent;
+
+            result.info = categoryInfo;
             res.json((0, _format.formatResult)(result));
-            _context2.next = 12;
+            _context2.next = 15;
             break;
 
-          case 8:
-            _context2.prev = 8;
+          case 12:
+            _context2.prev = 12;
             _context2.t0 = _context2['catch'](0);
 
-            console.log(_context2.t0);
             next((0, _format.handlerCustomError)(104002, '查询失败'));
 
-          case 12:
+          case 15:
           case 'end':
             return _context2.stop();
         }
       }
-    }, _callee2, undefined, [[0, 8]]);
+    }, _callee2, undefined, [[0, 12]]);
   }));
 
   return function findAllByCategory(_x4, _x5, _x6) {

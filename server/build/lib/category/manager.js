@@ -63,7 +63,35 @@ var findAll = function () {
   };
 }();
 
+var getById = function () {
+  var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(id) {
+    var result;
+    return _regenerator2.default.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.next = 2;
+            return _model2.default.findById(id);
+
+          case 2:
+            result = _context2.sent;
+            return _context2.abrupt('return', result);
+
+          case 4:
+          case 'end':
+            return _context2.stop();
+        }
+      }
+    }, _callee2, undefined);
+  }));
+
+  return function getById(_x3) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
 exports.default = {
-  findAll: findAll
+  findAll: findAll,
+  getById: getById
 };
 //# sourceMappingURL=manager.js.map
