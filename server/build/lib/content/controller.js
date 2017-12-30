@@ -38,6 +38,7 @@ var findAll = function () {
           case 3:
             result = _context.sent;
 
+            console.log(result);
             result.map(function (item) {
               delete item.html;
               delete item.markdown;
@@ -50,22 +51,22 @@ var findAll = function () {
               return item;
             });
             res.json((0, _format.formatResult)(result));
-            _context.next = 12;
+            _context.next = 13;
             break;
 
-          case 8:
-            _context.prev = 8;
+          case 9:
+            _context.prev = 9;
             _context.t0 = _context['catch'](0);
 
             console.log(_context.t0);
             next((0, _format.handlerCustomError)(104001, '查询失败'));
 
-          case 12:
+          case 13:
           case 'end':
             return _context.stop();
         }
       }
-    }, _callee, undefined, [[0, 8]]);
+    }, _callee, undefined, [[0, 9]]);
   }));
 
   return function findAll(_x, _x2, _x3) {
