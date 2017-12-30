@@ -38,8 +38,8 @@ var findAll = function () {
           case 3:
             result = _context.sent;
 
-            console.log(result);
-            result.map(function (item) {
+            console.log(result.list);
+            result.list.map(function (item) {
               delete item.html;
               delete item.markdown;
               delete item.images;
@@ -90,7 +90,7 @@ var findAllByCategory = function () {
           case 3:
             result = _context2.sent;
 
-            result.map(function (item) {
+            result.list.map(function (item) {
               delete item.html;
               delete item.markdown;
               delete item.images;

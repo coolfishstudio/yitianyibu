@@ -6,8 +6,8 @@ import { CONTENT_LIMIT_DEFAULT } from '../util/const'
 const findAll = async (req, res, next) => {
   try {
     const result = await contentManager.findAll(getFromReq(req.query, CONTENT_LIMIT_DEFAULT ))
-    console.log(result)
-    result.map(item => {
+    console.log(result.list)
+    result.list.map(item => {
       delete item.html
       delete item.markdown
       delete item.images
@@ -30,7 +30,7 @@ const findAllByCategory = async (req, res, next) => {
     const result = await contentManager.findAll(getFromReq(req.query, CONTENT_LIMIT_DEFAULT ), {
       category: req.params.id
     })
-    result.map(item => {
+    result.list.map(item => {
       delete item.html
       delete item.markdown
       delete item.images
