@@ -8,7 +8,7 @@ var _router = require('./lib/user/router');
 
 var _router2 = _interopRequireDefault(_router);
 
-var _router3 = require('./lib/article/router');
+var _router3 = require('./lib/content/router');
 
 var _router4 = _interopRequireDefault(_router3);
 
@@ -58,7 +58,7 @@ var router = function router(app) {
   });
   // api
   app.use('/api/user', _router2.default);
-  app.use('/api/article', _router4.default);
+  app.use('/api/content', _router4.default);
   app.use('/api/category', _router6.default);
   app.use('/api/tag', _router8.default);
   app.use('/api/app', _router10.default);

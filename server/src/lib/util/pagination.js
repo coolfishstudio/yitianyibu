@@ -7,7 +7,7 @@ const getFromReq = (query = {}, defaultLimit) => {
     offset = 0
   }
   let limit = parseInt(query.limit, 10)
-  if (isNaN(limit) || limit <= 0 || limit > defaultLimit) {
+  if (isNaN(limit) || limit === 0 || limit < -1 || limit > defaultLimit) {
     limit = defaultLimit
   }
   return {

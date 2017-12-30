@@ -1,5 +1,5 @@
 import userRouter from './lib/user/router'
-import articleRouter from './lib/article/router'
+import contentRouter from './lib/content/router'
 import categoryRouter from './lib/category/router'
 import tagRouter from './lib/tag/router'
 import appRouter from './lib/app/router'
@@ -18,7 +18,7 @@ const router = (app) => {
   })
   // api
   app.use('/api/user', userRouter)
-  app.use('/api/article', articleRouter)
+  app.use('/api/content', contentRouter)
   app.use('/api/category', categoryRouter)
   app.use('/api/tag', tagRouter)
   app.use('/api/app', appRouter)
