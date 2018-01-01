@@ -75,18 +75,44 @@ var findAll = function () {
 
 var findAllByCategory = function () {
   var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(req, res, next) {
-    var result, categoryInfo;
+    var categoryInfo, result;
     return _regenerator2.default.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             _context2.prev = 0;
-            _context2.next = 3;
+            categoryInfo = null;
+
+            if (!/^[0-9a-f]{24}$/.test(req.params.id)) {
+              _context2.next = 8;
+              break;
+            }
+
+            _context2.next = 5;
+            return _manager4.default.getById(req.params.id);
+
+          case 5:
+            categoryInfo = _context2.sent;
+            _context2.next = 11;
+            break;
+
+          case 8:
+            _context2.next = 10;
+            return _manager4.default.getByPathname(req.params.id);
+
+          case 10:
+            categoryInfo = _context2.sent;
+
+          case 11:
+            if (!categoryInfo) {
+              next((0, _format.handlerCustomError)(104002, '获取类别信息失败'));
+            }
+            _context2.next = 14;
             return _manager2.default.findAll((0, _pagination.getFromReq)(req.query, _const.CONTENT_LIMIT_DEFAULT), {
-              category: req.params.id
+              category: categoryInfo._id
             });
 
-          case 3:
+          case 14:
             result = _context2.sent;
 
             result.list = result.list.map(function (item) {
@@ -97,29 +123,24 @@ var findAllByCategory = function () {
                 title: item.title
               };
             });
-            _context2.next = 7;
-            return _manager4.default.getById(req.params.id);
-
-          case 7:
-            categoryInfo = _context2.sent;
-
             result.info = categoryInfo;
             res.json((0, _format.formatResult)(result));
-            _context2.next = 15;
+            _context2.next = 24;
             break;
 
-          case 12:
-            _context2.prev = 12;
+          case 20:
+            _context2.prev = 20;
             _context2.t0 = _context2['catch'](0);
 
+            console.log(_context2.t0);
             next((0, _format.handlerCustomError)(104002, '查询失败'));
 
-          case 15:
+          case 24:
           case 'end':
             return _context2.stop();
         }
       }
-    }, _callee2, undefined, [[0, 12]]);
+    }, _callee2, undefined, [[0, 20]]);
   }));
 
   return function findAllByCategory(_x4, _x5, _x6) {

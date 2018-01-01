@@ -23,8 +23,17 @@ const findAll = async (req, res, next) => {
 
 const findAllByCategory = async (req, res, next) => {
   try {
+    let categoryInfo = null
+    if (/^[0-9a-f]{24}$/.test(req.params.id)) {
+      categoryInfo = await categoryManager.getById(req.params.id)
+    } else {
+      categoryInfo = await categoryManager.getByPathname(req.params.id)
+    }
+    if (!categoryInfo) {
+      next(handlerCustomError(104002, '获取类别信息失败'))
+    }
     const result = await contentManager.findAll(getFromReq(req.query, CONTENT_LIMIT_DEFAULT ), {
-      category: req.params.id
+      category: categoryInfo._id
     })
     result.list = result.list.map(item => {
       return {
@@ -34,10 +43,10 @@ const findAllByCategory = async (req, res, next) => {
         title: item.title
       }
     })
-    const categoryInfo = await categoryManager.getById(req.params.id)
     result.info = categoryInfo
     res.json(formatResult(result))
   } catch (e) {
+    console.log(e)
     next(handlerCustomError(104002, '查询失败'))
   }
 }

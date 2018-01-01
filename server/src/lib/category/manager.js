@@ -16,7 +16,13 @@ const getById = async (id) => {
   return result
 }
 
+const getByPathname = async (pathname) => {
+  const result = await Model.findOne({ pathname })
+  return result
+}
+
 export default {
   findAll,
-  getById
+  getById,
+  getByPathname
 }
