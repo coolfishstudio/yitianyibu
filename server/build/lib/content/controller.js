@@ -167,34 +167,46 @@ var getById = function () {
             }
 
             if (!result.category) {
-              _context3.next = 9;
+              _context3.next = 14;
               break;
             }
 
-            _context3.next = 8;
+            _context3.t0 = JSON;
+            _context3.next = 9;
             return _manager4.default.getById(result.category);
 
-          case 8:
-            result.category = _context3.sent;
-
           case 9:
-            res.json((0, _format.formatResult)(result));
-            _context3.next = 16;
-            break;
+            _context3.t1 = _context3.sent;
+
+            if (_context3.t1) {
+              _context3.next = 12;
+              break;
+            }
+
+            _context3.t1 = null;
 
           case 12:
-            _context3.prev = 12;
-            _context3.t0 = _context3['catch'](0);
+            _context3.t2 = _context3.t1;
+            result.category = _context3.t0.parse.call(_context3.t0, _context3.t2);
 
-            console.log(_context3.t0);
+          case 14:
+            res.json((0, _format.formatResult)(result));
+            _context3.next = 21;
+            break;
+
+          case 17:
+            _context3.prev = 17;
+            _context3.t3 = _context3['catch'](0);
+
+            console.log(_context3.t3);
             next((0, _format.handlerCustomError)(104005, '查询失败'));
 
-          case 16:
+          case 21:
           case 'end':
             return _context3.stop();
         }
       }
-    }, _callee3, undefined, [[0, 12]]);
+    }, _callee3, undefined, [[0, 17]]);
   }));
 
   return function getById(_x7, _x8, _x9) {
