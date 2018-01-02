@@ -150,34 +150,36 @@ var findAllByCategory = function () {
 
 var getById = function () {
   var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3(req, res, next) {
-    var result, categoryInfo;
+    var result;
     return _regenerator2.default.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
             _context3.prev = 0;
-            _context3.next = 3;
+            result = {
+              content: null,
+              category: null
+            };
+            _context3.next = 4;
             return _manager2.default.getById(req.params.id);
 
-          case 3:
-            result = _context3.sent;
+          case 4:
+            result.content = _context3.sent;
 
-            if (!result) {
+            if (!result.content) {
               next((0, _format.handlerCustomError)(104004, '获取文章信息失败'));
             }
 
-            if (!result.category) {
+            if (!result.content.category) {
               _context3.next = 10;
               break;
             }
 
-            _context3.next = 8;
+            _context3.next = 9;
             return _manager4.default.getById(result.category);
 
-          case 8:
-            categoryInfo = _context3.sent;
-
-            result.categoryInfo = categoryInfo;
+          case 9:
+            result.category = _context3.sent;
 
           case 10:
             res.json((0, _format.formatResult)(result));
