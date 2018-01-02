@@ -133,7 +133,7 @@ var findAllByCategory = function () {
             _context2.t0 = _context2['catch'](0);
 
             console.log(_context2.t0);
-            next((0, _format.handlerCustomError)(104002, '查询失败'));
+            next((0, _format.handlerCustomError)(104003, '查询失败'));
 
           case 24:
           case 'end':
@@ -148,8 +148,63 @@ var findAllByCategory = function () {
   };
 }();
 
+var getById = function () {
+  var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3(req, res, next) {
+    var result;
+    return _regenerator2.default.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.prev = 0;
+            _context3.next = 3;
+            return _manager2.default.getById(req.params.id);
+
+          case 3:
+            result = _context3.sent;
+
+            if (!result) {
+              next((0, _format.handlerCustomError)(104004, '获取文章信息失败'));
+            }
+
+            if (!result.category) {
+              _context3.next = 9;
+              break;
+            }
+
+            _context3.next = 8;
+            return _manager4.default.getById(result.category);
+
+          case 8:
+            result.categoryInfo = _context3.sent;
+
+          case 9:
+            res.json((0, _format.formatResult)(result));
+            _context3.next = 16;
+            break;
+
+          case 12:
+            _context3.prev = 12;
+            _context3.t0 = _context3['catch'](0);
+
+            console.log(_context3.t0);
+            next((0, _format.handlerCustomError)(104005, '查询失败'));
+
+          case 16:
+          case 'end':
+            return _context3.stop();
+        }
+      }
+    }, _callee3, undefined, [[0, 12]]);
+  }));
+
+  return function getById(_x7, _x8, _x9) {
+    return _ref3.apply(this, arguments);
+  };
+}();
+
 exports.default = {
   findAll: findAll,
-  findAllByCategory: findAllByCategory
+  findAllByCategory: findAllByCategory,
+  getById: getById
 };
 //# sourceMappingURL=controller.js.map

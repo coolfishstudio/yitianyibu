@@ -16,6 +16,12 @@ const findAll = async (queryOptions = {}, options = {}) => {
   }
 }
 
+const getById = async (id) => {
+  const result = await Model.findById(id)
+  return result
+}
+
 export default {
-  findAll
+  findAll,
+  getById
 }

@@ -6,7 +6,7 @@ import { CONTENT_LIMIT_DEFAULT } from '../util/const'
 
 const findAll = async (req, res, next) => {
   try {
-    const result = await contentManager.findAll(getFromReq(req.query, CONTENT_LIMIT_DEFAULT ))
+    const result = await contentManager.findAll(getFromReq(req.query, CONTENT_LIMIT_DEFAULT))
     result.list = result.list.map(item => {
       return {
         _id: item._id,
@@ -32,7 +32,7 @@ const findAllByCategory = async (req, res, next) => {
     if (!categoryInfo) {
       next(handlerCustomError(104002, '获取类别信息失败'))
     }
-    const result = await contentManager.findAll(getFromReq(req.query, CONTENT_LIMIT_DEFAULT ), {
+    const result = await contentManager.findAll(getFromReq(req.query, CONTENT_LIMIT_DEFAULT), {
       category: categoryInfo._id
     })
     result.list = result.list.map(item => {
@@ -47,11 +47,28 @@ const findAllByCategory = async (req, res, next) => {
     res.json(formatResult(result))
   } catch (e) {
     console.log(e)
-    next(handlerCustomError(104002, '查询失败'))
+    next(handlerCustomError(104003, '查询失败'))
+  }
+}
+
+const getById = async (req, res, next) => {
+  try {
+    const result = await contentManager.getById(req.params.id)
+    if (!result) {
+      next(handlerCustomError(104004, '获取文章信息失败'))
+    }
+    if (result.category) {
+      result.categoryInfo = await categoryManager.getById(result.category)
+    }
+    res.json(formatResult(result))
+  } catch (e) {
+    console.log(e)
+    next(handlerCustomError(104005, '查询失败'))
   }
 }
 
 export default {
   findAll,
-  findAllByCategory
+  findAllByCategory,
+  getById
 }

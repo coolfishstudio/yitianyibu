@@ -16,9 +16,7 @@ var router = new _express.Router();
 
 router.get('/', _controller2.default.findAll);
 router.get('/by/category/:id', _controller2.default.findAllByCategory);
-// router.get('/:id', (req, res) => {
-//   res.json({'status':{'code':0,'message':'success'},'data':{}})
-// })
+router.get('/:id([0-9a-f]{24})', _controller2.default.getById);
 // router.post('/', (req, res) => {
 //   res.json({'status':{'code':0,'message':'success'},'data':{}})
 // })
