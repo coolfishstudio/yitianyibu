@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="plan-list-content">
-        <blockquote>
+        <blockquote v-if="info.desc">
           <p>
             {{ info.desc }}
           </p>
@@ -111,7 +111,7 @@ export default {
         font-style: italic
     .plan-list-post-item
       border-bottom: 1px solid #eee
-      font-size: .14rem
+      font-size: .16rem
       padding: .12rem
       overflow: hidden
       display: block
@@ -131,6 +131,7 @@ export default {
         line-height: normal
       .plan-list-post-time
         float: right
+        min-width: 1.5rem
         time
           margin-right: .05rem
   .plan-list-header

@@ -4,7 +4,8 @@ const NODE_ENV = process.env.NODE_ENV || 'development'
 
 const host = {
   'production': 'http://api.yitianyibu.com',
-  'development': 'http://localhost:9951'
+  'development': 'http://api.yitianyibu.com'
+  // 'development': 'http://localhost:9951'
 }[NODE_ENV]
 
 const API = {

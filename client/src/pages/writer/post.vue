@@ -185,11 +185,12 @@ export default {
         overflow: auto
         line-height: 1.7
     blockquote
-      border-left: 4px solid #009a61
-      padding: 0 0.1rem 0 0.2rem
-      margin: 0.25rem 0
-      margin-left: -0.23rem
-      font-style: italic
+      padding: 0.15rem 0.2rem
+      border-left: 5px solid #ccc
+      background-color: #f8f8f8
+      margin: 0.2rem 0
+      p
+        margin: 0
     table
       font-size: 0.14rem
       width: 100%

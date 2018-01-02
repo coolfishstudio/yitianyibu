@@ -16,6 +16,7 @@
           </div>
           <router-link tag="a" class="link" :to="'/p/' + item._id">
             {{ item.title }}
+            <div class="hits">{{ item.hits }}</div>
           </router-link>
         </div>
       </div>
@@ -138,9 +139,24 @@ export default {
         display: block
         color: #666
         text-transform: uppercase
-        font-size: 0.16rem
+        font-size: 0.18rem
         line-height: 1.8
         &:hover
           color: #26272b
           border-bottom-color: #26272b
+          .hits
+            transform: translate(20%, -2px)
+            opacity: 1
+        .hits
+          position: relative
+          display: inline-block
+          color: #fff
+          padding: 3px 10px
+          border-radius: 0.2rem
+          font-size: 0.12rem
+          line-height: 1
+          opacity: 0
+          transform: translate(30%, -2px)
+          transition: all .3s ease-out
+          background-color: #26272b
 </style>
