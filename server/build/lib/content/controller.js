@@ -175,7 +175,7 @@ var getById = function () {
             return _manager4.default.getById(result.category);
 
           case 8:
-            result.categoryInfo = _context3.sent;
+            result.category = _context3.sent;
 
           case 9:
             res.json((0, _format.formatResult)(result));

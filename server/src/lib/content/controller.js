@@ -58,7 +58,7 @@ const getById = async (req, res, next) => {
       next(handlerCustomError(104004, '获取文章信息失败'))
     }
     if (result.category) {
-      result.categoryInfo = await categoryManager.getById(result.category)
+      result.category = await categoryManager.getById(result.category)
     }
     res.json(formatResult(result))
   } catch (e) {
