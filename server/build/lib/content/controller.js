@@ -177,7 +177,7 @@ var getById = function () {
           case 8:
             categoryInfo = _context3.sent;
 
-            result.category = JSON.parse(categoryInfo || null);
+            result.categoryInfo = categoryInfo;
 
           case 10:
             res.json((0, _format.formatResult)(result));

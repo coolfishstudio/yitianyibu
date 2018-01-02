@@ -59,7 +59,7 @@ const getById = async (req, res, next) => {
     }
     if (result.category) {
       let categoryInfo = await categoryManager.getById(result.category)
-      result.category = JSON.parse(categoryInfo || null)
+      result.categoryInfo = categoryInfo
     }
     res.json(formatResult(result))
   } catch (e) {
