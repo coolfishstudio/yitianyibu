@@ -176,7 +176,7 @@ var getById = function () {
             }
 
             _context3.next = 9;
-            return _manager4.default.getById(result.category);
+            return _manager4.default.getById(result.content.category);
 
           case 9:
             result.category = _context3.sent;
