@@ -59,7 +59,7 @@ export default {
         if (data.status.code === 0) {
           this.list = data.result.list.map(item => {
             item.year = dateFormat(item.createdAt, 'yyyy')
-            item.month = month[dateFormat(item.createdAt, 'M') || 0]
+            item.month = month[(dateFormat(item.createdAt, 'M') - 1) || 0]
             if (lastMonth !== item.month) {
               lastMonth = item.month
             } else {
