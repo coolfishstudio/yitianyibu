@@ -53,7 +53,7 @@ const findAllByCategory = async (req, res, next) => {
 
 const getById = async (req, res, next) => {
   try {
-    const result = await contentManager.getById(req.params.id)
+    let result = await contentManager.getById(req.params.id)
     if (!result) {
       next(handlerCustomError(104004, '获取文章信息失败'))
     }
