@@ -58,7 +58,8 @@ const getById = async (req, res, next) => {
       next(handlerCustomError(104004, '获取文章信息失败'))
     }
     if (result.category) {
-      result.category = JSON.parse(await categoryManager.getById(result.category) || null)
+      let categoryInfo = await categoryManager.getById(result.category)
+      result.category = JSON.parse(categoryInfo || null)
     }
     res.json(formatResult(result))
   } catch (e) {

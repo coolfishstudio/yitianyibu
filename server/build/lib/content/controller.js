@@ -150,7 +150,7 @@ var findAllByCategory = function () {
 
 var getById = function () {
   var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3(req, res, next) {
-    var result;
+    var result, categoryInfo;
     return _regenerator2.default.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
@@ -167,46 +167,36 @@ var getById = function () {
             }
 
             if (!result.category) {
-              _context3.next = 14;
+              _context3.next = 10;
               break;
             }
 
-            _context3.t0 = JSON;
-            _context3.next = 9;
+            _context3.next = 8;
             return _manager4.default.getById(result.category);
 
-          case 9:
-            _context3.t1 = _context3.sent;
+          case 8:
+            categoryInfo = _context3.sent;
 
-            if (_context3.t1) {
-              _context3.next = 12;
-              break;
-            }
+            result.category = JSON.parse(categoryInfo || null);
 
-            _context3.t1 = null;
-
-          case 12:
-            _context3.t2 = _context3.t1;
-            result.category = _context3.t0.parse.call(_context3.t0, _context3.t2);
-
-          case 14:
+          case 10:
             res.json((0, _format.formatResult)(result));
-            _context3.next = 21;
+            _context3.next = 17;
             break;
 
-          case 17:
-            _context3.prev = 17;
-            _context3.t3 = _context3['catch'](0);
+          case 13:
+            _context3.prev = 13;
+            _context3.t0 = _context3['catch'](0);
 
-            console.log(_context3.t3);
+            console.log(_context3.t0);
             next((0, _format.handlerCustomError)(104005, '查询失败'));
 
-          case 21:
+          case 17:
           case 'end':
             return _context3.stop();
         }
       }
-    }, _callee3, undefined, [[0, 17]]);
+    }, _callee3, undefined, [[0, 13]]);
   }));
 
   return function getById(_x7, _x8, _x9) {
