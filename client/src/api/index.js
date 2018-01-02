@@ -65,6 +65,19 @@ const API = {
   getCategoryList (options = {}) {
     const url = `${host}/api/category`
     return this._get(url, options)
+  },
+  getContentByCategory (id, options = {}) {
+    const url = `${host}/api/content/by/category/${id}`
+    return this._get(url, options)
+  },
+  // 内容
+  getContentList (options = {}) {
+    const url = `${host}/api/content`
+    return this._get(url, options)
+  },
+  getContentInfo (id) {
+    const url = `${host}/api/content/${id}`
+    return this._get(url)
   }
 }
 

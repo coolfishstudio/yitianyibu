@@ -8,7 +8,7 @@
     </p>
     <hr class="content-wrapper-line right"/>
     <div class="bm-panel content-plan-list clearfix">
-      <router-link tag="a" class="content-plan-list-item shadow" v-for="(item, index) in list" :key="index" to="">
+      <router-link tag="a" class="content-plan-list-item shadow" v-for="(item, index) in list" :key="index" :to="'/plan/' + (item.pathname || item._id)">
         <div class="content-plan-list-item-cover" :style="'background-image: url(' + item.coverUrl + ');'">
           <div class="content-plan-list-item-header">
             <div class="content-plan-list-item-header-box">
@@ -18,7 +18,6 @@
         </div>
         <div class="content-plan-list-item-info text-shadow">
           <time>{{ item.time }}</time>
-          <!-- <span class="right">8篇</span> -->
         </div>
       </router-link>
     </div>

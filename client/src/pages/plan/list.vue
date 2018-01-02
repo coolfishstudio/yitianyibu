@@ -1,25 +1,25 @@
 <template>
   <y-layout menu="plan">
     <div class="bm-panel plan-list-content shadow text-shadow">
-      <div class="plan-list-header" style="background-image: url(http://yitianyibu.com/images/homepage/default/poster/small/9.jpg);">
+      <div class="plan-list-header" :style="'background-image: url(' + info.coverUrl + ');'">
         <div class="plan-list-cover">
         </div>
         <div class="plan-list-title">
-          <span>Node: 爬虫</span>
+          <span>{{ info.name }}</span>
         </div>
       </div>
       <div class="plan-list-content">
         <blockquote>
           <p>
-            从零开始 一步步教你学会 使用node制作爬虫项目 抓取校花网的照片。
+            {{ info.desc }}
           </p>
         </blockquote>
-        <router-link tag="a" class="plan-list-post-item" v-for="(item, index) in 9" :key="index" to="/p/58e8a86aab09425c53011316">
+        <router-link tag="a" class="plan-list-post-item" v-for="(item, index) in list" :key="index" :to="'/p/'+ item._id">
           <div class="plan-list-post-title">
-            N-Crawler-06 Path&amp;Fs下载图片
+            {{ item.title }}
           </div>
           <div class="plan-list-post-time">
-            <time>2017-04-08 17:07</time>
+            <time>{{ item.time }}</time>
           </div>
         </router-link>
       </div>
@@ -29,11 +29,66 @@
 
 <script>
 import YLayout from 'components/layout/layout'
+import api from 'api'
+import { dateFormat } from 'common/js/util'
+
+const tempImageUrl = 'http://yitianyibu.com/images/homepage/default/poster/small/*.jpg'
+
 export default {
   components: {
     YLayout
   },
+  data () {
+    return {
+      info: {
+        name: null,
+        coverUrl: null,
+        desc: null
+      },
+      list: [],
+      offset: 0,
+      limit: -1
+    }
+  },
+  activated () {
+    this.initData()
+  },
   methods: {
+    initData () {
+      this.getContentByCategory()
+    },
+    getContentByCategory () {
+      this._getContentByCategory((error, data) => {
+        if (error) {
+          return this.errorTip(error)
+        }
+        if (data.status.code === 0) {
+          this.info = {
+            name: data.result.info.name,
+            desc: data.result.info.desc,
+            coverUrl: data.result.info.coverUrl ? data.result.info.coverUrl : tempImageUrl.replace('*', String(data.result.info._id)[23])
+          }
+          this.list = data.result.list.map(item => {
+            item.time = dateFormat(item.createdAt, 'yyyy-MM-dd hh:mm')
+            return item
+          })
+          this.offset = data.result.meta.offset + this.limit
+        }
+      })
+    },
+    _getContentByCategory (callback) {
+      api.getContentByCategory(this.$route.params.id, {
+        offset: this.offset,
+        limit: this.limit
+      }).then(data => {
+        callback(null, data)
+      }).catch(error => {
+        callback(error.status.message)
+      })
+    },
+    errorTip (msg) {
+      this.$notify({ type: 'error', title: '错误', text: msg })
+    }
   }
 }
 </script>

@@ -1,74 +1,31 @@
 <template>
-  <y-layout menu="plan">
+  <y-layout menu="post">
     <div class="bm-panel post-content shadow text-shadow">
-      <div class="post-header">
-        <h1 class="post-title">N-Crawler-02 Iconv-lite解决乱码</h1>
-        <div class="post-meta">
-          <span class="post-time">发表于 2017-04-07</span>
-          <span>151 次浏览</span>
-            <span class="post-category">所属于 <font>Node.js</font>
-          </span>
+      <div v-show="!loading">
+        <div class="post-header">
+          <h1 class="post-title">{{ info.title }}</h1>
+          <div class="post-meta">
+            <span class="post-time">发表于 {{ info.time }}</span>
+            <span>{{ info.hits }} 次浏览</span>
+            <span class="post-tags" v-if="false">所属于 <font>Node.js</font></span>
+          </div>
         </div>
-      </div>
-      <div class="post-body">
-        <div class="markdown-text">
-          <p>
-            在上一篇文章里面我们成功的拿到了数据，但是通过观察数据会发现，该数据出现了中文乱码。
-  那么本篇文章就是在test1.js的基础上,处理解决乱码问题。
-  通过
-            <code>iconv-lite</code>这个第三方库解决乱码问题，
-  使用方式很简单：
-          </p>
-          <ul>
-            <li>首先让request请求的返回直接buffer</li>
-            <li>然后 iconv.decode(body, ‘gb2312’) 即可</li>
-          </ul>
-          <p>
-            代码如下：
-          </p>
-          <pre>
-            <code>// 加载第三方库
-  var request = require('request'),
-      iconv = require('iconv-lite');
-  // 要抓取的url
-  var url = 'http://www.xiaohuar.com/list-1-0.html';
-  // 开始抓取
-  request.get({
-      url: url,
-      encoding: null // buffer
-  }, function (err, response, body) {
-      if (!err &amp;&amp; response.statusCode === 200) {
-          body = iconv.decode(body, 'gb2312');// 处理转码问题
-          console.log(body);// 请求页面返回的html数据
-      } else {
-          console.error('请求失败', err);
-      }
-  });
-            </code>
-          </pre>
-          <p>
-            为了区分，我们保存为test2.js，运行一下这个文件<code>node test2.js</code>
-          </p>
-          <p>
-            <img src="http://yitianyibu.com/images/content/96382bfac020a09d72b09b96750a1b4b.png" alt="rrrr.png">
-          </p>
-          <p>
-            我们可以看到 乱码问题已经解决了。
-          </p>
-          <p>
-            相关代码：<a href="https://github.com/coolfishstudio/N-Crawler/blob/master/test2.js">https://github.com/coolfishstudio/N-Crawler/blob/master/test2.js</a>
-          </p>
+        <div class="post-body" v-html="info.html">
         </div>
-      </div>
-      <div class="post-bar">
-        <div class="post-like"><span class="heart" id="heart"></span></div>
-        <a class="name">Node：爬虫</a>
-        <div class="plan">从零开始 一步步教你学会 使用node制作爬虫项目 抓取校花网的照片。</div>
+        <div class="post-bar">
+          <div class="post-like"><span class="heart" id="heart"></span></div>
+          <router-link tag="a" class="name" :to="'/plan/' + info.category.link">
+            {{ info.category.title }}
+          </router-link>
+          <router-link tag="a" class="plan" :to="'/plan/' + info.category.link">
+            {{ info.category.desc }}
+          </router-link>
+        </div>
       </div>
     </div>
-    <y-post-near></y-post-near>
+    <y-post-near v-if="false"></y-post-near>
     <y-comment-list v-if="false"></y-comment-list>
-    <y-comment-create></y-comment-create>
+    <y-comment-create v-if="false"></y-comment-create>
   </y-layout>
 </template>
 
@@ -77,6 +34,9 @@ import YLayout from 'components/layout/layout'
 import YCommentCreate from 'components/comment/create'
 import YCommentList from 'components/comment/list'
 import YPostNear from 'components/post-near/post-near'
+import api from 'api'
+import { dateFormat } from 'common/js/util'
+
 export default {
   components: {
     YLayout,
@@ -84,7 +44,61 @@ export default {
     YCommentList,
     YPostNear
   },
+  data () {
+    return {
+      loading: false,
+      info: {
+        title: null,
+        html: null,
+        hits: null,
+        time: null,
+        category: {
+          title: null,
+          desc: null
+        }
+      }
+    }
+  },
+  activated () {
+    this.initData()
+  },
   methods: {
+    initData () {
+      this.getContentInfo()
+    },
+    getContentInfo () {
+      this.loading = true
+      this._getContentInfo((error, data) => {
+        this.loading = false
+        if (error) {
+          return this.errorTip(error)
+        }
+        if (data.status.code === 0) {
+          data.result.content.html = data.result.content.html.replace(/src="\/images/img, 'src="http://yitianyibu.com/images')
+          this.info = {
+            title: data.result.content.title || null,
+            html: data.result.content.html || null,
+            hits: data.result.content.hits || null,
+            time: dateFormat(data.result.content.createdAt, 'yyyy-MM-dd'),
+            category: {
+              title: data.result.category.name || null,
+              desc: data.result.category.desc || null,
+              link: data.result.category.pathname || data.result.category._id || null
+            }
+          }
+        }
+      })
+    },
+    _getContentInfo (callback) {
+      api.getContentInfo(this.$route.params.id).then(data => {
+        callback(null, data)
+      }).catch(error => {
+        callback(error.status.message)
+      })
+    },
+    errorTip (msg) {
+      this.$notify({ type: 'error', title: '错误', text: msg })
+    }
   }
 }
 </script>
@@ -243,6 +257,7 @@ export default {
     font-weight: 700
     font-size: 0.18rem
   .plan
+    display: block
     margin-top: 0.16rem
     margin-bottom: 0.3rem
     font-size: 0.14rem

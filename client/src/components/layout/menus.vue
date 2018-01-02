@@ -27,8 +27,8 @@ export default {
       let list = []
       list.push({ title: 'Home', menu: 'index', to: '/index' })
       list.push({ title: 'Plan', menu: 'plan', to: '/plan' })
+      list.push({ title: 'Archive', menu: 'archive', to: '/p' })
       list.push({ title: 'Labs', menu: 'labs', to: '/labs' })
-      // list.push({ title: 'Archive', menu: 'archive', to: '/p' })
       list.push({ title: 'Message', menu: 'message', to: '/message' })
       this.list = list
     }

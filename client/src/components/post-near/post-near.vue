@@ -1,10 +1,10 @@
 <template>
   <div class="post-near text-shadow clearfix">
     <div class="post-near-prev shadow">
-      <a href="/post/58e6758bfea18f6804916bda">N-Crawler-01 Request请求</a>
+      <a href="/p/58e6758bfea18f6804916bda">N-Crawler-01 Request请求</a>
     </div>
     <div class="post-near-next shadow">
-      <a href="/post/58e762dbab09425c53011313">N-Crawler-03 Cheerio解析页面</a>
+      <a href="/p/58e762dbab09425c53011313">N-Crawler-03 Cheerio解析页面</a>
     </div>
   </div>
 </template>
