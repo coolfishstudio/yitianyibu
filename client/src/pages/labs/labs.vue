@@ -62,7 +62,7 @@ export default {
     },
     gotoUrl (url, id) {
       try {
-        window.location.href = url
+        window.open(url)
       } finally {
         this._recordHit(id)
       }
