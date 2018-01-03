@@ -56,7 +56,7 @@ const getById = async (req, res, next) => {
       content: null,
       category: null
     }
-    await contentManager.hitContentById(req.params.id)
+    await contentManager.hitById(req.params.id)
     result.content = await contentManager.getById(req.params.id)
     if (!result.content) {
       next(handlerCustomError(104004, '获取文章信息失败'))
@@ -66,7 +66,6 @@ const getById = async (req, res, next) => {
     }
     res.json(formatResult(result))
   } catch (e) {
-    console.log(e)
     next(handlerCustomError(104005, '查询失败'))
   }
 }

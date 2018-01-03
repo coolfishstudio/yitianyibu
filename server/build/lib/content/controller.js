@@ -160,7 +160,7 @@ var getById = function () {
               category: null
             };
             _context3.next = 4;
-            return _manager2.default.hitContentById(req.params.id);
+            return _manager2.default.hitById(req.params.id);
 
           case 4:
             _context3.next = 6;
@@ -186,17 +186,16 @@ var getById = function () {
 
           case 12:
             res.json((0, _format.formatResult)(result));
-            _context3.next = 19;
+            _context3.next = 18;
             break;
 
           case 15:
             _context3.prev = 15;
             _context3.t0 = _context3['catch'](0);
 
-            console.log(_context3.t0);
             next((0, _format.handlerCustomError)(104005, '查询失败'));
 
-          case 19:
+          case 18:
           case 'end':
             return _context3.stop();
         }
