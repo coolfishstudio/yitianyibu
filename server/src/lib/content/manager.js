@@ -21,7 +21,18 @@ const getById = async (id) => {
   return result
 }
 
+const hitById = async (id) => {
+    let analyse = await Model.findById(id)
+    if (!analyse) {
+        return null
+    }
+    ++analyse.hits
+    const result = await analyse.save()
+    return result
+}
+
 export default {
   findAll,
-  getById
+  getById,
+  hitById
 }

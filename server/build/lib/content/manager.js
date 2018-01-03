@@ -108,8 +108,51 @@ var getById = function () {
   };
 }();
 
+var hitById = function () {
+  var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3(id) {
+    var analyse, result;
+    return _regenerator2.default.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.next = 2;
+            return _model2.default.findById(id);
+
+          case 2:
+            analyse = _context3.sent;
+
+            if (analyse) {
+              _context3.next = 5;
+              break;
+            }
+
+            return _context3.abrupt('return', null);
+
+          case 5:
+            ++analyse.hits;
+            _context3.next = 8;
+            return analyse.save();
+
+          case 8:
+            result = _context3.sent;
+            return _context3.abrupt('return', result);
+
+          case 10:
+          case 'end':
+            return _context3.stop();
+        }
+      }
+    }, _callee3, undefined);
+  }));
+
+  return function hitById(_x4) {
+    return _ref3.apply(this, arguments);
+  };
+}();
+
 exports.default = {
   findAll: findAll,
-  getById: getById
+  getById: getById,
+  hitById: hitById
 };
 //# sourceMappingURL=manager.js.map

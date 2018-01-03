@@ -125,17 +125,16 @@ var findAllByCategory = function () {
             });
             result.info = categoryInfo;
             res.json((0, _format.formatResult)(result));
-            _context2.next = 24;
+            _context2.next = 23;
             break;
 
           case 20:
             _context2.prev = 20;
             _context2.t0 = _context2['catch'](0);
 
-            console.log(_context2.t0);
             next((0, _format.handlerCustomError)(104003, '查询失败'));
 
-          case 24:
+          case 23:
           case 'end':
             return _context2.stop();
         }
@@ -161,9 +160,13 @@ var getById = function () {
               category: null
             };
             _context3.next = 4;
-            return _manager2.default.getById(req.params.id);
+            return _manager2.default.hitContentById(req.params.id);
 
           case 4:
+            _context3.next = 6;
+            return _manager2.default.getById(req.params.id);
+
+          case 6:
             result.content = _context3.sent;
 
             if (!result.content) {
@@ -171,34 +174,33 @@ var getById = function () {
             }
 
             if (!result.content.category) {
-              _context3.next = 10;
+              _context3.next = 12;
               break;
             }
 
-            _context3.next = 9;
+            _context3.next = 11;
             return _manager4.default.getById(result.content.category);
 
-          case 9:
+          case 11:
             result.category = _context3.sent;
 
-          case 10:
+          case 12:
             res.json((0, _format.formatResult)(result));
-            _context3.next = 17;
+            _context3.next = 18;
             break;
 
-          case 13:
-            _context3.prev = 13;
+          case 15:
+            _context3.prev = 15;
             _context3.t0 = _context3['catch'](0);
 
-            console.log(_context3.t0);
             next((0, _format.handlerCustomError)(104005, '查询失败'));
 
-          case 17:
+          case 18:
           case 'end':
             return _context3.stop();
         }
       }
-    }, _callee3, undefined, [[0, 13]]);
+    }, _callee3, undefined, [[0, 15]]);
   }));
 
   return function getById(_x7, _x8, _x9) {
