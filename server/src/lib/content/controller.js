@@ -66,6 +66,7 @@ const getById = async (req, res, next) => {
     }
     res.json(formatResult(result))
   } catch (e) {
+    console.log(e)
     next(handlerCustomError(104005, '查询失败'))
   }
 }
