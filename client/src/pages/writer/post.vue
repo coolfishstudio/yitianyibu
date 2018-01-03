@@ -13,7 +13,13 @@
         <div class="post-body" v-html="info.html">
         </div>
         <div class="post-bar">
-          <div class="post-like"><span class="heart" id="heart"></span></div>
+          <div class="post-like">
+            <div class="share">
+              <svg t="1514966401073" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1881" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="36">
+                <path d="M896 927.954H128c-17.673 0-32-14.327-32-32v-320c0-8.836 7.163-16 16-16s16 7.164 16 16v304c0 8.837 7.163 16 16 16h736c8.837 0 16-7.163 16-16v-304c0-8.837 7.164-16 16-16 8.837 0 16 7.163 16 16v320c0 17.673-14.327 32-32 32zM524.167 741.953c6.248 6.248 6.248 16.379 0 22.627s-16.379 6.248-22.628 0c-6.248-6.248-6.248-16.379 0-22.627 6.249-6.249 16.38-6.249 22.628 0z m-12.021-491.036c8.836 0 16 7.163 16 16l0.707 373.156c0 8.837-7.163 16-16 16s-16-7.164-16-16l-0.707-373.156c0-8.836 7.164-16 16-16z m181.02 58.371L523.46 139.582c-6.248-6.248-16.379-6.248-22.627 0L331.834 308.581c-6.248 6.248-16.379 6.248-22.627 0-6.248-6.248-6.248-16.379 0-22.627l180.312-180.312c12.497-12.497 32.758-12.497 45.255 0l181.019 181.019c6.248 6.248 6.248 16.379 0 22.627-6.248 6.248-16.379 6.248-22.627 0z" p-id="10813"></path>
+              </svg>
+            </div>
+          </div>
           <router-link tag="a" class="name" :to="'/plan/' + info.category.link">
             {{ info.category.title }}
           </router-link>
@@ -242,9 +248,7 @@ export default {
       left: 0
       right: 0
       margin-top: 0.36rem
-    &:after
-      content: ''
-      display: block
+    .share
       width: 0.7rem
       height: 0.7rem
       border-radius: 0.7rem
@@ -253,6 +257,15 @@ export default {
       border: 1px dashed #ddd
       left: 50%
       margin-left: -0.35rem
+      cursor: pointer
+      color: #ddd
+      transition: all .3s linear
+      &:hover
+        background-color: #ddd
+        color: #fff
+      svg
+        margin: 0.16rem auto
+        fill: currentColor
   .name
     color: #293846
     font-weight: 700
@@ -263,7 +276,7 @@ export default {
     margin-bottom: 0.3rem
     font-size: 0.14rem
     color: #7f8c8d
-.heart
+/*.heart
   position: absolute
   top: 0.3rem
   left: 50%
@@ -297,5 +310,5 @@ export default {
     left: -0.12rem
   &:after
     top: -0.12rem
-    right: 0
+    right: 0*/
 </style>
