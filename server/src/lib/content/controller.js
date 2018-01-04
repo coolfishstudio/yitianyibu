@@ -54,7 +54,8 @@ const getById = async (req, res, next) => {
   try {
     const result = {
       content: null,
-      category: null
+      category: null,
+      near: null
     }
     await contentManager.hitById(req.params.id)
     result.content = await contentManager.getById(req.params.id)
@@ -64,6 +65,7 @@ const getById = async (req, res, next) => {
     if (result.content.category) {
       result.category = await categoryManager.getById(result.content.category)
     }
+    result.near = await contentManager.getNearByCreatedAt(result.content.createdAt)
     res.json(formatResult(result))
   } catch (e) {
     next(handlerCustomError(104005, '查询失败'))

@@ -150,9 +150,45 @@ var hitById = function () {
   };
 }();
 
+var getContentNear = function () {
+  var _ref4 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4(createdAt) {
+    var prev, next;
+    return _regenerator2.default.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            _context4.next = 2;
+            return Content.findOne({ removed: false, createdAt: { $lt: createdAt } }).sort({ _id: -1 });
+
+          case 2:
+            prev = _context4.sent;
+            _context4.next = 5;
+            return Content.findOne({ removed: false, createdAt: { $gt: createdAt } }).sort({ _id: 1 });
+
+          case 5:
+            next = _context4.sent;
+            return _context4.abrupt('return', {
+              prev: prev,
+              next: next
+            });
+
+          case 7:
+          case 'end':
+            return _context4.stop();
+        }
+      }
+    }, _callee4, undefined);
+  }));
+
+  return function getContentNear(_x5) {
+    return _ref4.apply(this, arguments);
+  };
+}();
+
 exports.default = {
   findAll: findAll,
   getById: getById,
-  hitById: hitById
+  hitById: hitById,
+  getNearByCreatedAt: getNearByCreatedAt
 };
 //# sourceMappingURL=manager.js.map

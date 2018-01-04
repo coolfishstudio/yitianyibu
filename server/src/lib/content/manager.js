@@ -31,8 +31,18 @@ const hitById = async (id) => {
     return result
 }
 
+const getContentNear = async (createdAt) => {
+  const prev = await Content.findOne({ removed: false, createdAt: { $lt: createdAt } }).sort({ _id: -1 })
+  const next = await Content.findOne({ removed: false, createdAt: { $gt: createdAt } }).sort({ _id: 1 })
+  return {
+    prev,
+    next
+  }
+}
+
 export default {
   findAll,
   getById,
-  hitById
+  hitById,
+  getNearByCreatedAt
 }

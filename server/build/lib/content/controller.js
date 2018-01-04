@@ -157,7 +157,8 @@ var getById = function () {
             _context3.prev = 0;
             result = {
               content: null,
-              category: null
+              category: null,
+              near: null
             };
             _context3.next = 4;
             return _manager2.default.hitById(req.params.id);
@@ -185,22 +186,28 @@ var getById = function () {
             result.category = _context3.sent;
 
           case 12:
+            _context3.next = 14;
+            return _manager2.default.getNearByCreatedAt(result.content.createdAt);
+
+          case 14:
+            result.near = _context3.sent;
+
             res.json((0, _format.formatResult)(result));
-            _context3.next = 18;
+            _context3.next = 21;
             break;
 
-          case 15:
-            _context3.prev = 15;
+          case 18:
+            _context3.prev = 18;
             _context3.t0 = _context3['catch'](0);
 
             next((0, _format.handlerCustomError)(104005, '查询失败'));
 
-          case 18:
+          case 21:
           case 'end':
             return _context3.stop();
         }
       }
-    }, _callee3, undefined, [[0, 15]]);
+    }, _callee3, undefined, [[0, 18]]);
   }));
 
   return function getById(_x7, _x8, _x9) {
