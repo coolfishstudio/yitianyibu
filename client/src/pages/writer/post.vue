@@ -29,7 +29,7 @@
         </div>
       </div>
     </div>
-    <y-post-near v-if="false"></y-post-near>
+    <y-post-near v-show="!loading" :next="next" :prev="prev"></y-post-near>
     <y-comment-list v-if="false"></y-comment-list>
     <y-comment-create v-if="false"></y-comment-create>
   </y-layout>
@@ -62,7 +62,9 @@ export default {
           title: null,
           desc: null
         }
-      }
+      },
+      prev: null,
+      next: null
     }
   },
   activated () {
@@ -92,6 +94,8 @@ export default {
               link: data.result.category.pathname || data.result.category._id || null
             }
           }
+          this.prev = (data.result.near && data.result.near.prev) || null
+          this.next = (data.result.near && data.result.near.next) || null
         }
       })
     },
@@ -258,10 +262,10 @@ export default {
       left: 50%
       margin-left: -0.35rem
       cursor: pointer
-      color: #ddd
+      color: #2ecc40
       transition: all .3s linear
       &:hover
-        background-color: #ddd
+        background-color: #2ecc40
         color: #fff
       svg
         margin: 0.16rem auto
@@ -279,6 +283,7 @@ export default {
 @media (max-width: 992px)
   .post-content
     margin-top: 0.5rem
+    margin-bottom: 0
     .post-title
     .post-body
     .post-bar

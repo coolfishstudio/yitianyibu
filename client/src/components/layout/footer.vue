@@ -4,7 +4,7 @@
       <span>©  2015 - 2018 </span>
       <a class="font-text" href="https://github.com/coolfishstudio">Yves</a>
       <a @click="gotoLogin">一天一步网</a>
-      <a class="font-text" href="http://www.miitbeian.gov.cn">京ICP备14019006-4号</a>
+      <a class="font-text miitbeian" href="http://www.miitbeian.gov.cn">京ICP备14019006-4号</a>
     </div>
   </div>
 </template>
@@ -53,4 +53,9 @@ export default {
     min-width: 100%
     &.home
       display: none
+@media (max-width:768px)
+  .footer
+    .copyright
+      .miitbeian
+        display: none
 </style>
