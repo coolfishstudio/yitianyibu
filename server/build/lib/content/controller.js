@@ -192,22 +192,34 @@ var getById = function () {
           case 14:
             result.near = _context3.sent;
 
+            if (result.near.prev) {
+              result.near.prev = {
+                _id: result.near.prev._id,
+                title: result.near.prev.title
+              };
+            }
+            if (result.near.next) {
+              result.near.next = {
+                _id: result.near.next._id,
+                title: result.near.next.title
+              };
+            }
             res.json((0, _format.formatResult)(result));
-            _context3.next = 21;
+            _context3.next = 23;
             break;
 
-          case 18:
-            _context3.prev = 18;
+          case 20:
+            _context3.prev = 20;
             _context3.t0 = _context3['catch'](0);
 
             next((0, _format.handlerCustomError)(104005, '查询失败'));
 
-          case 21:
+          case 23:
           case 'end':
             return _context3.stop();
         }
       }
-    }, _callee3, undefined, [[0, 18]]);
+    }, _callee3, undefined, [[0, 20]]);
   }));
 
   return function getById(_x7, _x8, _x9) {
