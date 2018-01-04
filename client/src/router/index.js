@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import { device } from 'common/js/util'
 
 import Index from 'pages/index/index'
 import Plan from 'pages/plan/plan'
@@ -21,19 +20,13 @@ let routes = [{ path: '/', component: Index },
   { path: '/p/:id', component: Post },
   { path: '/labs', component: Labs },
   { path: '/message', component: Message },
-  { path: '/login', component: Login }]
+  { path: '/login', component: Login },
+  { path: '*', redirect: '/' }]
 
 export default new Router({
   mode: 'history',
   routes,
   scrollBehavior (to, from, savedPosition) {
-    if (!device.isPC()) {
-      return false
-    }
-    if (savedPosition) {
-      return savedPosition
-    } else {
-      return { x: 0, y: 0 }
-    }
+    return { x: 0, y: 0 }
   }
 })

@@ -1,12 +1,16 @@
 <template>
   <div class="menus-wrapper">
     <nav>
-      <router-link tag="a" v-for="(item, index) in list" :key="index" :class="{'on': menu === item.menu}" :to="item.to || ''">{{ item.title }}</router-link>
+      <a v-for="(item, index) in list" :key="index" :class="{'on': menu === item.menu}" @click="clickMenus(item.to || '/')">{{ item.title }}</a>
     </nav>
   </div>
 </template>
 
 <script>
+import CONST from 'api/const'
+
+const menus = CONST.menus || []
+
 export default {
   props: {
     menu: {
@@ -24,13 +28,17 @@ export default {
   },
   methods: {
     _initData () {
-      let list = []
-      list.push({ title: 'Home', menu: 'index', to: '/index' })
-      list.push({ title: 'Plan', menu: 'plan', to: '/plan' })
-      list.push({ title: 'Archive', menu: 'archive', to: '/p' })
-      list.push({ title: 'Labs', menu: 'labs', to: '/labs' })
-      list.push({ title: 'Message', menu: 'message', to: '/message' })
-      this.list = list
+      this.list = menus
+    },
+    clickMenus (to) {
+      if (document.documentElement.clientWidth >= 992) {
+        this.$router.push(to)
+      } else {
+        this.$emit('clickMenus')
+        setTimeout(() => {
+          this.$router.push(to)
+        }, 400)
+      }
     }
   }
 }

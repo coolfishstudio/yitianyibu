@@ -1,4 +1,11 @@
 const CONST = {
+  menus: [
+    { title: 'Home', menu: 'index', to: '/index' },
+    { title: 'Plan', menu: 'plan', to: '/plan' },
+    { title: 'Archive', menu: 'archive', to: '/p' },
+    { title: 'Labs', menu: 'labs', to: '/labs' },
+    { title: 'Message', menu: 'message', to: '/message' }
+  ],
   tips: ['一切自己负责。指责他人也无济于事。',
     '舍弃自尊，凡事忍耐。',
     '简单地生活。要做的事，保持一点点就好。',

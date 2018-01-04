@@ -1,9 +1,9 @@
 <template>
   <y-layout menu="archive">
-    <p class="content-wrapper-title text-right">
+    <p class="content-wrapper-title text-right text-shadow">
       归档
     </p>
-    <p class="content-wrapper-desc text-right">
+    <p class="content-wrapper-desc text-right text-shadow">
       在过去的{{ days }}天内，我写了<b>{{ total }}</b>篇文章，所有的文章都能在这里找到。
     </p>
     <hr class="content-wrapper-line right"/>
@@ -111,7 +111,6 @@ export default {
       bottom: 0
       background-color: #d9d9d9
     .timeline-item
-      min-width: 3rem
       position: relative
       margin: 0 0.2rem
       padding-left: 0.3rem
@@ -159,4 +158,19 @@ export default {
           transform: translate(30%, -2px)
           transition: all .3s ease-out
           background-color: #26272b
+@media (max-width: 992px)
+  .content-archive-list
+    .timeline
+      &:before
+        left: 0.08rem
+      .timeline-item
+        padding-left: 0.1rem
+        margin-right: 0
+        .link
+          font-size: 0.15rem
+          text-overflow: ellipsis
+          overflow: hidden
+          white-space: nowrap
+          .hits
+            display: none
 </style>

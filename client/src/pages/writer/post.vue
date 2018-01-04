@@ -276,39 +276,12 @@ export default {
     margin-bottom: 0.3rem
     font-size: 0.14rem
     color: #7f8c8d
-/*.heart
-  position: absolute
-  top: 0.3rem
-  left: 50%
-  margin-left: -0.1132rem
-  display: block
-  transform: rotate(45deg)
-  -webkit-transform: rotate(45deg)
-  cursor: pointer
-  width: 0.24rem
-  height: 0.24rem
-  z-index: 1
-  background-color: #e3e3e3
-  transition: background-color .3s linear
-  &:hover
-    background-color: #dd4b39
-    &:after
-    &:before
-      background-color: #dd4b39
-  &:after
-  &:before
-    content: ''
-    display: block
-    position: absolute
-    border-radius: 50%
-    width: 0.24rem
-    height: 0.24rem
-    background-color: #e3e3e3
-    transition: background-color .3s linear
-  &:before
-    bottom: 0
-    left: -0.12rem
-  &:after
-    top: -0.12rem
-    right: 0*/
+@media (max-width: 992px)
+  .post-content
+    margin-top: 0.5rem
+    .post-title
+    .post-body
+    .post-bar
+      padding-left: 0
+      padding-right: 0
 </style>

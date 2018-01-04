@@ -1,7 +1,7 @@
 <template>
   <y-layout menu="index">
     <div class="content-home">
-      <div class="content-home-title">
+      <div class="content-home-title text-shadow">
         <h1>一天一步</h1>
         <h3>Yi Tian Yi Bu</h3>
       </div>
@@ -68,7 +68,8 @@ export default {
     height: 0.8rem
     top: 35%
     margin-top: -1rem
-    left: 30%
+    transform: translate(-50%)
+    left: 50%
     background-color: rgba(0,0,0,0.6)
     padding: 0.1rem 0
     h1
@@ -111,4 +112,8 @@ export default {
       height: 100%
       z-index: 0
       background-image: url(./image/mask.png)
+@media (max-width: 992px)
+  .content-home
+    .content-home-title
+      width: 80%
 </style>

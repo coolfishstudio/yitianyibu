@@ -1,6 +1,6 @@
 <template>
   <y-layout menu="plan">
-    <div class="bm-panel plan-list-content shadow text-shadow">
+    <div class="bm-panel plan-list-content shadow">
       <div class="plan-list-header" :style="'background-image: url(' + info.coverUrl + ');'">
         <div class="plan-list-cover">
         </div>
@@ -8,7 +8,7 @@
           <span>{{ info.name }}</span>
         </div>
       </div>
-      <div class="plan-list-content">
+      <div class="plan-list-items text-shadow">
         <blockquote v-if="info.desc">
           <p>
             {{ info.desc }}
@@ -95,7 +95,7 @@ export default {
 
 <style lang="stylus" rel="stylesheet/stylus">
 .plan-list-content
-  .plan-list-content
+  .plan-list-items
     padding: 1% 4% 3%
     blockquote
       padding: .15rem .2rem
@@ -133,6 +133,7 @@ export default {
         float: right
         min-width: 1.5rem
         time
+          vertical-align: middle
           margin-right: .05rem
   .plan-list-header
     background-color: #fff
@@ -186,4 +187,31 @@ export default {
           right: -6px
           border-left: 3px solid transparent
           border-top: 3px solid transparent
+@media (max-width: 992px)
+  .plan-list-content
+    padding-top: 5%
+    .plan-list-items
+      padding-left: 0
+      padding-right: 0
+      .plan-list-post-item
+        &:hover
+          .plan-list-post-title
+            color: inherit
+            border-color: #fff
+        .plan-list-post-title
+          padding-left: 0
+@media (max-width:768px)
+  .plan-list-content
+    .plan-list-items
+      .plan-list-post-item
+        .plan-list-post-time
+          display: none
+    .plan-list-header
+      .plan-list-title
+        height: 0.44rem
+        margin-top: -0.22rem
+        span
+          line-height: 0.44rem
+          font-weight: inherit
+          font-size: 0.2rem
 </style>

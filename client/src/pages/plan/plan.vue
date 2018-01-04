@@ -1,9 +1,9 @@
 <template>
   <y-layout menu="plan">
-    <p class="content-wrapper-title text-right">
+    <p class="content-wrapper-title text-right text-shadow">
       手帐
     </p>
-    <p class="content-wrapper-desc text-right">
+    <p class="content-wrapper-desc text-right text-shadow">
       用自己整理的教学文章集合来构成了这本计划预期的手帐。
     </p>
     <hr class="content-wrapper-line right"/>
@@ -161,4 +161,11 @@ export default {
               right: -6px
               border-left: 3px solid transparent
               border-top: 3px solid transparent
+@media (max-width:768px)
+  .content-plan-list
+    .content-plan-list-item
+      width: 100%
+      margin-bottom: 5%
+      &:nth-child(2n)
+        margin-left: 0
 </style>

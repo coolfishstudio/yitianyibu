@@ -34,8 +34,9 @@ export default {
   color: #a1b2b4
   background-color: #fcfcfc
   position: relative
-  height: 0.50rem
-  line-height: 0.50rem
+  height: 0.5rem
+  line-height: 0.5rem
+  overflow: hidden
   text-align: center
   min-width: 9rem
   .copyright
@@ -47,4 +48,9 @@ export default {
       font-size: 0.14rem
       padding: 0 0.04rem
       cursor: pointer
+@media (max-width: 992px)
+  .footer
+    min-width: 100%
+    &.home
+      display: none
 </style>

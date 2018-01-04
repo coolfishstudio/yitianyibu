@@ -8,7 +8,7 @@
         </div>
         <time itemprop="dateCreated" :data-value="item.createdAt" :title="item.createdAt">{{ item.time }}</time>
       </div>
-      <div class="content-comment-list-item-text">
+      <div class="content-comment-list-item-text text-shadow">
         <span>{{ item.content }}</span>
       </div>
     </div>
@@ -35,7 +35,6 @@ export default {
   font-size: 0.18rem
   display: block
   padding: 2%
-  margin-top: 0.4rem
   .content-comment-list-item
     border-top: 1px dashed #e3e3e3
     padding: 10px 5px

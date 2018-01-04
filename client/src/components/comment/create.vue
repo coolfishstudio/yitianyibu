@@ -11,7 +11,7 @@
     <div class="content-comment-creat-textarea">
       <textarea class="form-control" v-model="content" placeholder="写下你的评论..." name="content"></textarea>
     </div>
-    <div class="content-comment-creat-submit">
+    <div class="content-comment-creat-submit text-shadow">
       <button class="btn-submit" @click="submit">提交</button>
     </div>
   </div>

@@ -1,16 +1,16 @@
 <template>
   <y-layout menu="labs">
-    <p class="content-wrapper-title text-right">
+    <p class="content-wrapper-title text-right text-shadow">
       实验
     </p>
-    <p class="content-wrapper-desc text-right">
+    <p class="content-wrapper-desc text-right text-shadow">
       方轮子、圆轮子，能跑的就是好轮子。
     </p>
     <hr class="content-wrapper-line right"/>
     <div class="bm-panel content-labs-list">
       <a @click="gotoUrl(item.url, item._id)" class="content-labs-list-item shadow" v-for="(item, index) in list" :key="index">
         <div :style="'background-image: url(' + item.cover + ')'" class="content-labs-list-item-img"></div>
-        <div class="content-labs-list-item-text">
+        <div class="content-labs-list-item-text text-shadow">
           <p class="content-labs-list-item-title">{{ item.name }}</p>
           <p class="content-labs-list-item-time">{{ item.time }}</p>
           <p class="content-labs-list-item-desc">{{ item.desc }}</p>
@@ -95,40 +95,60 @@ export default {
     margin-bottom: 0.3rem
     background: #ffffff
     width: 100%
-    height: 0
-    padding-bottom: 24%
+    height: auto
     cursor: pointer
     position: relative
+    overflow: hidden
     .content-labs-list-item-img
-      position: absolute
-      top: 0
-      left: 0
-      bottom: 0
+      float: left
+      padding-bottom: 24%
       width: 80%
       background-size: cover
       background-position: center
       background-color: #f2f2f2
     .content-labs-list-item-text
-      position: absolute
-      top: 0
-      right: 0
-      bottom: 0
+      float: left
       width: 20%
+      text-align: center
+      position: relative
       .content-labs-list-item-title
         padding-top: 0.40rem
         padding-bottom: 0
         font-size: 0.16rem
         color: $color-text-title
-        text-align: center
       .content-labs-list-item-time
         margin-top: 0.1rem
         color: $color-text-caption
-        text-align: center
         font-size: 0.12rem
       .content-labs-list-item-desc
+        text-align: left
         padding: 0.15rem 0.3rem 0 0.3rem
         color: $color-text-body
         font-size: 0.13rem
         word-break: break-word
         line-height: 0.18rem
+@media (max-width: 992px)
+  .content-labs-list
+    .content-labs-list-item
+      .content-labs-list-item-img
+      .content-labs-list-item-text
+        width: 100%
+      .content-labs-list-item-img
+        padding-bottom: 44.57%
+      .content-labs-list-item-text
+        padding: 0.1rem 0
+        line-height: 1.5
+        text-align: left
+        .content-labs-list-item-title
+          padding-top: 0
+          padding-left: 0.1rem
+        .content-labs-list-item-time
+          margin-top: 0
+          position: absolute
+          top: -0.28rem
+          right: 0.1rem
+          color: #fff
+          font-weight: 500
+        .content-labs-list-item-desc
+          display: none
 </style>

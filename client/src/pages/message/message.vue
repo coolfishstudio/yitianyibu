@@ -1,9 +1,9 @@
 <template>
   <y-layout menu="message">
-    <p class="content-wrapper-title text-right">
+    <p class="content-wrapper-title text-right text-shadow">
       留言
     </p>
-    <p class="content-wrapper-desc text-right">
+    <p class="content-wrapper-desc text-right text-shadow">
       留下你的话语，带走我的问候，欢迎大家没事踩踩。
     </p>
     <hr class="content-wrapper-line right"/>
@@ -109,7 +109,4 @@ export default {
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-@import "~common/stylus/variable"
-.content-message-list
-  margin-top: 0.9rem !important
 </style>
