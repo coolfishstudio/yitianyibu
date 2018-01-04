@@ -150,7 +150,7 @@ var hitById = function () {
   };
 }();
 
-var getContentNear = function () {
+var getNearByCreatedAt = function () {
   var _ref4 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4(createdAt) {
     var prev, next;
     return _regenerator2.default.wrap(function _callee4$(_context4) {
@@ -180,7 +180,7 @@ var getContentNear = function () {
     }, _callee4, undefined);
   }));
 
-  return function getContentNear(_x5) {
+  return function getNearByCreatedAt(_x5) {
     return _ref4.apply(this, arguments);
   };
 }();
