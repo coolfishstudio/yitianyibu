@@ -32,9 +32,8 @@ const hitById = async (id) => {
 }
 
 const getNearByCreatedAt = async (createdAt) => {
-  console.log(createdAt)
-  const prev = await Content.findOne({ removed: false, createdAt: { $lt: createdAt } }).sort({ _id: -1 })
-  const next = await Content.findOne({ removed: false, createdAt: { $gt: createdAt } }).sort({ _id: 1 })
+  const prev = await Model.findOne({ removed: false, createdAt: { $lt: createdAt } }).sort({ _id: -1 })
+  const next = await Model.findOne({ removed: false, createdAt: { $gt: createdAt } }).sort({ _id: 1 })
   return {
     prev,
     next

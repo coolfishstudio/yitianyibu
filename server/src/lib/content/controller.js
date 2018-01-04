@@ -68,7 +68,6 @@ const getById = async (req, res, next) => {
     result.near = await contentManager.getNearByCreatedAt(result.content.createdAt)
     res.json(formatResult(result))
   } catch (e) {
-    console.log(e)
     next(handlerCustomError(104005, '查询失败'))
   }
 }

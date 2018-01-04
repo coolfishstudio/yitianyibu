@@ -157,23 +157,22 @@ var getNearByCreatedAt = function () {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
-            console.log(createdAt);
-            _context4.next = 3;
-            return Content.findOne({ removed: false, createdAt: { $lt: createdAt } }).sort({ _id: -1 });
+            _context4.next = 2;
+            return _model2.default.findOne({ removed: false, createdAt: { $lt: createdAt } }).sort({ _id: -1 });
 
-          case 3:
+          case 2:
             prev = _context4.sent;
-            _context4.next = 6;
-            return Content.findOne({ removed: false, createdAt: { $gt: createdAt } }).sort({ _id: 1 });
+            _context4.next = 5;
+            return _model2.default.findOne({ removed: false, createdAt: { $gt: createdAt } }).sort({ _id: 1 });
 
-          case 6:
+          case 5:
             next = _context4.sent;
             return _context4.abrupt('return', {
               prev: prev,
               next: next
             });
 
-          case 8:
+          case 7:
           case 'end':
             return _context4.stop();
         }
