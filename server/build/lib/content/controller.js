@@ -193,16 +193,17 @@ var getById = function () {
             result.near = _context3.sent;
 
             res.json((0, _format.formatResult)(result));
-            _context3.next = 21;
+            _context3.next = 22;
             break;
 
           case 18:
             _context3.prev = 18;
             _context3.t0 = _context3['catch'](0);
 
+            console.log(_context3.t0);
             next((0, _format.handlerCustomError)(104005, '查询失败'));
 
-          case 21:
+          case 22:
           case 'end':
             return _context3.stop();
         }
