@@ -28,6 +28,7 @@ const router = (app) => {
   app.use('/api/stat', statRouter)
   app.use('/api/log', logRouter)
   app.use('/api/file', fileRouter)
+  app.use('/api/wechat', fileRouter)
   // error
   app.use(handler404)
   app.use(handlerError)
