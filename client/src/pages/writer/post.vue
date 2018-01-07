@@ -82,7 +82,7 @@ export default {
           return this.errorTip(error)
         }
         if (data.status.code === 0) {
-          data.result.content.html = data.result.content.html.replace(/src="\/images/img, 'src="http://yitianyibu.com/images')
+          data.result.content.html = data.result.content.html.replace(/src="\/images/img, 'src="http://v1.yitianyibu.com/images')
           this.info = {
             title: data.result.content.title || null,
             html: data.result.content.html || null,

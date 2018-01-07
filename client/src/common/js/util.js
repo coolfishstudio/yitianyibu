@@ -17,13 +17,12 @@ const deviceCore = {
 }
 
 export const device = {
-  isClient: () => { return deviceCore._detect('xiangmugongchang') },
   isIOS: () => { return deviceCore._detect('iPhone|iPad|iPod|iOS|mac os') },
   isAndroid: () => { return deviceCore._detect('Android') },
   isUCBrowser: () => { return deviceCore._detect('UCBrowser') },
   isQQBrowser: () => { return deviceCore._detect('QQBrowser') },
   isWeixin: () => { return deviceCore._detect('MicroMessenger') },
-  isPC: () => { return !deviceCore._detect('xiangmugongchang|phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone') },
+  isPC: () => { return !deviceCore._detect('phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone') },
   qqBrowserVersion: () => { return device.isQQBrowser() ? deviceCore._getVersion(deviceCore._ua.split('mqqbrowser/')[ 1 ]) : 0 },
   ucBrowserVersion: () => { return device.isUCBrowser() ? deviceCore._getVersion(deviceCore._ua.split('ucbrowser/')[ 1 ]) : 0 },
   iOSVersion: () => { return device.isIOS() ? parseInt(deviceCore._ua.match(/\s*os\s*\d+/gi)[ 0 ].split(' ')[ 2 ], 10) : 0 }

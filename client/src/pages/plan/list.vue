@@ -1,7 +1,7 @@
 <template>
   <y-layout menu="plan">
     <div class="bm-panel plan-list-content shadow">
-      <div class="plan-list-header" :style="'background-image: url(' + info.coverUrl + ');'">
+      <div v-if="info.name" class="plan-list-header" :style="'background-image: url(' + info.coverUrl + ');'">
         <div class="plan-list-cover">
         </div>
         <div class="plan-list-title">
@@ -32,7 +32,7 @@ import YLayout from 'components/layout/layout'
 import api from 'api'
 import { dateFormat } from 'common/js/util'
 
-const tempImageUrl = 'http://yitianyibu.com/images/homepage/default/poster/small/*.jpg'
+const tempImageUrl = 'http://yitianyibu.com/static/image/small/*.jpg'
 
 export default {
   components: {

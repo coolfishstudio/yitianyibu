@@ -25,7 +25,7 @@ import YLayout from 'components/layout/layout'
 import api from 'api'
 import { dateFormat } from 'common/js/util'
 
-const tempImageHost = 'http://yitianyibu.com/images/homepage/'
+const tempImageHost = 'http://v1.yitianyibu.com/images/homepage/'
 
 export default {
   components: {

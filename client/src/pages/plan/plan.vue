@@ -29,7 +29,7 @@ import YLayout from 'components/layout/layout'
 import api from 'api'
 import { dateFormat } from 'common/js/util'
 
-const tempImageUrl = 'http://yitianyibu.com/images/homepage/default/poster/small/*.jpg'
+const tempImageUrl = 'http://yitianyibu.com/static/image/small/*.jpg'
 
 export default {
   components: {
