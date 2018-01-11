@@ -105,7 +105,8 @@ const CONST = {
     '在寝具和家具上花钱不吝啬。',
     '为能说三种语言而努力。',
     '与时间做朋友。做为时间喜欢的工作，过被时间喜欢的生活。',
-    '时常更新自己的‘基本’。']
+    '时常更新自己的‘基本’。'],
+  STORAGE_AUTH_TOKEN: '__yitianyibu__auth__token__'
 }
 
 export default CONST

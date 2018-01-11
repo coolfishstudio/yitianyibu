@@ -8,6 +8,18 @@
     </p>
     <hr class="content-wrapper-line right"/>
     <div class="bm-panel content-plan-list clearfix">
+      <!-- <router-link tag="a" class="content-plan-list-item shadow" to="/plan/create">
+        <div class="content-plan-list-item-cover stripes">
+          <div class="content-plan-list-item-header">
+            <div class="content-plan-list-item-header-box">
+              <span>创建手帐本</span>
+            </div>
+          </div>
+        </div>
+        <div class="content-plan-list-item-info text-shadow create-content-plan-bar">
+        &nbsp;
+        </div>
+      </router-link> -->
       <router-link tag="a" class="content-plan-list-item shadow" v-for="(item, index) in list" :key="index" :to="'/plan/' + (item.pathname || item._id)">
         <div class="content-plan-list-item-cover" :style="'background-image: url(' + item.coverUrl + ');'">
           <div class="content-plan-list-item-header">
@@ -103,11 +115,28 @@ export default {
               &:before
                 border-left: 3px solid rgba(0, 0, 0, 1)
                 border-top: 3px solid rgba(0, 0, 0, 1)
+      .content-plan-list-item-info
+        &.create-content-plan-bar
+           &:after
+            background-color: rgba(255, 255, 255, 0.15)
     .content-plan-list-item-info
       font-size: .14rem
       color: #838383
       padding: .1rem
       line-height: 0.2rem
+      &.create-content-plan-bar
+        position: relative
+        background-color: #000
+        &:after
+          content: ''
+          display: block
+          position: absolute
+          top: 0
+          left: 0
+          right: 0
+          bottom: 0
+          background-color: rgba(255, 255, 255, 0.3)
+          transition: background-color 0.15s linear
     .content-plan-list-item-cover
       width: 100%
       height: 0
@@ -116,6 +145,10 @@ export default {
       background-position: center
       text-align: center
       position: relative
+      &.stripes
+        background-image: linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+        background-color: #000
+        background-size: 0.5rem 0.5rem
       .content-plan-list-item-header
         position: absolute
         top: 0

@@ -1,11 +1,14 @@
 import axios from 'axios'
 
+import storage from 'common/js/storage.js'
+import CONST from './const'
+
 const NODE_ENV = process.env.NODE_ENV || 'development'
 
 const host = {
   'production': 'http://api.yitianyibu.com',
   'development': 'http://api.yitianyibu.com'
-  // 'development': 'http://localhost:9951'
+  // 'development': 'http://localhost:9551'
 }[NODE_ENV]
 
 const API = {
@@ -13,6 +16,10 @@ const API = {
   _core (url, data = {}, method = 'GET', headers = { 'Content-Type': 'application/json' }) {
     if (!headers['Content-Type']) {
       headers['Content-Type'] = 'application/json'
+    }
+    let token = storage.get(CONST.STORAGE_AUTH_TOKEN, {})
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`
     }
     let options = {
       url,
@@ -26,9 +33,12 @@ const API = {
     }
     return axios(options).then(results => {
       return Promise.resolve(results.data)
-    }).catch(function (error, data) {
-      // todo 错误拦截
-      return Promise.reject(error.response.data)
+    }).catch(function (error) {
+      let data = error.response.data
+      if (error.response.status === 401) {
+        data = {status: { code: 401401, message: '非法用户操作' }}
+      }
+      return Promise.reject(data)
     })
   },
   _get (url, data, headers) {
@@ -36,6 +46,9 @@ const API = {
   },
   _post (url, data, headers) {
     return this._core(url, data, 'POST', headers)
+  },
+  _delete (url, data, headers) {
+    return this._core(url, data, 'DELETE', headers)
   },
   /** api **/
   // 获取留言
@@ -47,6 +60,10 @@ const API = {
   insertMessage (options = {}) {
     const url = `${host}/api/message`
     return this._post(url, options)
+  },
+  deleteMessage (id) {
+    const url = `${host}/api/message/${id}`
+    return this._delete(url)
   },
   // 登录
   login (options = {}) {

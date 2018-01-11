@@ -28,7 +28,7 @@ export default {
       list: [],
       offset: 0,
       limit: 10,
-      isAuth: !!storage.get(STORAGE_AUTH_TOKEN)
+      isAuth: false
     }
   },
   components: {
@@ -36,11 +36,13 @@ export default {
     YCommentCreate,
     YCommentList
   },
-  mounted () {
+  activated () {
     this.initData()
   },
   methods: {
     initData () {
+      this.offset = 0
+      this.isAuth = !!storage.get(STORAGE_AUTH_TOKEN)
       this.getMessageList()
     },
     refresh () {
@@ -48,7 +50,11 @@ export default {
       this.getMessageList()
     },
     remove (id) {
-      console.log(id)
+      this._deleteMessage(id, (error, data) => {
+        if (error) {
+          return this.errorTip(error)
+        }
+      })
     },
     getMessageList () {
       this._getMessageList((error, data) => {
@@ -93,6 +99,13 @@ export default {
     },
     _insertMessage (option, callback) {
       api.insertMessage(option).then(data => {
+        callback(null, data)
+      }).catch(error => {
+        callback(error.status.message)
+      })
+    },
+    _deleteMessage (id, callback) {
+      api.deleteMessage(id).then(data => {
         callback(null, data)
       }).catch(error => {
         callback(error.status.message)

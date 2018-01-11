@@ -23,8 +23,7 @@
 import YLayout from 'components/layout/layout'
 import api from 'api'
 import storage from 'common/js/storage.js'
-
-const STORAGE_AUTH_TOKEN = '__yitianyibu__auth__token__'
+import CONST from 'api/const'
 
 export default {
   components: {
@@ -45,7 +44,7 @@ export default {
           }
           if (data.status.code === 0) {
             this.successTip('登录成功')
-            storage.set(STORAGE_AUTH_TOKEN, data.result.token)
+            storage.set(CONST.STORAGE_AUTH_TOKEN, data.result.token)
             this.$router.push('/')
           }
         })
@@ -163,4 +162,13 @@ export default {
         color: #fff
         background-color: #222
         border-color: #222
+@media (max-width:768px)
+  .content-home
+    .content-login-box
+      width: 2rem
+      margin-left: -1.5rem
+      .input-group
+        .input-item
+          input
+            width: 1.51rem
 </style>

@@ -7,7 +7,7 @@
       在过去的{{ days }}天内，我写了<b>{{ total }}</b>篇文章，所有的文章都能在这里找到。
     </p>
     <hr class="content-wrapper-line right"/>
-    <div class="bm-panel content-archive-list shadow">
+    <div class="bm-panel content-archive-list shadow" v-if="list.length > 0">
       <div class="timeline">
         <div class="timeline-item" v-for="(item,index) in list">
           <div class="date" v-if="item.month">
