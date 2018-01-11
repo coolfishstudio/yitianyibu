@@ -16,9 +16,6 @@ const login = async (req, res, next) => {
   }
   try {
     const result = await userManager.getUserByEmail(email)
-    console.log(result)
-    console.log(getMD5(password))
-    console.log(result.password)
     if (!result) {
       next(handlerCustomError(101003, '用户不存在'))
     } else if (getMD5(password) !== result.password) {

@@ -12,6 +12,11 @@ const getUserByEmail = async (email) => {
     return getResult
 }
 
+const getUserById = async (id) => {
+    const getResult = await Model.findById(id)
+    return getResult
+}
+
 const initUser = async () => {
   const options = {
     username: ADMIN_USERNAME,
@@ -34,5 +39,6 @@ const initUser = async () => {
 
 export default {
   getUserByEmail,
+  getUserById,
   initUser
 }

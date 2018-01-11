@@ -19,7 +19,7 @@ const insert = async (req, res, next) => {
   const email = (req.body.email || '').trim()
   const content = (req.body.content || '').trim()
   if (!content.length) {
-    next(handlerCustomError(107011, '内容不能为空'))
+    next(handlerCustomError(107001, '内容不能为空'))
   }
   if (name === '') {
     let adds = ip.split('.')
@@ -34,8 +34,13 @@ const insert = async (req, res, next) => {
   }
 }
 
-const removeById = (req, res, next) => {
-  res.json({'status':{'code':0,'message':'success'},'data':{}})
+const removeById = async (req, res, next) => {
+  try {
+    const result = await messageManager.removeById(req.params.id)
+    res.json(formatResult())
+  } catch (e) {
+    next(handlerCustomError(107004, '删除失败'))
+  }
 }
 
 export default {
