@@ -76,7 +76,7 @@ var insert = function () {
             content = (req.body.content || '').trim();
 
             if (!content.length) {
-              next((0, _format.handlerCustomError)(107011, '内容不能为空'));
+              next((0, _format.handlerCustomError)(107001, '内容不能为空'));
             }
             if (name === '') {
               adds = ip.split('.');
@@ -114,9 +114,42 @@ var insert = function () {
   };
 }();
 
-var removeById = function removeById(req, res, next) {
-  res.json({ 'status': { 'code': 0, 'message': 'success' }, 'data': {} });
-};
+var removeById = function () {
+  var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3(req, res, next) {
+    var result;
+    return _regenerator2.default.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.prev = 0;
+            _context3.next = 3;
+            return _manager2.default.removeById(req.params.id);
+
+          case 3:
+            result = _context3.sent;
+
+            res.json((0, _format.formatResult)());
+            _context3.next = 10;
+            break;
+
+          case 7:
+            _context3.prev = 7;
+            _context3.t0 = _context3['catch'](0);
+
+            next((0, _format.handlerCustomError)(107004, '删除失败'));
+
+          case 10:
+          case 'end':
+            return _context3.stop();
+        }
+      }
+    }, _callee3, undefined, [[0, 7]]);
+  }));
+
+  return function removeById(_x7, _x8, _x9) {
+    return _ref3.apply(this, arguments);
+  };
+}();
 
 exports.default = {
   findAll: findAll,

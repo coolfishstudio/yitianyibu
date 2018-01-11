@@ -68,6 +68,7 @@ var router = function router(app) {
   app.use('/api/stat', _router18.default);
   app.use('/api/log', _router20.default);
   app.use('/api/file', _router22.default);
+  app.use('/api/wechat', _router22.default);
   // error
   app.use(_error.handler404);
   app.use(_error.handlerError);

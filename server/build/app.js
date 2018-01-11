@@ -14,16 +14,21 @@ var _router2 = _interopRequireDefault(_router);
 
 var _config = require('./config');
 
+var _auth = require('./middleware/auth');
+
+var _auth2 = _interopRequireDefault(_auth);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var app = (0, _express2.default)();
 
 app.use(_bodyParser2.default.json());
+app.use((0, _auth2.default)().initialize());
 app.use(_bodyParser2.default.urlencoded({ extended: false }));
 app.all('/*', function (req, res, next) {
   res.setHeader('Access-Control-Allow-Origin', req.headers && req.headers.origin ? req.headers.origin : '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Connection, User-Agent, Cookie, Authorization');
   res.setHeader('Access-Control-Allow-Credentials', true);
   if (req.method === 'OPTIONS') {
     res.send(200);

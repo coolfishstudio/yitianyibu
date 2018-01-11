@@ -51,9 +51,6 @@ var login = function () {
           case 7:
             result = _context.sent;
 
-            console.log(result);
-            console.log((0, _tool.getMD5)(password));
-            console.log(result.password);
             if (!result) {
               next((0, _format.handlerCustomError)(101003, '用户不存在'));
             } else if ((0, _tool.getMD5)(password) !== result.password) {
@@ -63,21 +60,21 @@ var login = function () {
 
               res.json((0, _format.formatResult)({ token: _jwtSimple2.default.encode(payload, _config.JWT_SECRET) }));
             }
-            _context.next = 17;
+            _context.next = 14;
             break;
 
-          case 14:
-            _context.prev = 14;
+          case 11:
+            _context.prev = 11;
             _context.t0 = _context['catch'](4);
 
             next((0, _format.handlerCustomError)(101000, '登录失败'));
 
-          case 17:
+          case 14:
           case 'end':
             return _context.stop();
         }
       }
-    }, _callee, undefined, [[4, 14]]);
+    }, _callee, undefined, [[4, 11]]);
   }));
 
   return function login(_x, _x2, _x3) {
