@@ -7,11 +7,12 @@ const NODE_ENV = process.env.NODE_ENV || 'development'
 
 const host = {
   'production': 'http://api.yitianyibu.com',
-  'development': 'http://api.yitianyibu.com'
-  // 'development': 'http://localhost:9551'
+  // 'development': 'http://api.yitianyibu.com'
+  'development': 'http://localhost:9551'
 }[NODE_ENV]
 
 const API = {
+  host,
   // 核心
   _core (url, data = {}, method = 'GET', headers = { 'Content-Type': 'application/json' }) {
     if (!headers['Content-Type']) {
@@ -79,6 +80,10 @@ const API = {
     const url = `${host}/api/app/${id}/record`
     return this._get(url)
   },
+  insertLabs (options = {}) {
+    const url = `${host}/api/app`
+    return this._post(url, options)
+  },
   // 手帐
   getCategoryList (options = {}) {
     const url = `${host}/api/category`
@@ -88,6 +93,10 @@ const API = {
     const url = `${host}/api/content/by/category/${id}`
     return this._get(url, options)
   },
+  insertCategory (options = {}) {
+    const url = `${host}/api/category`
+    return this._post(url, options)
+  },
   // 内容
   getContentList (options = {}) {
     const url = `${host}/api/content`
@@ -96,6 +105,15 @@ const API = {
   getContentInfo (id) {
     const url = `${host}/api/content/${id}`
     return this._get(url)
+  },
+  // 上传图片
+  uploadImage (file) {
+    let formdata = new FormData()
+    formdata.append('file', file)
+    const url = `${host}/api/file`
+    return this._post(url, formdata, {
+      'Content-Type': 'multipart/form-data'
+    })
   }
 }
 

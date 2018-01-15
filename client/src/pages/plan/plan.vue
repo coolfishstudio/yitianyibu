@@ -7,21 +7,14 @@
       用自己整理的教学文章集合来构成了这本计划预期的手帐。
     </p>
     <hr class="content-wrapper-line right"/>
-    <div class="bm-panel content-plan-list clearfix">
-      <!-- <router-link tag="a" class="content-plan-list-item shadow" to="/plan/create">
-        <div class="content-plan-list-item-cover stripes">
-          <div class="content-plan-list-item-header">
-            <div class="content-plan-list-item-header-box">
-              <span>创建手帐本</span>
-            </div>
-          </div>
+    <div class="bm-panel content-plan-list clearfix" v-if="offset !== 0">
+      <router-link tag="a" class="content-plan-list-item" to="/plan/create" v-if="isAuth">
+        <div class="content-plan-list-item-cover create">
+          <span class="icon-add"></span>
         </div>
-        <div class="content-plan-list-item-info text-shadow create-content-plan-bar">
-        &nbsp;
-        </div>
-      </router-link> -->
+      </router-link>
       <router-link tag="a" class="content-plan-list-item shadow" v-for="(item, index) in list" :key="index" :to="'/plan/' + (item.pathname || item._id)">
-        <div class="content-plan-list-item-cover" :style="'background-image: url(' + item.coverUrl + ');'">
+        <div class="content-plan-list-item-cover" :style="'background-image: url(' + item.cover + ');'">
           <div class="content-plan-list-item-header">
             <div class="content-plan-list-item-header-box">
               <span>{{ item.name }}</span>
@@ -40,6 +33,8 @@
 import YLayout from 'components/layout/layout'
 import api from 'api'
 import { dateFormat } from 'common/js/util'
+import storage from 'common/js/storage.js'
+import CONST from 'api/const'
 
 const tempImageUrl = 'http://yitianyibu.com/static/image/small/*.jpg'
 
@@ -51,14 +46,17 @@ export default {
     return {
       list: [],
       offset: 0,
-      limit: 20
+      limit: 20,
+      isAuth: false
     }
   },
-  mounted () {
+  activated () {
     this.initData()
   },
   methods: {
     initData () {
+      this.offset = 0
+      this.isAuth = !!storage.get(CONST.STORAGE_AUTH_TOKEN)
       this.getCategoryList()
     },
     getCategoryList () {
@@ -69,7 +67,15 @@ export default {
         if (data.status.code === 0) {
           this.list = data.result.list.map(item => {
             item.time = dateFormat(item.createdAt, 'yyyy-MM-dd')
-            item.coverUrl = item.coverUrl ? item.coverUrl : tempImageUrl.replace('*', String(item._id)[23])
+            if (item.cover) {
+              if (/^[0-9a-f]{24}$/.test(item.cover)) {
+                item.cover = `${api.host}/i/${item.cover}`
+              } else {
+                item.cover = item.cover
+              }
+            } else {
+              item.cover = tempImageUrl.replace('*', String(item._id)[23])
+            }
             return item
           })
           this.offset = data.result.meta.offset + this.limit
@@ -115,28 +121,11 @@ export default {
               &:before
                 border-left: 3px solid rgba(0, 0, 0, 1)
                 border-top: 3px solid rgba(0, 0, 0, 1)
-      .content-plan-list-item-info
-        &.create-content-plan-bar
-           &:after
-            background-color: rgba(255, 255, 255, 0.15)
     .content-plan-list-item-info
       font-size: .14rem
       color: #838383
       padding: .1rem
       line-height: 0.2rem
-      &.create-content-plan-bar
-        position: relative
-        background-color: #000
-        &:after
-          content: ''
-          display: block
-          position: absolute
-          top: 0
-          left: 0
-          right: 0
-          bottom: 0
-          background-color: rgba(255, 255, 255, 0.3)
-          transition: background-color 0.15s linear
     .content-plan-list-item-cover
       width: 100%
       height: 0
@@ -145,10 +134,8 @@ export default {
       background-position: center
       text-align: center
       position: relative
-      &.stripes
-        background-image: linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
-        background-color: #000
-        background-size: 0.5rem 0.5rem
+      &.create
+        height: 0.4rem
       .content-plan-list-item-header
         position: absolute
         top: 0

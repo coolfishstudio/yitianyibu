@@ -97,3 +97,40 @@ input, textarea
 .slide-fade-leave-to
   transform: translateX(50px)
   opacity: 0
+
+.create
+  border: 2px dashed currentColor
+  margin: -2px
+  color: #ddd
+  transition: background-color 0.5s, color 0.5s, 
+  &:hover
+    background-color: rgba(0, 0, 0, 0.02)
+    color: #7e8c8d
+.icon-add
+  display: block
+  width: 50px
+  height: 50px
+  position: absolute
+  left: 50%
+  top: 50%
+  margin-left: -25px
+  margin-top: -25px
+  &:before
+  &:after
+    content: ''
+    display: block
+    position: absolute
+    background-color: currentColor
+    left: 50%
+    top: 50%
+    z-index: 1
+  &:before
+    width: 30px
+    height: 4px
+    margin-left: -15px
+    margin-top: -2px
+  &:after
+    width: 4px
+    height: 30px
+    margin-left: -2px
+    margin-top: -15px

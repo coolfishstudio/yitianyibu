@@ -7,7 +7,12 @@
       方轮子、圆轮子，能跑的就是好轮子。
     </p>
     <hr class="content-wrapper-line right"/>
-    <div class="bm-panel content-labs-list">
+    <div class="bm-panel content-labs-list" v-if="offset !== 0">
+      <router-link tag="a" class="content-labs-list-item create" to="/labs/create" v-if="isAuth">
+        <div class="content-labs-list-item-img">
+          <span class="icon-add"></span>
+        </div>
+      </router-link>
       <a @click="gotoUrl(item.url, item._id)" class="content-labs-list-item shadow" v-for="(item, index) in list" :key="index">
         <div :style="'background-image: url(' + item.cover + ')'" class="content-labs-list-item-img"></div>
         <div class="content-labs-list-item-text text-shadow">
@@ -24,6 +29,8 @@
 import YLayout from 'components/layout/layout'
 import api from 'api'
 import { dateFormat } from 'common/js/util'
+import storage from 'common/js/storage.js'
+import CONST from 'api/const'
 
 const tempImageHost = 'http://v1.yitianyibu.com/images/homepage/'
 
@@ -35,14 +42,17 @@ export default {
     return {
       list: [],
       offset: 0,
-      limit: 20
+      limit: 20,
+      isAuth: false
     }
   },
-  mounted () {
+  activated () {
     this.initData()
   },
   methods: {
     initData () {
+      this.offset = 0
+      this.isAuth = !!storage.get(CONST.STORAGE_AUTH_TOKEN)
       this.getLabsList()
     },
     getLabsList () {
@@ -54,6 +64,13 @@ export default {
           this.list = data.result.list.map(item => {
             item.time = dateFormat(item.createdAt, 'yyyy.MM.dd')
             item.cover = item.cover.replace(/.*\/images\/homepage/, tempImageHost)
+            if (item.cover) {
+              if (/^[0-9a-f]{24}$/.test(item.cover)) {
+                item.cover = `${api.host}/i/${item.cover}`
+              } else {
+                item.cover = item.cover.replace(/.*\/images\/homepage/, tempImageHost)
+              }
+            }
             return item
           })
           this.offset = data.result.meta.offset + this.limit
@@ -93,12 +110,14 @@ export default {
   .content-labs-list-item
     display: block
     margin-bottom: 0.3rem
-    background: #ffffff
     width: 100%
     height: auto
     cursor: pointer
     position: relative
     overflow: hidden
+    &.create
+      .content-labs-list-item-img
+        background-color: transparent
     .content-labs-list-item-img
       float: left
       padding-bottom: 24%

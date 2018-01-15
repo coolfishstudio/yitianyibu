@@ -1,7 +1,7 @@
 <template>
   <y-layout menu="plan">
-    <div class="bm-panel plan-list-content shadow">
-      <div v-if="info.name" class="plan-list-header" :style="'background-image: url(' + info.coverUrl + ');'">
+    <div class="bm-panel plan-list-content shadow" v-if="info.name">
+      <div class="plan-list-header" :style="'background-image: url(' + info.cover + ');'">
         <div class="plan-list-cover">
         </div>
         <div class="plan-list-title">
@@ -14,6 +14,11 @@
             {{ info.desc }}
           </p>
         </blockquote>
+        <router-link tag="a" class="plan-list-post-create create" :to="'/plan/' + info.id + '/create'" v-if="isAuth">
+          <div class="content-labs-list-item-img">
+            <span class="icon-add"></span>
+          </div>
+        </router-link>
         <router-link tag="a" class="plan-list-post-item" v-for="(item, index) in list" :key="index" :to="'/p/'+ item._id">
           <div class="plan-list-post-title">
             {{ item.title }}
@@ -31,6 +36,8 @@
 import YLayout from 'components/layout/layout'
 import api from 'api'
 import { dateFormat } from 'common/js/util'
+import storage from 'common/js/storage.js'
+import CONST from 'api/const'
 
 const tempImageUrl = 'http://yitianyibu.com/static/image/small/*.jpg'
 
@@ -41,13 +48,15 @@ export default {
   data () {
     return {
       info: {
+        id: null,
         name: null,
-        coverUrl: null,
+        cover: null,
         desc: null
       },
       list: [],
       offset: 0,
-      limit: -1
+      limit: -1,
+      isAuth: false
     }
   },
   activated () {
@@ -55,6 +64,8 @@ export default {
   },
   methods: {
     initData () {
+      this.offset = 0
+      this.isAuth = !!storage.get(CONST.STORAGE_AUTH_TOKEN)
       this.getContentByCategory()
     },
     getContentByCategory () {
@@ -64,9 +75,18 @@ export default {
         }
         if (data.status.code === 0) {
           this.info = {
+            id: data.result.info._id,
             name: data.result.info.name,
-            desc: data.result.info.desc,
-            coverUrl: data.result.info.coverUrl ? data.result.info.coverUrl : tempImageUrl.replace('*', String(data.result.info._id)[23])
+            desc: data.result.info.desc
+          }
+          if (data.result.info.cover) {
+            if (/^[0-9a-f]{24}$/.test(data.result.info.cover)) {
+              this.info.cover = `${api.host}/i/${data.result.info.cover}`
+            } else {
+              this.info.cover = data.result.info.cover
+            }
+          } else {
+            this.info.cover = tempImageUrl.replace('*', String(data.result.info._id)[23])
           }
           this.list = data.result.list.map(item => {
             item.time = dateFormat(item.createdAt, 'yyyy-MM-dd hh:mm')
@@ -109,6 +129,12 @@ export default {
         line-height: 2
         word-break: break-all
         font-style: italic
+    .plan-list-post-create
+      padding: .12rem
+      height: 0.22rem
+      position: relative
+      display: block
+      margin: 0.2rem 0
     .plan-list-post-item
       border-bottom: 1px solid #eee
       font-size: .16rem

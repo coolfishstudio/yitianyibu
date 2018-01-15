@@ -19,8 +19,7 @@ import YCommentList from 'components/comment/list'
 import api from 'api'
 import { dateFormat } from 'common/js/util'
 import storage from 'common/js/storage.js'
-
-const STORAGE_AUTH_TOKEN = '__yitianyibu__auth__token__'
+import CONST from 'api/const'
 
 export default {
   data () {
@@ -42,7 +41,7 @@ export default {
   methods: {
     initData () {
       this.offset = 0
-      this.isAuth = !!storage.get(STORAGE_AUTH_TOKEN)
+      this.isAuth = !!storage.get(CONST.STORAGE_AUTH_TOKEN)
       this.getMessageList()
     },
     refresh () {
