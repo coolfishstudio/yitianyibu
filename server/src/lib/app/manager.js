@@ -21,7 +21,13 @@ const recordById = async (appId) => {
   return result
 }
 
+const insert = async (options = {}) => {
+  const result = await Model.create(Object.assign({}, options))
+  return result
+}
+
 export default {
   findAll,
-  recordById
+  recordById,
+  insert
 }

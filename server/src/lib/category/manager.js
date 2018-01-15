@@ -21,8 +21,14 @@ const getByPathname = async (pathname) => {
   return result
 }
 
+const insert = async (options = {}) => {
+  const result = await Model.create(Object.assign({}, options))
+  return result
+}
+
 export default {
   findAll,
   getById,
-  getByPathname
+  getByPathname,
+  insert
 }

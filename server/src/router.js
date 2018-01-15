@@ -16,6 +16,10 @@ const router = (app) => {
   app.get('/ping', (req, res) => {
     res.send('ok')
   })
+  // file
+  app.get('/i/:id([0-9a-f]{24})', (req, res) => {
+    res.redirect(`/api/file/${req.params.id}`)
+  })
   // api
   app.use('/api/user', userRouter)
   app.use('/api/content', contentRouter)

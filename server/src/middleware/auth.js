@@ -9,14 +9,10 @@ const auth = (app) => {
     secretOrKey: JWT_SECRET,
     jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('Bearer')
   }
-  console.log('params', params)
   const strategy = new Strategy(params, (payload, next) => {
-    console.log('payload', payload)
     userManager.getUserById(payload.id)
       .then(user => {
-        console.log('strategy', user)
         if (user) {
-          console.log(user)
           return next(null, {
             id: user._id,
             email: user.email
@@ -32,7 +28,6 @@ const auth = (app) => {
       return passport.initialize()
     },
     authenticate: () => {
-      console.log('authenticate')
       return passport.authenticate('jwt', { session: false })
     }
   }
