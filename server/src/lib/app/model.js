@@ -5,7 +5,6 @@ const Schema = mongoose.Schema
 const AppSchema = new Schema({
   name: { type: String, default: '' },
   title: { type: String, default: '' },
-  pathname: { type: String, default: '' }, // 自定义链接
   icon: { type: String, default: '' },
   cover: { type: String, default: '' },
   url: { type: String, default: '' },
