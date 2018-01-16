@@ -4,7 +4,7 @@
       <h1>写文章</h1>
       <y-input name="title" placeholder="请输入标题"></y-input>
       <y-input name="tag" placeholder="请输入标签，逗号分隔"></y-input>
-      <y-input name="content" placeholder="编辑器"></y-input>
+      <y-editor name="content" placeholder="编辑器"></y-editor>
       <y-button></y-button>
     </div>
   </y-layout>
@@ -14,6 +14,7 @@
 import YLayout from 'components/layout/layout'
 import YButton from 'components/button/button'
 import YInput from 'components/input/input'
+import YEditor from 'components/editor/editor'
 // import api from 'api'
 // import { dateFormat } from 'common/js/util'
 
@@ -21,7 +22,8 @@ export default {
   components: {
     YLayout,
     YButton,
-    YInput
+    YInput,
+    YEditor
   },
   data () {
     return {

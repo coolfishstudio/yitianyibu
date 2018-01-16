@@ -9,6 +9,11 @@ import Notifications from 'vue-notification'
 
 import 'common/stylus/index.styl'
 
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+
+Vue.use(mavonEditor)
+
 const NODE_ENV = process.env.NODE_ENV || 'development'
 
 // 根据ua 处理移动端适配
