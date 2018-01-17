@@ -56,6 +56,10 @@ var router = function router(app) {
   app.get('/ping', function (req, res) {
     res.send('ok');
   });
+  // file
+  app.get('/i/:id([0-9a-f]{24})', function (req, res) {
+    res.redirect('/api/file/' + req.params.id);
+  });
   // api
   app.use('/api/user', _router2.default);
   app.use('/api/content', _router4.default);

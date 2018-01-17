@@ -23,13 +23,9 @@ var auth = function auth(app) {
     secretOrKey: _config.JWT_SECRET,
     jwtFromRequest: _passportJwt.ExtractJwt.fromAuthHeaderWithScheme('Bearer')
   };
-  console.log('params', params);
   var strategy = new _passportJwt.Strategy(params, function (payload, next) {
-    console.log('payload', payload);
     _manager2.default.getUserById(payload.id).then(function (user) {
-      console.log('strategy', user);
       if (user) {
-        console.log(user);
         return next(null, {
           id: user._id,
           email: user.email
@@ -46,7 +42,6 @@ var auth = function auth(app) {
       return _passport2.default.initialize();
     },
     authenticate: function authenticate() {
-      console.log('authenticate');
       return _passport2.default.authenticate('jwt', { session: false });
     }
   };

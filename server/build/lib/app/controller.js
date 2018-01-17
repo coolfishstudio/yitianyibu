@@ -98,8 +98,74 @@ var recordById = function () {
   };
 }();
 
+var insert = function () {
+  var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3(req, res, next) {
+    var name, title, desc, url, type, icon, cover, createdByID, result;
+    return _regenerator2.default.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            name = (req.body.name || '').trim();
+            title = (req.body.title || '').trim();
+            desc = (req.body.desc || '').trim();
+            url = (req.body.url || '').trim();
+            type = parseInt(req.body.type) || 0;
+            icon = (req.body.icon || '').trim();
+            cover = (req.body.cover || '').trim();
+            createdByID = req.user.id;
+
+            if (!name) {
+              next((0, _format.handlerCustomError)(107005, '名称不能为空'));
+            }
+            if (!title) {
+              next((0, _format.handlerCustomError)(107006, '标题不能为空'));
+            }
+            if (!url) {
+              next((0, _format.handlerCustomError)(107007, '外链不能为空'));
+            }
+            if (!icon) {
+              next((0, _format.handlerCustomError)(107008, '请上传图标'));
+            }
+            if (!cover) {
+              next((0, _format.handlerCustomError)(107009, '请上传封面'));
+            }
+            if (!createdByID) {
+              next((0, _format.handlerCustomError)(107010, '非法用户操作'));
+            }
+            _context3.prev = 14;
+            _context3.next = 17;
+            return _manager2.default.insert({ name: name, title: title, desc: desc, url: url, icon: icon, type: type, cover: cover, createdByID: createdByID });
+
+          case 17:
+            result = _context3.sent;
+
+            res.json((0, _format.formatResult)());
+            _context3.next = 25;
+            break;
+
+          case 21:
+            _context3.prev = 21;
+            _context3.t0 = _context3['catch'](14);
+
+            console.log(_context3.t0);
+            next((0, _format.handlerCustomError)(107003, '创建失败'));
+
+          case 25:
+          case 'end':
+            return _context3.stop();
+        }
+      }
+    }, _callee3, undefined, [[14, 21]]);
+  }));
+
+  return function insert(_x7, _x8, _x9) {
+    return _ref3.apply(this, arguments);
+  };
+}();
+
 exports.default = {
   findAll: findAll,
-  recordById: recordById
+  recordById: recordById,
+  insert: insert
 };
 //# sourceMappingURL=controller.js.map

@@ -105,8 +105,37 @@ var recordById = function () {
   };
 }();
 
+var insert = function () {
+  var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3() {
+    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var result;
+    return _regenerator2.default.wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            _context3.next = 2;
+            return _model2.default.create((0, _assign2.default)({}, options));
+
+          case 2:
+            result = _context3.sent;
+            return _context3.abrupt('return', result);
+
+          case 4:
+          case 'end':
+            return _context3.stop();
+        }
+      }
+    }, _callee3, undefined);
+  }));
+
+  return function insert() {
+    return _ref3.apply(this, arguments);
+  };
+}();
+
 exports.default = {
   findAll: findAll,
-  recordById: recordById
+  recordById: recordById,
+  insert: insert
 };
 //# sourceMappingURL=manager.js.map

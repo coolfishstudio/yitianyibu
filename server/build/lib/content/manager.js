@@ -185,10 +185,39 @@ var getNearByCreatedAt = function () {
   };
 }();
 
+var insert = function () {
+  var _ref5 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5() {
+    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var result;
+    return _regenerator2.default.wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            _context5.next = 2;
+            return _model2.default.create((0, _assign2.default)({}, options));
+
+          case 2:
+            result = _context5.sent;
+            return _context5.abrupt('return', result);
+
+          case 4:
+          case 'end':
+            return _context5.stop();
+        }
+      }
+    }, _callee5, undefined);
+  }));
+
+  return function insert() {
+    return _ref5.apply(this, arguments);
+  };
+}();
+
 exports.default = {
   findAll: findAll,
   getById: getById,
   hitById: hitById,
-  getNearByCreatedAt: getNearByCreatedAt
+  getNearByCreatedAt: getNearByCreatedAt,
+  insert: insert
 };
 //# sourceMappingURL=manager.js.map

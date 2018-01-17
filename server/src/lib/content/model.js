@@ -9,7 +9,7 @@ const ContentSchema = new Schema({
   images: { type: Array, default: null },
   tag: { type: Array, default: null },
   category: { type: String, default: null },
-  status: { type: String, default: 'privated' }, // privated published
+  status: { type: String, default: 'published' }, // privated published
   featured: { type: Boolean, default: true },
   hits: { type: Number, default: 0 },
   isTop: { type: Number, default: 0 },

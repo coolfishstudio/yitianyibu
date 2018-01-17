@@ -6,26 +6,17 @@ Object.defineProperty(exports, "__esModule", {
 
 var _db = require('../../middleware/db');
 
-var _db2 = _interopRequireDefault(_db);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Schema = _db2.default.Schema;
+var Schema = _db.mongoose.Schema;
 
 var TagSchema = new Schema({
-  // 名称
   name: { type: String, required: true },
-  // 权重
   weight: { type: Number, default: 0 },
-  // 总数
-  count: { type: Number, default: 0 },
   removed: { type: Boolean, default: false },
-  createdByID: { type: Schema.Types.ObjectId, required: true },
-  createdAt: { type: Date, default: Date.now },
-  updatedAt: { type: Date, default: null }
+  createdByID: { type: Schema.Types.ObjectId, required: true }
 }, {
-  collection: 'tag'
+  collection: 'tag',
+  timestamps: { createdAt: 'createdAt', updatedAt: 'updatedAt' }
 });
 
-exports.default = _db2.default.model('Tag', TagSchema);
+exports.default = _db.mongoose.model('Tag', TagSchema);
 //# sourceMappingURL=model.js.map
