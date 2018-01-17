@@ -29,6 +29,12 @@ export default {
     }
   },
   methods: {
+    set (value) {
+      this.value = value
+    },
+    get () {
+      return this.value
+    },
     uploadImage (pos, image) {
       if (this._validateUploadImage(image)) {
         this._uploadImage(image, (error, data) => {
@@ -36,7 +42,7 @@ export default {
             return this.errorTip(error)
           }
           if (data.status.code === 0) {
-            this.$refs.md.$img2Url(pos, `${api.host}/i/${data.result[0].id}`)
+            this.$refs.md.$img2Url(pos, `/i/${data.result[0].id}`)
           }
         })
       }

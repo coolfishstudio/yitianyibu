@@ -106,6 +106,10 @@ const API = {
     const url = `${host}/api/content/${id}`
     return this._get(url)
   },
+  insertContent (options = {}) {
+    const url = `${host}/api/content`
+    return this._post(url, options)
+  },
   // 上传图片
   uploadImage (file) {
     let formdata = new FormData()

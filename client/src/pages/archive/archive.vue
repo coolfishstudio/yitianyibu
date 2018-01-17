@@ -14,7 +14,7 @@
             {{ item.year }}
             <span>{{ item.month }}</span>
           </div>
-          <router-link tag="a" class="link" :to="'/p/' + item._id">
+          <router-link tag="a" class="link" :class="{'strikethrough': item.status !== 'published'}" :to="'/p/' + item._id">
             {{ item.title }}
             <div class="hits">{{ item.hits }}</div>
           </router-link>
@@ -72,7 +72,7 @@ export default {
           this.total = data.result.meta.total || 0
           if (this.total) {
             let timestamp = new Date().getTime() - new Date(this.list[this.total - 1].createdAt).getTime()
-            this.days = parseInt(timestamp / 1000 / 3600 / 24)
+            this.days = Math.ceil(timestamp / 1000 / 3600 / 24)
           }
         }
       })

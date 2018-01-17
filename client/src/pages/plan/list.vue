@@ -20,7 +20,7 @@
           </div>
         </router-link>
         <router-link tag="a" class="plan-list-post-item" v-for="(item, index) in list" :key="index" :to="'/p/'+ item._id">
-          <div class="plan-list-post-title">
+          <div class="plan-list-post-title" :class="{'strikethrough': item.status !== 'published'}">
             {{ item.title }}
           </div>
           <div class="plan-list-post-time">

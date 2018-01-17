@@ -53,6 +53,10 @@ export default {
         if (error) {
           return this.errorTip(error)
         }
+        if (data.status.code === 0) {
+          this.successTip('删除成功')
+          this.refresh()
+        }
       })
     },
     getMessageList () {

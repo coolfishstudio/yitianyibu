@@ -7,7 +7,8 @@
           <div class="post-meta">
             <span class="post-time">发表于 {{ info.time }}</span>
             <span>{{ info.hits }} 次浏览</span>
-            <span class="post-tags" v-if="false">所属于 <font>Node.js</font></span>
+            <br class="post-tags-br"/>
+            <span class="post-tags" v-for="(item, index) in info.tag">{{ item }}</span>
           </div>
         </div>
         <div class="post-body" v-html="info.html">
@@ -61,7 +62,8 @@ export default {
         category: {
           title: null,
           desc: null
-        }
+        },
+        tag: null
       },
       prev: null,
       next: null
@@ -92,7 +94,8 @@ export default {
               title: data.result.category.name || null,
               desc: data.result.category.desc || null,
               link: data.result.category.pathname || data.result.category._id || null
-            }
+            },
+            tag: data.result.content.tag || []
           }
           this.prev = (data.result.near && data.result.near.prev) || null
           this.next = (data.result.near && data.result.near.next) || null
@@ -129,9 +132,22 @@ export default {
     margin-top: .1rem
     color: #7f8c8d
     span
-      margin-right: 0.1rem
+      margin-right: 0.15rem
+      vertical-align: middle
+      display: inline-block
+    .post-tags
+      color: #999
+      background: #f8f8f8
+      font-size: 12px
+      line-height: 16px
+      padding: 1px 7px
+      border-radius: 4px
+      border: 1px solid #ccc
+      margin-right: 0.05rem
+    .post-tags-br
+      display: none
 .post-body
-  padding: 2% 4%
+  padding: 0% 4% 2%
   .markdown-text
     border-top: 1px dashed #ddd
     font-size: .16rem
@@ -289,4 +305,11 @@ export default {
     .post-bar
       padding-left: 0
       padding-right: 0
+@media (max-width:768px)
+  .post-header
+    .post-meta
+      span
+        margin-bottom: 0.1rem
+      .post-tags-br
+        display: block
 </style>
