@@ -17,9 +17,11 @@
     "express": "^4.16.2",
     "gridfs-stream": "^1.1.1",
     "jwt-simple": "^0.5.1",
+    "markdown-it": "^8.4.0",
     "mongoose": "^4.13.6",
     "passport": "^0.4.0",
-    "passport-jwt": "^3.0.1"
+    "passport-jwt": "^3.0.1",
+    "xss": "^0.3.7"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

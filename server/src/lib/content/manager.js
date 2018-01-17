@@ -40,9 +40,15 @@ const getNearByCreatedAt = async (createdAt) => {
   }
 }
 
+const insert = async (options = {}) => {
+  const result = await Model.create(Object.assign({}, options))
+  return result
+}
+
 export default {
   findAll,
   getById,
   hitById,
-  getNearByCreatedAt
+  getNearByCreatedAt,
+  insert
 }

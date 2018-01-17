@@ -1,4 +1,6 @@
 import crypto from 'crypto'
+import MarkdownIt from 'markdown-it'
+import jsxss from 'xss'
 
 const getClientIp = (req) => {
   return req.headers[ 'x-forwarded-for' ] ||
@@ -14,7 +16,27 @@ const getMD5 = (str) => {
   return result
 }
 
+const md = new MarkdownIt()
+
+md.set({
+  HTML: false, // Enable HTML tags in source
+  xhtmlOut: false, // Use '/' to close single tags (<br />)
+  breaks: false, // Convert '\n' in paragraphs into <br>
+  linkify: true, // Autoconvert URL-like text to links
+  typographer: true, // Enable smartypants and other sweet transforms
+})
+
+const xss = new jsxss.FilterXSS({
+  onIgnoreTagAttr(tag, name, value) {
+    if (tag === 'pre' && name === 'class') {
+      return `${name}="${jsxss.escapeAttrValue(value)}"`
+    }
+  }
+})
+
 export {
   getClientIp,
-  getMD5
+  getMD5,
+  md,
+  xss
 }
