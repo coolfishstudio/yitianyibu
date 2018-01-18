@@ -34,7 +34,7 @@ var findAll = function () {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return _model2.default.count({ removed: false });
+            return _model2.default.count((0, _assign2.default)({ removed: false }, options));
 
           case 2:
             total = _context.sent;

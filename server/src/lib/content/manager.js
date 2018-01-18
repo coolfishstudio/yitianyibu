@@ -2,7 +2,7 @@ import Model from './model'
 import { getMeta } from '../util/pagination'
 
 const findAll = async (queryOptions = {}, options = {}) => {
-  const total = await Model.count({ removed: false })
+  const total = await Model.count(Object.assign({ removed: false }, options))
   options = Object.assign(options, { removed: false })
   let list = []
   if (queryOptions.limit === -1) {
