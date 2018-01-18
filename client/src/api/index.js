@@ -18,7 +18,7 @@ const API = {
     if (!headers['Content-Type']) {
       headers['Content-Type'] = 'application/json'
     }
-    let token = storage.get(CONST.STORAGE_AUTH_TOKEN, {})
+    let token = storage.get(CONST.STORAGE_AUTH_TOKEN, null)
     if (token) {
       headers['Authorization'] = `Bearer ${token}`
     }

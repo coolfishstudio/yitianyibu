@@ -42,7 +42,7 @@ export default {
       days: 0
     }
   },
-  mounted () {
+  activated () {
     this.initData()
   },
   methods: {
