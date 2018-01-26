@@ -253,6 +253,8 @@ export default {
       max-width: 100%
       display: block
       border-radius: 5px
+    strong
+      font-weight: bold
 .post-bar
   padding: 2% 4%
   background-color: #fff
