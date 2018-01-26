@@ -240,6 +240,8 @@ export default {
     ol
       padding-left: 0.4rem
       li
+        list-style: cjk-ideographic
+        list-style: outside
         list-style: inherit
         margin: 0.05rem 0
     hr
