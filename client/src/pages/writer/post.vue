@@ -85,6 +85,7 @@ export default {
         }
         if (data.status.code === 0) {
           data.result.content.html = data.result.content.html.replace(/src="\/images/img, 'src="http://v1.yitianyibu.com/images')
+          data.result.content.html = data.result.content.html.replace(/src="\/i\//img, 'src="http://api.yitianyibu.com/i/')
           this.info = {
             title: data.result.content.title || null,
             html: data.result.content.html || null,

@@ -4,7 +4,6 @@
 
 <script type="text/ecmascript-6">
   export default {
-    name: 'pem-icon',
     props: {
       name: {
         type: String,
