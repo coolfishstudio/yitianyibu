@@ -1,6 +1,6 @@
 <template>
   <y-layout menu="plan">
-    <div class="bm-panel plan-list-content shadow" v-if="info.name">
+    <div class="bm-panel plan-list-content" v-if="info.name">
       <div class="plan-list-header" :style="'background-image: url(' + info.cover + ');'">
         <div class="plan-list-cover">
         </div>
@@ -116,7 +116,7 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus">
 .plan-list-content
   .plan-list-items
-    padding: 1% 4% 3%
+    padding: 1% 0% 3%
     blockquote
       padding: .15rem .2rem
       border-left: 5px solid #ccc

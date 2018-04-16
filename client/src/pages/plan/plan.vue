@@ -13,7 +13,7 @@
           <span class="icon-add"></span>
         </div>
       </router-link>
-      <router-link tag="a" class="content-plan-list-item shadow" v-for="(item, index) in list" :key="index" :to="'/plan/' + (item.pathname || item._id)">
+      <router-link tag="a" class="content-plan-list-item" v-for="(item, index) in list" :key="index" :to="'/plan/' + (item.pathname || item._id)">
         <div class="content-plan-list-item-cover" :style="'background-image: url(' + item.cover + ');'">
           <div class="content-plan-list-item-header">
             <div class="content-plan-list-item-header-box">
@@ -106,6 +106,7 @@ export default {
     width: 49%
     float: left
     margin-bottom: 2%
+    position: relative
     &:nth-child(2n)
       margin-left: 2%
     &:hover
@@ -122,20 +123,23 @@ export default {
                 border-left: 3px solid rgba(0, 0, 0, 1)
                 border-top: 3px solid rgba(0, 0, 0, 1)
     .content-plan-list-item-info
-      font-size: .14rem
-      color: #838383
-      padding: .1rem
+      font-size: 0.14rem
+      color: #fff
+      padding: 0.1rem
       line-height: 0.2rem
+      position: absolute
+      bottom: 0
+      left: 0
+      right: 0
+      background: rgba(0,0,0, 0.3)
     .content-plan-list-item-cover
       width: 100%
       height: 0
-      padding-bottom: 44.57%
+      padding-bottom: 51.57% /* 44.57% */
       background-size: cover
       background-position: center
       text-align: center
       position: relative
-      &.create
-        height: 0.4rem
       .content-plan-list-item-header
         position: absolute
         top: 0

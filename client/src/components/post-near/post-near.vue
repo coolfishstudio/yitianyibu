@@ -1,6 +1,6 @@
 <template>
   <div class="post-near text-shadow clearfix">
-    <div class="post-near-prev near-panel shadow">
+    <div class="post-near-prev near-panel">
       <a v-if="prev" :href="'/p/' + prev._id">
         <y-icon-prev></y-icon-prev>
         <b class="post-near-text">{{ prev.title }}</b>
@@ -11,7 +11,7 @@
         <b>没有上一页了</b>
       </span>
     </div>
-    <div class="post-near-next near-panel shadow">
+    <div class="post-near-next near-panel">
       <a v-if="next" :href="'/p/' + next._id">
         <b class="post-near-text">{{ next.title }}</b>
         <b class="post-near-default">下一页</b>
@@ -46,26 +46,8 @@ export default {
   font-size: 0
   .post-near-prev
     margin-right: 4%
-    a
-    span
-      &:before
-        content: 'Prev'
-        right: .05rem
-      &:after
-        left: 0
-        border-left: .1rem solid currentColor
-        border-right: .1rem solid transparent
   .post-near-next
     text-align: right
-    a
-    span
-      &:before
-        content: 'Next'
-        left: .05rem
-      &:after
-        right: 0
-        border-right: .1rem solid currentColor
-        border-left: .1rem solid transparent
   .post-near-prev
   .post-near-next
     display: inline-block
@@ -85,20 +67,8 @@ export default {
       position: relative
       height: .22rem
       line-height: .22rem
-      &:before
-      &:after
-        color: currentColor
-        display: block
-        position: absolute
-        bottom: 0
-        font-size: .12rem
-        transition: border-color .3s ease
-      &:after
-        content: ''
-        border-bottom: .1rem solid currentColor
-        border-top: .1rem solid transparent
       .icon
-        display: none
+        display: inline-block
         vertical-align: middle
         fill: currentColor
       b
@@ -115,15 +85,6 @@ export default {
 @media (max-width: 992px)
   .post-near
     margin: 0 5% 0.4rem
-    .post-near-prev
-    .post-near-next
-      a
-      span
-        &:before
-        &:after
-          display: none
-        .icon
-          display: inline-block
 @media (max-width:768px)
   .post-near
     .post-near-prev

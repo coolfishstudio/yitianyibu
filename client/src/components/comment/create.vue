@@ -1,5 +1,5 @@
 <template>
-  <div class="bm-panel content-comment-creat shadow">
+  <div class="bm-panel content-comment-creat">
     <div class="content-comment-creat-meta">
       <div class="content-comment-creat-name">
         <input class="form-control" v-model="name" type="text" name="name" placeholder="昵称[111.207.128.*]">

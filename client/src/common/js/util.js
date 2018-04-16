@@ -44,10 +44,10 @@ export const dateFormat = (date, format = 'yyyy-MM-dd hh:mm:ss', readability = f
   }
 
   const duration = Date.now() - date
-  const level1 = 60 * 1000                // 1 分钟
-  const level2 = 60 * 60 * 1000           // 1 小时
-  const level3 = 24 * 60 * 60 * 1000      // 1 天
-  const level4 = 3 * 24 * 60 * 60 * 1000  // 3 天
+  const level1 = 60 * 1000 // 1 分钟
+  const level2 = 60 * 60 * 1000 // 1 小时
+  const level3 = 24 * 60 * 60 * 1000 // 1 天
+  const level4 = 3 * 24 * 60 * 60 * 1000 // 3 天
   if (readability && duration < level4) {
     let str = ''
     if (duration < level1) str = '刚刚'
@@ -57,11 +57,11 @@ export const dateFormat = (date, format = 'yyyy-MM-dd hh:mm:ss', readability = f
     return str
   }
   const o = {
-    'M+': date.getMonth() + 1,  // 月份
-    'd+': date.getDate(),       // 日
-    'h+': date.getHours(),      // 小时
-    'm+': date.getMinutes(),    // 分
-    's+': date.getSeconds(),    // 秒
+    'M+': date.getMonth() + 1, // 月份
+    'd+': date.getDate(), // 日
+    'h+': date.getHours(), // 小时
+    'm+': date.getMinutes(), // 分
+    's+': date.getSeconds(), // 秒
     'q+': Math.floor((date.getMonth() + 3) / 3), // 季度
     S: date.getMilliseconds() // 毫秒
   }

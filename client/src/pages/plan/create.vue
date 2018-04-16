@@ -1,6 +1,6 @@
 <template>
   <y-layout menu="plan">
-    <div class="bm-panel plan-content shadow text-shadow">
+    <div class="bm-panel plan-content text-shadow">
       <h1>手帐本</h1>
       <y-input title="名称" required name="name" v-model="name" placeholder="请输入手帐本名称"></y-input>
       <y-input title="链接" name="pathname" v-model="pathname" placeholder="请输入自定义链接"></y-input>

@@ -17,7 +17,7 @@
     <div class="app-wrapper-mask" :class="{'side-bar': isOpenSideBar}"></div>
     <!-- right -->
     <div class="app-wrapper-main">
-      <div class="content-wrapper clearfix" :class="{'home': ['index', 'login'].indexOf(menu) > -1, 'fade-in': menu !== 'index', 'opacity-in': menu === 'index'}">
+      <div class="content-wrapper clearfix" :class="{'login': menu === 'login', 'home': menu === 'index', 'fade-in': menu !== 'index', 'opacity-in': menu === 'index'}">
         <slot></slot>
       </div>
       <y-footer :class="{'home': menu === 'index'}"></y-footer>

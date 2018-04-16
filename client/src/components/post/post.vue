@@ -1,91 +1,40 @@
 <template>
-  <y-layout menu="post">
-    <y-post v-show="!loading" :info="info"></y-post>
-    <y-post-near v-show="!loading" :next="next" :prev="prev"></y-post-near>
-    <y-comment-list v-if="false"></y-comment-list>
-    <y-comment-create v-if="false"></y-comment-create>
-  </y-layout>
+  <div class="bm-panel post-content text-shadow">
+    <div>
+      <div class="post-header">
+        <h1 class="post-title">{{ info.title }}</h1>
+        <div class="post-meta">
+          <span class="post-time">发表于 {{ info.time }}</span>
+          <span>{{ info.hits }} 次浏览</span>
+          <br class="post-tags-br"/>
+          <span class="post-tags" v-for="(item, index) in info.tag">{{ item }}</span>
+        </div>
+      </div>
+      <div class="post-body" v-html="info.html">
+      </div>
+      <div class="post-bar">
+        <div class="post-like">
+          <div class="share">
+            <svg t="1514966401073" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1881" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="36">
+              <path d="M896 927.954H128c-17.673 0-32-14.327-32-32v-320c0-8.836 7.163-16 16-16s16 7.164 16 16v304c0 8.837 7.163 16 16 16h736c8.837 0 16-7.163 16-16v-304c0-8.837 7.164-16 16-16 8.837 0 16 7.163 16 16v320c0 17.673-14.327 32-32 32zM524.167 741.953c6.248 6.248 6.248 16.379 0 22.627s-16.379 6.248-22.628 0c-6.248-6.248-6.248-16.379 0-22.627 6.249-6.249 16.38-6.249 22.628 0z m-12.021-491.036c8.836 0 16 7.163 16 16l0.707 373.156c0 8.837-7.163 16-16 16s-16-7.164-16-16l-0.707-373.156c0-8.836 7.164-16 16-16z m181.02 58.371L523.46 139.582c-6.248-6.248-16.379-6.248-22.627 0L331.834 308.581c-6.248 6.248-16.379 6.248-22.627 0-6.248-6.248-6.248-16.379 0-22.627l180.312-180.312c12.497-12.497 32.758-12.497 45.255 0l181.019 181.019c6.248 6.248 6.248 16.379 0 22.627-6.248 6.248-16.379 6.248-22.627 0z" p-id="10813"></path>
+            </svg>
+          </div>
+        </div>
+        <router-link tag="a" class="name" :to="'/plan/' + info.category.link">
+          {{ info.category && info.category.title }}
+        </router-link>
+        <router-link tag="a" class="plan" :to="'/plan/' + info.category.link">
+          {{ info.category && info.category.desc }}
+        </router-link>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
-import YLayout from 'components/layout/layout'
-import YCommentCreate from 'components/comment/create'
-import YCommentList from 'components/comment/list'
-import YPostNear from 'components/post-near/post-near'
-import YPost from 'components/post/post'
-import api from 'api'
-import { dateFormat } from 'common/js/util'
-
 export default {
-  components: {
-    YLayout,
-    YCommentCreate,
-    YCommentList,
-    YPostNear,
-    YPost
-  },
-  data () {
-    return {
-      loading: false,
-      info: {
-        title: null,
-        html: null,
-        hits: null,
-        time: null,
-        category: {
-          title: null,
-          desc: null
-        },
-        tag: null
-      },
-      prev: null,
-      next: null
-    }
-  },
-  activated () {
-    this.initData()
-  },
-  methods: {
-    initData () {
-      this.getContentInfo()
-    },
-    getContentInfo () {
-      this.loading = true
-      this._getContentInfo((error, data) => {
-        this.loading = false
-        if (error) {
-          return this.errorTip(error)
-        }
-        if (data.status.code === 0) {
-          data.result.content.html = data.result.content.html.replace(/src="\/images/img, 'src="http://v1.yitianyibu.com/images')
-          data.result.content.html = data.result.content.html.replace(/src="\/i\//img, 'src="http://api.yitianyibu.com/i/')
-          this.info = {
-            title: data.result.content.title || null,
-            html: data.result.content.html || null,
-            hits: data.result.content.hits || null,
-            time: dateFormat(data.result.content.createdAt, 'yyyy-MM-dd'),
-            category: {
-              title: data.result.category.name || null,
-              desc: data.result.category.desc || null,
-              link: data.result.category.pathname || data.result.category._id || null
-            },
-            tag: data.result.content.tag || []
-          }
-          this.prev = (data.result.near && data.result.near.prev) || null
-          this.next = (data.result.near && data.result.near.next) || null
-        }
-      })
-    },
-    _getContentInfo (callback) {
-      api.getContentInfo(this.$route.params.id).then(data => {
-        callback(null, data)
-      }).catch(error => {
-        callback(error.status.message)
-      })
-    },
-    errorTip (msg) {
-      this.$notify({ type: 'error', title: '错误', text: msg })
-    }
+  props: {
+    info: null
   }
 }
 </script>

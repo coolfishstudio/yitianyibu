@@ -1,5 +1,5 @@
 <template>
-  <div class="bm-panel content-comment-list shadow">
+  <div class="bm-panel content-comment-list">
     <div class="content-comment-list-item" v-for="(item, index) in list" :key="index">
       <div class="content-comment-list-item-meta">
         <div class="content-comment-list-item-meta-author">
