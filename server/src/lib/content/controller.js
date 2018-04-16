@@ -116,6 +116,65 @@ const getById = async (req, res, next) => {
   }
 }
 
+const getNewContent = async (req, res, next) => {
+  try {
+    const result = {
+      content: null,
+      category: null,
+      near: null
+    }
+    let options = {}
+    if (!req.headers['authorization']) {
+      options.status = 'published'
+    }
+    const _result = await contentManager.findAll(getFromReq({}, 1), options)
+    if (!(_result && _result.list && _result.list.length)) {
+      next(handlerCustomError(104004, '获取文章信息失败'))
+    }
+    const _content = _result.list[0]
+    await contentManager.hitById(_content._id)
+    result.content = {
+      title: _content.title,
+      html: _content.html,
+      createdAt: _content.createdAt,
+      hits: _content.hits + 1
+    }
+    if (_content.tag && _content.tag.length > 0) {
+      let _tag = []
+      for (let i = 0; i < _content.tag.length; i++) {
+        let info = await tagManager.getById(_content.tag[i])
+        _tag.push(info.name.toString())
+      }
+      result.content.tag = _tag
+    }
+    if (_content.category) {
+      let _category = await categoryManager.getById(_content.category)
+      result.category = {
+        _id: _category._id,
+        name: _category.name,
+        desc: _category.desc,
+        pathname: _category.pathname
+      }
+    }
+    result.near = await contentManager.getNearByCreatedAt(result.content.createdAt)
+    if (result.near.prev) {
+      result.near.prev = {
+        _id: result.near.prev._id,
+        title: result.near.prev.title
+      }
+    }
+    if (result.near.next) {
+      result.near.next = {
+        _id: result.near.next._id,
+        title: result.near.next.title
+      }
+    }
+    res.json(formatResult(result))
+  } catch (e) {
+    next(handlerCustomError(104005, '查询失败'))
+  }
+}
+
 const insert = async (req, res, next) => {
   const title = (req.body.title || '').trim()
   const tags = (req.body.tag || '').trim().split(',')
@@ -180,5 +239,6 @@ export default {
   findAllByCategory,
   getById,
   insert,
-  update
+  update,
+  getNewContent
 }
