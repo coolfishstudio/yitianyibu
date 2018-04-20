@@ -87,6 +87,10 @@ export default {
     h4
     h5
     h6
+      margin-top: 24px
+      margin-bottom: 16px
+      font-weight: 600
+      line-height: 1.25
       +p
         margin-top: 0.1rem
     h1
@@ -94,13 +98,17 @@ export default {
       margin-top: 0.4rem
       margin-bottom: 0.1rem
     h2
-      font-size: 0.24rem
-      margin-top: 0.4rem
-      margin-bottom: 0.1rem
+      padding-bottom: .3em
+      font-size: 1.5em
     h3
-      font-size: 0.18rem
-      margin-top: 0.4rem
-      margin-bottom: 0.1rem
+      font-size: 1.25em
+    h4
+      font-size: 1em
+    h5
+      font-size: .875em
+    h6
+      font-size: .85em
+      color: #6a737d
     p
       margin-bottom: 0.3rem
       margin-top: 0.3rem
