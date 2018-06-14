@@ -9,7 +9,7 @@
     <hr class="content-wrapper-line right"/>
     <div class="bm-panel content-archive-list" v-if="list.length > 0">
       <div class="timeline">
-        <div class="timeline-item" v-for="(item,index) in list">
+        <div class="timeline-item" v-for="(item,index) in list" :key="index">
           <div class="date" v-if="item.month">
             {{ item.year }}
             <span>{{ item.month }}</span>
