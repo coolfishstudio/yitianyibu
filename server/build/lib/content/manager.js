@@ -152,18 +152,19 @@ var hitById = function () {
 
 var getNearByCreatedAt = function () {
   var _ref4 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee4(createdAt) {
+    var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
     var prev, next;
     return _regenerator2.default.wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
             _context4.next = 2;
-            return _model2.default.findOne({ removed: false, createdAt: { $lt: createdAt } }).sort({ _id: -1 });
+            return _model2.default.findOne((0, _assign2.default)({ removed: false, createdAt: { $lt: createdAt } }, options)).sort({ _id: -1 });
 
           case 2:
             prev = _context4.sent;
             _context4.next = 5;
-            return _model2.default.findOne({ removed: false, createdAt: { $gt: createdAt } }).sort({ _id: 1 });
+            return _model2.default.findOne((0, _assign2.default)({ removed: false, createdAt: { $gt: createdAt } }, options)).sort({ _id: 1 });
 
           case 5:
             next = _context4.sent;
@@ -213,11 +214,40 @@ var insert = function () {
   };
 }();
 
+var count = function () {
+  var _ref6 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee6() {
+    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var total;
+    return _regenerator2.default.wrap(function _callee6$(_context6) {
+      while (1) {
+        switch (_context6.prev = _context6.next) {
+          case 0:
+            _context6.next = 2;
+            return _model2.default.count((0, _assign2.default)({ removed: false }, options));
+
+          case 2:
+            total = _context6.sent;
+            return _context6.abrupt('return', total);
+
+          case 4:
+          case 'end':
+            return _context6.stop();
+        }
+      }
+    }, _callee6, undefined);
+  }));
+
+  return function count() {
+    return _ref6.apply(this, arguments);
+  };
+}();
+
 exports.default = {
   findAll: findAll,
   getById: getById,
   hitById: hitById,
   getNearByCreatedAt: getNearByCreatedAt,
-  insert: insert
+  insert: insert,
+  count: count
 };
 //# sourceMappingURL=manager.js.map

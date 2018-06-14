@@ -167,7 +167,7 @@ var findAllByCategory = function () {
 
 var getById = function () {
   var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3(req, res, next) {
-    var result, _content, _tag, i, info, _category;
+    var result, options, _content, _tag, i, info, _category;
 
     return _regenerator2.default.wrap(function _callee3$(_context3) {
       while (1) {
@@ -179,14 +179,19 @@ var getById = function () {
               category: null,
               near: null
             };
-            _context3.next = 4;
+            options = {};
+
+            if (!req.headers['authorization']) {
+              options.status = 'published';
+            }
+            _context3.next = 6;
             return _manager2.default.hitById(req.params.id);
 
-          case 4:
-            _context3.next = 6;
+          case 6:
+            _context3.next = 8;
             return _manager2.default.getById(req.params.id);
 
-          case 6:
+          case 8:
             _content = _context3.sent;
 
             if (!_content) {
@@ -200,45 +205,45 @@ var getById = function () {
             };
 
             if (!(_content.tag && _content.tag.length > 0)) {
-              _context3.next = 21;
+              _context3.next = 23;
               break;
             }
 
             _tag = [];
             i = 0;
 
-          case 12:
+          case 14:
             if (!(i < _content.tag.length)) {
-              _context3.next = 20;
+              _context3.next = 22;
               break;
             }
 
-            _context3.next = 15;
+            _context3.next = 17;
             return _manager6.default.getById(_content.tag[i]);
 
-          case 15:
+          case 17:
             info = _context3.sent;
 
             _tag.push(info.name.toString());
 
-          case 17:
+          case 19:
             i++;
-            _context3.next = 12;
+            _context3.next = 14;
             break;
 
-          case 20:
+          case 22:
             result.content.tag = _tag;
 
-          case 21:
+          case 23:
             if (!_content.category) {
-              _context3.next = 26;
+              _context3.next = 28;
               break;
             }
 
-            _context3.next = 24;
+            _context3.next = 26;
             return _manager4.default.getById(_content.category);
 
-          case 24:
+          case 26:
             _category = _context3.sent;
 
             result.category = {
@@ -248,11 +253,11 @@ var getById = function () {
               pathname: _category.pathname
             };
 
-          case 26:
-            _context3.next = 28;
-            return _manager2.default.getNearByCreatedAt(result.content.createdAt);
-
           case 28:
+            _context3.next = 30;
+            return _manager2.default.getNearByCreatedAt(result.content.createdAt, options);
+
+          case 30:
             result.near = _context3.sent;
 
             if (result.near.prev) {
@@ -268,21 +273,21 @@ var getById = function () {
               };
             }
             res.json((0, _format.formatResult)(result));
-            _context3.next = 37;
+            _context3.next = 39;
             break;
 
-          case 34:
-            _context3.prev = 34;
+          case 36:
+            _context3.prev = 36;
             _context3.t0 = _context3['catch'](0);
 
             next((0, _format.handlerCustomError)(104005, '查询失败'));
 
-          case 37:
+          case 39:
           case 'end':
             return _context3.stop();
         }
       }
-    }, _callee3, undefined, [[0, 34]]);
+    }, _callee3, undefined, [[0, 36]]);
   }));
 
   return function getById(_x7, _x8, _x9) {
@@ -381,7 +386,7 @@ var getNewContent = function () {
 
           case 29:
             _context4.next = 31;
-            return _manager2.default.getNearByCreatedAt(result.content.createdAt);
+            return _manager2.default.getNearByCreatedAt(result.content.createdAt, options);
 
           case 31:
             result.near = _context4.sent;
@@ -421,12 +426,152 @@ var getNewContent = function () {
   };
 }();
 
-var insert = function () {
+// 随机获取一篇文章
+var getRandomContent = function () {
   var _ref5 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee5(req, res, next) {
-    var title, tags, markdown, category, createdByID, categoryInfo, html, reg, images, tag, i, info, result;
+    var result, options, count, _result, _content, _tag, i, info, _category;
+
     return _regenerator2.default.wrap(function _callee5$(_context5) {
       while (1) {
         switch (_context5.prev = _context5.next) {
+          case 0:
+            _context5.prev = 0;
+            result = {
+              content: null,
+              category: null,
+              near: null
+            };
+            options = {};
+
+            if (!req.headers['authorization']) {
+              options.status = 'published';
+            }
+            _context5.next = 6;
+            return _manager2.default.count(options);
+
+          case 6:
+            count = _context5.sent;
+            _context5.next = 9;
+            return _manager2.default.findAll((0, _pagination.getFromReq)({
+              limit: 1,
+              offset: Math.floor(Math.random() * count)
+            }, 1), options);
+
+          case 9:
+            _result = _context5.sent;
+
+            if (!(_result && _result.list && _result.list.length)) {
+              next((0, _format.handlerCustomError)(104004, '获取文章信息失败'));
+            }
+            _content = _result.list[0];
+            _context5.next = 14;
+            return _manager2.default.hitById(_content._id);
+
+          case 14:
+            result.content = {
+              title: _content.title,
+              html: _content.html,
+              createdAt: _content.createdAt,
+              hits: _content.hits + 1
+            };
+
+            if (!(_content.tag && _content.tag.length > 0)) {
+              _context5.next = 27;
+              break;
+            }
+
+            _tag = [];
+            i = 0;
+
+          case 18:
+            if (!(i < _content.tag.length)) {
+              _context5.next = 26;
+              break;
+            }
+
+            _context5.next = 21;
+            return _manager6.default.getById(_content.tag[i]);
+
+          case 21:
+            info = _context5.sent;
+
+            _tag.push(info.name.toString());
+
+          case 23:
+            i++;
+            _context5.next = 18;
+            break;
+
+          case 26:
+            result.content.tag = _tag;
+
+          case 27:
+            if (!_content.category) {
+              _context5.next = 32;
+              break;
+            }
+
+            _context5.next = 30;
+            return _manager4.default.getById(_content.category);
+
+          case 30:
+            _category = _context5.sent;
+
+            result.category = {
+              _id: _category._id,
+              name: _category.name,
+              desc: _category.desc,
+              pathname: _category.pathname
+            };
+
+          case 32:
+            _context5.next = 34;
+            return _manager2.default.getNearByCreatedAt(result.content.createdAt, options);
+
+          case 34:
+            result.near = _context5.sent;
+
+            if (result.near.prev) {
+              result.near.prev = {
+                _id: result.near.prev._id,
+                title: result.near.prev.title
+              };
+            }
+            if (result.near.next) {
+              result.near.next = {
+                _id: result.near.next._id,
+                title: result.near.next.title
+              };
+            }
+            res.json((0, _format.formatResult)(result));
+            _context5.next = 43;
+            break;
+
+          case 40:
+            _context5.prev = 40;
+            _context5.t0 = _context5['catch'](0);
+
+            next((0, _format.handlerCustomError)(104005, '查询失败'));
+
+          case 43:
+          case 'end':
+            return _context5.stop();
+        }
+      }
+    }, _callee5, undefined, [[0, 40]]);
+  }));
+
+  return function getRandomContent(_x13, _x14, _x15) {
+    return _ref5.apply(this, arguments);
+  };
+}();
+
+var insert = function () {
+  var _ref6 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee6(req, res, next) {
+    var title, tags, markdown, category, createdByID, categoryInfo, html, reg, images, tag, i, info, result;
+    return _regenerator2.default.wrap(function _callee6$(_context6) {
+      while (1) {
+        switch (_context6.prev = _context6.next) {
           case 0:
             title = (req.body.title || '').trim();
             tags = (req.body.tag || '').trim().split(',');
@@ -449,26 +594,26 @@ var insert = function () {
             if (!createdByID) {
               next((0, _format.handlerCustomError)(104010, '非法用户操作'));
             }
-            _context5.prev = 10;
+            _context6.prev = 10;
             categoryInfo = null;
 
             if (!category) {
-              _context5.next = 18;
+              _context6.next = 18;
               break;
             }
 
-            _context5.next = 15;
+            _context6.next = 15;
             return _manager4.default.getById(category);
 
           case 15:
-            categoryInfo = _context5.sent;
+            categoryInfo = _context6.sent;
 
             if (categoryInfo) {
-              _context5.next = 18;
+              _context6.next = 18;
               break;
             }
 
-            return _context5.abrupt('return', next((0, _format.handlerCustomError)(104011, '类别不存在')));
+            return _context6.abrupt('return', next((0, _format.handlerCustomError)(104011, '类别不存在')));
 
           case 18:
             html = '<div class="markdown-text">' + _tool.xss.process(_tool.md.render(markdown || '')) + '</div>';
@@ -483,25 +628,25 @@ var insert = function () {
 
           case 24:
             if (!(i < tags.length)) {
-              _context5.next = 32;
+              _context6.next = 32;
               break;
             }
 
-            _context5.next = 27;
+            _context6.next = 27;
             return _manager6.default.findOneAndCreate(tags[i], { createdByID: createdByID });
 
           case 27:
-            info = _context5.sent;
+            info = _context6.sent;
 
             tag.push(info._id.toString());
 
           case 29:
             i++;
-            _context5.next = 24;
+            _context6.next = 24;
             break;
 
           case 32:
-            _context5.next = 34;
+            _context6.next = 34;
             return _manager2.default.insert({
               title: title,
               tag: tag,
@@ -513,28 +658,28 @@ var insert = function () {
             });
 
           case 34:
-            result = _context5.sent;
+            result = _context6.sent;
 
             res.json((0, _format.formatResult)());
-            _context5.next = 41;
+            _context6.next = 41;
             break;
 
           case 38:
-            _context5.prev = 38;
-            _context5.t0 = _context5['catch'](10);
+            _context6.prev = 38;
+            _context6.t0 = _context6['catch'](10);
 
             next((0, _format.handlerCustomError)(102002, '创建失败'));
 
           case 41:
           case 'end':
-            return _context5.stop();
+            return _context6.stop();
         }
       }
-    }, _callee5, undefined, [[10, 38]]);
+    }, _callee6, undefined, [[10, 38]]);
   }));
 
-  return function insert(_x13, _x14, _x15) {
-    return _ref5.apply(this, arguments);
+  return function insert(_x16, _x17, _x18) {
+    return _ref6.apply(this, arguments);
   };
 }();
 
@@ -548,6 +693,7 @@ exports.default = {
   getById: getById,
   insert: insert,
   update: update,
-  getNewContent: getNewContent
+  getNewContent: getNewContent,
+  getRandomContent: getRandomContent
 };
 //# sourceMappingURL=controller.js.map

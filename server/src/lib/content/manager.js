@@ -31,9 +31,9 @@ const hitById = async (id) => {
     return result
 }
 
-const getNearByCreatedAt = async (createdAt) => {
-  const prev = await Model.findOne({ removed: false, createdAt: { $lt: createdAt } }).sort({ _id: -1 })
-  const next = await Model.findOne({ removed: false, createdAt: { $gt: createdAt } }).sort({ _id: 1 })
+const getNearByCreatedAt = async (createdAt, options={}) => {
+  const prev = await Model.findOne(Object.assign({ removed: false, createdAt: { $lt: createdAt } }, options)).sort({ _id: -1 })
+  const next = await Model.findOne(Object.assign({ removed: false, createdAt: { $gt: createdAt } }, options)).sort({ _id: 1 })
   return {
     prev,
     next
@@ -45,10 +45,16 @@ const insert = async (options = {}) => {
   return result
 }
 
+const count = async (options = {}) => {
+  const total = await Model.count(Object.assign({ removed: false }, options))
+  return total
+}
+
 export default {
   findAll,
   getById,
   hitById,
   getNearByCreatedAt,
-  insert
+  insert,
+  count
 }
