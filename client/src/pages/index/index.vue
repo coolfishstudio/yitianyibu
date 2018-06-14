@@ -83,10 +83,10 @@ export default {
       let time = dateFormat(null, 'yyyyMMdd')
       this.imageUrl = `http://cn.bing.com/iod/1366/1024/${time}1600`
     },
-    // 获取最新文章
+    // 获取最新文章 -> 随机
     getNewContentInfo () {
       this.loading = true
-      this._getNewContentInfo((error, data) => {
+      this._getRandomContentInfo((error, data) => {
         this.loading = false
         if (error) {
           return this.errorTip(error)
@@ -113,6 +113,13 @@ export default {
     },
     _getNewContentInfo (callback) {
       api.getNewContentInfo().then(data => {
+        callback(null, data)
+      }).catch(error => {
+        callback(error.status.message)
+      })
+    },
+    _getRandomContentInfo (callback) {
+      api.getRandomContentInfo().then(data => {
         callback(null, data)
       }).catch(error => {
         callback(error.status.message)

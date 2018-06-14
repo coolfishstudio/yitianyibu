@@ -7,8 +7,8 @@ const NODE_ENV = process.env.NODE_ENV || 'development'
 
 const host = {
   'production': 'http://api.yitianyibu.com',
-  'development': 'http://api.yitianyibu.com'
-  // 'development': 'http://localhost:9551'
+  // 'development': 'http://api.yitianyibu.com'
+  'development': 'http://localhost:9551'
 }[NODE_ENV]
 
 const API = {
@@ -122,6 +122,11 @@ const API = {
   // 获取最新文章
   getNewContentInfo () {
     const url = `${host}/api/content/new-post`
+    return this._get(url)
+  },
+  // 随机获取一篇文章
+  getRandomContentInfo () {
+    const url = `${host}/api/content/random-post`
     return this._get(url)
   }
 }
