@@ -140,6 +140,10 @@ export default {
       background-position: center
       text-align: center
       position: relative
+      filter: grayscale(100%)
+      transition: all 0.3s
+      &:hover
+        filter: grayscale(0%)
       .content-plan-list-item-header
         position: absolute
         top: 0

@@ -168,6 +168,10 @@ export default {
     padding-bottom: 32.73%
     height: 0
     position: relative
+    filter: grayscale(100%)
+    transition: all 0.3s
+    &:hover
+      filter: grayscale(0%)
     .plan-list-cover
       position: absolute
       top: 0

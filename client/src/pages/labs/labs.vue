@@ -125,6 +125,10 @@ export default {
       background-size: cover
       background-position: center
       background-color: #f2f2f2
+      filter: grayscale(100%)
+      transition: all 0.5s
+      &:hover
+        filter: grayscale(0%)
     .content-labs-list-item-text
       float: left
       width: 20%
