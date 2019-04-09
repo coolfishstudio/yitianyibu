@@ -22,6 +22,9 @@
         </div>
       </a>
     </div>
+    <div class="bm-panel content-labs-list">
+      <h3 class="content-labs-list-item" style="text-align: center;font-size: 18px;">因域名变更，原实验室应用下架，近期改造中</h3>
+    </div>
   </y-layout>
 </template>
 
@@ -53,7 +56,7 @@ export default {
     initData () {
       this.offset = 0
       this.isAuth = !!storage.get(CONST.STORAGE_AUTH_TOKEN)
-      this.getLabsList()
+      // this.getLabsList()
     },
     getLabsList () {
       this._getLabsList((error, data) => {
