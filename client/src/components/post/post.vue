@@ -113,6 +113,7 @@ export default {
       margin-bottom: 0.3rem
       margin-top: 0.3rem
       text-align: left
+      white-space: pre-wrap
     a
       color: #009a61
       text-decoration: none
