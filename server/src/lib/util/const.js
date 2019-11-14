@@ -1,4 +1,0 @@
-export const APP_LIMIT_DEFAULT = 100
-export const MESSAGE_LIMIT_DEFAULT = 100
-export const CATEGORY_LIMIT_DEFAULT = 100
-export const CONTENT_LIMIT_DEFAULT = 100

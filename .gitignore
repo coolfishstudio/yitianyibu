@@ -1,6 +1,4 @@
 .DS_Store
 
 server/node_modules/
-server/src/config.js
 
-client/node_modules/
