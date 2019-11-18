@@ -23,9 +23,15 @@
     "@nestjs/common": "^6.7.2",
     "@nestjs/core": "^6.7.2",
     "@nestjs/platform-express": "^6.7.2",
+    "class-transformer": "^0.2.3",
+    "class-validator": "^0.11.0",
+    "mongoose": "^5.7.11",
+    "mongoose-auto-increment": "^5.0.1",
+    "mongoose-paginate": "^5.0.3",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.0",
-    "rxjs": "^6.5.3"
+    "rxjs": "^6.5.3",
+    "typegoose": "^5.9.1"
   },
   "devDependencies": {
     "@nestjs/cli": "^6.9.0",
