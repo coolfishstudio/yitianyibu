@@ -1,3 +1,7 @@
+/**
+ * Mongoose 模块转换器
+ */
+
 import * as _mongoose from 'mongoose';
 import * as _mongooseAutoIncrement from 'mongoose-auto-increment';
 import * as _mongoosePaginate from 'mongoose-paginate';

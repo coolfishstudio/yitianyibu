@@ -1,13 +1,18 @@
 import { Types } from 'mongoose';
-import { Typegoose, prop } from 'typegoose';
+import { Typegoose, prop, plugin } from 'typegoose';
 import {
   IsNotEmpty,
   IsString,
-  IsArray,
-  ArrayNotEmpty,
-  ArrayUnique,
 } from 'class-validator';
 import { getModelBySchema, getProviderByModel } from '../../transform/model.transform';
+import { mongooseAutoIncrement } from '../../transform/mongoose.transform';
+
+@plugin(mongooseAutoIncrement.plugin, {
+  model: Tag.name,
+  field: 'id',
+  startAt: 1,
+  incrementBy: 1,
+})
 
 export class Tag extends Typegoose {
   @IsNotEmpty({ message: '标签名称？' })
@@ -26,12 +31,6 @@ export class Tag extends Typegoose {
   count?: number;
 }
 
-export class BatchTag extends Typegoose {
-  @IsArray()
-  @ArrayNotEmpty()
-  @ArrayUnique()
-  ids: Types.ObjectId[];
-}
 
 export const TagModel = getModelBySchema(Tag);
 export const TagProvider = getProviderByModel(TagModel);

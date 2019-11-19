@@ -7,7 +7,6 @@ import { Provider, Inject } from '@nestjs/common';
 import { Typegoose, GetModelForClassOptions, ModelType } from 'typegoose';
 import { DB_MODEL_TOKEN_SUFFIX, DB_CONNECTION_TOKEN } from '../constants/system.constant';
 
-
 type TypegooseClass<T extends Typegoose> = new (...args: any[]) => T;
 
 export function getModelToken(modelName: string): string {

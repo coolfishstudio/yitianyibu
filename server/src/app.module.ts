@@ -1,12 +1,9 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TagModule } from './modules/tag/tag.module';
 
 @Module({
-  imports: [
-    TagModule,
-  ],
+  imports: [],
   controllers: [AppController],
   providers: [AppService],
 })

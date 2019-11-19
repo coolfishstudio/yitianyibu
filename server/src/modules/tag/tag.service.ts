@@ -2,13 +2,13 @@ import { Injectable } from '@nestjs/common';
 import { Types } from 'mongoose';
 import { InjectModel } from '../../transform/model.transform';
 
-import { TypeMongooseModel } from '../../interfaces/mongoose.interface';
+import { TMongooseModel } from '../../interfaces/mongoose.interface';
 import { Tag } from './tag.model';
 
 @Injectable()
 export class TagService {
   constructor(
-    @InjectModel(Tag) private readonly tagModel: TypeMongooseModel<Tag>,
+    @InjectModel(Tag) private readonly tagModel: TMongooseModel<Tag>,
   ) {}
 
   create(newTag: Tag): Promise<Tag> {

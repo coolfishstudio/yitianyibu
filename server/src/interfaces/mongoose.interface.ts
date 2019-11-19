@@ -5,4 +5,4 @@
 import { ModelType } from 'typegoose';
 import { PaginateModel, Document } from 'mongoose';
 
-export type TypeMongooseModel<T> = ModelType<T> & PaginateModel<T & Document>;
+export type TMongooseModel<T> = ModelType<T> & PaginateModel<T & Document>;
