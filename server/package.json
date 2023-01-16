@@ -19,7 +19,7 @@
     "jwt-simple": "^0.5.1",
     "markdown-it": "^8.4.0",
     "mongoose": "^4.13.6",
-    "passport": "^0.4.0",
+    "passport": "^0.6.0",
     "passport-jwt": "^3.0.1",
     "xss": "^0.3.7"
   },
