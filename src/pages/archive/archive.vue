@@ -56,6 +56,8 @@ export default {
   },
   deactivated () {
     this.page = 1
+    this.list = []
+    this.total = 0
   },
   methods: {
     initData () {

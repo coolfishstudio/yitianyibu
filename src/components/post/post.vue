@@ -10,7 +10,9 @@
           <span class="post-tags" v-for="(item, index) in info.tag" :style="'background: #' + item.color + ';'" >{{ item.name }}</span>
         </div>
       </div>
-      <div class="post-body" v-html="info.html">
+      <div class="post-body">
+        <div class="markdown-body" v-html="info.html">
+        </div>
       </div>
       <div class="post-bar">
         <div class="post-like">
@@ -71,122 +73,10 @@ export default {
       display: none
 .post-body
   padding: 0% 4% 2%
-  .markdown-text
+  .markdown-body
     border-top: 1px dashed #ddd
-    font-size: .16rem
-    color: #293846
-    line-height: 1.7
-    word-break: break-all
-    overflow: hidden
-    width: 100%
     padding-bottom: .16rem
-    padding-top: 0.1rem
-    h1
-    h2
-    h3
-    h4
-    h5
-    h6
-      margin-top: 24px
-      margin-bottom: 16px
-      font-weight: 600
-      line-height: 1.25
-      +p
-        margin-top: 0.1rem
-    h1
-      font-size: 0.28rem
-      margin-top: 0.4rem
-      margin-bottom: 0.1rem
-    h2
-      padding-bottom: .3em
-      font-size: 1.5em
-    h3
-      font-size: 1.25em
-    h4
-      font-size: 1em
-    h5
-      font-size: .875em
-    h6
-      font-size: .85em
-      color: #6a737d
-    p
-      margin-bottom: 0.3rem
-      margin-top: 0.3rem
-      text-align: left
-      white-space: pre-wrap
-    a
-      color: #009a61
-      text-decoration: none
-      border-bottom: 1px dashed #009a61
-      &:hover
-        color: #004e31
-        border-bottom: 1px dashed #004e31
-    code
-      font-size: 0.14rem
-      padding: 1px 4px
-      border-radius: 3px
-      margin: 0 3px
-      background-color: #f7f7f7
-      color: #009a61
-    pre
-      margin: 0
-      line-height: 0
-      code
-        color: inherit
-        font-size: 0.14rem
-        margin: 0
-        padding: 0.1rem 0.15rem
-        border-radius: 6px
-        border: 2px dashed #eee
-        background-color: #fcfcfc
-        display: block
-        overflow: auto
-        line-height: 1.7
-    blockquote
-      padding: 0.15rem 0.2rem
-      border-left: 5px solid #ccc
-      background-color: #f8f8f8
-      margin: 0.2rem 0
-      p
-        margin: 0
-    table
-      font-size: 0.14rem
-      width: 100%
-      border-width: 1px
-      border-color: #ddd
-      border-collapse: collapse
-      th
-        padding: 5px
-        border: 1px solid #ddd
-        background-color: #eee
-      td
-        padding: 5px
-        border: 1px solid #ddd
-        background-color: #fcfcfc
-    ul
-      list-style: circle
-      padding-left: 0.4rem
-      li
-        list-style: circle
-        margin: 0.05rem 0
-    ol
-      padding-left: 0.4rem
-      li
-        list-style: cjk-ideographic
-        list-style: outside
-        list-style: inherit
-        margin: 0.05rem 0
-    hr
-      margin: 0.25rem 0
-      border: 0
-      border-top: 1px dashed #ddd
-    img
-      margin: 0.3rem auto
-      max-width: 100%
-      display: block
-      border-radius: 5px
-    strong
-      font-weight: bold
+    padding-top: 0.24rem
 .post-bar
   padding: 2% 4%
   background-color: #fff
@@ -234,6 +124,8 @@ export default {
     font-size: 0.14rem
     color: #7f8c8d
 @media (max-width: 992px)
+  .post-header
+    padding: 3% 0 2%
   .post-content
     margin-top: 0.5rem
     margin-bottom: 0
@@ -244,6 +136,7 @@ export default {
       padding-right: 0
 @media (max-width:768px)
   .post-header
+    padding: 3% 0 2%
     .post-meta
       span
         margin-bottom: 0.1rem

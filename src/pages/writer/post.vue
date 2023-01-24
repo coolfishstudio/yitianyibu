@@ -40,13 +40,28 @@ export default {
         },
         tag: null
       },
-      prev: null,
-      next: null,
+      // prev: null,
+      // next: null,
       comments: []
     }
   },
   activated () {
     this.initData()
+  },
+  deactivated () {
+    this.loading = false
+    this.info = {
+      title: null,
+      html: null,
+      hits: null,
+      time: null,
+      category: {
+        title: null,
+        desc: null
+      },
+      tag: null
+    }
+    this.comments = []
   },
   methods: {
     initData () {
@@ -70,7 +85,7 @@ export default {
           const curLabels = (data.labels || [])[0] || {}
           this.info = {
             title: data.title || null,
-            html: data.body || null,
+            html: data.body_html || null,
             hits: data.comments || null,
             time: dateFormat(data.created_at, 'yyyy-MM-dd hh:mm:ss', true),
             category: {

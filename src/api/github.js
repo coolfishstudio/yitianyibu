@@ -23,6 +23,7 @@ const GITHUB_API = {
     if (token) {
       headers['Authorization'] = `Bearer ${token}`
     }
+    headers['accept'] = 'application/vnd.github.v3.html'
     let options = {
       url,
       method,

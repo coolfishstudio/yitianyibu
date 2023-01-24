@@ -62,6 +62,9 @@ export default {
   activated () {
     this.initData()
   },
+  deactivated () {
+    this.list = []
+  },
   methods: {
     initData () {
       this.getCategoryList()
