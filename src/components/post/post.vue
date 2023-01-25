@@ -5,7 +5,7 @@
         <h1 class="post-title">{{ info.title }}</h1>
         <div class="post-meta">
           <span class="post-time">发表于 {{ info.time }}</span>
-          <span>{{ info.hits }} 次评论</span>
+          <span v-if="info.hits">{{ info.hits }} 次评论</span>
           <br class="post-tags-br"/>
           <span class="post-tags" v-for="(item, index) in info.tag" :style="'background: #' + item.color + ';'" >{{ item.name }}</span>
         </div>

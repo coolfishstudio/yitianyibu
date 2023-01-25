@@ -1,11 +1,18 @@
 <template>
   <y-layout menu="plan">
     <div class="bm-panel plan-list-content" v-if="info.name">
-      <div class="plan-list-header" :style="'background-image: url(' + info.cover + ');'">
-        <div class="plan-list-cover">
-        </div>
+      <div class="plan-list-header" :style="'background: #' + info.color + '; --footer-background: #' + info.color + ';'">
         <div class="plan-list-title">
-          <span>{{ info.name }}</span>
+          <span>
+            {{ info.name }}
+          </span>
+        </div>
+        <div class="bubbles">
+          <div
+            class="bubble"
+            v-for="count in 128"
+            :style="`--size:${0.2+Math.random()*0.3}rem; --distance:${1+Math.random()*0.4}rem; --position:${-5+Math.random()*110}%; --time:${3+Math.random()*2}s; --delay:${-1*(2+Math.random()*2)}s;`"
+          ></div>
         </div>
       </div>
       <div class="plan-list-items text-shadow">
@@ -14,13 +21,8 @@
             {{ info.desc }}
           </p>
         </blockquote>
-        <router-link tag="a" class="plan-list-post-create create" :to="'/plan/' + info.id + '/create'" v-if="isAuth">
-          <div class="content-labs-list-item-img">
-            <span class="icon-add"></span>
-          </div>
-        </router-link>
-        <router-link tag="a" class="plan-list-post-item" v-for="(item, index) in list" :key="index" :to="'/p/'+ item._id">
-          <div class="plan-list-post-title" :class="{'strikethrough': item.status !== 'published'}">
+        <router-link tag="a" class="plan-list-post-item" v-for="(item, index) in list" :key="index" :to="'/p/'+ item.number">
+          <div class="plan-list-post-title" :class="{'strikethrough': item.state !== 'open'}">
             {{ item.title }}
           </div>
           <div class="plan-list-post-time">
@@ -34,12 +36,8 @@
 
 <script>
 import YLayout from 'components/layout/layout'
-import api from 'api'
+import api from 'api/github'
 import { dateFormat } from 'common/js/util'
-import storage from 'common/js/storage.js'
-import CONST from 'api/const'
-
-const tempImageUrl = 'http://yitianyibu.com/static/image/small/*.jpg'
 
 export default {
   components: {
@@ -47,59 +45,66 @@ export default {
   },
   data () {
     return {
-      info: {
-        id: null,
-        name: null,
-        cover: null,
-        desc: null
-      },
+      info: {},
       list: [],
-      offset: 0,
-      limit: -1,
-      isAuth: false
+      page: 1,
+      per_page: 30,
+      total: 0,
+      loading: false
     }
   },
   activated () {
     this.initData()
   },
+  deactivated () {
+    this.page = 1
+    this.list = []
+    this.info = {}
+    this.total = 0
+    this.loading = false
+  },
   methods: {
     initData () {
-      this.offset = 0
-      this.isAuth = !!storage.get(CONST.STORAGE_AUTH_TOKEN)
-      this.getContentByCategory()
+      this.getIssueList()
     },
-    getContentByCategory () {
-      this._getContentByCategory((error, data) => {
-        if (error) {
-          return this.errorTip(error)
+    getIssueList () {
+      if (this.loading) {
+        return null
+      }
+      this.loading = true
+      this._getLabel((_error, info) => {
+        if (_error) {
+          this.loading = false
+          return this.errorTip(_error)
         }
-        if (data.status.code === 0) {
-          this.info = {
-            id: data.result.info._id,
-            name: data.result.info.name,
-            desc: data.result.info.desc
+        this._getIssueList((error, data) => {
+          this.loading = false
+          if (error) {
+            return this.errorTip(error)
           }
-          if (data.result.info.cover) {
-            if (/^[0-9a-f]{24}$/.test(data.result.info.cover)) {
-              this.info.cover = `${api.host}/i/${data.result.info.cover}`
-            } else {
-              this.info.cover = data.result.info.cover
-            }
-          } else {
-            this.info.cover = tempImageUrl.replace('*', String(data.result.info._id)[23])
-          }
-          this.list = data.result.list.map(item => {
-            item.time = dateFormat(item.createdAt, 'yyyy-MM-dd hh:mm')
+          this.info = info
+          console.log('--=', info)
+          this.list = this.list.concat(data.items || []).map(item => {
+            item.time = dateFormat(item.created_at, 'yyyy-MM-dd hh:mm')
             return item
           })
-          this.offset = data.result.meta.offset + this.limit
-        }
+          this.page = this.page + 1
+          this.total = data.total_count || 0
+        })
       })
     },
-    _getContentByCategory (callback) {
-      api.getContentByCategory(this.$route.params.id, {
-        offset: this.offset,
-        limit: this.limit
+    _getLabel (callback) {
+      api.getLabel(this.$route.params.id).then(data => {
+        callback(null, data)
+      }).catch(error => {
+        callback(error.status.message)
+      })
+    },
+    _getIssueList (callback) {
+      api.getIssueList({
+        label: this.$route.params.id,
+        page: this.page,
+        per_page: this.per_page
       }).then(data => {
         callback(null, data)
       }).catch(error => {

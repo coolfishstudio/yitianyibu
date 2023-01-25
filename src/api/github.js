@@ -67,13 +67,18 @@ const GITHUB_API = {
     options.per_page = options.per_page || github.perpage
     options.sort = github.sort
     const query = [
-      `repo:${github.user}/${github.repository}${options.label || ''}`
+      `repo:${github.user}/${github.repository}`,
+      options.label ? `label:"${options.label}"` : ''
       // 'state:open'
-    ]
+    ].filter(i => i)
     if (options.keyword) {
       query.push(options.keyword)
     }
     return this._get(`${github.host}/search/issues?q=${query.join('+')}`, options)
+  },
+  // 获取 label 详情
+  getLabel (id) {
+    return this._get(`${github.host}/repos/${github.user}/${github.repository}/labels/${id}`)
   },
   // 获取 issue 详情
   getIssue (id) {
