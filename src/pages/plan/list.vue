@@ -1,7 +1,7 @@
 <template>
   <y-layout menu="plan">
     <div class="bm-panel plan-list-content" v-if="info.name">
-      <div class="plan-list-header" :style="'background: #' + info.color + '; --footer-background: #' + info.color + ';'">
+      <div class="plan-list-header" :style="'--footer-background: #' + info.color + ';'">
         <div class="plan-list-title">
           <span>
             {{ info.name }}
@@ -11,7 +11,7 @@
           <div
             class="bubble"
             v-for="count in 128"
-            :style="`--size:${0.2+Math.random()*0.3}rem; --distance:${1+Math.random()*0.4}rem; --position:${-5+Math.random()*110}%; --time:${3+Math.random()*2}s; --delay:${-1*(2+Math.random()*2)}s;`"
+            :style="`--size:${2+Math.random()*3}rem; --distance:${1+Math.random()*0.8}rem; --position:${-5+Math.random()*110}%; --time:${3+Math.random()*2}s; --delay:${-1*(2+Math.random()*2)}s;`"
           ></div>
         </div>
       </div>
@@ -31,6 +31,14 @@
         </router-link>
       </div>
     </div>
+    <svg>
+      <defs>
+        <filter id="blob">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur>
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" result="blob"></feColorMatrix>
+        </filter>
+      </defs>
+    </svg>
   </y-layout>
 </template>
 
@@ -167,23 +175,33 @@ export default {
           vertical-align: middle
           margin-right: .05rem
   .plan-list-header
-    background-color: #fff
     background-size: cover
     background-position: center
     padding-bottom: 32.73%
     height: 0
     position: relative
-    filter: grayscale(100%)
+    background-color: #000
     transition: all 0.3s
-    &:hover
-      filter: grayscale(0%)
-    .plan-list-cover
+    overflow: hidden
+    .bubbles
       position: absolute
-      top: 0
-      left: 0
-      right: 0
-      bottom: 0
-      background-color: rgba(255, 255, 255, 0.25)
+      left:0
+      right:0
+      background: var(--footer-background)
+      transition: all 0.3s
+      opacity: 1
+      filter:url("#blob")
+      bottom: 0;
+      height: 25%
+      .bubble {
+        position: absolute;
+        left:var(--position, 50%);
+        background:var(--footer-background);
+        border-radius:100%;
+        animation:bubble-size var(--time, 4s) ease-in infinite var(--delay, 0s),
+            bubble-move var(--time, 4s) ease-in infinite var(--delay, 0s);
+        transform:translate(-50%, 100%);
+      }
     .plan-list-title
       position: absolute
       height: 0.84rem
@@ -191,12 +209,13 @@ export default {
       top: 50%
       width: 100%
       text-align: center
+      z-index: 1
       span
         color: #fff
-        background-color: rgba(0, 0, 0, 0.7)
+        background-color: rgba(255, 255, 255, 0.3)
         line-height: 0.84rem
         font-size: 0.35rem
-        font-weight: 100
+        font-weight: inherit
         display: inline-block
         padding: 0 2%
         min-width: 50%
@@ -206,8 +225,7 @@ export default {
           content: ''
           display: block
           color: #fff
-          border: 3px solid rgba(0, 0, 0, 0.7)
-          z-index: 1
+          border: 3px solid rgba(255, 255, 255, 0.3)
           position: absolute
           width: 75%
           height: 50%
@@ -249,4 +267,23 @@ export default {
           line-height: 0.44rem
           font-weight: inherit
           font-size: 0.2rem
+
+@keyframes bubble-size {
+  0%, 75% {
+    width:var(--size, 4rem)
+    height:var(--size, 4rem)
+  }
+  100% {
+    width:0rem
+    height:0rem
+  }
+}
+@keyframes bubble-move {
+  0% {
+    bottom: 0rem
+  }
+  100% {
+    bottom:var(--distance, 3rem)
+  }
+}
 </style>

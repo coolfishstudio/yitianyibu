@@ -22,12 +22,16 @@
             </svg>
           </div>
         </div>
-        <router-link tag="a" class="name" :to="'/plan/' + info.category.link">
-          {{ info.category && info.category.title }}
-        </router-link>
-        <router-link tag="a" class="plan" :to="'/plan/' + info.category.link">
-          {{ info.category && info.category.desc }}
-        </router-link>
+        <div class="post-category">
+          <span class="post-category-item" v-for="tag in info.category">
+            <router-link tag="a" class="name" :to="'/plan/' + tag.name">
+              {{ tag.name }}
+            </router-link>
+            <router-link tag="a" class="plan" :to="'/plan/' + tag.name">
+              {{ tag.description || tag.name }}
+            </router-link>
+          </span>
+        </div>
       </div>
     </div>
   </div>
@@ -84,7 +88,7 @@ export default {
 /*  border-top: 1px dashed #e3e3e3*/
   .post-like
     width: 100%
-    height: 1.1rem
+    height: 0.7rem
     position: relative
     &:before
       content: ''
@@ -120,9 +124,18 @@ export default {
   .plan
     display: block
     margin-top: 0.16rem
-    margin-bottom: 0.3rem
     font-size: 0.14rem
     color: #7f8c8d
+  .post-category
+    display: flex
+    margin-bottom: 0.4rem;
+    margin-top: 0.3rem;
+    .post-category-item
+      flex: 1
+      margin: 0.1rem 0
+      border-right: 1px dashed #ddd
+      &:last-child
+        border-right: none
 @media (max-width: 992px)
   .post-header
     padding: 3% 0 2%

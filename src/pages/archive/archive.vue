@@ -15,14 +15,14 @@
             <span>{{ item.month }}</span>
           </div>
           <router-link tag="a" class="link" :class="{'strikethrough': item.state !== 'open'}" :to="'/p/' + item.number">
-            <span
-              v-if="(item.labels || []).length"
-              class="tag"
-              :style="'background: #' + item.labels[0].color + ';'"
-            >
-              {{ item.labels[0].name }}
-            </span>
             <span>{{ item.title }}</span>
+            <span
+              v-for="tag in (item.labels || [])"
+              class="tag"
+              :style="'background: #' + tag.color + ';'"
+            >
+              {{ tag.name }}
+            </span>
             <div class="hits" v-if="item.comments">{{ item.comments }}</div>
           </router-link>
         </div>

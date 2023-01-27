@@ -34,10 +34,7 @@ export default {
         html: null,
         hits: null,
         time: null,
-        category: {
-          title: null,
-          desc: null
-        },
+        category: [],
         tag: null
       },
       // prev: null,
@@ -55,10 +52,7 @@ export default {
       html: null,
       hits: null,
       time: null,
-      category: {
-        title: null,
-        desc: null
-      },
+      category: [],
       tag: null
     }
     this.comments = []
@@ -81,21 +75,12 @@ export default {
             i.time = dateFormat(data.created_at, 'yyyy-MM-dd hh:mm:ss', true)
             return i
           })
-          console.log('===>', this.comments)
-          const curLabels = (data.labels || [])[0] || {}
           this.info = {
             title: data.title || null,
             html: data.body_html || null,
             hits: data.comments || null,
             time: dateFormat(data.created_at, 'yyyy-MM-dd hh:mm:ss', true),
-            category: {
-              // title: data.result.category.name || null,
-              // desc: data.result.category.desc || null,
-              // link: data.result.category.pathname || data.result.category._id || null
-              title: curLabels.name || null,
-              desc: curLabels.description || curLabels.name || null,
-              link: curLabels.name || null
-            },
+            category: data.labels || [],
             // tag: data.result.content.tag || []
             tag: data.labels || []
           }
