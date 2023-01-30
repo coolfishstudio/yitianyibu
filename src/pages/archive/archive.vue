@@ -27,7 +27,7 @@
           </router-link>
         </div>
       </div>
-      <div v-if="total >= list.length" class="timeline-item-next" v-on:click="getContentList">{{ loading ? '加载中' : '加载更多' }}</div>
+      <div v-if="total > list.length" class="timeline-item-next" v-on:click="getContentList">{{ loading ? '加载中' : '加载更多' }}</div>
     </div>
   </y-layout>
 </template>

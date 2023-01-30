@@ -1,7 +1,7 @@
 <template>
   <y-layout menu="plan">
-    <div class="bm-panel plan-list-content" v-if="info.name">
-      <div class="plan-list-header" :style="'--footer-background: #' + info.color + ';'">
+    <div class="bm-panel plan-list-content" v-if="info.name" :style="'--footer-background: #' + info.color + ';'">
+      <div class="plan-list-header">
         <div class="plan-list-title">
           <span>
             {{ info.name }}
@@ -29,6 +29,7 @@
             <time>{{ item.time }}</time>
           </div>
         </router-link>
+        <div v-if="total > list.length" class="next-more" v-on:click="getNextIssueList">{{ loading ? '加载中' : '加载更多' }}</div>
       </div>
     </div>
     <svg>
@@ -91,7 +92,6 @@ export default {
             return this.errorTip(error)
           }
           this.info = info
-          console.log('--=', info)
           this.list = this.list.concat(data.items || []).map(item => {
             item.time = dateFormat(item.created_at, 'yyyy-MM-dd hh:mm')
             return item
@@ -99,6 +99,24 @@ export default {
           this.page = this.page + 1
           this.total = data.total_count || 0
         })
+      })
+    },
+    getNextIssueList () {
+      if (this.loading) {
+        return null
+      }
+      this.loading = true
+      this._getIssueList((error, data) => {
+        this.loading = false
+        if (error) {
+          return this.errorTip(error)
+        }
+        this.list = this.list.concat(data.items || []).map(item => {
+          item.time = dateFormat(item.created_at, 'yyyy-MM-dd hh:mm')
+          return item
+        })
+        this.page = this.page + 1
+        this.total = data.total_count || 0
       })
     },
     _getLabel (callback) {
@@ -159,10 +177,10 @@ export default {
         border-bottom: 0
       &:hover
         .plan-list-post-title
-          border-left: 3px solid #2ecc40
-          color: #26272b
+          border-left: 3px solid var(--footer-background)
+          color: var(--footer-background)
         .plan-list-post-time
-          color: #2ecc40
+          color: var(--footer-background)
       .plan-list-post-title
         display: inline-block
         padding-left: .15rem
@@ -240,6 +258,23 @@ export default {
           right: -6px
           border-left: 3px solid transparent
           border-top: 3px solid transparent
+  .next-more
+    position: relative;
+    margin: 0.5rem 0.25rem 0;
+    padding: 0.125rem;
+    border-radius: 0px;
+    border: 0.02rem dashed #d9d9d9;
+    text-align: center;
+    color: #666;
+    text-transform: uppercase;
+    font-size: 0.18rem;
+    line-height: 1.2;
+    cursor: pointer;
+    transition: all .3s ease-out
+    &:hover
+      color: #26272b;
+      background: #d9d9d9;
+      border-style: solid;
 @media (max-width: 992px)
   .plan-list-content
     padding-top: 5%
