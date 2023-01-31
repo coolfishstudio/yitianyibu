@@ -7,8 +7,10 @@
       用自己整理的教学文章集合来构成了这本计划预期的手帐。
     </p>
     <hr class="content-wrapper-line right"/>
-    <div class="bm-panel clearfix">
-      <div class="content-plan-list">
+    <div class="bm-panel mb-1 clearfix">
+      <y-loading :loading="initLoading"></y-loading>
+      <y-error :error="!initLoading && error"></y-error>
+      <div class="content-plan-list" v-if="!initLoading && !error">
         <!-- <router-link tag="a" class="content-plan-list-item" to="/plan/create" v-if="isAuth">
           <div class="content-plan-list-item-cover create">
             <span class="icon-add"></span>
@@ -35,7 +37,7 @@
         </router-link>
       </div>
     </div>
-    <svg>
+    <svg style="display: none">
       <defs>
         <filter id="blob">
           <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur>
@@ -48,15 +50,21 @@
 
 <script>
 import YLayout from 'components/layout/layout'
+import YLoading from 'components/loading/loading'
+import YError from 'components/error/error'
 import api from 'api/github'
 
 export default {
   components: {
-    YLayout
+    YLayout,
+    YLoading,
+    YError
   },
   data () {
     return {
-      list: []
+      list: [],
+      error: false,
+      initLoading: true
     }
   },
   activated () {
@@ -64,6 +72,8 @@ export default {
   },
   deactivated () {
     this.list = []
+    this.initLoading = true
+    this.error = false
   },
   methods: {
     initData () {
@@ -71,6 +81,7 @@ export default {
     },
     getCategoryList () {
       this._getCategoryList((error, data) => {
+        this.initLoading = false
         if (error) {
           return this.errorTip(error)
         }
@@ -83,11 +94,12 @@ export default {
       api.getLabelList().then(data => {
         callback(null, data)
       }).catch(error => {
-        callback(error.status.message)
+        callback(error.message)
       })
     },
     errorTip (msg) {
       this.$notify({ type: 'error', title: '错误', text: msg })
+      this.error = true
     }
   }
 }

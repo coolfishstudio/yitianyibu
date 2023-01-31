@@ -7,7 +7,9 @@
       在过去的{{ days }}天内，我写了<b>{{ total }}</b>篇文章，所有的文章都能在这里找到。
     </p>
     <hr class="content-wrapper-line right"/>
-    <div class="bm-panel content-archive-list" v-if="total > 0">
+    <y-loading :loading="initLoading"></y-loading>
+    <y-error :error="!initLoading && error"></y-error>
+    <div class="bm-panel content-archive-list" v-if="!initLoading && !error && total > 0">
       <div class="timeline">
         <div class="timeline-item" v-for="(item,index) in list" :key="index">
           <div class="date" v-if="item.month">
@@ -28,26 +30,37 @@
         </div>
       </div>
       <div v-if="total > list.length" class="timeline-item-next" v-on:click="getContentList">{{ loading ? '加载中' : '加载更多' }}</div>
+      <div class="mb-1"></div>
+    </div>
+    <div class="bm-panel content-archive-list" v-if="!initLoading && !error && total === 0">
+      <h3 style="text-align: center;font-size: 18px;">数据为空</h3>
     </div>
   </y-layout>
 </template>
 
 <script>
 import YLayout from 'components/layout/layout'
+import YLoading from 'components/loading/loading'
+import YError from 'components/error/error'
 import api from 'api/github'
 import { dateFormat } from 'common/js/util'
+import CONST from 'api/const'
 
 export default {
   components: {
-    YLayout
+    YLayout,
+    YLoading,
+    YError
   },
   data () {
     return {
+      initLoading: true,
+      error: false,
       list: [],
       page: 1,
       per_page: 30,
       total: 0,
-      days: Math.ceil((new Date().getTime() - new Date('2016/02/15').getTime()) / 1000 / 3600 / 24),
+      days: Math.ceil((new Date().getTime() - new Date(`${CONST.CREATE_BLOG_TIME.YEAR}/${CONST.CREATE_BLOG_TIME.MONTH}/${CONST.CREATE_BLOG_TIME.DAY}`).getTime()) / 1000 / 3600 / 24),
       loading: false
     }
   },
@@ -58,6 +71,8 @@ export default {
     this.page = 1
     this.list = []
     this.total = 0
+    this.initLoading = true
+    this.error = false
   },
   methods: {
     initData () {
@@ -72,6 +87,7 @@ export default {
       const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec']
       this._getContentList((error, data) => {
         this.loading = false
+        this.initLoading = false
         if (error) {
           return this.errorTip(error)
         }
@@ -97,11 +113,12 @@ export default {
       }).then(data => {
         callback(null, data)
       }).catch(error => {
-        callback(error.status.message)
+        callback(error.message)
       })
     },
     errorTip (msg) {
       this.$notify({ type: 'error', title: '错误', text: msg })
+      this.error = true
     }
   }
 }

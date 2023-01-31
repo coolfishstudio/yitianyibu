@@ -2,19 +2,6 @@ import axios from 'axios'
 import storage from 'common/js/storage.js'
 import CONST from './const'
 
-// 走 Github 的接口
-const github = {
-  host: 'https://api.github.com',
-  // user: 'isaaxite', // 'coolfishstudio',
-  // repository: 'blog', // 'coolfishstudio.github.io',
-  user: 'berwin', // 'coolfishstudio',
-  repository: 'Blog', // 'coolfishstudio.github.io',
-  // user: 'coolfishstudio',
-  // repository: 'coolfishstudio.github.io',
-  perpage: 30,
-  sort: 'created'
-}
-
 const GITHUB_API = {
   // 核心
   _core (url, data = {}, method = 'GET', headers = { 'Content-Type': 'application/json' }) {
@@ -58,37 +45,37 @@ const GITHUB_API = {
   /** api **/
   // 获取个人信息
   getUserInfo () {
-    return this._get(`${github.host}/users/${github.user}`)
+    return this._get(`${CONST.github.host}/users/${CONST.github.user}`)
   },
   // 获取标签列表
   getLabelList () {
-    return this._get(`${github.host}/repos/${github.user}/${github.repository}/labels`, { per_page: 100 })
+    return this._get(`${CONST.github.host}/repos/${CONST.github.user}/${CONST.github.repository}/labels`, { per_page: 100 })
   },
   // 分页获取 issue 列表
   getIssueList (options = {}) {
-    options.per_page = options.per_page || github.perpage
-    options.sort = github.sort
+    options.per_page = options.per_page || CONST.github.perpage
+    options.sort = CONST.github.sort
     const query = [
-      `repo:${github.user}/${github.repository}`,
+      `repo:${CONST.github.user}/${CONST.github.repository}`,
       options.label ? `label:"${options.label}"` : ''
       // 'state:open'
     ].filter(i => i)
     if (options.keyword) {
       query.push(options.keyword)
     }
-    return this._get(`${github.host}/search/issues?q=${query.join('+')}`, options)
+    return this._get(`${CONST.github.host}/search/issues?q=${query.join('+')}`, options)
   },
   // 获取 label 详情
   getLabel (id) {
-    return this._get(`${github.host}/repos/${github.user}/${github.repository}/labels/${id}`)
+    return this._get(`${CONST.github.host}/repos/${CONST.github.user}/${CONST.github.repository}/labels/${id}`)
   },
   // 获取 issue 详情
   getIssue (id) {
-    return this._get(`${github.host}/repos/${github.user}/${github.repository}/issues/${id}`)
+    return this._get(`${CONST.github.host}/repos/${CONST.github.user}/${CONST.github.repository}/issues/${id}`)
   },
   // 获取指定 issue 的 comment 列表
   getComments (id) {
-    return this._get(`${github.host}/repos/${github.user}/${github.repository}/issues/${id}/comments`)
+    return this._get(`${CONST.github.host}/repos/${CONST.github.user}/${CONST.github.repository}/issues/${id}/comments`)
   }
 }
 

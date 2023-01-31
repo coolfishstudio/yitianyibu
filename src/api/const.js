@@ -106,7 +106,24 @@ const CONST = {
     '为能说三种语言而努力。',
     '与时间做朋友。做为时间喜欢的工作，过被时间喜欢的生活。',
     '时常更新自己的‘基本’。'],
-  STORAGE_AUTH_TOKEN: '__yitianyibu__auth__token__'
+  STORAGE_AUTH_TOKEN: '__yitianyibu__auth__token__',
+  CREATE_BLOG_TIME: {
+    YEAR: 2016,
+    MONTH: 2,
+    DAY: 15
+  },
+  // 走 Github 的接口
+  github: {
+    host: 'https://api.github.com',
+    // user: 'isaaxite', // 'coolfishstudio',
+    // repository: 'blog', // 'coolfishstudio.github.io',
+    user: 'berwin', // 'coolfishstudio',
+    repository: 'Blog', // 'coolfishstudio.github.io',
+    // user: 'coolfishstudio',
+    // repository: 'coolfishstudio.github.io',
+    perpage: 30,
+    sort: 'created'
+  }
 }
 
 export default CONST

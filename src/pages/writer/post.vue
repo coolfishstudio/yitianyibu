@@ -1,9 +1,11 @@
 <template>
   <y-layout menu="post">
-    <div class="bm-panel ">
+    <y-loading :loading="initLoading"></y-loading>
+    <y-error :error="!initLoading && error"></y-error>
+    <div class="bm-panel mb-1" v-if="!initLoading && !error">
       <y-post v-show="!loading" :info="info"></y-post>
       <!-- <y-post-near v-show="!loading" :next="next" :prev="prev"></y-post-near> -->
-      <y-comment-list :list="comments"></y-comment-list>
+      <y-comment-list v-if="comments.length > 0" :list="comments"></y-comment-list>
       <!-- <y-comment-create v-if="false"></y-comment-create> -->
     </div>
   </y-layout>
@@ -14,6 +16,8 @@ import YLayout from 'components/layout/layout'
 // import YCommentCreate from 'components/comment/create'
 import YCommentList from 'components/comment/list'
 // import YPostNear from 'components/post-near/post-near'
+import YLoading from 'components/loading/loading'
+import YError from 'components/error/error'
 import YPost from 'components/post/post'
 import api from 'api/github'
 import { dateFormat } from 'common/js/util'
@@ -24,10 +28,14 @@ export default {
     // YCommentCreate,
     YCommentList,
     // YPostNear,
-    YPost
+    YPost,
+    YLoading,
+    YError
   },
   data () {
     return {
+      initLoading: true,
+      error: false,
       loading: false,
       info: {
         title: null,
@@ -43,9 +51,12 @@ export default {
     }
   },
   activated () {
+    document.body.scrollTop = 0
     this.initData()
   },
   deactivated () {
+    this.initLoading = true
+    this.error = false
     this.loading = false
     this.info = {
       title: null,
@@ -65,9 +76,13 @@ export default {
       this.loading = true
       this._getContentInfo((error, data) => {
         if (error) {
+          this.initLoading = false
+          this.loading = false
           return this.errorTip(error)
         }
         this._getComments((_error, comments) => {
+          this.loading = false
+          this.initLoading = false
           if (_error) {
             return this.errorTip(_error)
           }
@@ -84,7 +99,6 @@ export default {
             // tag: data.result.content.tag || []
             tag: data.labels || []
           }
-          this.loading = false
           // this.prev = (data.result.near && data.result.near.prev) || null
           // this.next = (data.result.near && data.result.near.next) || null
         })
@@ -94,18 +108,19 @@ export default {
       api.getIssue(this.$route.params.id).then(data => {
         callback(null, data)
       }).catch(error => {
-        callback(error.status.message)
+        callback(error.message)
       })
     },
     _getComments (callback) {
       api.getComments(this.$route.params.id).then(data => {
         callback(null, data)
       }).catch(error => {
-        callback(error.status.message)
+        callback(error.message)
       })
     },
     errorTip (msg) {
       this.$notify({ type: 'error', title: '错误', text: msg })
+      this.error = true
     }
   }
 }

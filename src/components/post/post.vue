@@ -16,21 +16,22 @@
       </div>
       <div class="post-bar">
         <div class="post-like">
-          <div class="share">
-            <svg t="1514966401073" class="icon" style="" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1881" xmlns:xlink="http://www.w3.org/1999/xlink" width="36" height="36">
-              <path d="M896 927.954H128c-17.673 0-32-14.327-32-32v-320c0-8.836 7.163-16 16-16s16 7.164 16 16v304c0 8.837 7.163 16 16 16h736c8.837 0 16-7.163 16-16v-304c0-8.837 7.164-16 16-16 8.837 0 16 7.163 16 16v320c0 17.673-14.327 32-32 32zM524.167 741.953c6.248 6.248 6.248 16.379 0 22.627s-16.379 6.248-22.628 0c-6.248-6.248-6.248-16.379 0-22.627 6.249-6.249 16.38-6.249 22.628 0z m-12.021-491.036c8.836 0 16 7.163 16 16l0.707 373.156c0 8.837-7.163 16-16 16s-16-7.164-16-16l-0.707-373.156c0-8.836 7.164-16 16-16z m181.02 58.371L523.46 139.582c-6.248-6.248-16.379-6.248-22.627 0L331.834 308.581c-6.248 6.248-16.379 6.248-22.627 0-6.248-6.248-6.248-16.379 0-22.627l180.312-180.312c12.497-12.497 32.758-12.497 45.255 0l181.019 181.019c6.248 6.248 6.248 16.379 0 22.627-6.248 6.248-16.379 6.248-22.627 0z" p-id="10813"></path>
-            </svg>
+          <div class="share" @click="toTop">
+            <svg class="icon" width="36" height="36" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7993"><path d="M838.656 767.616l0 17.344-201.344-40.576c-12.992 43.456-65.152 76.736-125.952 76.736-60.864 0-113.024-33.344-126.016-78.208l-199.872 39.104 0-17.344c0-98.496 27.52-169.472 89.728-228.864C253.44 254.848 379.456 76.736 504 4.288L511.296 0l7.232 4.288c124.608 72.448 249.088 250.56 228.864 531.584C811.136 595.264 838.656 666.24 838.656 767.616zM574.976 417.152c37.632-34.752 40.512-94.144 5.76-131.84C545.984 247.68 486.656 244.736 448.96 279.488c-37.632 34.752-40.512 94.208-5.76 131.84C477.952 449.024 537.344 451.904 574.976 417.152zM558.4 916.8C558.4 958.784 512 1024 512 1024s-46.336-69.568-46.336-107.2c0-31.872 20.224-57.92 46.336-57.92S558.4 884.928 558.4 916.8z" p-id="7994"></path></svg>
           </div>
         </div>
         <div class="post-category">
-          <span class="post-category-item" v-for="tag in info.category">
-            <router-link tag="a" class="name" :to="'/plan/' + tag.name">
-              {{ tag.name }}
-            </router-link>
-            <router-link tag="a" class="plan" :to="'/plan/' + tag.name">
-              {{ tag.description || tag.name }}
-            </router-link>
-          </span>
+          <div class="post-category-title">收录于</div>
+          <div class="post-category-items">
+            <span class="post-category-item" v-for="tag in info.category">
+              <router-link tag="a" class="name" :to="'/plan/' + tag.name">
+                {{ tag.name }}
+              </router-link>
+              <router-link tag="a" class="plan" :to="'/plan/' + tag.name">
+                {{ tag.description || tag.name }}
+              </router-link>
+            </span>
+          </div>
         </div>
       </div>
     </div>
@@ -41,6 +42,11 @@
 export default {
   props: {
     info: null
+  },
+  methods: {
+    toTop () {
+      document.documentElement.scrollTop = 0
+    }
   }
 }
 </script>
@@ -115,7 +121,7 @@ export default {
         background-color: #2ecc40
         color: #fff
       svg
-        margin: 0.16rem auto
+        margin: 0.17rem auto
         fill: currentColor
   .name
     color: #293846
@@ -127,15 +133,23 @@ export default {
     font-size: 0.14rem
     color: #7f8c8d
   .post-category
-    display: flex
     margin-bottom: 0.4rem;
     margin-top: 0.3rem;
-    .post-category-item
-      flex: 1
-      margin: 0.1rem 0
-      border-right: 1px dashed #ddd
-      &:last-child
-        border-right: none
+    .post-category-title
+      color: rgba(0,0,0,0.45)
+      text-align: center
+      font-size: 0.16rem
+      padding-bottom: 0.1rem
+      margin-bottom: 0.05rem
+    .post-category-items
+      display: flex
+      .post-category-item
+        flex: 1
+        padding: 0.1rem 0
+        margin-top: 0.05rem
+        border-right: 1px dashed #ddd
+        &:last-child
+          border-right: none
 @media (max-width: 992px)
   .post-header
     padding: 3% 0 2%

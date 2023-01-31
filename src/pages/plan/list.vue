@@ -1,7 +1,9 @@
 <template>
   <y-layout menu="plan">
-    <div class="bm-panel plan-list-content" v-if="info.name" :style="'--footer-background: #' + info.color + ';'">
-      <div class="plan-list-header">
+    <div class="bm-panel plan-list-content" :style="'--footer-background: #' + info.color + ';'">
+      <y-loading :loading="initLoading"></y-loading>
+      <y-error :error="!initLoading && error"></y-error>
+      <div class="plan-list-header" v-if="!initLoading && !error && info.name">
         <div class="plan-list-title">
           <span>
             {{ info.name }}
@@ -15,7 +17,7 @@
           ></div>
         </div>
       </div>
-      <div class="plan-list-items text-shadow">
+      <div class="plan-list-items text-shadow mb-1" v-if="!initLoading && !error && total > 0">
         <blockquote v-if="info.desc">
           <p>
             {{ info.desc }}
@@ -31,8 +33,11 @@
         </router-link>
         <div v-if="total > list.length" class="next-more" v-on:click="getNextIssueList">{{ loading ? '加载中' : '加载更多' }}</div>
       </div>
+      <div class="bm-panel plan-list-items" v-if="!initLoading && !error && total === 0">
+        <h3 style="text-align: center;font-size: 18px;">数据为空</h3>
+      </div>
     </div>
-    <svg>
+    <svg style="display: none">
       <defs>
         <filter id="blob">
           <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur>
@@ -45,15 +50,21 @@
 
 <script>
 import YLayout from 'components/layout/layout'
+import YLoading from 'components/loading/loading'
+import YError from 'components/error/error'
 import api from 'api/github'
 import { dateFormat } from 'common/js/util'
 
 export default {
   components: {
-    YLayout
+    YLayout,
+    YLoading,
+    YError
   },
   data () {
     return {
+      initLoading: true,
+      error: false,
       info: {},
       list: [],
       page: 1,
@@ -71,6 +82,8 @@ export default {
     this.info = {}
     this.total = 0
     this.loading = false
+    this.initLoading = true
+    this.error = false
   },
   methods: {
     initData () {
@@ -84,10 +97,12 @@ export default {
       this._getLabel((_error, info) => {
         if (_error) {
           this.loading = false
+          this.initLoading = false
           return this.errorTip(_error)
         }
         this._getIssueList((error, data) => {
           this.loading = false
+          this.initLoading = false
           if (error) {
             return this.errorTip(error)
           }
@@ -123,7 +138,7 @@ export default {
       api.getLabel(this.$route.params.id).then(data => {
         callback(null, data)
       }).catch(error => {
-        callback(error.status.message)
+        callback(error.message)
       })
     },
     _getIssueList (callback) {
@@ -134,11 +149,12 @@ export default {
       }).then(data => {
         callback(null, data)
       }).catch(error => {
-        callback(error.status.message)
+        callback(error.message)
       })
     },
     errorTip (msg) {
       this.$notify({ type: 'error', title: '错误', text: msg })
+      this.error = true
     }
   }
 }
