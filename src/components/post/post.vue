@@ -11,8 +11,7 @@
         </div>
       </div>
       <div class="post-body">
-        <div class="markdown-body" v-html="info.html">
-        </div>
+        <div class="markdown-body" v-html="info.html || '无'"></div>
       </div>
       <div class="post-bar">
         <div class="post-like">
@@ -20,7 +19,7 @@
             <svg class="icon" width="36" height="36" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7993"><path d="M838.656 767.616l0 17.344-201.344-40.576c-12.992 43.456-65.152 76.736-125.952 76.736-60.864 0-113.024-33.344-126.016-78.208l-199.872 39.104 0-17.344c0-98.496 27.52-169.472 89.728-228.864C253.44 254.848 379.456 76.736 504 4.288L511.296 0l7.232 4.288c124.608 72.448 249.088 250.56 228.864 531.584C811.136 595.264 838.656 666.24 838.656 767.616zM574.976 417.152c37.632-34.752 40.512-94.144 5.76-131.84C545.984 247.68 486.656 244.736 448.96 279.488c-37.632 34.752-40.512 94.208-5.76 131.84C477.952 449.024 537.344 451.904 574.976 417.152zM558.4 916.8C558.4 958.784 512 1024 512 1024s-46.336-69.568-46.336-107.2c0-31.872 20.224-57.92 46.336-57.92S558.4 884.928 558.4 916.8z" p-id="7994"></path></svg>
           </div>
         </div>
-        <div class="post-category">
+        <div class="post-category" v-if="info.category.length > 0">
           <div class="post-category-title">收录于</div>
           <div class="post-category-items">
             <span class="post-category-item" v-for="tag in info.category">

@@ -14,9 +14,9 @@
         <div class="content-home-cover" :style="'background-image: url(' + imageUrl + ');'"></div>
       </div>
       <!-- 文章 -->
-      <div class="content-home-post">
+      <div class="content-home-post mb-1" v-if="!initLoading && !error">
         <y-post v-show="!loading" :info="info"></y-post>
-        <y-post-near v-show="!loading" :next="next" :prev="prev"></y-post-near>
+        <y-comment-list v-if="comments.length > 0" :list="comments"></y-comment-list>
       </div>
     </div>
   </y-layout>
@@ -24,23 +24,25 @@
 
 <script>
 import YLayout from 'components/layout/layout'
-import YPostNear from 'components/post-near/post-near'
+import YCommentList from 'components/comment/list'
 import YPost from 'components/post/post'
 
 import { dateFormat } from 'common/js/util'
 import CONST from 'api/const'
-import api from 'api'
+import api from 'api/github'
 
 const tips = CONST.tips || []
 
 export default {
   components: {
     YLayout,
-    YPostNear,
+    YCommentList,
     YPost
   },
   data () {
     return {
+      initLoading: true,
+      error: false,
       imageUrl: '',
       tip: '',
       switchTip: false,
@@ -50,14 +52,12 @@ export default {
         html: null,
         hits: null,
         time: null,
-        category: {
-          title: null,
-          desc: null
-        },
+        category: [],
         tag: null
       },
-      prev: null,
-      next: null
+      // prev: null,
+      // next: null,
+      comments: []
     }
   },
   mounted () {
@@ -83,50 +83,59 @@ export default {
       let time = dateFormat(null, 'yyyyMMdd')
       this.imageUrl = `http://cn.bing.com/iod/1366/1024/${time}1600`
     },
-    // 获取最新文章 -> 随机
+    // 获取最新文章
     getNewContentInfo () {
       this.loading = true
-      this._getRandomContentInfo((error, data) => {
-        this.loading = false
+      this._getNewContentInfo((error, list) => {
         if (error) {
+          this.initLoading = false
+          this.loading = false
           return this.errorTip(error)
         }
-        if (data.status.code === 0) {
-          data.result.content.html = data.result.content.html.replace(/src="\/images/img, 'src="http://v1.yitianyibu.com/images')
-          data.result.content.html = data.result.content.html.replace(/src="\/i\//img, 'src="http://api.yitianyibu.com/i/')
-          this.info = {
-            title: data.result.content.title || null,
-            html: data.result.content.html || null,
-            hits: data.result.content.hits || null,
-            time: dateFormat(data.result.content.createdAt, 'yyyy-MM-dd'),
-            category: {
-              title: data.result.category.name || null,
-              desc: data.result.category.desc || null,
-              link: data.result.category.pathname || data.result.category._id || null
-            },
-            tag: data.result.content.tag || []
-          }
-          this.prev = (data.result.near && data.result.near.prev) || null
-          this.next = (data.result.near && data.result.near.next) || null
+        const data = list[0] || {}
+        if (data.number) {
+          this._getComments(data.number, (_error, comments) => {
+            this.loading = false
+            this.initLoading = false
+            if (_error) {
+              return this.errorTip(_error)
+            }
+            this.comments = (comments || []).map(i => {
+              i.time = dateFormat(data.created_at, 'yyyy-MM-dd hh:mm:ss', true)
+              return i
+            })
+            this.info = {
+              title: data.title || null,
+              html: data.body_html || null,
+              hits: data.comments || null,
+              time: dateFormat(data.created_at, 'yyyy-MM-dd hh:mm:ss', true),
+              category: data.labels || [],
+              // tag: data.result.content.tag || []
+              tag: data.labels || []
+            }
+            // this.prev = (data.result.near && data.result.near.prev) || null
+            // this.next = (data.result.near && data.result.near.next) || null
+          })
         }
       })
     },
     _getNewContentInfo (callback) {
-      api.getNewContentInfo().then(data => {
+      api.getNewIssues().then(data => {
         callback(null, data)
       }).catch(error => {
-        callback(error.status.message)
+        callback(error.message)
       })
     },
-    _getRandomContentInfo (callback) {
-      api.getRandomContentInfo().then(data => {
+    _getComments (id, callback) {
+      api.getComments(id).then(data => {
         callback(null, data)
       }).catch(error => {
-        callback(error.status.message)
+        callback(error.message)
       })
     },
     errorTip (msg) {
       this.$notify({ type: 'error', title: '错误', text: msg })
+      this.error = true
     }
   }
 }
@@ -140,7 +149,8 @@ export default {
   .content-home-post
     width: 80%
     max-width: 14.4rem
-    margin: 0 auto
+    margin-left: auto
+    margin-right: auto
   .content-home-poster
     position: relative
     height: 100vh

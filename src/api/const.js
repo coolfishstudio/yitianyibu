@@ -115,10 +115,8 @@ const CONST = {
   // 走 Github 的接口
   github: {
     host: 'https://api.github.com',
-    // user: 'isaaxite', // 'coolfishstudio',
-    // repository: 'blog', // 'coolfishstudio.github.io',
-    user: 'berwin', // 'coolfishstudio',
-    repository: 'Blog', // 'coolfishstudio.github.io',
+    user: 'isaaxite', // 'coolfishstudio',
+    repository: 'blog', // 'coolfishstudio.github.io',
     // user: 'coolfishstudio',
     // repository: 'coolfishstudio.github.io',
     perpage: 30,

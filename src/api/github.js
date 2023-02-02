@@ -73,6 +73,10 @@ const GITHUB_API = {
   getIssue (id) {
     return this._get(`${CONST.github.host}/repos/${CONST.github.user}/${CONST.github.repository}/issues/${id}`)
   },
+  // 获取最新 issue 详情
+  getNewIssues () {
+    return this._get(`${CONST.github.host}/repos/${CONST.github.user}/${CONST.github.repository}/issues`, { per_page: 1 })
+  },
   // 获取指定 issue 的 comment 列表
   getComments (id) {
     return this._get(`${CONST.github.host}/repos/${CONST.github.user}/${CONST.github.repository}/issues/${id}/comments`)
