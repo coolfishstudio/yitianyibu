@@ -33,7 +33,7 @@
         </router-link>
         <div v-if="total > list.length" class="next-more" v-on:click="getNextIssueList">{{ loading ? '加载中' : '加载更多' }}</div>
       </div>
-      <div class="bm-panel plan-list-items" v-if="!initLoading && !error && total === 0">
+      <div class="bm-panel" v-if="!initLoading && !error && total === 0">
         <h3 style="text-align: center;font-size: 18px;">数据为空</h3>
       </div>
     </div>

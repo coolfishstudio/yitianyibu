@@ -3,7 +3,8 @@ const CONST = {
     { title: 'Home', menu: 'index', to: '/index' },
     { title: 'Plan', menu: 'plan', to: '/plan' },
     { title: 'Archive', menu: 'archive', to: '/p' },
-    { title: 'Labs', menu: 'labs', to: '/labs' }
+    { title: 'Labs', menu: 'labs', to: '/labs' },
+    { title: 'Readme', menu: 'readme', to: '/readme' }
     // { title: 'Message', menu: 'message', to: '/message' }
   ],
   tips: ['一切自己负责。指责他人也无济于事。',
@@ -115,10 +116,11 @@ const CONST = {
   // 走 Github 的接口
   github: {
     host: 'https://api.github.com',
-    user: 'isaaxite', // 'coolfishstudio',
-    repository: 'blog', // 'coolfishstudio.github.io',
-    // user: 'coolfishstudio',
-    // repository: 'coolfishstudio.github.io',
+    githubusercontent: 'https://raw.githubusercontent.com',
+    // user: 'isaaxite', // 'coolfishstudio',
+    // repository: 'blog', // 'coolfishstudio.github.io',
+    user: 'coolfishstudio',
+    repository: 'coolfishstudio.github.io',
     perpage: 30,
     sort: 'created'
   }

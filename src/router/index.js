@@ -9,6 +9,7 @@ import Archive from 'pages/archive/archive'
 import Labs from 'pages/labs/labs'
 // import LabsCreate from 'pages/labs/create'
 import Message from 'pages/message/message'
+import Readme from 'pages/readme/readme'
 import Post from 'pages/writer/post'
 // import PostCreate from 'pages/writer/create'
 // import Login from 'pages/login/login'
@@ -26,6 +27,7 @@ let routes = [{ path: '/', component: Index },
   { path: '/labs', component: Labs },
   // { path: '/labs/create', component: LabsCreate },
   { path: '/message', component: Message },
+  { path: '/readme', component: Readme },
   // { path: '/login', component: Login },
   { path: '*', redirect: '/' }]
 

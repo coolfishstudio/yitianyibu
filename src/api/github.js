@@ -12,7 +12,9 @@ const GITHUB_API = {
     if (token) {
       headers['Authorization'] = `Bearer ${token}`
     }
-    headers['accept'] = 'application/vnd.github.v3.html'
+    if (!headers['accept']) {
+      headers['accept'] = 'application/vnd.github.v3.html'
+    }
     let options = {
       url,
       method,
@@ -80,6 +82,10 @@ const GITHUB_API = {
   // 获取指定 issue 的 comment 列表
   getComments (id) {
     return this._get(`${CONST.github.host}/repos/${CONST.github.user}/${CONST.github.repository}/issues/${id}/comments`)
+  },
+  // 获取我自己的信息
+  getReadme () {
+    return this._get(`${CONST.github.githubusercontent}/${CONST.github.user}/${CONST.github.user}/master/README.md`)
   }
 }
 
