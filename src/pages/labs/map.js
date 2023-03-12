@@ -21,8 +21,7 @@ export const labsData = [{
 }, {
   name: '卡通飞行',
   desc: '使用Egret游戏引擎做的一个打飞机游戏，这是我学习egret所写的第一个小游戏。',
-  url: 'http://flight.coolfishstudio.com',
-  hide: true
+  url: 'https://coolfishstudio.github.io/CartoonFlight'
 }, {
   name: '微信摇一摇',
   desc: '基于HTML5的运动传感器，模拟摇一摇被触发才执行的事件效果。',
