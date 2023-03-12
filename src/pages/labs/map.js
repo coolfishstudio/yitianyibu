@@ -40,7 +40,7 @@ export const labsData = [{
   desc: '无意间翻出2015年写的一个H5小游戏，请用手机模式，滑动屏幕，相同数字可组合。',
   url: 'https://coolfishstudio.github.io/game-2048'
 }, {
-  name: '中国传统色色谱',
+  name: '中国传统色谱',
   desc: '提供各种中国的传统颜色的名称，HEX值，RGB值',
   url: 'https://coolfishstudio.github.io/cfs-color'
 }]

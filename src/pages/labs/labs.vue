@@ -9,7 +9,9 @@
     <hr class="content-wrapper-line right"/>
     <div class="bm-panel content-labs-list">
       <a @click="gotoUrl(item.url)" class="content-labs-list-item shadow" v-for="(item, index) in list" :key="index">
-        <div :style="'background-image: url(' + item.cover + ')'" class="content-labs-list-item-img"></div>
+        <div class="content-labs-list-item-img">
+          <span>{{ item.name }}</span>
+        </div>
         <div class="content-labs-list-item-text text-shadow">
           <p class="content-labs-list-item-title">{{ item.name }}</p>
           <p class="content-labs-list-item-time">{{ item.time }}</p>
@@ -52,6 +54,11 @@ export default {
     cursor: pointer
     position: relative
     overflow: hidden
+    &:hover
+      .content-labs-list-item-img
+        span
+          text-shadow: 0 0 0.35rem currentColor
+          font-size: 0.36rem
     &.create
       .content-labs-list-item-img
         background-color: transparent
@@ -61,11 +68,21 @@ export default {
       width: 80%
       background-size: cover
       background-position: center
-      background-color: #f2f2f2
-      filter: grayscale(100%)
+      background-color: rgba(0,0,0,0.85)
       transition: all 0.5s
-      &:hover
-        filter: grayscale(0%)
+      position: relative
+      span
+        font-size: 0.32rem
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%,-50%)
+        font-weight: 500
+        transition: all 0.5s
+        color: #fff
+        width: 90%
+        text-align: center
+        white-space: pre
     .content-labs-list-item-text
       float: left
       width: 20%
@@ -82,7 +99,7 @@ export default {
         font-size: 0.12rem
       .content-labs-list-item-desc
         text-align: left
-        padding: 0.15rem 0.13rem 0 0.13rem
+        padding: 0.15rem 0.13rem
         color: $color-text-body
         font-size: 0.13rem
         word-break: break-word
@@ -109,6 +126,9 @@ export default {
           right: 0.1rem
           color: #fff
           font-weight: 500
-        .content-labs-list-item-desc
+        .content-labs-list-item-title
           display: none
+        .content-labs-list-item-desc
+          padding-top: 0
+          padding-bottom: 0
 </style>
